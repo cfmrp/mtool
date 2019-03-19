@@ -3,15 +3,19 @@
 
 import itertools
 import statistics
+import sys;
 
 from treewidth import quickbb
 
 class Node(object):
 
-    def __init__(self, id):
+    def __init__(self, id, label = None, properties = None, anchors = None):
         self.id = id
+        self.label = label;
+        self.properties = properties;
         self.incoming_edges = set()
         self.outgoing_edges = set()
+        self.anchors = anchors;
         self.is_top = False
 
     def is_root(self):
@@ -23,6 +27,13 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
+    def encode(self):
+        json = {"id": self.id};
+        if self.label:
+            json["label"] = self.label;
+        json["anchors"] = self.anchors;
+        return json;
+    
     def __key(self):
         return self.id
 
@@ -57,6 +68,10 @@ class Edge(object):
     def length(self):
         return self.max() - self.min()
 
+    def encode(self):
+        json = {"source": self.src, "target": self.tgt, "label": self.lab};
+        return json;
+
     def __key(self):
         return self.tgt, self.src, self.lab
 
@@ -71,13 +86,16 @@ class Edge(object):
 
 class Graph(object):
 
-    def __init__(self, id):
+    def __init__(self, id, flavor = None, framework = None):
         self.id = id
         self.nodes = []
         self.edges = set()
+        self.flavor = flavor;
+        self.framework = framework;
 
-    def add_node(self):
-        node = Node(len(self.nodes))
+    def add_node(self, label = None, properties = None, anchors = None):
+        node = Node(len(self.nodes),
+                    label = label, properties = properties, anchors = anchors);
         self.nodes.append(node)
         return node
 
@@ -88,6 +106,16 @@ class Graph(object):
         self.nodes[tgt].incoming_edges.add(edge)
         return edge
 
+    def encode(self):
+        json = {};
+        if self.flavor:
+            json["flavor"] = self.flavor;
+        if self.framework:
+            json["framework"] = self.framework;
+        json["nodes"] = [node.encode() for node in self.nodes];
+        json["edges"] = [edge.encode() for edge in self.edges];
+        return json;
+        
 class DepthFirstSearch(object):
 
     def __init__(self, graph, undirected=False):
