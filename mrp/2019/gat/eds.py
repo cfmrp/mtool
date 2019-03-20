@@ -6,8 +6,12 @@ from analyzer import Graph, analyze, analyze_cmd
 EDS_MATCHER = re.compile(r'(.+?)(?<!\\):(.+)(?<!\\)\[(.*)(?<!\\)\]')
 
 def read_instances(fp):
-    sentence_id = os.path.splitext(os.path.basename(fp.name));
     top_handle, predicates = None, [];
+    sentence_id = None;
+    try:
+      sentence_id = int(os.path.splitext(os.path.basename(fp.name))[0]);
+    except:
+      pass;
     # In the current version of the data, graphs are terminated by two
     # curly braces (each on a separate line) instead of just one.  The
     # purpose of the following flag is to implement sanity checks

@@ -31,6 +31,8 @@ class Node(object):
         json = {"id": self.id};
         if self.label:
             json["label"] = self.label;
+#        if self.is_top:
+#            json["top"] = True;
         json["anchors"] = self.anchors;
         return json;
     
@@ -107,11 +109,14 @@ class Graph(object):
         return edge
 
     def encode(self):
-        json = {};
+        json = {"id": self.id};
         if self.flavor:
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
+        tops = [node.id for node in self.nodes if node.is_top];
+        if len(tops):
+            json["tops"] = tops;
         json["nodes"] = [node.encode() for node in self.nodes];
         json["edges"] = [edge.encode() for edge in self.edges];
         return json;
