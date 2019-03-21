@@ -47,10 +47,18 @@ def read_instances(fp):
 
 LNK_MATCHER = re.compile(r"<([0-9]+):([0-9]+)>$");
 
-def instance2graph(instance):
+def instance2graph(instance, text = None):
     sentence_id, top, predicates = instance
     anchors = None;
     graph = Graph(sentence_id, flavor = 1, framework = "eds")
+    if text:
+        file = text / (str(graph.id) + ".txt");
+        print(file);
+        if file.exists():
+            with file.open() as stream:
+                input = stream.readline();
+                if input.endswith("\n"): input = input[:len(input) - 1];
+            graph.input = input;
     handle2node = {}
     for handle, label, _ in predicates:
         assert handle not in handle2node
@@ -69,6 +77,6 @@ def instance2graph(instance):
     graph.tokens = ['foo'] # TODO
     return graph
 
-def read_eds(fp):
+def read_eds(fp, text = None):
     for instance in read_instances(fp):
-        yield instance2graph(instance)
+        yield instance2graph(instance, text = text)

@@ -4,9 +4,10 @@
 
 import argparse;
 import json;
+from pathlib import Path;
 import sys;
 
-from analyzer import Graph, analyze
+from graph import Graph;
 
 from read_amr import read_amr
 from eds import read_eds
@@ -20,11 +21,17 @@ if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
   parser.add_argument("--format", required = True);
+  parser.add_argument("--text");
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
                       type=argparse.FileType("w"), default = sys.stdout);
   arguments = parser.parse_args();
+
+  text = None;
+  if arguments.text and Path(arguments.text).is_dir():
+    text = Path(arguments.text);
+    
 
   graphs = None
   if arguments.format == "amr":

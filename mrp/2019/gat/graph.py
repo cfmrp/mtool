@@ -115,6 +115,84 @@ class Graph(object):
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+    def __lt__(self, other):
+        return self.__key() < other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
+
+class Edge(object):
+
+    def __init__(self, src, tgt, lab):
+        self.src = src
+        self.tgt = tgt
+        self.lab = lab
+
+    def is_loop(self):
+        return self.src == self.tgt
+
+    def min(self):
+        return min(self.src, self.tgt)
+
+    def max(self):
+        return max(self.src, self.tgt)
+
+    def endpoints(self):
+        return self.min(), self.max()
+
+    def length(self):
+        return self.max() - self.min()
+
+    def encode(self):
+        json = {"source": self.src, "target": self.tgt, "label": self.lab};
+        return json;
+
+    def __key(self):
+        return self.tgt, self.src, self.lab
+
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+    def __lt__(self, other):
+        return self.__key() < other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
+
+class Graph(object):
+
+    def __init__(self, id, flavor = None, framework = None):
+        self.id = id
+        self.input = None;
+        self.nodes = []
+        self.edges = set()
+        self.flavor = flavor;
+        self.framework = framework;
+
+    def add_node(self, label = None, properties = None, anchors = None):
+        node = Node(len(self.nodes),
+                    label = label, properties = properties, anchors = anchors);
+        self.nodes.append(node)
+        return node
+
+    def add_edge(self, src, tgt, lab):
+        edge = Edge(src, tgt, lab)
+        self.edges.add(edge)
+        self.nodes[src].outgoing_edges.add(edge)
+        self.nodes[tgt].incoming_edges.add(edge)
+        return edge
+
+    def encode(self):
+        json = {"id": self.id};
+        if self.flavor:
+            json["flavor"] = self.flavor;
+        if self.framework:
+            json["framework"] = self.framework;
+        if self.input:
+            json["input"] = self.input;
         tops = [node.id for node in self.nodes if node.is_top];
         if len(tops):
             json["tops"] = tops;
