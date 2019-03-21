@@ -9,14 +9,14 @@ from treewidth import quickbb
 
 class Node(object):
 
-    def __init__(self, id, label = None, properties = None, anchors = None):
+    def __init__(self, id, label = None, properties = None, anchors = None, top = False):
         self.id = id
         self.label = label;
         self.properties = properties;
         self.incoming_edges = set()
         self.outgoing_edges = set()
         self.anchors = anchors;
-        self.is_top = False
+        self.is_top = top
 
     def is_root(self):
         return len(self.incoming_edges) == 0
@@ -31,9 +31,10 @@ class Node(object):
         json = {"id": self.id};
         if self.label:
             json["label"] = self.label;
-#        if self.is_top:
-#            json["top"] = True;
-        json["anchors"] = self.anchors;
+        if self.properties:
+            json["properties"] = self.properties;
+        if self.anchors:
+            json["anchors"] = self.anchors;
         return json;
     
     def __key(self):
@@ -95,9 +96,9 @@ class Graph(object):
         self.flavor = flavor;
         self.framework = framework;
 
-    def add_node(self, label = None, properties = None, anchors = None):
-        node = Node(len(self.nodes),
-                    label = label, properties = properties, anchors = anchors);
+    def add_node(self, id = None, label = None, properties = None, anchors = None, top = False):
+        node = Node(id if id else len(self.nodes),
+                    label = label, properties = properties, anchors = anchors, top = top);
         self.nodes.append(node)
         return node
 

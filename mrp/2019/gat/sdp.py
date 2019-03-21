@@ -21,8 +21,11 @@ def matrix2graph(matrix):
     graph = Graph(matrix[0][0][1:])
     predicates = []
     for id, row in enumerate(matrix[1:]):
-        node = graph.add_node()
-        node.is_top = row[4] == '+'
+        lemma, pos, frame, top = row[2], row[3], row[6], row[4] == '+'
+        if lemma == "_": lemma = row[1]
+        properties = {"pos": pos}
+        if frame != "_": properties["frame"] = frame
+        node = graph.add_node(label=lemma, properties=properties, top=top)
         if row[5] == '+':
             predicates.append(id)
     for tgt, row in enumerate(matrix[1:]):
@@ -30,7 +33,6 @@ def matrix2graph(matrix):
             if label != '_':
                 src = predicates[pred]
                 edge = graph.add_edge(src, tgt, label)
-    graph.tokens = [columns[1] for columns in matrix[1:]]
     return graph
 
 def read_sdp(fp):
