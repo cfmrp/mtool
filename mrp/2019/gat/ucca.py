@@ -28,4 +28,3 @@ def read_ucca(fp):
         yield passage2graph(passage)
 
 
-analyze_cmd(read_ucca, ordered=True)
