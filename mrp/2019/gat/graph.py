@@ -115,11 +115,9 @@ class Graph(object):
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
-    def __lt__(self, other):
-        return self.__key() < other.__key()
-
-    def __hash__(self):
-        return hash(self.__key())
+        tops = [node.id for node in self.nodes if node.is_top];
+        if len(tops):
+            json["tops"] = tops;
+        json["nodes"] = [node.encode() for node in self.nodes];
+        json["edges"] = [edge.encode() for edge in self.edges];
+        return json;
