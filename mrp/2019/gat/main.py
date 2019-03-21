@@ -9,7 +9,7 @@ import sys;
 
 from graph import Graph;
 
-from read_amr import read_amr
+from amr import read_amr
 from eds import read_eds
 from sdp import read_sdp;
 #from ucca import read_ucca;

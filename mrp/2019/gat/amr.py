@@ -1,8 +1,8 @@
-import amr
+import smatch
 import re
 import sys
 
-from analyzer import Graph, analyze_cmd
+from graph import Graph
 
 def amr_lines(fp):
     id, lines = None, []
@@ -26,7 +26,7 @@ def amr2graph_old(id, amr):
     for i, node in enumerate(amr.nodes):
         node2id[node] = i
         graph.add_node()
-    instance_triples, attribute_triples, relation_triples = amr.get_triples()
+    instance_triples, attribute_triples, relation_triples = smatch.get_triples()
     for type, arg1, arg2 in relation_triples:
         assert arg1 in node2id and arg2 in node2id
         src = node2id[arg1]
@@ -78,11 +78,9 @@ def read_amr(fp):
         except:
             pass
         try:
-            a = amr.AMR.parse_AMR_line(amr_line)
+            a = smatch.AMR.parse_AMR_line(amr_line)
         except:
             #print("Ignoring %s" % id, file=sys.stderr)
             continue
         if a is not None:
             yield amr2graph(id, a)
-
-#analyze_cmd(read_amr, ordered=False)

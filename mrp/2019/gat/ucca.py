@@ -1,6 +1,6 @@
 from operator import attrgetter
 
-from analyzer import Graph, analyze_cmd
+from graph import Graph;
 from ucca.ioutil import get_passages_with_progress_bar
 from ucca import layer0, layer1
 

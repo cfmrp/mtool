@@ -1,4 +1,4 @@
-from analyzer import Graph, analyze_cmd
+from graph import Graph;
 
 def read_matrix(file):
     rows = []
@@ -25,7 +25,7 @@ def matrix2graph(matrix):
         if lemma == "_": lemma = row[1]
         properties = {"pos": pos}
         if frame != "_": properties["frame"] = frame
-        node = graph.add_node(label=lemma, properties=properties, top=top)
+        node = graph.add_node(id, label=lemma, properties=properties, top=top)
         if row[5] == '+':
             predicates.append(id)
     for tgt, row in enumerate(matrix[1:]):

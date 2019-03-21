@@ -1,7 +1,7 @@
 import re
 
 import os.path;
-from analyzer import Graph, analyze, analyze_cmd
+from graph import Graph;
 
 EDS_MATCHER = re.compile(r'(.+?)(?<!\\):(.+)(?<!\\)\[(.*)(?<!\\)\]')
 
