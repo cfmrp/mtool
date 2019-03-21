@@ -37,4 +37,3 @@ def read_sdp(fp):
     for matrix in read_matrices(fp):
         yield matrix2graph(matrix)
 
-analyze_cmd(read_sdp, ordered=True)
