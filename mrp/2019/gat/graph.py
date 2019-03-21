@@ -115,6 +115,8 @@ class Graph(object):
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
+        if self.input:
+            json["input"] = self.input;
         tops = [node.id for node in self.nodes if node.is_top];
         if len(tops):
             json["tops"] = tops;

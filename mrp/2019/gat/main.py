@@ -40,7 +40,7 @@ if __name__ == "__main__":
   elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
     graphs = read_sdp(arguments.input);
   elif arguments.read == "eds":
-    graphs = read_eds(arguments.input);
+    graphs = read_eds(arguments.input, text = text);
   elif arguments.read == "ucca":
     graphs = read_ucca(arguments.input);
   if not graphs:

@@ -53,8 +53,10 @@ def instance2graph(instance, text = None):
     graph = Graph(sentence_id, flavor = 1, framework = "eds")
     if text:
         file = text / (str(graph.id) + ".txt");
-        print(file);
-        if file.exists():
+        if not file.exists():
+            print("instance2graph(): no text for {}.".format(file),
+                  file = sys.stderr);
+        else:
             with file.open() as stream:
                 input = stream.readline();
                 if input.endswith("\n"): input = input[:len(input) - 1];
