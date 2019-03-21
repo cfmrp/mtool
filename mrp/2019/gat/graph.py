@@ -121,3 +121,21 @@ class Graph(object):
         json["nodes"] = [node.encode() for node in self.nodes];
         json["edges"] = [edge.encode() for edge in self.edges];
         return json;
+
+    def dot(self, stream):
+        print("digraph \"{}\" {{\n  root [ style=invis ];"
+              "".format(self.id),
+              file = stream);
+        for node in self.nodes:
+            if node.is_top:
+                print("  root -> {};".format(node.id), file = stream);
+        for node in self.nodes:
+            print("  {} [ label=\"{}\" ];"
+                  "".format(node.id, node.label if node.label else ""),
+                  file = stream);
+        for edge in self.edges:
+            print("  {} -> {} [ label=\"{}\" ];"
+                  "".format(edge.src, edge.tgt, 
+                            edge.lab if edge.lab else ""),
+                  file = stream);
+        print("}", file = stream);

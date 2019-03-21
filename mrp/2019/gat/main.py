@@ -20,7 +20,8 @@ __version__ = "0.1"
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
-  parser.add_argument("--format", required = True);
+  parser.add_argument("--read", required = True);
+  parser.add_argument("--write", default = "mrp");
   parser.add_argument("--text");
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
@@ -34,18 +35,21 @@ if __name__ == "__main__":
     
 
   graphs = None
-  if arguments.format == "amr":
+  if arguments.read == "amr":
     graphs = read_amr(arguments.input);
-  elif arguments.format in ["ccd", "dm", "pas", "psd", "sdp"]:
+  elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
     graphs = read_sdp(arguments.input);
-  elif arguments.format == "eds":
+  elif arguments.read == "eds":
     graphs = read_eds(arguments.input);
-  elif arguments.format == "ucca":
+  elif arguments.read == "ucca":
     graphs = read_ucca(arguments.input);
   if not graphs:
-    print("Invalid format: {}".format(arguments.format), file=sys.stderr)
+    print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)
     
   for graph in graphs:
-    json.dump(graph.encode(), arguments.output, indent = None);
-    print(file = arguments.output);
+    if arguments.write == "mrp":
+      json.dump(graph.encode(), arguments.output, indent = None);
+      print(file = arguments.output);
+    elif arguments.write == "dot":
+      graph.dot(arguments.output);
