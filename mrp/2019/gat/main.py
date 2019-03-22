@@ -32,15 +32,23 @@ if __name__ == "__main__":
   arguments = parser.parse_args();
 
   text = None;
-  if arguments.text and Path(arguments.text).is_dir():
+  if arguments.text:
+    path = Path(arguments.text);
+    if path.is_file():
+      text = {};
+      with path.open() as stream:
+        for line in stream:
+          id, string = line.split("\t", maxsplit = 1);
+          if string.endswith("\n"): string = string[:len(string) - 1];
+          text[id] = string;
+  elif Path(arguments.text).is_dir():
     text = Path(arguments.text);
-    
 
   graphs = None
   if arguments.read == "amr":
     graphs = codec.amr.read(arguments.input);
   elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
-    graphs = codec.sdp.read(arguments.input);
+    graphs = codec.sdp.read(arguments.input, text = text);
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
