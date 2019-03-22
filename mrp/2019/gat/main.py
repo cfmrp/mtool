@@ -9,10 +9,10 @@ import sys;
 
 from graph import Graph;
 
-from amr import read_amr
-from eds import read_eds
-from sdp import read_sdp;
-#from ucca import read_ucca;
+import codec.amr;
+import codec.eds;
+import codec.sdp;
+import codec.ucca;
 
 __author__ = "oe"
 __version__ = "0.1"
@@ -36,13 +36,13 @@ if __name__ == "__main__":
 
   graphs = None
   if arguments.read == "amr":
-    graphs = read_amr(arguments.input);
+    graphs = codec.amr.read(arguments.input);
   elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
-    graphs = read_sdp(arguments.input);
+    graphs = codec.sdp.read(arguments.input);
   elif arguments.read == "eds":
-    graphs = read_eds(arguments.input, text = text);
+    graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
-    graphs = read_ucca(arguments.input);
+    graphs = codec.ucca.read(arguments.input);
   if not graphs:
     print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)

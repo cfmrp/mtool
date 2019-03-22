@@ -91,6 +91,7 @@ class Graph(object):
 
     def __init__(self, id, flavor = None, framework = None):
         self.id = id
+        self.input = None;
         self.nodes = []
         self.edges = set()
         self.flavor = flavor;

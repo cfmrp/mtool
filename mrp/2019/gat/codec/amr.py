@@ -69,7 +69,7 @@ def convert_wsj_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read_amr(fp):
+def read(fp):
     for id, amr_line in amr_lines(fp):
         try:
             converted_id = convert_wsj_id(id)

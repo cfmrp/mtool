@@ -1,8 +1,8 @@
 from operator import attrgetter
 
 from graph import Graph;
-from ucca.ioutil import get_passages_with_progress_bar
 from ucca import layer0, layer1
+from ucca.ioutil import get_passages_with_progress_bar
 
 
 def passage2graph(passage):
@@ -23,7 +23,7 @@ def passage2graph(passage):
     return graph
 
 
-def read_ucca(fp):
+def read(fp):
     for passage in get_passages_with_progress_bar(map(str.strip, fp), desc="Analyzing"):
         yield passage2graph(passage)
 

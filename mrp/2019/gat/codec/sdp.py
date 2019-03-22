@@ -36,6 +36,6 @@ def matrix2graph(matrix):
     graph.nodes = [node for node in graph.nodes if not node.is_singleton()];
     return graph
 
-def read_sdp(fp):
+def read(fp):
     for matrix in read_matrices(fp):
         yield matrix2graph(matrix)

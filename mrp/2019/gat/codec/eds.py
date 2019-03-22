@@ -79,6 +79,6 @@ def instance2graph(instance, text = None):
     graph.tokens = ['foo'] # TODO
     return graph
 
-def read_eds(fp, text = None):
+def read(fp, text = None):
     for instance in read_instances(fp):
         yield instance2graph(instance, text = text)
