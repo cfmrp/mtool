@@ -54,10 +54,11 @@ class Node(object):
                               "".format("&thinsp;" if anchor != self.anchors[0] else "",
                                         anchor["from"], anchor["to"]),
                               end = "", file = stream);
-                print("</td></td>", end = "", file = stream);
-            for name in self.properties:
-                print("<tr><td>{}</td><td>{}</td></tr>"
-                      "".format(name, self.properties[name]), end = "", file = stream);
+                print("</td></tr>", end = "", file = stream);
+            if self.properties:
+                for name in self.properties:
+                    print("<tr><td>{}</td><td>{}</td></tr>"
+                          "".format(name, self.properties[name]), end = "", file = stream);
             print("</table>> ];",  file = stream);
         elif False and self.label or self.anchors:
             print("  {} [ label=\"{}"

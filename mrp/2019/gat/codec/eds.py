@@ -45,6 +45,7 @@ def read_instances(fp):
             arguments = [tuple(arg.split()) for arg in arguments.split(',') if len(arg) > 0]
             predicates.append((node_id, label.strip(), arguments))
 
+CARG_MATCHER = re.compile(r'\(\"(.+)(?<!\\)"\)$');
 LNK_MATCHER = re.compile(r"<([0-9]+):([0-9]+)>$");
 
 def instance2graph(instance, text = None):
@@ -64,12 +65,23 @@ def instance2graph(instance, text = None):
     handle2node = {}
     for handle, label, _ in predicates:
         assert handle not in handle2node
-        lnk = LNK_MATCHER.search(label);
-        if lnk:
-          label = label[:lnk.start()];
-          anchors = [{"from": int(lnk.group(1)), "to": int(lnk.group(2))}];
+        carg = None;
+        match = CARG_MATCHER.search(label);
+        if match:
+            label = label[:match.start()];
+            carg = match.group(1);
+        anchors = None;
+        match = LNK_MATCHER.search(label);
+        if match:
+          label = label[:match.start()];
+          anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
         handle2node[handle] = \
           graph.add_node(label = label, anchors = anchors);
+        if carg:
+            carg = graph.add_node(label = carg, anchors = anchors);
+            source = handle2node[handle].id;
+            target = carg.id;
+            graph.add_edge(source, target, "carg");
     handle2node[top].is_top = True
     for src_handle, _, arguments in predicates:
         src = handle2node[src_handle].id
