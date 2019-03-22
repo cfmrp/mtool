@@ -33,9 +33,9 @@ def matrix2graph(matrix):
             if label != '_':
                 src = predicates[pred]
                 edge = graph.add_edge(src, tgt, label)
+    graph.nodes = [node for node in graph.nodes if not node.is_singleton()];
     return graph
 
 def read_sdp(fp):
     for matrix in read_matrices(fp):
         yield matrix2graph(matrix)
-
