@@ -55,18 +55,18 @@ def convert_wsj_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp):
+def read(fp, text = None):
     for id, amr_line in amr_lines(fp):
+        a = smatch.AMR.parse_AMR_line(amr_line)
+        if not a:
+            raise Exception("failed to parse #{} ({}); exit."
+                            "".format(id, amr_line));
+        graph = amr2graph(id, a);
+        cid = None;
         try:
-            converted_id = convert_wsj_id(id)
-            #print("ID conversion: %s -> %s" % (id, converted_id), file=sys.stderr)
-            id = converted_id
+            cid = convert_wsj_id(id)
         except:
             pass
-        try:
-            a = smatch.AMR.parse_AMR_line(amr_line)
-        except:
-            #print("Ignoring %s" % id, file=sys.stderr)
-            continue
-        if a is not None:
-            yield amr2graph(id, a)
+        if text and cid:
+            graph.add_input(text, id = cid);
+        yield graph;

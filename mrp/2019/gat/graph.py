@@ -4,6 +4,7 @@
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 
 import itertools
+from pathlib import Path;
 import statistics
 import sys;
 
@@ -137,6 +138,26 @@ class Graph(object):
         self.nodes[src].outgoing_edges.add(edge)
         self.nodes[tgt].incoming_edges.add(edge)
         return edge
+
+    def add_input(self, text, id = None):
+        if not id: id = self.id;
+        if isinstance(text, Path):
+            file = text / (str(id) + ".txt");
+            if not file.exists():
+                print("add_input(): no text for {}.".format(file),
+                      file = sys.stderr);
+            else:
+                with file.open() as stream:
+                    input = stream.readline();
+                    if input.endswith("\n"): input = input[:len(input) - 1];
+                    self.input = input;
+        else:
+            input = text.get(id);
+            if input:
+                self.input = input;
+            else:
+                print("add_input(): no text for key {}.".format(id),
+                      file = sys.stderr);
 
     def encode(self):
         json = {"id": self.id};

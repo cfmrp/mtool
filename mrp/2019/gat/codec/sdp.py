@@ -1,5 +1,3 @@
-from pathlib import Path;
-
 from graph import Graph;
 
 def read_matrix(file):
@@ -35,25 +33,7 @@ def matrix2graph(matrix, text = None):
             if label != '_':
                 src = predicates[pred]
                 edge = graph.add_edge(src, tgt, label)
-    if text:
-        id = graph.id;
-        if isinstance(text, Path):
-            file = text / (str(graph.id) + ".txt");
-            if not file.exists():
-                print("instance2graph(): no text for {}.".format(file),
-                      file = sys.stderr);
-            else:
-                with file.open() as stream:
-                    input = stream.readline();
-                    if input.endswith("\n"): input = input[:len(input) - 1];
-                    graph.input = input;
-        else:
-            input = text.get(id);
-            if input:
-                graph.input = input;
-            else:
-                print("instance2graph(): no text for key {}.".format(id),
-                      file = sys.stderr);
+    if text: graph.add_input(text);
     if graph.input:
         input = graph.input;
         n = len(input);

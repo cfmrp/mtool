@@ -52,16 +52,7 @@ def instance2graph(instance, text = None):
     sentence_id, top, predicates = instance
     anchors = None;
     graph = Graph(sentence_id, flavor = 1, framework = "eds")
-    if text:
-        file = text / (str(graph.id) + ".txt");
-        if not file.exists():
-            print("instance2graph(): no text for {}.".format(file),
-                  file = sys.stderr);
-        else:
-            with file.open() as stream:
-                input = stream.readline();
-                if input.endswith("\n"): input = input[:len(input) - 1];
-            graph.input = input;
+    if text: graph.add_input(text);
     handle2node = {}
     for handle, label, _ in predicates:
         assert handle not in handle2node

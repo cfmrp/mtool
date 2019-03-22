@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
   graphs = None
   if arguments.read == "amr":
-    graphs = codec.amr.read(arguments.input);
+    graphs = codec.amr.read(arguments.input, text = text);
   elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
     graphs = codec.sdp.read(arguments.input, text = text);
   elif arguments.read == "eds":
