@@ -25,6 +25,7 @@ if __name__ == "__main__":
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
+  parser.add_argument("--n", type = int, default = 0);
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
@@ -60,7 +61,8 @@ if __name__ == "__main__":
   if arguments.analyze:
     analyze(graphs);
     
-  for graph in graphs:
+  for i, graph in enumerate(graphs):
+    if arguments.n and i >= arguments.n: sys.exit(0);
     if arguments.write == "mrp":
       json.dump(graph.encode(), arguments.output, indent = None);
       print(file = arguments.output);
