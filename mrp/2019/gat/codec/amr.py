@@ -1,8 +1,8 @@
-import smatch
 import re
 import sys
 
 from graph import Graph
+from . import smatch
 
 def amr_lines(fp):
     id, lines = None, []
