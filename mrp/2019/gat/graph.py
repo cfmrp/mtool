@@ -59,18 +59,7 @@ class Node(object):
                 for name in self.properties:
                     print("<tr><td>{}</td><td>{}</td></tr>"
                           "".format(name, self.properties[name]), end = "", file = stream);
-            print("</table>> ];",  file = stream);
-        elif False and self.label or self.anchors:
-            print("  {} [ label=\"{}"
-                  "".format(self.id, self.label if self.label else ""),
-                  end = "", file = stream);
-            if self.anchors:
-                for anchor in self.anchors:
-                    if "from" in anchor and "to" in anchor:
-                        print("{}〈{}:{}〉".format("\\n" if anchor == self.anchors[0] else " ",
-                                                anchor["from"], anchor["to"]),
-                              end = "", file = stream);
-            print("\" ];",  file = stream);
+            print("</table>> ];", file = stream);
         else:
             print("  {} [ shape=point, width=0.2 ];".format(self.id), file = stream);
 
@@ -134,9 +123,11 @@ class Graph(object):
         self.flavor = flavor;
         self.framework = framework;
 
-    def add_node(self, id = None, label = None, properties = None, anchors = None, top = False):
+    def add_node(self, id = None, label = None, properties = None,
+                 anchors = None, top = False):
         node = Node(id if id else len(self.nodes),
-                    label = label, properties = properties, anchors = anchors, top = top);
+                    label = label, properties = properties,
+                    anchors = anchors, top = top);
         self.nodes.append(node)
         return node
 
@@ -173,7 +164,7 @@ class Graph(object):
             node.dot(stream);
         for edge in self.edges:
             print("  {} -> {} [ label=\"{}\" ];"
-                  "".format(edge.src, edge.tgt, 
+                  "".format(edge.src, edge.tgt,
                             edge.lab if edge.lab else ""),
                   file = stream);
         print("}", file = stream);
