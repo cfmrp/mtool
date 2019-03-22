@@ -1,3 +1,5 @@
+# -*- coding: utf-8; -*-
+
 # GraphaLogue Analyzer
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 
@@ -36,7 +38,41 @@ class Node(object):
         if self.anchors:
             json["anchors"] = self.anchors;
         return json;
-    
+
+    def dot(self, stream):
+        if self.label or self.properties or self.anchors:
+            print("  {} [ label=<<table align=\"center\" border=\"0\">".format(self.id),
+                  end = "", file = stream);
+            if self.label:
+                print("<tr><td colspan=\"2\">{}</td></tr>".format(self.label),
+                      end = "", file = stream);
+            if self.anchors:
+                print("<tr><td colspan=\"2\">", end = "", file = stream);
+                for anchor in self.anchors:
+                    if "from" in anchor and "to" in anchor:
+                        print("{}〈{}:{}〉"
+                              "".format("&thinsp;" if anchor != self.anchors[0] else "",
+                                        anchor["from"], anchor["to"]),
+                              end = "", file = stream);
+                print("</td></td>", end = "", file = stream);
+            for name in self.properties:
+                print("<tr><td>{}</td><td>{}</td></tr>"
+                      "".format(name, self.properties[name]), end = "", file = stream);
+            print("</table>> ];",  file = stream);
+        elif False and self.label or self.anchors:
+            print("  {} [ label=\"{}"
+                  "".format(self.id, self.label if self.label else ""),
+                  end = "", file = stream);
+            if self.anchors:
+                for anchor in self.anchors:
+                    if "from" in anchor and "to" in anchor:
+                        print("{}〈{}:{}〉".format("\\n" if anchor == self.anchors[0] else " ",
+                                                anchor["from"], anchor["to"]),
+                              end = "", file = stream);
+            print("\" ];",  file = stream);
+        else:
+            print("  {} [ shape=point, width=0.2 ];".format(self.id), file = stream);
+
     def __key(self):
         return self.id
 
@@ -133,9 +169,7 @@ class Graph(object):
             if node.is_top:
                 print("  root -> {};".format(node.id), file = stream);
         for node in self.nodes:
-            print("  {} [ label=\"{}\" ];"
-                  "".format(node.id, node.label if node.label else ""),
-                  file = stream);
+            node.dot(stream);
         for edge in self.edges:
             print("  {} -> {} [ label=\"{}\" ];"
                   "".format(edge.src, edge.tgt, 

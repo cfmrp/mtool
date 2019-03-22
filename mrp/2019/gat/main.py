@@ -7,6 +7,7 @@ import json;
 from pathlib import Path;
 import sys;
 
+from analyzer import analyze;
 from graph import Graph;
 
 import codec.amr;
@@ -20,8 +21,9 @@ __version__ = "0.1"
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
+  parser.add_argument("--analyze", action = "store_true");
   parser.add_argument("--read", required = True);
-  parser.add_argument("--write", default = "mrp");
+  parser.add_argument("--write");
   parser.add_argument("--text");
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
@@ -46,6 +48,9 @@ if __name__ == "__main__":
   if not graphs:
     print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)
+    
+  if arguments.analyze:
+    analyze(graphs);
     
   for graph in graphs:
     if arguments.write == "mrp":

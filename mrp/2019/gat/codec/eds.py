@@ -67,7 +67,7 @@ def instance2graph(instance, text = None):
         lnk = LNK_MATCHER.search(label);
         if lnk:
           label = label[:lnk.start()];
-          anchors = [{"from": lnk.group(1), "to": lnk.group(2)}];
+          anchors = [{"from": int(lnk.group(1)), "to": int(lnk.group(2))}];
         handle2node[handle] = \
           graph.add_node(label = label, anchors = anchors);
     handle2node[top].is_top = True
