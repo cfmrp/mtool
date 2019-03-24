@@ -325,7 +325,7 @@ class AMR(object):
                         # it is reverse of some relation. For example, if a is "arg0-of" b,
                         # we can also say b is "arg0" a.
                         # If the relation name ends with "-of", we store the reverse relation.
-                        if True or not cur_relation_name.endswith("-of"):
+                        if not cur_relation_name.endswith("-of"):
                             # stack[-2] is upper_level node we encountered, as we just add node_name to stack
                             node_relation_dict1[stack[-2]].append((cur_relation_name, node_name))
                         else:
@@ -361,7 +361,7 @@ class AMR(object):
                     relation_value = parts[1].strip()
                     # store reverse of the relation
                     # we are sure relation_value is a node here, as "-of" relation is only between two nodes
-                    if False and relation_name.endswith("-of"):
+                    if relation_name.endswith("-of"):
                         node_relation_dict1[relation_value].append((relation_name[:-3], stack[-1]))
                     # attribute value not seen before
                     # Note that it might be a constant attribute value, or an unseen node
