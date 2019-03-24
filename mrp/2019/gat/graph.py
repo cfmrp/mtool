@@ -187,12 +187,12 @@ class Graph(object):
         return json;
 
     def dot(self, stream):
-        print("digraph \"{}\" {{\n  root [ style=invis ];"
+        print("digraph \"{}\" {{\n  top [ style=invis ];"
               "".format(self.id),
               file = stream);
         for node in self.nodes:
             if node.is_top:
-                print("  root -> {};".format(node.id), file = stream);
+                print("  top -> {};".format(node.id), file = stream);
         for node in self.nodes:
             node.dot(stream);
         for edge in self.edges:

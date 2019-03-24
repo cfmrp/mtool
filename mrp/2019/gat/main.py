@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
   parser.add_argument("--analyze", action = "store_true");
+  parser.add_argument("--normalize", action = "store_true");
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -47,7 +48,7 @@ if __name__ == "__main__":
 
   graphs = None
   if arguments.read == "amr":
-    graphs = codec.amr.read(arguments.input, text = text);
+    graphs = codec.amr.read(arguments.input, arguments.normalize, text);
   elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
     graphs = codec.sdp.read(arguments.input, text = text);
   elif arguments.read == "eds":
