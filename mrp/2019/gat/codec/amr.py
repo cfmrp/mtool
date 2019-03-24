@@ -46,6 +46,8 @@ def amr2graph(id, amr, normalize = False):
 #        for key, val in a.items():
         for key, val in a:
             if key != "TOP":
+                if val.endswith("¦"):
+                    val = val[:-1];
                 graph.add_node(i, label=val)
                 graph.add_edge(id, i, key)
                 i += 1
