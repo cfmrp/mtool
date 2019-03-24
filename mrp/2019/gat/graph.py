@@ -78,10 +78,11 @@ class Node(object):
 
 class Edge(object):
 
-    def __init__(self, src, tgt, lab):
+    def __init__(self, src, tgt, lab, normal = None):
         self.src = src
         self.tgt = tgt
         self.lab = lab
+        self.normal = normal;
 
     def is_loop(self):
         return self.src == self.tgt
@@ -102,6 +103,17 @@ class Edge(object):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
         return json;
 
+    def dot(self, stream):
+        label = self.lab;
+        if label and self.normal:
+            if label[:-3] == self.normal:
+                label = self.normal + "(-of)";
+            else:
+                label = label + " (" + self.normal + ")";
+        print("  {} -> {} [ label=\"{}\" ];"
+              "".format(self.src, self.tgt, label if label else ""),
+              file = stream);
+        
     def __key(self):
         return self.tgt, self.src, self.lab
 
@@ -132,8 +144,8 @@ class Graph(object):
         self.nodes.append(node)
         return node
 
-    def add_edge(self, src, tgt, lab):
-        edge = Edge(src, tgt, lab)
+    def add_edge(self, src, tgt, lab, normal = None):
+        edge = Edge(src, tgt, lab, normal)
         self.edges.add(edge)
         self.nodes[src].outgoing_edges.add(edge)
         self.nodes[tgt].incoming_edges.add(edge)
@@ -184,8 +196,5 @@ class Graph(object):
         for node in self.nodes:
             node.dot(stream);
         for edge in self.edges:
-            print("  {} -> {} [ label=\"{}\" ];"
-                  "".format(edge.src, edge.tgt,
-                            edge.lab if edge.lab else ""),
-                  file = stream);
+            edge.dot(stream);
         print("}", file = stream);

@@ -2,7 +2,7 @@ import re
 import sys
 
 from graph import Graph
-from . import smatch
+from smatch.amr import AMR;
 
 def amr_lines(fp):
     id, lines = None, []
@@ -38,14 +38,22 @@ def amr2graph(id, amr):
 #        graph.add_node(i, label=v)
 #        graph.add_edge(id, i, "instance")
 #        i += 1
-        for key, val in a.items():
+#        for key, val in a.items():
+        for key, val in a:
             if key != "TOP":
                 graph.add_node(i, label=val)
                 graph.add_edge(id, i, key)
                 i += 1
     for src, r in zip(amr.nodes, amr.relations):
-        for tgt, rel_name in r.items():
-            graph.add_edge(node2id[src], node2id[tgt], rel_name)
+#        for tgt, rel_name in r.items():
+        for label, tgt in r:
+            normal = None;
+            if label == "mod":
+                normal = "domain";
+            elif label.endswith("-of-of") \
+                 or label.endswith("-of") and label != "consist-of" and not label.startswith("prep-"):
+                normal = label[:-3];
+            graph.add_edge(node2id[src], node2id[tgt], label, normal)
     return graph
 
 def convert_wsj_id(id):
@@ -57,7 +65,7 @@ def convert_wsj_id(id):
 
 def read(fp, text = None):
     for id, amr_line in amr_lines(fp):
-        a = smatch.AMR.parse_AMR_line(amr_line)
+        a = AMR.parse_AMR_line(amr_line)
         if not a:
             raise Exception("failed to parse #{} ({}); exit."
                             "".format(id, amr_line));
