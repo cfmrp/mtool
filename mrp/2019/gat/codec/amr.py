@@ -19,7 +19,7 @@ def amr_lines(fp):
             else:
                 lines.append(line)
 
-def amr2graph(id, amr, normalize = False):
+def amr2graph(id, amr, normalize = False, reify = False):
     graph = Graph(id)
     node2id = {}
     i = 0
@@ -31,7 +31,7 @@ def amr2graph(id, amr, normalize = False):
         for key, val in a:
             if key == "TOP":
                 top = True;
-        graph.add_node(id, label = v, top=top)
+        node = graph.add_node(id, label = v, top=top)
         i += 1
         #
         # creating separate 'atom' nodes for the concepts and
@@ -48,9 +48,13 @@ def amr2graph(id, amr, normalize = False):
             if key != "TOP":
                 if val.endswith("¦"):
                     val = val[:-1];
-                graph.add_node(i, label=val)
-                graph.add_edge(id, i, key)
-                i += 1
+                if reify:
+                    graph.add_node(i, label=val)
+                    graph.add_edge(id, i, key)
+                    i += 1
+                else:
+                    node.set_property(key, val);
+
     for src, r in zip(amr.nodes, amr.relations):
 #        for tgt, rel_name in r.items():
         for label, tgt in r:
@@ -73,13 +77,13 @@ def convert_wsj_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp, normalize = False, text = None):
+def read(fp, normalize = False, reify = False, text = None):
     for id, amr_line in amr_lines(fp):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
                             "".format(id, amr_line));
-        graph = amr2graph(id, amr, normalize);
+        graph = amr2graph(id, amr, normalize, reify);
         cid = None;
         try:
             cid = convert_wsj_id(id)

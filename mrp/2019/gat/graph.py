@@ -21,6 +21,10 @@ class Node(object):
         self.anchors = anchors;
         self.is_top = top
 
+    def set_property(self, name, value):
+        if not self.properties: self.properties = {};
+        self.properties[name] = value;
+
     def is_root(self):
         return len(self.incoming_edges) == 0
 
@@ -101,13 +105,15 @@ class Edge(object):
 
     def encode(self):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
+        if self.normal:
+            json["normal"] = self.normal;
         return json;
 
     def dot(self, stream):
         label = self.lab;
         if label and self.normal:
             if label[:-3] == self.normal:
-                label = self.normal + "(-of)";
+                label = "(" + self.normal + ")-of";
             else:
                 label = label + " (" + self.normal + ")";
         print("  {} -> {} [ label=\"{}\" ];"
