@@ -3,6 +3,7 @@
 # GraphaLogue Analyzer
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 
+import html;
 import itertools
 from pathlib import Path;
 import statistics
@@ -49,7 +50,8 @@ class Node(object):
             print("  {} [ label=<<table align=\"center\" border=\"0\">".format(self.id),
                   end = "", file = stream);
             if self.label:
-                print("<tr><td colspan=\"2\">{}</td></tr>".format(self.label),
+                print("<tr><td colspan=\"2\">{}</td></tr>"
+                      "".format(html.escape(self.label, False)),
                       end = "", file = stream);
             if self.anchors:
                 print("<tr><td colspan=\"2\">", end = "", file = stream);
@@ -63,7 +65,9 @@ class Node(object):
             if self.properties:
                 for name in self.properties:
                     print("<tr><td>{}</td><td>{}</td></tr>"
-                          "".format(name, self.properties[name]), end = "", file = stream);
+                          "".format(html.escape(name, False),
+                                    html.escape(self.properties[name]), False),
+                          end = "", file = stream);
             print("</table>> ];", file = stream);
         else:
             print("  {} [ shape=point, width=0.2 ];".format(self.id), file = stream);

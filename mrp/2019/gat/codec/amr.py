@@ -19,7 +19,7 @@ def amr_lines(fp):
             else:
                 lines.append(line)
 
-def amr2graph(id, amr, normalize = False, reify = False):
+def amr2graph(id, amr, full = False, normalize = False, reify = False):
     graph = Graph(id)
     node2id = {}
     i = 0
@@ -45,7 +45,8 @@ def amr2graph(id, amr, normalize = False, reify = False):
 #        i += 1
 #        for key, val in a.items():
         for key, val in a:
-            if key != "TOP":
+            if key != "TOP" \
+               and (key not in {"wiki"} or full):
                 if val.endswith("¦"):
                     val = val[:-1];
                 if reify:
@@ -62,7 +63,8 @@ def amr2graph(id, amr, normalize = False, reify = False):
             if label == "mod":
                 normal = "domain";
             elif label.endswith("-of-of") \
-                 or label.endswith("-of") and label != "consist-of" and not label.startswith("prep-"):
+                 or label.endswith("-of") and label not in {"consist-of" "subset-of"} \
+                   and not label.startswith("prep-"):
                 normal = label[:-3];
             if normalize and normal:
                 graph.add_edge(node2id[tgt], node2id[src], normal)
@@ -77,13 +79,13 @@ def convert_wsj_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp, normalize = False, reify = False, text = None):
+def read(fp, full = False, normalize = False, reify = False, text = None):
     for id, amr_line in amr_lines(fp):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
                             "".format(id, amr_line));
-        graph = amr2graph(id, amr, normalize, reify);
+        graph = amr2graph(id, amr, full, normalize, reify);
         cid = None;
         try:
             cid = convert_wsj_id(id)
