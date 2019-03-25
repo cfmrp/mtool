@@ -40,8 +40,8 @@ def passage2graph(passage, text = None):
 
 def read(fp, text = None):
     parent = Path(fp.name).parent;
-    paths = {parent / file.strip() for file in fp}
-    for passage in get_passages_with_progress_bar(map(str, paths), desc="Analyzing"):
-        yield passage2graph(passage, text)
+    paths = {parent / file.strip() for file in fp};
+    for passage in get_passages(map(str, paths), desc="Analyzing"):
+        yield passage2graph(passage, text);
 
 

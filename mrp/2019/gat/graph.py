@@ -47,7 +47,7 @@ class Node(object):
 
     def dot(self, stream):
         if self.label or self.properties or self.anchors:
-            print("  {} [ label=<<table align=\"center\" border=\"0\">".format(self.id),
+            print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">".format(self.id),
                   end = "", file = stream);
             if self.label:
                 print("<tr><td colspan=\"2\">{}</td></tr>"
@@ -64,7 +64,7 @@ class Node(object):
                 print("</td></tr>", end = "", file = stream);
             if self.properties:
                 for name in self.properties:
-                    print("<tr><td>{}</td><td>{}</td></tr>"
+                    print("<tr><td sides=\"l\" border=\"1\" align=\"left\">{}</td><td sides=\"r\" border=\"1\" align=\"left\">{}</td></tr>"
                           "".format(html.escape(name, False),
                                     html.escape(self.properties[name]), False),
                           end = "", file = stream);

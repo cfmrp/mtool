@@ -30,7 +30,7 @@ if __name__ == "__main__":
   parser.add_argument("--text");
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
-  parser.add_argument("--id", type = int);
+  parser.add_argument("--id");
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
@@ -47,8 +47,8 @@ if __name__ == "__main__":
           id, string = line.split("\t", maxsplit = 1);
           if string.endswith("\n"): string = string[:len(string) - 1];
           text[id] = string;
-  elif Path(arguments.text).is_dir():
-    text = Path(arguments.text);
+    elif path.is_dir():
+      text = path;
 
   graphs = None
   if arguments.read == "amr":
