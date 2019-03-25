@@ -30,6 +30,7 @@ if __name__ == "__main__":
   parser.add_argument("--text");
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
+  parser.add_argument("--id", type = int);
   parser.add_argument("input", nargs = "?",
                       type=argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
@@ -52,7 +53,7 @@ if __name__ == "__main__":
   graphs = None
   if arguments.read == "amr":
     graphs = codec.amr.read(arguments.input, arguments.full, arguments.normalize, arguments.reify, text);
-  elif arguments.read in ["ccd", "dm", "pas", "psd", "sdp"]:
+  elif arguments.read in {"ccd", "dm", "pas", "psd", "sdp"}:
     graphs = codec.sdp.read(arguments.input, text = text);
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
@@ -68,6 +69,7 @@ if __name__ == "__main__":
   for i, graph in enumerate(graphs):
     if arguments.i != None and i != arguments.i: continue;
     if arguments.n != None and i >= arguments.n: sys.exit(0);
+    if arguments.id != None and graph.id != arguments.id: continue;
     if arguments.write == "mrp":
       json.dump(graph.encode(), arguments.output, indent = None);
       print(file = arguments.output);
