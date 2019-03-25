@@ -154,6 +154,10 @@ class Graph(object):
         self.nodes.append(node)
         return node
 
+    def find_node(self, id):
+        for node in self.nodes:
+            if node.id == id: return node;
+
     def add_edge(self, src, tgt, lab, normal = None):
         edge = Edge(src, tgt, lab, normal)
         self.edges.add(edge)
@@ -181,6 +185,45 @@ class Graph(object):
                 print("add_input(): no text for key {}.".format(id),
                       file = sys.stderr);
 
+    def anchor(self):
+        n = len(self.input);
+        i = 0;
+
+        def skip():
+            nonlocal i;
+            while i < n and self.input[i] in {" ", "\t"}:
+                i += 1;
+
+        def scan(candidates):
+            for candidate in candidates:
+                if self.input.startswith(candidate, i):
+                    return len(candidate);
+
+        skip();
+        for node in self.nodes:
+            if isinstance(node.anchors, str):
+                form = node.anchors;
+                m = None;
+                if self.input.startswith(form, i):
+                    m = len(form);
+                else:
+                    for old, new in {("‘", "`"), ("’", "'")}:
+                        form = form.replace(old, new);
+                        if self.input.startswith(form, i):
+                            m = len(form);
+                            break;
+                if not m:
+                    m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
+                        or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
+                        or scan({"—", "—", "---", "--"}) \
+                        or scan({"…", "...", ". . ."});
+                if m:
+                    node.anchors = [{"from": i, "to": i + m}];
+                    i += m;
+                    skip();
+                else:
+                    raise Exception("failed to anchor |{}| in |{}| ({})".format(form, self.input, i));
+        
     def encode(self):
         json = {"id": self.id};
         if self.flavor:

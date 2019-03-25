@@ -58,7 +58,7 @@ if __name__ == "__main__":
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
-    graphs = codec.ucca.read(arguments.input);
+    graphs = codec.ucca.read(arguments.input, text = text);
   if not graphs:
     print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)

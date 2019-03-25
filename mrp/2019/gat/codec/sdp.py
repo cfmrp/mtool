@@ -33,45 +33,9 @@ def matrix2graph(matrix, text = None):
             if label != '_':
                 src = predicates[pred]
                 edge = graph.add_edge(src, tgt, label)
-    if text: graph.add_input(text);
-    if graph.input:
-        input = graph.input;
-        n = len(input);
-        i = 0;
-
-        def skip():
-            nonlocal i;
-            while i < n and input[i] in {" ", "\t"}:
-                i += 1;
-        def scan(candidates):
-            for candidate in candidates:
-                if input.startswith(candidate, i):
-                    return len(candidate);
-
-        skip();
-        for node in graph.nodes:
-            if isinstance(node.anchors, str):
-                form = node.anchors;
-                m = None;
-                if input.startswith(form, i):
-                    m = len(form);
-                else:
-                    for old, new in {("‘", "`"), ("’", "'")}:
-                        form = form.replace(old, new);
-                        if input.startswith(form, i):
-                            m = len(form);
-                            break;
-                if not m:
-                    m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
-                        or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
-                        or scan({"—", "—", "---", "--"}) \
-                        or scan({"…", "...", ". . ."});
-                if m:
-                    node.anchors = [{"from": i, "to": i + m}];
-                    i += m;
-                    skip();
-                else:
-                    raise Exception("failed to anchor |{}| in |{}| ({})".format(form, input, i));
+    if text:
+        graph.add_input(text);
+        graph.anchor();
     #
     # finally, purge singleton (isolated) nodes
     #
