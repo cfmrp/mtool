@@ -25,6 +25,7 @@ if __name__ == "__main__":
   parser.add_argument("--normalize", action = "store_true");
   parser.add_argument("--full", action = "store_true");
   parser.add_argument("--reify", action = "store_true");
+  parser.add_argument("--strings", action = "store_true");
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -58,7 +59,7 @@ if __name__ == "__main__":
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
-    graphs = codec.ucca.read(arguments.input, text = text);
+    graphs = codec.ucca.read(arguments.input, text = text, strings = arguments.strings);
   if not graphs:
     print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)

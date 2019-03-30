@@ -2,6 +2,7 @@
 
 # GraphaLogue Analyzer
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
+# Stephan Oepen <oe@ifi.uio.no>
 
 import html;
 import itertools
@@ -13,18 +14,28 @@ from treewidth import quickbb
 
 class Node(object):
 
-    def __init__(self, id, label = None, properties = None, anchors = None, top = False):
+    def __init__(self, id, label = None, properties = None, values = None,
+                 anchors = None, top = False):
         self.id = id
         self.label = label;
         self.properties = properties;
+        self.values = values;
         self.incoming_edges = set()
         self.outgoing_edges = set()
         self.anchors = anchors;
         self.is_top = top
 
     def set_property(self, name, value):
-        if not self.properties: self.properties = {};
-        self.properties[name] = value;
+        if self.properties and self.values:
+            try:
+                i = properties.index(name);
+                values[i] = value;
+            except ValueError:
+                self.properties.append(name);
+                self.values.append(value);
+        else:
+            self.properties = [name];
+            self.values = [value];
 
     def is_root(self):
         return len(self.incoming_edges) == 0
@@ -39,15 +50,19 @@ class Node(object):
         json = {"id": self.id};
         if self.label:
             json["label"] = self.label;
-        if self.properties:
+        if self.properties and self.values:
             json["properties"] = self.properties;
+            json["values"] = self.values;
         if self.anchors:
             json["anchors"] = self.anchors;
         return json;
 
     def dot(self, stream):
-        if self.label or self.properties or self.anchors:
-            print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">".format(self.id),
+        if self.label \
+           or self.properties and self.values \
+           or self.anchors:
+            print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
+                  "".format(self.id),
                   end = "", file = stream);
             if self.label:
                 print("<tr><td colspan=\"2\">{}</td></tr>"
@@ -61,16 +76,22 @@ class Node(object):
                               "".format("&thinsp;" if anchor != self.anchors[0] else "",
                                         anchor["from"], anchor["to"]),
                               end = "", file = stream);
+                    elif isinstance(anchor, str):
+                        print("{}<font face=\"Courier\">{}</font>"
+                              "".format(",&nbsp;" if anchor != self.anchors[0] else "", anchor),
+                              end = "", file = stream);
+                        
                 print("</td></tr>", end = "", file = stream);
-            if self.properties:
-                for name in self.properties:
+            if self.properties and self.values:
+                for name, value in zip(self.properties, self.values):
                     print("<tr><td sides=\"l\" border=\"1\" align=\"left\">{}</td><td sides=\"r\" border=\"1\" align=\"left\">{}</td></tr>"
                           "".format(html.escape(name, False),
-                                    html.escape(self.properties[name]), False),
+                                    html.escape(value), False),
                           end = "", file = stream);
             print("</table>> ];", file = stream);
         else:
-            print("  {} [ shape=point, width=0.2 ];".format(self.id), file = stream);
+            print("  {} [ shape=point, width=0.2 ];"
+                  "".format(self.id), file = stream);
 
     def __key(self):
         return self.id
@@ -86,11 +107,14 @@ class Node(object):
 
 class Edge(object):
 
-    def __init__(self, src, tgt, lab, normal = None):
-        self.src = src
-        self.tgt = tgt
-        self.lab = lab
+    def __init__(self, src, tgt, lab, normal = None,
+                 properties = None, values = None):
+        self.src = src;
+        self.tgt = tgt;
+        self.lab = lab;
         self.normal = normal;
+        self.properties = properties;
+        self.values = values;
 
     def is_loop(self):
         return self.src == self.tgt
@@ -111,6 +135,9 @@ class Edge(object):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
         if self.normal:
             json["normal"] = self.normal;
+        if self.properties and self.values:
+            json["properties"] = self.properties;
+            json["values"] = self.values;
         return json;
 
     def dot(self, stream):
@@ -120,6 +147,8 @@ class Edge(object):
                 label = "(" + self.normal + ")-of";
             else:
                 label = label + " (" + self.normal + ")";
+        if self.properties and "remote" in self.properties:
+            label = "+" + label;
         print("  {} -> {} [ label=\"{}\" ];"
               "".format(self.src, self.tgt, label if label else ""),
               file = stream);
@@ -146,10 +175,11 @@ class Graph(object):
         self.flavor = flavor;
         self.framework = framework;
 
-    def add_node(self, id = None, label = None, properties = None,
+    def add_node(self, id = None, label = None,
+                 properties = None, values = None,
                  anchors = None, top = False):
         node = Node(id if id else len(self.nodes),
-                    label = label, properties = properties,
+                    label = label, properties = properties, values = values,
                     anchors = anchors, top = top);
         self.nodes.append(node)
         return node
@@ -158,8 +188,9 @@ class Graph(object):
         for node in self.nodes:
             if node.id == id: return node;
 
-    def add_edge(self, src, tgt, lab, normal = None):
-        edge = Edge(src, tgt, lab, normal)
+    def add_edge(self, src, tgt, lab, normal = None,
+                 properties = None, values = None):
+        edge = Edge(src, tgt, lab, normal, properties, values)
         self.edges.add(edge)
         self.nodes[src].outgoing_edges.add(edge)
         self.nodes[tgt].incoming_edges.add(edge)
@@ -201,29 +232,31 @@ class Graph(object):
 
         skip();
         for node in self.nodes:
-            if isinstance(node.anchors, str):
-                form = node.anchors;
-                m = None;
-                if self.input.startswith(form, i):
-                    m = len(form);
-                else:
-                    for old, new in {("‘", "`"), ("’", "'")}:
-                        form = form.replace(old, new);
-                        if self.input.startswith(form, i):
-                            m = len(form);
-                            break;
-                if not m:
-                    m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
-                        or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
-                        or scan({"—", "—", "---", "--"}) \
-                        or scan({"…", "...", ". . ."});
-                if m:
-                    node.anchors = [{"from": i, "to": i + m}];
-                    i += m;
+            for j in range(len(node.anchors) if node.anchors else 0):
+                if isinstance(node.anchors[j], str):
+                    form = node.anchors[j];
+                    m = None;
+                    if self.input.startswith(form, i):
+                        m = len(form);
+                    else:
+                        for old, new in {("‘", "`"), ("’", "'")}:
+                            form = form.replace(old, new);
+                            if self.input.startswith(form, i):
+                                m = len(form);
+                                break;
+                    if not m:
+                        m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
+                            or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
+                            or scan({"—", "—", "---", "--"}) \
+                            or scan({"…", "...", ". . ."});
+                    if m:
+                        node.anchors[j] = {"from": i, "to": i + m};
+                        i += m;
                     skip();
                 else:
-                    raise Exception("failed to anchor |{}| in |{}| ({})".format(form, self.input, i));
-        
+                    raise Exception("failed to anchor |{}| in |{}| ({})"
+                                    "".format(form, self.input, i));
+
     def encode(self):
         json = {"id": self.id};
         if self.flavor:
