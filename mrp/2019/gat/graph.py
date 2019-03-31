@@ -78,7 +78,8 @@ class Node(object):
                               end = "", file = stream);
                     elif isinstance(anchor, str):
                         print("{}<font face=\"Courier\">{}</font>"
-                              "".format(",&nbsp;" if anchor != self.anchors[0] else "", anchor),
+                              "".format(",&nbsp;" if anchor != self.anchors[0] else "",
+                                        html.escape(anchor)),
                               end = "", file = stream);
                         
                 print("</td></tr>", end = "", file = stream);
