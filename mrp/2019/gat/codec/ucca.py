@@ -1,9 +1,12 @@
-from pathlib import Path;
 import re;
+from operator import attrgetter;
+from pathlib import Path;
+
+from ucca import layer0, layer1;
 
 from graph import Graph;
-from ucca import layer0, layer1;
 from ucca.ioutil import get_passages_with_progress_bar;
+
 
 def convert_wsj_id(id):
     m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id);
@@ -17,7 +20,7 @@ def passage2graph(passage, text = None):
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
     unit_id_to_node_id = {};
-    for token in l0.all:
+    for token in sorted(l0.all, key=attrgetter("position")):
         for unit in l1.all:
             if not unit.attrib.get("implicit"):
                 for edge in unit:
