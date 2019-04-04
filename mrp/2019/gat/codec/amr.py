@@ -85,12 +85,12 @@ def read(fp, full = False, normalize = False, reify = False, text = None):
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
                             "".format(id, amr_line));
-        graph = amr2graph(id, amr, full, normalize, reify);
-        cid = None;
         try:
-            cid = convert_wsj_id(id)
+            id = convert_wsj_id(id)
         except:
             pass
-        if text and cid:
-            graph.add_input(text, id = cid);
+        graph = amr2graph(id, amr, full, normalize, reify);
+        cid = None;
+        if text:
+            graph.add_input(text);
         yield graph;

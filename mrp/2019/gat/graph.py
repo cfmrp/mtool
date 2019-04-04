@@ -28,8 +28,8 @@ class Node(object):
     def set_property(self, name, value):
         if self.properties and self.values:
             try:
-                i = properties.index(name);
-                values[i] = value;
+                i = self.properties.index(name);
+                self.values[i] = value;
             except ValueError:
                 self.properties.append(name);
                 self.values.append(value);
