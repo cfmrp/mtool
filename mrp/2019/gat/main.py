@@ -59,7 +59,7 @@ if __name__ == "__main__":
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
-    graphs = codec.ucca.read(arguments.input, text = text, strings = arguments.strings);
+    graphs = codec.ucca.read(arguments.input, text = text);
   if not graphs:
     print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
     sys.exit(1)
@@ -75,5 +75,5 @@ if __name__ == "__main__":
       json.dump(graph.encode(), arguments.output, indent = None);
       print(file = arguments.output);
     elif arguments.write == "dot":
-      graph.dot(arguments.output);
+      graph.dot(arguments.output, arguments.strings);
       print(file = arguments.output);

@@ -57,7 +57,7 @@ class Node(object):
             json["anchors"] = self.anchors;
         return json;
 
-    def dot(self, stream):
+    def dot(self, stream, input = None, strings = False):
         if self.label \
            or self.properties and self.values \
            or self.anchors:
@@ -72,16 +72,21 @@ class Node(object):
                 print("<tr><td colspan=\"2\">", end = "", file = stream);
                 for anchor in self.anchors:
                     if "from" in anchor and "to" in anchor:
-                        print("{}〈{}:{}〉"
-                              "".format("&thinsp;" if anchor != self.anchors[0] else "",
-                                        anchor["from"], anchor["to"]),
-                              end = "", file = stream);
+                        if strings and input:
+                            print("{}<font face=\"Courier\">{}</font>"
+                                  "".format(",&nbsp;" if anchor != self.anchors[0] else "",
+                                            html.escape(input[anchor["from"]:anchor["to"]])),
+                                  end = "", file = stream);
+                        else:
+                            print("{}〈{}:{}〉"
+                                  "".format("&thinsp;" if anchor != self.anchors[0] else "",
+                                            anchor["from"], anchor["to"]),
+                                  end = "", file = stream);
                     elif isinstance(anchor, str):
                         print("{}<font face=\"Courier\">{}</font>"
                               "".format(",&nbsp;" if anchor != self.anchors[0] else "",
                                         html.escape(anchor)),
                               end = "", file = stream);
-                        
                 print("</td></tr>", end = "", file = stream);
             if self.properties and self.values:
                 for name, value in zip(self.properties, self.values):
@@ -141,7 +146,7 @@ class Edge(object):
             json["values"] = self.values;
         return json;
 
-    def dot(self, stream):
+    def dot(self, stream, input = None, strings = False):
         label = self.lab;
         if label and self.normal:
             if label[:-3] == self.normal:
@@ -273,7 +278,7 @@ class Graph(object):
         json["edges"] = [edge.encode() for edge in self.edges];
         return json;
 
-    def dot(self, stream):
+    def dot(self, stream, strings = False):
         print("digraph \"{}\" {{\n  top [ style=invis ];"
               "".format(self.id),
               file = stream);
@@ -281,7 +286,7 @@ class Graph(object):
             if node.is_top:
                 print("  top -> {};".format(node.id), file = stream);
         for node in self.nodes:
-            node.dot(stream);
+            node.dot(stream, self.input, strings);
         for edge in self.edges:
-            edge.dot(stream);
+            edge.dot(stream, self.input, strings);
         print("}", file = stream);

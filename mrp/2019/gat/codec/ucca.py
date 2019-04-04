@@ -12,7 +12,7 @@ def convert_wsj_id(id):
     else:
         return id;
 
-def passage2graph(passage, text = None, strings = False):
+def passage2graph(passage, text = None):
     graph = Graph(convert_wsj_id(passage.ID));
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
@@ -55,13 +55,13 @@ def passage2graph(passage, text = None, strings = False):
         graph.nodes[unit_id_to_node_id[unit.ID]].is_top = True;
     if text:
         graph.add_input(text);
-        if not strings: graph.anchor();
+        graph.anchor();
     return graph
 
-def read(fp, text = None, strings = False):
+def read(fp, text = None):
     parent = Path(fp.name).parent;
     paths = {parent / file.strip() for file in fp};
     for passage in get_passages_with_progress_bar(map(str, paths), desc="Analyzing"):
-        yield passage2graph(passage, text, strings);
+        yield passage2graph(passage, text);
 
 
