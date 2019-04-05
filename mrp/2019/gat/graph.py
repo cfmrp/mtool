@@ -7,6 +7,7 @@
 import html;
 import itertools
 from pathlib import Path;
+from operator import attrgetter
 import statistics
 import sys;
 
@@ -15,7 +16,7 @@ from treewidth import quickbb
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
-                 anchors = None, top = False):
+                 anchors = None, top = False, start = None):
         self.id = id
         self.label = label;
         self.properties = properties;
@@ -24,6 +25,7 @@ class Node(object):
         self.outgoing_edges = set()
         self.anchors = anchors;
         self.is_top = top
+        self.start = start
 
     def set_property(self, name, value):
         if self.properties and self.values:
@@ -188,7 +190,8 @@ class Graph(object):
                  anchors = None, top = False):
         node = Node(id if id else len(self.nodes),
                     label = label, properties = properties, values = values,
-                    anchors = anchors, top = top);
+                    anchors = anchors, top = top,
+                    start = min(anchor["from"] for anchor in anchors) if anchors else 0);
         self.nodes.append(node)
         return node
 
@@ -202,6 +205,8 @@ class Graph(object):
         self.edges.add(edge)
         self.nodes[src].outgoing_edges.add(edge)
         self.nodes[tgt].incoming_edges.add(edge)
+        if self.nodes[tgt].start < self.nodes[src].start:
+            self.nodes[src].start = self.nodes[tgt].start
         return edge
 
     def add_input(self, text, id = None):
@@ -287,7 +292,7 @@ class Graph(object):
         for node in self.nodes:
             if node.is_top:
                 print("  top -> {};".format(node.id), file = stream);
-        for node in self.nodes:
+        for node in sorted(self.nodes, key=attrgetter("start")):
             node.dot(stream, self.input, strings);
         for edge in self.edges:
             edge.dot(stream, self.input, strings);
