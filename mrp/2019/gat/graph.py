@@ -241,7 +241,6 @@ class Graph(object):
             for j in range(len(node.anchors) if node.anchors else 0):
                 if isinstance(node.anchors[j], str):
                     form = node.anchors[j];
-                    print("{} {}".format(form, i));
                     m = None;
                     if self.input.startswith(form, i):
                         m = len(form);
