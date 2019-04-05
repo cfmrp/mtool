@@ -153,10 +153,12 @@ class Edge(object):
                 label = "(" + self.normal + ")-of";
             else:
                 label = label + " (" + self.normal + ")";
+        style = "";
         if self.properties and "remote" in self.properties:
-            label = "+" + label;
-        print("  {} -> {} [ label=\"{}\" ];"
-              "".format(self.src, self.tgt, label if label else ""),
+            style = ", style=dashed";
+        print("  {} -> {} [ label=\"{}\"{} ];"
+              "".format(self.src, self.tgt, label if label else "",
+                        style),
               file = stream);
         
     def __key(self):
