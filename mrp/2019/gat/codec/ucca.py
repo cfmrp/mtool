@@ -20,6 +20,48 @@ def passage2graph(passage, text = None):
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
     unit_id_to_node_id = {};
+
+    n = None;
+    if text:
+        graph.add_input(text);
+        n = len(graph.input);
+    i = 0;
+
+    def skip():
+        nonlocal i;
+        while i < n and graph.input[i] in {" ", "\t"}:
+            i += 1;
+            
+    def scan(candidates):
+        for candidate in candidates:
+            if graph.input.startswith(candidate, i):
+                return len(candidate);
+
+    def anchor(form):
+        nonlocal i;
+        skip();
+        m = None;
+        if graph.input.startswith(form, i):
+            m = len(form);
+        else:
+            for old, new in {("‘", "`"), ("’", "'")}:
+                form = form.replace(old, new);
+                if graph.input.startswith(form, i):
+                    m = len(form);
+                    break;
+            if not m:
+                m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
+                    or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
+                    or scan({"—", "—", "---", "--"}) \
+                    or scan({"…", "...", ". . ."});
+        if m:
+            i += m;
+            skip();
+            return {"from": i, "to": i + m};
+        else:
+            raise Exception("failed to anchor |{}| in |{}| ({})"
+                            "".format(form, graph.input, i));
+
     for token in sorted(l0.all, key=attrgetter("position")):
         for unit in l1.all:
             if not unit.attrib.get("implicit"):
@@ -27,9 +69,10 @@ def passage2graph(passage, text = None):
                     if "Terminal" in edge.tags and token.ID == edge.child.ID:
                         if unit.ID in unit_id_to_node_id:
                             node = graph.find_node(unit_id_to_node_id[unit.ID]);
-                            node.anchors.append(token.text);
+                            if graph.input:
+                                node.anchors.append(anchor(token.text));
                         else:
-                            node = graph.add_node(anchors = [token.text]);
+                            node = graph.add_node(anchors = [anchor(token.text)] if graph.input else None);
                             unit_id_to_node_id[unit.ID] = node.id;
     for unit in l1.all:
         if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
@@ -56,9 +99,6 @@ def passage2graph(passage, text = None):
                         pass;
     for unit in l1.heads:
         graph.nodes[unit_id_to_node_id[unit.ID]].is_top = True;
-    if text:
-        graph.add_input(text);
-        graph.anchor();
     return graph
 
 def read(fp, text = None):

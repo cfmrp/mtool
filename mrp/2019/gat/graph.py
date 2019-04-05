@@ -241,6 +241,7 @@ class Graph(object):
             for j in range(len(node.anchors) if node.anchors else 0):
                 if isinstance(node.anchors[j], str):
                     form = node.anchors[j];
+                    print("{} {}".format(form, i));
                     m = None;
                     if self.input.startswith(form, i):
                         m = len(form);
@@ -258,10 +259,10 @@ class Graph(object):
                     if m:
                         node.anchors[j] = {"from": i, "to": i + m};
                         i += m;
-                    skip();
-                else:
-                    raise Exception("failed to anchor |{}| in |{}| ({})"
-                                    "".format(form, self.input, i));
+                        skip();
+                    else:
+                        raise Exception("failed to anchor |{}| in |{}| ({})"
+                                        "".format(form, self.input, i));
 
     def encode(self):
         json = {"id": self.id};
