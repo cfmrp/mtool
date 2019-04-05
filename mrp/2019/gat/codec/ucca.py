@@ -55,9 +55,10 @@ def passage2graph(passage, text = None):
                     or scan({"—", "—", "---", "--"}) \
                     or scan({"…", "...", ". . ."});
         if m:
+            anchor = {"from": i, "to": i + m};
             i += m;
             skip();
-            return {"from": i, "to": i + m};
+            return anchor;
         else:
             raise Exception("failed to anchor |{}| in |{}| ({})"
                             "".format(form, graph.input, i));

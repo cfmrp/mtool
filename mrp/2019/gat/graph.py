@@ -82,7 +82,7 @@ class Node(object):
                                   "".format("&thinsp;" if anchor != self.anchors[0] else "",
                                             anchor["from"], anchor["to"]),
                                   end = "", file = stream);
-                    elif isinstance(anchor, str):
+                    elif False and isinstance(anchor, str):
                         print("{}<font face=\"Courier\">{}</font>"
                               "".format(",&nbsp;" if anchor != self.anchors[0] else "",
                                         html.escape(anchor)),
