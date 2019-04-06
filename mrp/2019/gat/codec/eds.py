@@ -1,6 +1,6 @@
-import re
-
 import os.path;
+import re;
+
 from graph import Graph;
 
 EDS_MATCHER = re.compile(r'(.+?)(?<!\\):(.+)(?<!\\)\[(.*)(?<!\\)\]')
@@ -49,11 +49,11 @@ CARG_MATCHER = re.compile(r'\(\"(.+)(?<!\\)"\)$');
 LNK_MATCHER = re.compile(r"<([0-9]+):([0-9]+)>$");
 
 def instance2graph(instance, text = None):
-    sentence_id, top, predicates = instance
+    sentence_id, top, predicates = instance;
     anchors = None;
-    graph = Graph(sentence_id, flavor = 1, framework = "eds")
+    graph = Graph(sentence_id, flavor = 1, framework = "eds");
     if text: graph.add_input(text);
-    handle2node = {}
+    handle2node = {};
     for handle, label, _ in predicates:
         assert handle not in handle2node
         carg = None;
@@ -79,7 +79,6 @@ def instance2graph(instance, text = None):
         for relation, tgt_handle in arguments:
             tgt = handle2node[tgt_handle].id
             graph.add_edge(src, tgt, relation)
-    graph.tokens = ['foo'] # TODO
     return graph
 
 def read(fp, text = None):
