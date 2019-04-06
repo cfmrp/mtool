@@ -17,8 +17,8 @@ def read_matrices(file):
         yield matrix;
         matrix = read_matrix(file);
 
-def matrix2graph(matrix, text = None):
-    graph = Graph(matrix[0][0][1:]);
+def matrix2graph(matrix, framework = None, text = None):
+    graph = Graph(matrix[0][0][1:], flavor = 0, framework = framework);
     predicates = [];
     for id, row in enumerate(matrix[1:]):
         lemma, pos, frame, top = row[2], row[3], row[6], row[4] == '+';
@@ -45,6 +45,6 @@ def matrix2graph(matrix, text = None):
     graph.nodes = [node for node in graph.nodes if not node.is_singleton()];
     return graph;
 
-def read(fp, text = None):
+def read(fp, framework = None, text = None):
     for matrix in read_matrices(fp):
-        yield matrix2graph(matrix, text = text);
+        yield matrix2graph(matrix, framework, text);

@@ -20,7 +20,7 @@ def amr_lines(fp):
                 lines.append(line)
 
 def amr2graph(id, amr, full = False, normalize = False, reify = False):
-    graph = Graph(id)
+    graph = Graph(id, flavor = 2, framework = "amr")
     node2id = {}
     i = 0
     for n, v, a in zip(amr.nodes, amr.node_values, amr.attributes):

@@ -53,20 +53,23 @@ if __name__ == "__main__":
 
   graphs = None
   if arguments.read == "amr":
-    graphs = codec.amr.read(arguments.input, arguments.full, arguments.normalize, arguments.reify, text);
-  elif arguments.read in {"ccd", "dm", "pas", "psd", "sdp"}:
-    graphs = codec.sdp.read(arguments.input, text = text);
+    graphs = codec.amr.read(arguments.input, arguments.full,
+                            arguments.normalize, arguments.reify, text);
+  elif arguments.read in {"ccd", "dm", "pas", "psd"}:
+    graphs = codec.sdp.read(arguments.input, framework = arguments.read,
+                            text = text);
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, text = text);
   elif arguments.read == "ucca":
     graphs = codec.ucca.read(arguments.input, text = text);
   if not graphs:
-    print("main.py(): invalid input format: {}; exit.".format(arguments.format), file=sys.stderr)
+    print("main.py(): invalid input format: {}; exit."
+          "".format(arguments.format), file=sys.stderr)
     sys.exit(1)
-    
+
   if arguments.analyze:
     analyze(graphs);
-    
+
   for i, graph in enumerate(graphs):
     if arguments.i != None and i != arguments.i: continue;
     if arguments.n != None and i >= arguments.n: sys.exit(0);

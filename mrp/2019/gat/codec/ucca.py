@@ -16,7 +16,7 @@ def convert_wsj_id(id):
         return id;
 
 def passage2graph(passage, text = None):
-    graph = Graph(convert_wsj_id(passage.ID));
+    graph = Graph(convert_wsj_id(passage.ID), flavor = 1, framework = "ucca");
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
     unit_id_to_node_id = {};
