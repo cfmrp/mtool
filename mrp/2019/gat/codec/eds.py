@@ -48,7 +48,7 @@ def read_instances(fp):
 CARG_MATCHER = re.compile(r'\(\"(.+)(?<!\\)"\)$');
 LNK_MATCHER = re.compile(r"<([0-9]+):([0-9]+)>$");
 
-def instance2graph(instance, text = None):
+def instance2graph(instance, reify = False, text = None):
     sentence_id, top, predicates = instance;
     anchors = None;
     graph = Graph(sentence_id, flavor = 1, framework = "eds");
@@ -64,15 +64,19 @@ def instance2graph(instance, text = None):
         anchors = None;
         match = LNK_MATCHER.search(label);
         if match:
-          label = label[:match.start()];
-          anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
+            label = label[:match.start()];
+            anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
+        properties = None;
         handle2node[handle] = \
           graph.add_node(label = label, anchors = anchors);
         if carg:
-            carg = graph.add_node(label = carg, anchors = anchors);
-            source = handle2node[handle].id;
-            target = carg.id;
-            graph.add_edge(source, target, "carg");
+            if reify:
+                carg = graph.add_node(label = carg, anchors = anchors);
+                source = handle2node[handle].id;
+                target = carg.id;
+                graph.add_edge(source, target, "carg");
+            else:
+                handle2node[handle].set_property("carg", carg);
     handle2node[top].is_top = True
     for src_handle, _, arguments in predicates:
         src = handle2node[src_handle].id
@@ -81,6 +85,6 @@ def instance2graph(instance, text = None):
             graph.add_edge(src, tgt, relation)
     return graph
 
-def read(fp, text = None):
+def read(fp, reify = False, text = None):
     for instance in read_instances(fp):
-        yield instance2graph(instance, text = text)
+        yield instance2graph(instance, reify, text)

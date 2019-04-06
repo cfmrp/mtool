@@ -59,7 +59,7 @@ if __name__ == "__main__":
     graphs = codec.sdp.read(arguments.input, framework = arguments.read,
                             text = text);
   elif arguments.read == "eds":
-    graphs = codec.eds.read(arguments.input, text = text);
+    graphs = codec.eds.read(arguments.input, arguments.reify, text);
   elif arguments.read == "ucca":
     graphs = codec.ucca.read(arguments.input, text = text);
   if not graphs:
