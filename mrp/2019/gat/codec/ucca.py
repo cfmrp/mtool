@@ -75,7 +75,7 @@ def passage2graph(passage, text = None):
                         else:
                             node = graph.add_node(anchors = [anchor(token.text)] if graph.input else None);
                             unit_id_to_node_id[unit.ID] = node.id;
-    for unit in l1.all:
+    for unit in sorted(l1.all, key=attrgetter("start_position", "end_position")):
         if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
             node = graph.add_node();
             unit_id_to_node_id[unit.ID] = node.id;
