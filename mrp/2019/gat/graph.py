@@ -4,6 +4,7 @@
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 # Stephan Oepen <oe@ifi.uio.no>
 
+from datetime import datetime;
 import html;
 import itertools
 from pathlib import Path;
@@ -176,10 +177,11 @@ class Edge(object):
 class Graph(object):
 
     def __init__(self, id, flavor = None, framework = None):
-        self.id = id
+        self.id = id;
+        self.time = datetime.utcnow();
         self.input = None;
-        self.nodes = []
-        self.edges = set()
+        self.nodes = [];
+        self.edges = set();
         self.flavor = flavor;
         self.framework = framework;
 
@@ -206,7 +208,9 @@ class Graph(object):
 
     def add_input(self, text, id = None):
         if not id: id = self.id;
-        if isinstance(text, Path):
+        if isinstance(text, str):
+            self.input = text;
+        elif isinstance(text, Path):
             file = text / (str(id) + ".txt");
             if not file.exists():
                 print("add_input(): no text for {}.".format(file),
@@ -272,6 +276,7 @@ class Graph(object):
         if self.framework:
             json["framework"] = self.framework;
         json["version"] = 0.9;
+        json["time"] = self.time.strftime("%Y-%m-%d (%H:%M)");
         if self.input:
             json["input"] = self.input;
         tops = [node.id for node in self.nodes if node.is_top];

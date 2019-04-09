@@ -75,7 +75,8 @@ if __name__ == "__main__":
     if arguments.n != None and i >= arguments.n: sys.exit(0);
     if arguments.id != None and graph.id != arguments.id: continue;
     if arguments.write == "mrp":
-      json.dump(graph.encode(), arguments.output, indent = None);
+      json.dump(graph.encode(), arguments.output,
+                indent = None, ensure_ascii = False);
       print(file = arguments.output);
     elif arguments.write == "dot":
       graph.dot(arguments.output, arguments.strings);

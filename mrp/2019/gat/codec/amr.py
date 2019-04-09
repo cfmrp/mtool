@@ -5,17 +5,19 @@ from graph import Graph
 from smatch.amr import AMR;
 
 def amr_lines(fp):
-    id, lines = None, []
+    id, snt, lines = None, None, [];
     for line in fp:
-        line = line.strip()
+        line = line.strip();
         if len(line) == 0:
             if len(lines) > 0:
-                yield id, " ".join(lines)
+                yield id, snt, " ".join(lines)
             id, lines = None, []
         else:
             if line.startswith("#"):
                 if line.startswith("# ::id"):
                     id = line.split()[2]
+                if line.startswith("# ::snt"):
+                   snt = line[8:].strip();
             else:
                 lines.append(line)
 
@@ -80,7 +82,7 @@ def convert_wsj_id(id):
         raise Exception('Could not convert id: %s' % id)
 
 def read(fp, full = False, normalize = False, reify = False, text = None):
-    for id, amr_line in amr_lines(fp):
+    for id, snt, amr_line in amr_lines(fp):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
@@ -93,4 +95,6 @@ def read(fp, full = False, normalize = False, reify = False, text = None):
         cid = None;
         if text:
             graph.add_input(text);
+        elif snt:
+            graph.add_input(snt);
         yield graph;
