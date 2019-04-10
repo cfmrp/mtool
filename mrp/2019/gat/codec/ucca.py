@@ -13,7 +13,7 @@ def convert_wsj_id(id):
     if m:
         return "2%04d%03d" % (int(m.group(1)), int(m.group(2)));
     else:
-        return id;
+        return "reviews-" + id;
 
 def passage2graph(passage, text = None):
     graph = Graph(convert_wsj_id(passage.ID), flavor = 1, framework = "ucca");
