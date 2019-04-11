@@ -8,15 +8,17 @@ from graph import Graph;
 from ucca.ioutil import get_passages_with_progress_bar;
 
 
-def convert_wsj_id(id):
+def convert_id(id, prefix):
     m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id);
     if m:
         return "2%04d%03d" % (int(m.group(1)), int(m.group(2)));
+    elif prefix:
+        return prefix + id;
     else:
-        return "reviews-" + id;
+        return id;
 
-def passage2graph(passage, text = None):
-    graph = Graph(convert_wsj_id(passage.ID), flavor = 1, framework = "ucca");
+def passage2graph(passage, text = None, prefix = None):
+    graph = Graph(convert_id(passage.ID, prefix), flavor = 1, framework = "ucca");
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
     unit_id_to_node_id = {};
@@ -60,8 +62,8 @@ def passage2graph(passage, text = None):
             skip();
             return anchor;
         else:
-            raise Exception("failed to anchor |{}| in |{}| ({})"
-                            "".format(form, graph.input, i));
+            raise Exception("{}: failed to anchor |{}| in |{}| ({})"
+                            "".format(graph.id, form, graph.input, i));
 
     for token in sorted(l0.all, key=attrgetter("position")):
         for unit in l1.all:
@@ -102,10 +104,15 @@ def passage2graph(passage, text = None):
         graph.nodes[unit_id_to_node_id[unit.ID]].is_top = True;
     return graph
 
-def read(fp, text = None):
+def read(fp, text = None, prefix = None):
     parent = Path(fp.name).parent;
     paths = {parent / file.strip() for file in fp};
     for passage in get_passages_with_progress_bar(map(str, paths), desc="Analyzing"):
-        yield passage2graph(passage, text);
+        try:
+            graph = passage2graph(passage, text, prefix);
+        except Exception as exception:
+            print(exception);
+            continue;
+        yield graph;
 
 
