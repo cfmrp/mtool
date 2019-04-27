@@ -20,11 +20,11 @@ class DepthFirstSearch(object):
         self.n_runs = 0
         def compute_timestamps(node, timestamp):
             self._enter[node] = next(timestamp)
-            for edge in self._graph.nodes[node].outgoing_edges:
+            for edge in self._graph.find_node(node).outgoing_edges:
                 if not edge.tgt in self._enter:
                     compute_timestamps(edge.tgt, timestamp)
             if self._undirected:
-                for edge in self._graph.nodes[node].incoming_edges:
+                for edge in self._graph.find_node(node).incoming_edges:
                     if not edge.src in self._enter:
                         compute_timestamps(edge.src, timestamp)
             self._leave[node] = next(timestamp)
@@ -161,12 +161,11 @@ PROPERTY_COUNTER = itertools.count(1)
 def report(msg, val):
     print("(%02d)\t%s\t%s" % (next(PROPERTY_COUNTER), msg, val))
 
-def analyze(graphs, ordered=False, ids=None, tokens=None):
+def analyze(graphs, ordered=False, ids=None):
     n_graphs = 0
     n_graphs_noncrossing = 0
     n_graphs_has_top_node = 0
     n_graphs_multirooted = 0
-    n_tokens = 0
     n_nodes = 0
     n_nodes_with_reentrancies = 0
     n_singletons = 0
@@ -188,18 +187,12 @@ def analyze(graphs, ordered=False, ids=None, tokens=None):
     n_treewidth_one = 0
     treewidths = []
     for graph in graphs:
-        if tokens:
-            graph_tokens = next(tokens)
         if ids and not graph.id in ids:
             continue
         
         n_graphs += 1
         n_nodes += len(graph.nodes)
         n_edges += len(graph.edges)
-        if tokens:
-            n_tokens += len(graph_tokens)
-        else:
-            n_tokens += len(graph.nodes)
 
         inspected_graph = InspectedGraph(graph)
 
@@ -251,8 +244,6 @@ def analyze(graphs, ordered=False, ids=None, tokens=None):
     n_nonsingletons = n_nodes - n_singletons
 
     report("number of graphs", "%d" % n_graphs)
-    report("average number of tokens", "%.2f" % (n_tokens / n_graphs))
-    report("average number of nodes per token", "%.2f" % (n_nonsingletons / n_tokens))
     report("number of edge labels", "%d" % len(labels))
 #    report("\\percentnode\\ singleton", "%.2f" % (100 * n_singletons / n_nodes))
 #    report("\\percentnode\\ non-singleton", "%.2f" % (100 * n_nonsingletons / n_nodes))
