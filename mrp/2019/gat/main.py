@@ -12,6 +12,7 @@ from graph import Graph;
 
 import codec.amr;
 import codec.eds;
+import codec.mrp;
 import codec.sdp;
 import codec.ucca;
 
@@ -61,6 +62,8 @@ if __name__ == "__main__":
                             text = text);
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, arguments.reify, text);
+  elif arguments.read == "mrp":
+    graphs = codec.mrp.read(arguments.input)
   elif arguments.read == "ucca":
     graphs = codec.ucca.read(arguments.input,
                              text, arguments.prefix);

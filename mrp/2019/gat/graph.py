@@ -58,6 +58,15 @@ class Node(object):
             json["anchors"] = self.anchors;
         return json;
 
+    @staticmethod
+    def decode(json):
+        id = json["id"]
+        label = json.get("label", None)
+        properties = json.get("properties", None)
+        values = json.get("values", None)
+        anchors = json.get("anchors", None)
+        return Node(id, label, properties, values, anchors)
+
     def dot(self, stream, input = None, strings = False):
         if self.label \
            or self.properties and self.values \
@@ -147,6 +156,16 @@ class Edge(object):
             json["values"] = self.values;
         return json;
 
+    @staticmethod
+    def decode(json):
+        src = json["source"]
+        tgt = json["target"]
+        lab = json["label"]
+        normal = json.get("normal", None)
+        properties = json.get("properties", None)
+        values = json.get("values", None)
+        return Edge(src, tgt, lab, normal, properties, values)
+        
     def dot(self, stream, input = None, strings = False):
         label = self.lab;
         if label and self.normal:
@@ -285,6 +304,19 @@ class Graph(object):
         json["nodes"] = [node.encode() for node in self.nodes];
         json["edges"] = [edge.encode() for edge in self.edges];
         return json;
+
+    @staticmethod
+    def decode(json):
+        flavor = json.get("flavor", None)
+        framework = json.get("framework", None)
+        graph = Graph(json["id"], flavor, framework)
+        graph.input = json.get("input", None)
+        graph.nodes = [Node.decode(j) for j in json["nodes"]]
+        graph.edges = [Edge.decode(j) for j in json["edges"]]
+        tops = json.get("tops", [])
+        for i in tops:
+            graph.find_node(i).is_top = True
+        return graph
 
     def dot(self, stream, strings = False):
         print("digraph \"{}\" {{\n  top [ style=invis ];"
