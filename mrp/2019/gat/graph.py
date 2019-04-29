@@ -221,8 +221,8 @@ class Graph(object):
                  properties = None, values = None):
         edge = Edge(src, tgt, lab, normal, properties, values)
         self.edges.add(edge)
-        self.nodes[src].outgoing_edges.add(edge)
-        self.nodes[tgt].incoming_edges.add(edge)
+        self.find_node(src).outgoing_edges.add(edge)
+        self.find_node(tgt).incoming_edges.add(edge)
         return edge
 
     def add_input(self, text, id = None):
@@ -312,8 +312,12 @@ class Graph(object):
         graph = Graph(json["id"], flavor, framework)
         graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input", None)
-        graph.nodes = [Node.decode(j) for j in json["nodes"]]
-        graph.edges = [Edge.decode(j) for j in json["edges"]]
+        for j in json["nodes"]:
+            node = Node.decode(j)
+            graph.add_node(node.id, node.label, node.properties, node.values, node.anchors, top = False)
+        for j in json["edges"]:
+            edge = Edge.decode(j)
+            graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal, edge.properties, edge.values)
         tops = json.get("tops", [])
         for i in tops:
             graph.find_node(i).is_top = True
