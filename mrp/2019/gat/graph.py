@@ -310,6 +310,7 @@ class Graph(object):
         flavor = json.get("flavor", None)
         framework = json.get("framework", None)
         graph = Graph(json["id"], flavor, framework)
+        graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input", None)
         graph.nodes = [Node.decode(j) for j in json["nodes"]]
         graph.edges = [Edge.decode(j) for j in json["edges"]]
