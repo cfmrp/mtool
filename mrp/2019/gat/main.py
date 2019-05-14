@@ -86,3 +86,5 @@ if __name__ == "__main__":
     elif arguments.write == "dot":
       graph.dot(arguments.output, arguments.strings);
       print(file = arguments.output);
+    elif arguments.write == "txt":
+      print("{}\t{}".format(graph.id, graph.input));
