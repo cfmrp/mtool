@@ -1,7 +1,7 @@
 import re;
 
 from graph import Graph;
-
+
 def read_tuples(stream):
   id = None;
   tuples = [];
@@ -17,7 +17,7 @@ def read_tuples(stream):
       else:
         tuples.append(line.split("\t"));
   return id, None;
-
+
 def construct_graph(id, tuples, framework = None, text = None):
   graph = Graph(id, flavor = 0, framework = framework);
   ids = {};
@@ -40,14 +40,13 @@ def construct_graph(id, tuples, framework = None, text = None):
   for tuple in tuples:
     id, head, type = tuple[0], tuple[6], tuple[7];
     if head in ids:
-      print("{} ({}) --{}-> {} ({})".format(ids[head], head, type, ids[id], id));
       graph.add_edge(ids[head], ids[id], type);
 
   if text:
     graph.add_input(text);
-    # graph.anchor();
-  return graph;
 
+  return graph;
+
 def read(stream, framework = None, text = None):
     id, tuples = read_tuples(stream);
     while tuples:

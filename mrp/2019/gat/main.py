@@ -67,7 +67,8 @@ if __name__ == "__main__":
     graphs = codec.ucca.read(arguments.input,
                              text, arguments.prefix);
   elif arguments.read == "conllu" or arguments.read == "ud":
-    graphs = codec.conllu.read(arguments.input)
+    graphs = codec.conllu.read(arguments.input, framework = arguments.read,
+                               text = text)
   elif arguments.read == "mrp":
     graphs = codec.mrp.read(arguments.input)
   if not graphs:
