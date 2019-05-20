@@ -11,6 +11,7 @@ from analyzer import analyze;
 from graph import Graph;
 
 import codec.amr;
+import codec.conllu;
 import codec.eds;
 import codec.mrp;
 import codec.sdp;
@@ -62,14 +63,16 @@ if __name__ == "__main__":
                             text = text);
   elif arguments.read == "eds":
     graphs = codec.eds.read(arguments.input, arguments.reify, text);
-  elif arguments.read == "mrp":
-    graphs = codec.mrp.read(arguments.input)
   elif arguments.read == "ucca":
     graphs = codec.ucca.read(arguments.input,
                              text, arguments.prefix);
+  elif arguments.read == "conllu" or arguments.read == "ud":
+    graphs = codec.conllu.read(arguments.input)
+  elif arguments.read == "mrp":
+    graphs = codec.mrp.read(arguments.input)
   if not graphs:
     print("main.py(): invalid input format: {}; exit."
-          "".format(arguments.format), file=sys.stderr)
+          "".format(arguments.read), file=sys.stderr)
     sys.exit(1)
 
   if arguments.analyze:
@@ -87,4 +90,4 @@ if __name__ == "__main__":
       graph.dot(arguments.output, arguments.strings);
       print(file = arguments.output);
     elif arguments.write == "txt":
-      print("{}\t{}".format(graph.id, graph.input));
+      print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
