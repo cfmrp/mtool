@@ -92,3 +92,5 @@ if __name__ == "__main__":
       print(file = arguments.output);
     elif arguments.write == "txt":
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
+    elif arguments.write == "id":
+      print("{}".format(graph.id), file = arguments.output);
