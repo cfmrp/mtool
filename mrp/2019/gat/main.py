@@ -16,10 +16,34 @@ import codec.eds;
 import codec.mrp;
 import codec.sdp;
 import codec.ucca;
+import score.edm;
+import score.sdp;
+import score.smatch;
 
 __author__ = "oe"
 __version__ = "0.1"
+
+def read_graphs(stream, format = None,
+                full = False, normalize = False, reify = False,
+                prefix = None, text = None):
 
+  graphs = None;
+  if format == "amr":
+    graphs = codec.amr.read(stream, full = full, normalize = normalize,
+                            reify = reify, text = tex);
+  elif format in {"ccd", "dm", "pas", "psd"}:
+    graphs = codec.sdp.read(stream, framework = format, text = text);
+  elif format == "eds":
+    graphs = codec.eds.read(stream, reify = reify, text = text);
+  elif format == "ucca":
+    graphs = codec.ucca.read(stream, text = text, prefix = prefix);
+  elif format == "conllu" or format == "ud":
+    graphs = codec.conllu.read(stream, framework = format, text = text)
+  elif format == "mrp":
+    graphs = codec.mrp.read(stream)
+
+  return graphs;
+
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
@@ -28,6 +52,9 @@ if __name__ == "__main__":
   parser.add_argument("--full", action = "store_true");
   parser.add_argument("--reify", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
+  parser.add_argument("--gold", type = argparse.FileType("r"));
+  parser.add_argument("--format");
+  parser.add_argument("--score");
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -36,9 +63,9 @@ if __name__ == "__main__":
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
   parser.add_argument("input", nargs = "?",
-                      type=argparse.FileType("r"), default = sys.stdin);
+                      type = argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
-                      type=argparse.FileType("w"), default = sys.stdout);
+                      type = argparse.FileType("w"), default = sys.stdout);
   arguments = parser.parse_args();
 
   text = None;
@@ -54,31 +81,38 @@ if __name__ == "__main__":
     elif path.is_dir():
       text = path;
 
-  graphs = None
-  if arguments.read == "amr":
-    graphs = codec.amr.read(arguments.input, arguments.full,
-                            arguments.normalize, arguments.reify, text);
-  elif arguments.read in {"ccd", "dm", "pas", "psd"}:
-    graphs = codec.sdp.read(arguments.input, framework = arguments.read,
-                            text = text);
-  elif arguments.read == "eds":
-    graphs = codec.eds.read(arguments.input, arguments.reify, text);
-  elif arguments.read == "ucca":
-    graphs = codec.ucca.read(arguments.input,
-                             text, arguments.prefix);
-  elif arguments.read == "conllu" or arguments.read == "ud":
-    graphs = codec.conllu.read(arguments.input, framework = arguments.read,
-                               text = text)
-  elif arguments.read == "mrp":
-    graphs = codec.mrp.read(arguments.input)
+  graphs = read_graphs(arguments.input, format = arguments.read,
+                       full = arguments.full, normalize = arguments.normalize,
+                       reify = arguments.reify, text = text);
   if not graphs:
     print("main.py(): invalid input format: {}; exit."
-          "".format(arguments.read), file=sys.stderr)
-    sys.exit(1)
+          "".format(arguments.read), file = sys.stderr);
+    sys.exit(1);
 
   if arguments.analyze:
     analyze(graphs);
 
+  if arguments.gold and arguments.score:
+    if arguments.format == None: arguments.format = arguments.read;
+    gold = read_graphs(arguments.gold, format = arguments.format,
+                       full = arguments.full, normalize = arguments.normalize,
+                       reify = arguments.reify, text = text);
+    if not gold:
+      print("main.py(): invalid gold format: {}; exit."
+            "".format(arguments.read), file = sys.stderr);
+      sys.exit(1);
+    for metric in arguments.score.split(","):
+      if metric == "edm":
+        score.edm.evaluate(gold, graphs,
+                           arguments.output, format = arguments.write);
+      elif metric == "sdp":
+        score.sdp.evaluate(gold, graphs,
+                           arguments.output, format = arguments.write);
+      elif metric == "smatch":
+        score.smatch.evaluate(gold, graphs,
+                              arguments.output, format = arguments.write);
+    sys.exit(0);
+      
   for i, graph in enumerate(graphs):
     if arguments.i != None and i != arguments.i: continue;
     if arguments.n != None and i >= arguments.n: sys.exit(0);
