@@ -34,7 +34,7 @@ def evaluate(golds, systems, stream, format = "json", trace = None):
                       relation1 = grelations, prefix1 = gprefix,
                       instance2 = sinstances, attributes2 = sattributes,
                       relation2 = srelations, prefix2 = sprefix);
-    if trace != None:
+    if trace:
       p, r, f = fscore(match, system, gold);
       print("G: {}; S: {}; M: {}; P: {}; R: {}; F: {}"
             "".format(gold, system, match, p, r, f), file = sys.stderr);

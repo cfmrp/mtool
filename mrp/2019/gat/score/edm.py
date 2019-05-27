@@ -20,28 +20,28 @@ def tuples(graph):
   return names, arguments, properties;
 
 def evaluate(golds, systems, stream, format = "json", trace = False):
-  tgn = tsn = tcn = 0;
-  tga = tsa = tca = 0;
-  tgp = tsp = tcp = 0;
+  tgn = tsn = tmn = 0;
+  tga = tsa = tma = 0;
+  tgp = tsp = tmp = 0;
   scores = [];
   result = {"n": 0};
   for gold, system in zip(golds, systems):
     gnames, garguments, gproperties = tuples(gold);
     snames, sarguments, sproperties = tuples(system);
     gn = len(gnames); sn = len(snames);
-    cn = len(gnames & snames);
+    mn = len(gnames & snames);
     ga = len(garguments); sa = len(sarguments);
-    ca = len(garguments & sarguments);
+    ma = len(garguments & sarguments);
     gp = len(gproperties); sp = len(sproperties);
-    cp = len(gproperties & sproperties);
-    tgn += gn; tsn += sn; tcn += cn;
-    tga += ga; tsa += sa; tca += ca;
-    tgp += gp; tsp += sp; tcp += cp;
+    mp = len(gproperties & sproperties);
+    tgn += gn; tsn += sn; tmn += mn;
+    tga += ga; tsa += sa; tma += ma;
+    tgp += gp; tsp += sp; tmp += mp;
     result["n"] += 1;
-  p, r, f = fscore(tgn, tsn, tcn);
-  result["names"] = {"p": p, "r": r, "f": f};
-  p, r, f = fscore(tga, tsa, tca);
-  result["arguments"] = {"p": p, "r": r, "f": f};
-  p, r, f = fscore(tgp, tsp, tcp);
-  result["properties"] = {"p": p, "r": r, "f": f};
+  p, r, f = fscore(tgn, tsn, tmn);
+  result["names"] = {"g": tgn, "s": tsn, "m": tmn, "p": p, "r": r, "f": f};
+  p, r, f = fscore(tga, tsa, tma);
+  result["arguments"] = {"g": tga, "s": tsa, "m": tma, "p": p, "r": r, "f": f};
+  p, r, f = fscore(tgp, tsp, tmp);
+  result["properties"] = {"g": tgp, "s": tsp, "m": tmp, "p": p, "r": r, "f": f};
   print(result, file = stream);
