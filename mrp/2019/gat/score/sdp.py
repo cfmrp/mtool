@@ -55,7 +55,7 @@ class Measure(object):
 
 class Scorer(object):
 
-    def __init__(self, include_virtual=False, stream=sys.stderr):
+    def __init__(self, include_virtual=True, stream=sys.stderr):
         self.stream = stream
         self.measures = []
         self.measures.append(("labeled", Measure(self.get_itemsL)))
@@ -120,15 +120,7 @@ class Scorer(object):
         return json
 
 def evaluate(gold, system, stream, format = "json"):
-    scorer1 = Scorer(include_virtual=False)
-    scorer2 = Scorer(include_virtual=True)
-
+    scorer = Scorer(include_virtual=True, stream=stream)
     for g, s in zip(gold, system):
-        scorer1.update(g, s)
-        scorer2.update(g, s)
-
-    print("not including virtual edges")
-    print(scorer1.report())
-
-    print("including virtual edges")
-    print(scorer2.report())
+        scorer.update(g, s)
+    print(scorer.report())
