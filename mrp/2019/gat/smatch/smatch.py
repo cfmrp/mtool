@@ -717,41 +717,44 @@ def generate_amr_lines(f1, f2):
         break
 
 
-def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattribute=False, justrelation=False):
-    amr_pair = []
-    for i, cur_amr in (1, cur_amr1), (2, cur_amr2):
-        try:
-            amr_pair.append(amr.AMR.parse_AMR_line(cur_amr))
-        except Exception as e:
-            print("Error in parsing amr %d: %s" % (i, cur_amr), file=ERROR_LOG)
-            print("Please check if the AMR is ill-formatted. Ignoring remaining AMRs", file=ERROR_LOG)
-            print("Error message: %s" % e, file=ERROR_LOG)
-    amr1, amr2 = amr_pair
-    prefix1 = "a"
-    prefix2 = "b"
-    # Rename node to "a1", "a2", .etc
-    amr1.rename_node(prefix1)
-    # Renaming node to "b1", "b2", .etc
-    amr2.rename_node(prefix2)
-    (instance1, attributes1, relation1) = amr1.get_triples()
-    (instance2, attributes2, relation2) = amr2.get_triples()
-    if verbose:
-        print("AMR pair", sent_num, file=DEBUG_LOG)
-        print("============================================", file=DEBUG_LOG)
-        print("AMR 1 (one-line):", cur_amr1, file=DEBUG_LOG)
-        print("AMR 2 (one-line):", cur_amr2, file=DEBUG_LOG)
-        print("Instance triples of AMR 1:", len(instance1), file=DEBUG_LOG)
-        print(instance1, file=DEBUG_LOG)
-        print("Attribute triples of AMR 1:", len(attributes1), file=DEBUG_LOG)
-        print(attributes1, file=DEBUG_LOG)
-        print("Relation triples of AMR 1:", len(relation1), file=DEBUG_LOG)
-        print(relation1, file=DEBUG_LOG)
-        print("Instance triples of AMR 2:", len(instance2), file=DEBUG_LOG)
-        print(instance2, file=DEBUG_LOG)
-        print("Attribute triples of AMR 2:", len(attributes2), file=DEBUG_LOG)
-        print(attributes2, file=DEBUG_LOG)
-        print("Relation triples of AMR 2:", len(relation2), file=DEBUG_LOG)
-        print(relation2, file=DEBUG_LOG)
+def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattribute=False, justrelation=False,
+                  instance1 = None, attributes1 = None, relation1 = None, prefix1 = None,
+                  instance2 = None, attributes2 = None, relation2 = None, prefix2 = None):
+    if cur_amr1 and cur_amr2:
+        amr_pair = []
+        for i, cur_amr in (1, cur_amr1), (2, cur_amr2):
+            try:
+                amr_pair.append(amr.AMR.parse_AMR_line(cur_amr))
+            except Exception as e:
+                print("Error in parsing amr %d: %s" % (i, cur_amr), file=ERROR_LOG)
+                print("Please check if the AMR is ill-formatted. Ignoring remaining AMRs", file=ERROR_LOG)
+                print("Error message: %s" % e, file=ERROR_LOG)
+        amr1, amr2 = amr_pair
+        prefix1 = "a"
+        prefix2 = "b"
+        # Rename node to "a1", "a2", .etc
+        amr1.rename_node(prefix1)
+        # Renaming node to "b1", "b2", .etc
+        amr2.rename_node(prefix2)
+        (instance1, attributes1, relation1) = amr1.get_triples()
+        (instance2, attributes2, relation2) = amr2.get_triples()
+        if verbose:
+            print("AMR pair", sent_num, file=DEBUG_LOG)
+            print("============================================", file=DEBUG_LOG)
+            print("AMR 1 (one-line):", cur_amr1, file=DEBUG_LOG)
+            print("AMR 2 (one-line):", cur_amr2, file=DEBUG_LOG)
+            print("Instance triples of AMR 1:", len(instance1), file=DEBUG_LOG)
+            print(instance1, file=DEBUG_LOG)
+            print("Attribute triples of AMR 1:", len(attributes1), file=DEBUG_LOG)
+            print(attributes1, file=DEBUG_LOG)
+            print("Relation triples of AMR 1:", len(relation1), file=DEBUG_LOG)
+            print(relation1, file=DEBUG_LOG)
+            print("Instance triples of AMR 2:", len(instance2), file=DEBUG_LOG)
+            print(instance2, file=DEBUG_LOG)
+            print("Attribute triples of AMR 2:", len(attributes2), file=DEBUG_LOG)
+            print(attributes2, file=DEBUG_LOG)
+            print("Relation triples of AMR 2:", len(relation2), file=DEBUG_LOG)
+            print(relation2, file=DEBUG_LOG)
     # optionally turn off some of the node comparison
     doinstance = doattribute = dorelation = True
     if justinstance:

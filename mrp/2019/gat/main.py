@@ -30,7 +30,7 @@ def read_graphs(stream, format = None,
   graphs = None;
   if format == "amr":
     graphs = codec.amr.read(stream, full = full, normalize = normalize,
-                            reify = reify, text = tex);
+                            reify = reify, text = text);
   elif format in {"ccd", "dm", "pas", "psd"}:
     graphs = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
@@ -111,6 +111,10 @@ if __name__ == "__main__":
       elif metric == "smatch":
         score.smatch.evaluate(gold, graphs,
                               arguments.output, format = arguments.write);
+      else:  
+        print("main.py(): invalid evaluation metric: {}; exit."
+              "".format(arguments.score), file = sys.stderr);
+        sys.exit(1);
     sys.exit(0);
       
   for i, graph in enumerate(graphs):

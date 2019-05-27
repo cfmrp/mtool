@@ -1,4 +1,5 @@
 from graph import Graph;
+from score.core import fscore;
 
 def tuples(graph):
   map = dict();
@@ -18,16 +19,10 @@ def tuples(graph):
     arguments.add((map[edge.src], map[edge.tgt], edge.lab));
   return names, arguments, properties;
 
-def fscore(gold, system, correct):
-  p = correct / system;
-  r = correct / gold;
-  f = 2 * p * r / (p + r) if p + r != 0 else 0.0;
-  return p, r, f;
-
 def evaluate(golds, systems, stream, format = "json", trace = False):
-  tgn = 0; tsn = 0; tcn = 0;
-  tga = 0; tsa = 0; tca = 0;
-  tgp = 0; tsp = 0; tcp = 0;
+  tgn = tsn = tcn = 0;
+  tga = tsa = tca = 0;
+  tgp = tsp = tcp = 0;
   scores = [];
   for gold, system in zip(golds, systems):
     gnames, garguments, gproperties = tuples(gold);
