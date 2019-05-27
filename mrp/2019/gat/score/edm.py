@@ -24,6 +24,7 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
   tga = tsa = tca = 0;
   tgp = tsp = tcp = 0;
   scores = [];
+  result = {"n": 0};
   for gold, system in zip(golds, systems):
     gnames, garguments, gproperties = tuples(gold);
     snames, sarguments, sproperties = tuples(system);
@@ -36,7 +37,7 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
     tgn += gn; tsn += sn; tcn += cn;
     tga += ga; tsa += sa; tca += ca;
     tgp += gp; tsp += sp; tcp += cp;
-  result = {};
+    result["n"] += 1;
   p, r, f = fscore(tgn, tsn, tcn);
   result["names"] = {"p": p, "r": r, "f": f};
   p, r, f = fscore(tga, tsa, tca);

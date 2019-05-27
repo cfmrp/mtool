@@ -62,6 +62,7 @@ if __name__ == "__main__":
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
+  parser.add_argument("--trace", action = "store_true");
   parser.add_argument("input", nargs = "?",
                       type = argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
@@ -110,7 +111,8 @@ if __name__ == "__main__":
                            arguments.output, format = arguments.write);
       elif metric == "smatch":
         score.smatch.evaluate(gold, graphs,
-                              arguments.output, format = arguments.write);
+                              arguments.output, format = arguments.write,
+                              trace = arguments.trace);
       else:  
         print("main.py(): invalid evaluation metric: {}; exit."
               "".format(arguments.score), file = sys.stderr);

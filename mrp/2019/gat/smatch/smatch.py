@@ -11,7 +11,10 @@ For detailed description of smatch, see http://www.isi.edu/natural-language/amr/
 from __future__ import print_function
 from __future__ import division
 
-import smatch.amr
+try:
+    import smatch.amr
+except:
+    import amr
 import os
 import random
 import sys
@@ -177,6 +180,7 @@ def normalize(item):
     """
     lowercase and remove quote signifiers from items that are about to be compared
     """
+    item = item.rstrip("¦")
     return item.lower().rstrip('_')
 
 
@@ -763,6 +767,7 @@ def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattrib
         doinstance = dorelation = False
     if justrelation:
         doinstance = doattribute = False
+#    print("{}\n{}\n{}\n\n{}\n{}\n{}\n".format(instance1, attributes1, relation1, instance2, attributes2, relation2));
     (best_mapping, best_match_num) = get_best_match(instance1, attributes1, relation1,
                                                     instance2, attributes2, relation2,
                                                     prefix1, prefix2, doinstance=doinstance,
