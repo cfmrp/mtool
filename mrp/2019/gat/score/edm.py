@@ -12,6 +12,10 @@ def tuples(graph):
       anchor = (anchor["from"], anchor["to"]);
     map[node.id] = anchor;
     names.add(node.label);
+    #
+    # _fix_me_
+    # do something about tops: maybe a fourth sub-metric?
+    #
     if node.properties and node.values:
       for property, value in zip(node.properties, node.values):
         properties.add((anchor, property, value))
