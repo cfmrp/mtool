@@ -1,4 +1,5 @@
 from graph import Graph;
+from operator import itemgetter;
 
 def intersect(golds, systems):
   gold = {};
@@ -10,21 +11,23 @@ def intersect(golds, systems):
       yield gold[key], system[key];
 
 def anchor(node):
-  result = set();
+  result = list();
   if node.anchors != None:
     for anchor in node.anchors:
       if anchor and "from" in anchor and "to" in anchor:
-        result.add((anchor["from"], anchor["to"]));
+        result.append((anchor["from"], anchor["to"]));
   return result;
 
 def identify(graph, node, map = dict()):
   if node in map:
     return map;
-  map[node] = set(anchor(graph.find_node(node)));
+  map[node] = anchor(graph.find_node(node));
   for edge in graph.edges:
     if node == edge.src:
       identify(graph, edge.tgt, map);
-      map[node] |= map[edge.tgt];
+      map[node] += map[edge.tgt];
+  for key in map:
+    map[key] = tuple(sorted(map[key], key = itemgetter(0, 1)));
   return map;
 
 def fscore(gold, system, correct):

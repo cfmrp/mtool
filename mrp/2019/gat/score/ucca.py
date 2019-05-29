@@ -34,13 +34,12 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
     slprimary, slremote, suprimary, suremote = tuples(system);
     glp = len(glprimary); slp = len(slprimary);
     mlp = len(glprimary & slprimary);
-    gup = len(guprimary); slp = len(suprimary);
+    gup = len(guprimary); sup = len(suprimary);
     mup = len(guprimary & suprimary);
-    glr = len(glremote); slp = len(slremote);
+    glr = len(glremote); slr = len(slremote);
     mlr = len(glremote & slremote);
-    gur = len(guremote); slp = len(suremote);
+    gur = len(guremote); sur = len(suremote);
     mur = len(guremote & suremote);
-
     tglp += glp; tslp += slp; tmlp += mlp;
     tgup += gup; tsup += sup; tmup += mup;
     tglr += glr; tslr += slr; tmlr += mlr;
