@@ -19,6 +19,7 @@ import codec.ucca;
 import score.edm;
 import score.sdp;
 import score.smatch;
+import score.ucca;
 
 __author__ = "oe"
 __version__ = "0.1"
@@ -113,6 +114,10 @@ if __name__ == "__main__":
         score.smatch.evaluate(gold, graphs,
                               arguments.output, format = arguments.write,
                               trace = arguments.trace);
+      elif metric == "ucca":
+        score.ucca.evaluate(gold, graphs,
+                            arguments.output, format = arguments.write,
+                            trace = arguments.trace);
       else:  
         print("main.py(): invalid evaluation metric: {}; exit."
               "".format(arguments.score), file = sys.stderr);

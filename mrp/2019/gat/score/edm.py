@@ -4,6 +4,7 @@ from score.core import fscore;
 def tuples(graph):
   map = dict();
   names = set();
+  tops = set();
   arguments = set();
   properties = set();
   for node in graph.nodes:
@@ -12,10 +13,7 @@ def tuples(graph):
       anchor = (anchor["from"], anchor["to"]);
     map[node.id] = anchor;
     names.add(node.label);
-    #
-    # _fix_me_
-    # do something about tops: maybe a fourth sub-metric?
-    #
+    if node.is_top: tops.add(anchor);
     if node.properties and node.values:
       for property, value in zip(node.properties, node.values):
         properties.add((anchor, property, value))
