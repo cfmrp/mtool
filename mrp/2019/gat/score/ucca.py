@@ -47,19 +47,17 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
     result["n"] += 1;
 
   result["labeled"] = dict();
+  result["unlabeled"] = dict();
   p, r, f = fscore(tglp, tslp, tmlp);
   result["labeled"]["primary"] = \
     {"g": tglp, "s": tslp, "m": tmlp, "p": p, "r": r, "f": f};
   p, r, f = fscore(tglr, tslr, tmlr);
-  result["labeled"] = dict();
   result["labeled"]["remote"] = \
     {"g": tglr, "s": tslr, "m": tmlr, "p": p, "r": r, "f": f};
-  result["unlabeled"] = dict();
   p, r, f = fscore(tgup, tsup, tmup);
   result["unlabeled"]["primary"] = \
     {"g": tgup, "s": tsup, "m": tmup, "p": p, "r": r, "f": f};
   p, r, f = fscore(tgur, tsur, tmur);
-  result["unlabeled"] = dict();
   result["unlabeled"]["remote"] = \
     {"g": tgur, "s": tsur, "m": tmur, "p": p, "r": r, "f": f};
   print(result, file = stream);
