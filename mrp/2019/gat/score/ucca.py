@@ -1,4 +1,3 @@
-from graph import Graph;
 from score.core import identify, intersect, fscore;
 
 def tuples(graph):
@@ -25,8 +24,6 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
   tgup = tsup = tmup = 0;
   tglr = tslr = tmlr = 0;
   tgur = tsur = tmur = 0;
-  tp = tr = 0;
-  scores = [];
   result = {"n": 0};
 
   for gold, system in intersect(golds, systems):
