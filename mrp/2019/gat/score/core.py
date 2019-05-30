@@ -9,7 +9,7 @@ def intersect(golds, systems):
 
 def anchor(node):
   result = list();
-  if node.anchors != None:
+  if node.anchors is not None:
     for anchor in node.anchors:
       if anchor and "from" in anchor and "to" in anchor:
         result.append((anchor["from"], anchor["to"]));
@@ -20,7 +20,7 @@ def identify(graph, node, map = dict(), recursion = False):
     return map;
   map[node] = anchor(graph.find_node(node));
   for edge in graph.edges:
-    if edge.properties != None and "remote" not in edge.properties:
+    if edge.properties is not None and "remote" not in edge.properties:
       if node == edge.src:
         identify(graph, edge.tgt, map, True);
         for leaf in map[edge.tgt]:

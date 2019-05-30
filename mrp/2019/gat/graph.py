@@ -290,7 +290,7 @@ class Graph(object):
 
     def encode(self):
         json = {"id": self.id};
-        if self.flavor != None:
+        if self.flavor is not None:
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;

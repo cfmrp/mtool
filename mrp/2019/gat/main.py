@@ -95,7 +95,7 @@ if __name__ == "__main__":
     analyze(graphs);
 
   if arguments.gold and arguments.score:
-    if arguments.format == None: arguments.format = arguments.read;
+    if arguments.format is None: arguments.format = arguments.read;
     gold = read_graphs(arguments.gold, format = arguments.format,
                        full = arguments.full, normalize = arguments.normalize,
                        reify = arguments.reify, text = text);
@@ -125,9 +125,9 @@ if __name__ == "__main__":
     sys.exit(0);
       
   for i, graph in enumerate(graphs):
-    if arguments.i != None and i != arguments.i: continue;
-    if arguments.n != None and i >= arguments.n: sys.exit(0);
-    if arguments.id != None and graph.id != arguments.id: continue;
+    if arguments.i is not None and i != arguments.i: continue;
+    if arguments.n is not None and i >= arguments.n: sys.exit(0);
+    if arguments.id is not None and graph.id != arguments.id: continue;
     if arguments.write == "mrp":
       json.dump(graph.encode(), arguments.output,
                 indent = None, ensure_ascii = False);
