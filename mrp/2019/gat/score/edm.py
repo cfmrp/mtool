@@ -2,7 +2,7 @@ from graph import Graph;
 from score.core import fscore;
 
 def tuples(graph):
-  map = dict();
+  mapping = dict();
   names = set();
   tops = set();
   arguments = set();
@@ -11,14 +11,14 @@ def tuples(graph):
     anchor = node.anchors[0] if node.anchors else None;
     if anchor and "from" in anchor and "to" in anchor:
       anchor = (anchor["from"], anchor["to"]);
-    map[node.id] = anchor;
+    mapping[node.id] = anchor;
     names.add(node.label);
     if node.is_top: tops.add(anchor);
     if node.properties and node.values:
       for property, value in zip(node.properties, node.values):
         properties.add((anchor, property, value))
   for edge in graph.edges:
-    arguments.add((map[edge.src], map[edge.tgt], edge.lab));
+    arguments.add((mapping[edge.src], mapping[edge.tgt], edge.lab));
   return names, arguments, properties;
 
 def evaluate(golds, systems, stream, format = "json", trace = False):

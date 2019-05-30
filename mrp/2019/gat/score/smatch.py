@@ -6,12 +6,12 @@ def tuples(graph, prefix):
   #
   # mimicry of get_triples() in amr.py
   #  
-  map = dict();
+  mapping = dict();
   instances = [];
   relations = [];
   attributes = [];
   for node in graph.nodes:
-    map[node.id] = name = prefix + str(node.id);
+    mapping[node.id] = name = prefix + str(node.id);
     instances.append(("instance", name, node.label));
     if node.is_top:
       attributes.append(("TOP", name, node.label));
@@ -19,7 +19,7 @@ def tuples(graph, prefix):
       for property, value in zip(node.properties, node.values):
         attributes.append((property, name, value));
   for edge in graph.edges:
-    relations.append((edge.lab, map[edge.src], map[edge.tgt]));
+    relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations;
         
 def evaluate(golds, systems, stream, format = "json", trace = None):
