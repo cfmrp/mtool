@@ -18,16 +18,19 @@ def anchor(node):
         result.append((anchor["from"], anchor["to"]));
   return result;
 
-def identify(graph, node, map = dict()):
+def identify(graph, node, map = dict(), recursion = False):
   if node in map:
     return map;
   map[node] = anchor(graph.find_node(node));
   for edge in graph.edges:
-    if node == edge.src:
-      identify(graph, edge.tgt, map);
-      map[node] += map[edge.tgt];
-  for key in map:
-    map[key] = tuple(sorted(map[key], key = itemgetter(0, 1)));
+    if edge.properties != None and "remote" not in edge.properties:
+      if node == edge.src:
+        identify(graph, edge.tgt, map, True);
+        for leaf in map[edge.tgt]:
+          if leaf not in map[node]: map[node].append(leaf);
+  if not recursion:
+    for key in map:
+      map[key] = tuple(sorted(map[key], key = itemgetter(0, 1)));
   return map;
 
 def fscore(gold, system, correct):
