@@ -20,41 +20,43 @@ def tuples(graph):
   return lprimary, lremote, uprimary, uremote;
 
 def evaluate(golds, systems, stream, format = "json", trace = False):
-  tglp = tslp = tmlp = 0;
-  tgup = tsup = tmup = 0;
-  tglr = tslr = tmlr = 0;
-  tgur = tsur = tmur = 0;
+  tglp = tslp = tclp = 0;
+  tgup = tsup = tcup = 0;
+  tglr = tslr = tclr = 0;
+  tgur = tsur = tcur = 0;
+  tp = tr = 0;
+  scores = [];
   result = {"n": 0};
 
   for gold, system in intersect(golds, systems):
     glprimary, glremote, guprimary, guremote = tuples(gold);
     slprimary, slremote, suprimary, suremote = tuples(system);
     glp = len(glprimary); slp = len(slprimary);
-    mlp = len(glprimary & slprimary);
+    clp = len(glprimary & slprimary);
     gup = len(guprimary); sup = len(suprimary);
-    mup = len(guprimary & suprimary);
+    cup = len(guprimary & suprimary);
     glr = len(glremote); slr = len(slremote);
-    mlr = len(glremote & slremote);
+    clr = len(glremote & slremote);
     gur = len(guremote); sur = len(suremote);
-    mur = len(guremote & suremote);
-    tglp += glp; tslp += slp; tmlp += mlp;
-    tgup += gup; tsup += sup; tmup += mup;
-    tglr += glr; tslr += slr; tmlr += mlr;
-    tgur += gur; tsur += sur; tmur += mur;
+    cur = len(guremote & suremote);
+    tglp += glp; tslp += slp; tclp += clp;
+    tgup += gup; tsup += sup; tcup += cup;
+    tglr += glr; tslr += slr; tclr += clr;
+    tgur += gur; tsur += sur; tcur += cur;
     result["n"] += 1;
 
   result["labeled"] = dict();
   result["unlabeled"] = dict();
-  p, r, f = fscore(tglp, tslp, tmlp);
+  p, r, f = fscore(tglp, tslp, tclp);
   result["labeled"]["primary"] = \
-    {"g": tglp, "s": tslp, "m": tmlp, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tglr, tslr, tmlr);
+    {"g": tglp, "s": tslp, "c": tclp, "p": p, "r": r, "f": f};
+  p, r, f = fscore(tglr, tslr, tclr);
   result["labeled"]["remote"] = \
-    {"g": tglr, "s": tslr, "m": tmlr, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tgup, tsup, tmup);
+    {"g": tglr, "s": tslr, "c": tclr, "p": p, "r": r, "f": f};
+  p, r, f = fscore(tgup, tsup, tcup);
   result["unlabeled"]["primary"] = \
-    {"g": tgup, "s": tsup, "m": tmup, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tgur, tsur, tmur);
+    {"g": tgup, "s": tsup, "c": tcup, "p": p, "r": r, "f": f};
+  p, r, f = fscore(tgur, tsur, tcur);
   result["unlabeled"]["remote"] = \
-    {"g": tgur, "s": tsur, "m": tmur, "p": p, "r": r, "f": f};
+    {"g": tgur, "s": tsur, "c": tcur, "p": p, "r": r, "f": f};
   print(result, file = stream);

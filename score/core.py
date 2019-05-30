@@ -10,14 +10,13 @@ def intersect(golds, systems):
 def anchor(node):
   result = list();
   if node.anchors is not None:
-    for anchor_span in node.anchors:
-      if anchor_span and "from" in anchor_span and "to" in anchor_span:
-        result.append((anchor_span["from"], anchor_span["to"]));
+    for span in node.anchors:
+      if "from" in span and "to" in span:
+        result.append((span["from"], span["to"]));
   return result;
 
 def identify(graph, node, mapping = None, recursion = False):
-  if mapping is None:
-    mapping = dict()
+  if mapping is None: mapping = dict();
   if node in mapping:
     return mapping;
   mapping[node] = anchor(graph.find_node(node));

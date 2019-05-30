@@ -37,10 +37,10 @@ class Measure(object):
 
     def report(self):
         json = {}
-        json["precision"] = self.p()
-        json["recall"] = self.r()
-        json["f1"] = self.f()
-        json["match"] = self.m()
+        json["p"] = self.p()
+        json["r"] = self.r()
+        json["f"] = self.f()
+        json["m"] = self.m()
         return json
 
 # def argument_predicate_dm(label):
