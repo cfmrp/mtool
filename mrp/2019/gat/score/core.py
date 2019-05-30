@@ -2,13 +2,10 @@ from graph import Graph;
 from operator import itemgetter;
 
 def intersect(golds, systems):
-  gold = {};
-  system = {};
-  for graph in golds: gold[graph.id] = graph;
-  for graph in systems: system[graph.id] = graph;
-  for key in gold.keys():
-    if key in gold and key in system:
-      yield gold[key], system[key];
+  gold = {graph.id: graph for graph in golds};
+  system = {graph.id: graph for graph in systems};
+  for key in gold.keys() & system.keys():
+    yield gold[key], system[key];
 
 def anchor(node):
   result = list();
