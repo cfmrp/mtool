@@ -15,7 +15,9 @@ def anchor(node):
         result.append((anchor_span["from"], anchor_span["to"]));
   return result;
 
-def identify(graph, node, mapping = dict(), recursion = False):
+def identify(graph, node, mapping = None, recursion = False):
+  if mapping is None:
+    mapping = dict()
   if node in mapping:
     return mapping;
   mapping[node] = anchor(graph.find_node(node));
