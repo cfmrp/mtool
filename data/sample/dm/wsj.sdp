@@ -1,0 +1,2147 @@
+#SDP 2015
+#20001001
+1	Pierre	Pierre	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_
+2	Vinken	Vinken	NNP	-	-	named:x-c	compound	_	_	ARG1	ARG1	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+4	61	61	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_
+5	years	year	NNS	-	+	n:x	_	ARG1	_	_	_	_	_	_	_	_	_
+6	old	old	JJ	-	+	a:e-p	_	_	measure	_	_	_	_	_	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+8	will	will	MD	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+9	join	join	VB	+	+	v:e-i-p	_	_	_	_	_	_	ARG1	_	_	_	loc
+10	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+11	board	board	NN	-	-	n_of:x-i	_	_	_	_	ARG2	BV	_	_	_	_	_
+12	as	as	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+13	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+14	nonexecutive	nonexecutive	JJ	-	+	a:e-u	_	_	_	_	_	_	_	_	_	_	_
+15	director	director	NN	-	-	n_of:x-i	_	_	_	_	_	_	ARG2	BV	ARG1	_	_
+16	Nov.	Nov.	NNP	-	+	mofy:x-c	_	_	_	_	_	_	_	_	_	_	_
+17	29	29	CD	-	+	dofm:x-c	_	_	_	_	_	_	_	_	_	of	_
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20001002
+1	Mr.	Mr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_
+2	Vinken	Vinken	NNP	-	-	named:x-c	compound	ARG1	_	_	_	_	_	_
+3	is	is	VBZ	+	+	v_id:e-p-i	_	_	_	_	_	_	_	_
+4	chairman	chairman	NN	-	-	n_of:x	_	ARG2	ARG1	_	_	_	_	_
+5	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_
+6	Elsevier	Elsevier	NNP	-	-	named:x-c	_	_	ARG2	compound	_	_	_	appos
+7	N.V.	N.V.	NNP	-	+	n:x	_	_	_	_	_	_	_	_
+8	,	_	,	-	-	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_
+10	Dutch	Dutch	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_
+11	publishing	publish	NN	-	+	v:e-i-p	_	_	_	_	_	_	_	_
+12	group	group	NN	-	+	n_of:x	_	_	_	_	BV	ARG1	compound	_
+13	.	_	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20003001
+1	A	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	form	form	NN	-	+	n_of:x-i	BV	_	_	ARG2	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	asbestos	asbestos	NN	-	-	n:x	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	once	once	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	used	use	VBN	-	+	v:e-i-i-h	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	make	make	VB	-	+	v:e-i-p-u	_	_	_	ARG3	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	Kent	Kent	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	cigarette	cigarette	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	filters	filter	NNS	-	-	n:x	_	_	_	_	ARG2	compound	compound	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	has	has	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	caused	cause	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+14	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	high	high	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	percentage	percentage	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	cancer	cancer	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	deaths	death	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	ARG1	compound	ARG1	_	_	_	_	_	_	_
+20	among	among	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	group	group	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_
+23	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	workers	worker	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	ARG2	_	_	_	_
+25	exposed	expose	VBN	-	+	v_to:e-i-p-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_
+26	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	it	it	PRP	-	-	pron:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_	_	_	_
+28	more	more+than	RBR	-	-	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	mwe	_	_	_
+29	than	more+than	IN	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	30	30	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	years	year	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	ARG2	_
+32	ago	ago	RB	-	+	p:e-i-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_
+33	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	researchers	researcher	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+35	reported	report	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003002
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	asbestos	asbestos	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	fiber	fiber	NN	-	-	n:x	BV	compound	appos	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+4	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	crocidolite	crocidolite	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	is	is	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	unusually	unusually	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	resilient	resilient	JJ	-	+	a:e-u	_	_	_	ARG1	_	ARG1	_	_	_	_	_	_	_	_	_	_
+10	once	once	IN	-	+	x:e-h-h	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_
+11	it	it	PRP	-	-	pron:x	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_
+12	enters	enter	VBZ	-	+	v:e-i-p	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_
+13	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	lungs	lung	NNS	-	-	n:x	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	with	with	IN	-	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+17	even	even	RB	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	brief	brief	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	exposures	exposure	NNS	-	-	n_of-to:x-i	_	_	_	_	_	_	_	_	_	ARG1	ARG1	ARG1	_	_	_	_
+20	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	it	it	PRP	-	-	pron:x	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_
+22	causing	cause	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_
+23	symptoms	symptom	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_
+24	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	show	show	VBP	-	+	v_up:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	loc	_	_
+26	up	up	RP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	decades	decade	NNS	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	loc	_
+28	later	later	RB	-	+	time_n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	researchers	researcher	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+31	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003003
+1	Lorillard	Lorillard	NNP	-	-	named:x-c	compound	_	appos	_	_	_	_	_	_	ARG1	_	_	_	_	_
+2	Inc.	Inc.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	unit	unit	NN	-	+	n_of:x-i	_	BV	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	New	New	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	York-based	base	NNP	-	+	v:e-i-p	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_
+9	Loews	Loews	NNP	-	-	named:x-c	_	_	ARG1	_	ARG2	compound	_	_	_	_	_	_	_	_	_
+10	Corp.	corp.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	that	that	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	makes	make	VBZ	-	+	v:e-i-p-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	Kent	Kent	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	cigarettes	cigarette	NNS	-	-	n:x	_	_	_	_	_	_	ARG2	compound	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	stopped	stop	VBD	+	+	v_prd:e-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+17	using	use	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	ARG1	_	ARG1	_	_	_	_
+18	crocidolite	crocidolite	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_
+19	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	its	its	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	Micronite	Micronite	NN	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	cigarette	cigarette	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	filters	filter	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	ARG2	poss	compound	compound	_
+24	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	1956	1956	CD	-	-	yofc:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003005
+1	A	a	DT	-	+	q:i-h-h	_	_	_	_	_	_
+2	Lorillard	Lorillard	NNP	-	+	named:x-c	_	_	_	_	_	_
+3	spokewoman	spokewoman	NN	-	-	n:x	BV	compound	ARG1	_	_	_
+4	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_
+5	,	_	,	-	-	_	_	_	_	_	_	_
+6	“	_	``	-	-	_	_	_	_	_	_	_
+7	This	this	DT	-	-	x:x	_	_	_	ARG1	_	_
+8	is	is	VBZ	-	+	v_id:e-p-i	_	_	ARG2	_	_	_
+9	an	an	DT	-	+	q:i-h-h	_	_	_	_	_	_
+10	old	old	JJ	-	+	a:e-p	_	_	_	_	_	_
+11	story	story	NN	-	-	n:x	_	_	_	ARG2	BV	ARG1
+12	.	_	.	-	-	_	_	_	_	_	_	_
+
+#20003007
+1	There	there	EX	-	-	_	_	_	_	_	_
+2	is	is	VBZ	+	+	v_there:e-i	_	_	_	_	loc
+3	no	no	DT	-	+	q:i-h-h	_	_	_	_	_
+4	asbestos	asbestos	NN	-	-	n:x	ARG1	BV	ARG1	_	_
+5	in	in	IN	-	+	p:e-u-i	_	_	_	_	_
+6	our	our	PRP$	-	+	q:i-h-h	_	_	_	_	_
+7	products	product	NNS	-	-	n:x	_	_	ARG2	poss	_
+8	now	now	RB	-	+	time_n:x	_	_	_	_	_
+9	.	_	.	-	-	_	_	_	_	_	_
+10	”	_	''	-	-	_	_	_	_	_	_
+
+#20003008
+1	Neither	neither	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+2	Lorillard	Lorillard	NNP	-	+	named:x-c	_	_	_	_	ARG1	_	_	_	_	_
+3	nor	nor	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+5	researchers	researcher	NNS	-	-	n_of:x-i	_nor_c	BV	ARG1	_	_	_	_	_	_	_
+6	who	who	WP	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	studied	study	VBD	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+9	workers	worker	NNS	-	-	n:x	_	_	ARG2	BV	_	_	_	_	_	_
+10	were	were	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	aware	aware	JJ	+	+	a_of:e-p-i	_	_	_	_	_	_	_	_	_	_
+12	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	any	any	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+14	research	research	NN	-	-	n:x	_	_	_	_	ARG2	BV	ARG1	_	_	_
+15	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+16	smokers	smoker	NNS	-	+	n_of:x-i	_	_	_	_	_	_	ARG2	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+19	Kent	Kent	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+20	cigarettes	cigarette	NNS	-	-	n:x	_	_	_	_	_	_	_	ARG1	BV	compound
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003009
+1	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	We	we	PRP	-	-	pron:x	ARG1	_	_	_	_	_	_	_	_	_	_	_
+3	have	have	VBP	-	+	v:e-i-i	_	_	_	_	_	ARG2	_	_	_	_	_	_
+4	no	no	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+5	useful	useful	JJ	-	+	a_for:e-p-i	_	_	_	_	_	_	_	_	_	_	_	_
+6	information	information	NN	-	+	n_on-about:x-i	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_
+7	on	on	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	whether	whether	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	users	user	NNS	-	-	n_of:x-i	_	_	_	_	ARG1	_	_	_	_	_	_	_
+10	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	at	at	IN	-	+	p:e-u-i	_	_	_	ARG1	_	_	_	_	_	_	_	_
+12	risk	risk	NN	-	-	n_of:x	_	_	_	_	ARG2	_	_	_	_	_	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_
+16	James	James	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+17	A.	A.	NNP	-	+	named:x-c	_	_	_	_	_	_	compound	_	_	_	_	_
+18	Talcott	Talcott	NNP	-	-	named:x-c	_	_	_	_	_	ARG1	_	compound	ARG1	_	_	_
+19	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_
+20	Boston	Boston	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+21	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	Dana-Farber	Dana-Farber	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+23	Cancer	Cancer	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+24	Institute	Institute	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	ARG2	poss	compound	compound
+25	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003010
+1	Dr.	Dr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	Talcott	Talcott	NNP	-	-	named:x-c	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	led	lead	VBD	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	team	team	NN	-	+	n_of:x-i	_	ARG2	BV	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	researchers	researcher	NNS	-	-	n_of:x-i	_	_	_	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_
+8	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	National	National	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	Cancer	Cancer	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	Institute	Institute	NNP	-	+	named:x-c	_	_	_	_	ARG2	BV	compound	compound	_	_	_	_	_	_	_
+13	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	medical	medical	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	schools	school	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_and_c	BV	ARG1	ARG1	_	_	_
+17	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	Harvard	Harvard	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	University	University	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	_	_
+20	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	Boston	Boston	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	University	University	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	compound
+23	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003011
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	Lorillard	Lorillard	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	spokeswoman	spokeswoman	NN	-	-	n:x	BV	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	asbestos	asbestos	NN	-	-	n:x	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_
+6	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	used	use	VBN	-	+	v:e-i-p	_	_	ARG2	_	ARG1	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+8	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	very	very	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	modest	modest	JJ	-	+	a:e-p	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	amounts	amount	NNS	-	-	n_of:x-i	_	_	_	_	ARG2	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+13	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	making	make	VBG	-	+	v:e-i-p-u	_	_	_	_	_	_	_	ARG2	_	_	_	ARG1	_	_	_	_	_	_	_
+16	paper	paper	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_
+17	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	filters	filter	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_	_
+20	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	early	early	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	1950s	1950s	NNS	-	-	year_range:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_
+24	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	replaced	replace	VBN	-	+	v_with:e-i-p-i	_	_	_	_and_c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+26	with	with	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	different	different	JJ	-	+	a_than-from:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	type	type	NN	-	+	n_of-n:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	BV	ARG1	_	_
+30	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	filter	filter	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_
+32	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	1956	1956	CD	-	-	yofc:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+34	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003012
+1	From	from	IN	-	+	p:e-u-x	_	_	_	_	_	_	_	_	_	_
+2	1953	1953	CD	-	-	yofc:x-c	ARG2	_	_	_	_	_	_	_	_	_
+3	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+4	1955	1955	CD	-	-	yofc:x-c	_	ARG2	_	_	_	_	_	_	_	_
+5	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	9.8	9.8	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_
+7	billion	billion	CD	-	+	card:i-i-c	_	_	times	_	_	_	_	_	_	_
+8	Kent	Kent	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+9	cigarettes	cigarette	NNS	-	-	n:x	_	_	_	ARG1	compound	ARG1	_	ARG2	_	_
+10	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+12	filters	filter	NNS	-	-	n:x	_	_	_	_	_	ARG2	BV	_	_	_
+13	were	were	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_
+14	sold	sell	VBN	-	+	v:e-i-p	ARG1	ARG1	_	_	_	_	_	_	_	ARG2
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+16	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+17	company	company	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	BV	ARG1
+18	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003013
+1	Among	among	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+2	33	33	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+3	men	man	NNS	-	-	n:x	ARG2	ARG1	ARG1	_	_	_	_	_	_	_	_	_
+4	who	who	WP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	worked	work	VBD	-	+	v:e-i-p	_	_	_	ARG1	ARG1	_	_	_	_	_	_	_
+6	closely	closely	RB	-	+	a_to:e-e	_	_	_	_	_	_	_	_	_	_	_	_
+7	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+9	substance	substance	NN	-	-	n:x	_	_	_	_	ARG2	BV	_	_	_	_	_	_
+10	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	28	28	CD	-	-	card:i-i-c	_	_	_	_	_	_	ARG1	_	_	_	_	_
+12	have	have	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	died	die	VBN	+	+	v:e-i	ARG1	_	_	_	_	_	_	_	_	_	_	_
+14	–	–	:	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	more	more	JJR	-	+	much-many_a:e-i	_	_	_	_	_	_	_	_	_	_	_	_
+16	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	three	three	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+18	times	time	NNS	-	-	n:x	_	_	_	_	_	_	_	than	ARG1	_	_	appos
+19	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+20	expected	expect	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_
+21	number	number	NN	-	+	n_of:x	_	_	_	_	_	_	_	_	_	BV	ARG2	_
+22	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003014
+1	Four	four	CD	-	+	card:i-i-c	_	_	_	_	ARG1	_	_	_	_	_
+2	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+3	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+4	five	five	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_
+5	surviving	survive	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+6	workers	worker	NNS	-	-	n:x	part	BV	ARG1	ARG1	_	_	_	_	_	_
+7	have	have	VBP	-	+	v:e-i-i	_	_	_	_	_	_	subord	_	_	_
+8	asbestos-related	relate	JJ	-	+	v_to:e-i-p	_	_	_	_	_	_	_	_	_	_
+9	diseases	disease	NNS	-	-	n:x	_	_	_	_	ARG2	ARG2	_	_	_	_
+10	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	including	include	VBG	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+12	three	three	CD	-	-	card:i-i-c	_	_	_	_	_	_	ARG2	ARG1	_	_
+13	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+14	recently	recently	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_
+15	diagnosed	diagnose	VBN	-	+	v_with:e-i-p	_	_	_	_	_	_	_	_	ARG1	_
+16	cancer	cancer	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	_	ARG2
+17	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003015
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	total	total	NN	-	+	n_of:x-i	BV	_	_	_	_	_	_	_	_	ARG1	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	18	18	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	deaths	death	NNS	-	-	n:x	_	ARG1	ARG1	ARG1	_	_	_	_	_	_	_	_	_
+6	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	malignant	malignant	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	mesothelioma	mesothelioma	NN	-	+	n:x	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	lung	lung	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	cancer	cancer	NN	-	+	n:x	_	_	_	_	_	conj	compound	_	_	_	_	_	_
+12	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	asbestosis	asbestosis	NN	-	-	n:x	_	_	_	_	_	_	_	_and_c	_	_	_	_	_
+14	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	far	far	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	higher	higher	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	ARG1	_	_	_	ARG2
+17	than	than	IN	-	-	q:x-h-h	_	_	_	_	_	_	_	_	_	_	ARG1	_	_
+18	expected	expect	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	than	_	_	_
+19	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	researchers	researcher	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	BV	ARG1
+22	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003016
+1	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+2	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+3	morbidity	morbidity	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_
+4	rate	rate	NN	-	-	n_of:x-i	BV	compound	ARG1	_	_	_	_	_	_	_	_
+5	is	is	VBZ	-	+	v_id:e-p-i	_	_	_	_	_	ARG1	_	_	_	ARG2	_
+6	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+7	striking	strike	JJ	-	+	v:e-i	_	_	_	_	_	_	_	_	_	_	_
+8	finding	finding	NN	-	-	n:x	_	_	ARG2	BV	ARG1	_	_	_	_	_	_
+9	among	among	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+10	those	those	DT	-	+	part_of:x-i	_	_	_	_	_	ARG2	_	ARG1	_	_	_
+11	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+12	us	us	PRP	-	-	pron:x	_	_	_	_	_	_	part	_	_	_	_
+13	who	who	WP	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+14	study	study	VBP	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_
+15	asbestos-related	relate	JJ	-	+	v_to:e-i-p	_	_	_	_	_	_	_	_	_	_	_
+16	diseases	disease	NNS	-	-	n:x	_	_	_	_	_	_	_	ARG2	ARG2	_	_
+17	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+18	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+19	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_
+20	Dr.	Dr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_
+21	Talcott	Talcott	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	ARG1	compound
+22	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003017
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	percentage	percentage	NN	-	+	n_of:x-i	BV	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	lung	lung	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	cancer	cancer	NN	-	+	n:x	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	deaths	death	NNS	-	-	n:x	_	ARG1	_	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	among	among	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	workers	worker	NNS	-	-	n:x	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	West	West	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	Groton	Groton	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	Mass.	Mass.	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	paper	paper	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	factory	factory	NN	-	-	n:x	_	_	_	_	_	_	ARG2	BV	_	_	compound	compound	_	_	_	_	_	_	_	_	_	_	_
+19	appears	appear	VBZ	+	+	v_to:e-i-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	be	be	VB	-	+	v_id:e-p-i	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_
+22	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	highest	highest	JJS	-	-	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_	_
+24	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	any	any	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	asbestos	asbestos	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	workers	worker	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	compound	ARG2	_	_	_	_
+28	studied	study	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_
+29	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	Western	Western	JJ	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	industrialized	industrialize	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	countries	country	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	ARG2	_
+33	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	he	he	PRP	-	-	pron:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+35	said	say	VBD	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	conj	_	_	_	_	_	_	_	_	_	_
+36	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003018
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+2	plant	plant	NN	-	-	n:x	BV	ARG2	_	_	ARG1	_	_	ARG1	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+4	which	which	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_
+5	is	is	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	owned	own	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+7	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+8	Hollingsworth	Hollingsworth	NNP	-	+	named:x-c	_	ARG1	_	_	_	_	_	_	_	_
+9	&	&	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+10	Vose	Vose	NNP	-	-	named:x-c	_	_	_and_c	compound	_	_	_	_	_	_
+11	Co.	co.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+12	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_
+14	under	under	IN	-	+	p:e-u-i	_	_	_	_	_	ARG1	ARG1	_	_	_
+15	contract	contract	NN	-	-	n:x	_	_	_	_	ARG2	_	_	_	_	_
+16	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+17	Lorillard	Lorillard	NNP	-	-	named:x-c	_	_	_	_	_	ARG2	_	_	_	_
+18	to	to	TO	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_
+19	make	make	VB	-	+	v:e-i-p-u	_	_	_	_	_	_	ARG2	_	_	_
+20	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+21	cigarette	cigarette	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+22	filters	filter	NNS	-	-	n:x	_	_	_	_	_	_	_	ARG2	BV	compound
+23	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003019
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	finding	finding	NN	-	-	n:x	BV	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	probably	probably	RB	-	+	a:e-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+4	will	will	MD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	support	support	VB	-	+	v:e-i-p	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	those	those	DT	-	-	x:x	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	who	who	WP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	argue	argue	VBP	-	+	v_with:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	U.S.	U.S.	NNP	-	-	named_n:x-c	_	_	_	_	BV	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	should	should	MD	-	+	v_modal:e-h	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	regulate	regulate	VB	-	+	v:e-i-p	_	_	_	_	_	ARG1	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	class	class	NN	-	+	n_of:x-i	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	including	include	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	crocidolite	crocidolite	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	more	more	RBR	-	+	comp:e-u-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	stringently	stringently	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	comp	_	_	_	_	_	_	_	_	_	_	_	_
+22	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	common	common	JJ	-	+	a_for:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	kind	kind	NN	-	+	n_of-n:x-i	_	_	_	_	_	_	_	_	_	_	than	_	BV	ARG1	_	appos	_	_	_	_	_	_	_
+26	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	asbestos	asbestos	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+28	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	chrysotile	chrysotile	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_
+30	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	found	find	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_
+32	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	most	most	JJS	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	schools	school	NNS	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_
+35	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	other	other	JJ	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+37	buildings	building	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	ARG1	_	_
+38	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+39	Dr.	Dr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+40	Talcott	Talcott	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	ARG1
+41	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+42	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003020
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	U.S.	U.S.	NNP	-	-	named_n:x-c	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	is	is	VBZ	+	+	v_id:e-p-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+4	one	one	CD	-	+	card:i-i-c	_	ARG2	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	few	few	JJ	-	+	little-few_a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	industrialized	industrialized	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	nations	nation	NNS	-	-	n_of:x-i	_	_	part	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	does	doesn’t	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	n’t	doesn’t	RB	-	+	neg:e-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	have	have	VB	-	+	v:e-i-i	_	_	_	_	_	_	neg	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	higher	higher	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	standard	standard	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	regulation	regulation	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	smooth	smooth	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	needle-like	like	JJ	-	+	a:e-u-x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	fibers	fiber	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	ARG1	ARG1	ARG2	_	_	_	_	_	_	_	_	_
+25	such	such+as	JJ	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	mwe	_	_	_	_	_	_	_	_	_	_
+26	as	such+as	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	crocidolite	crocidolite	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_
+28	that	that	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	classified	classify	VBN	-	+	v_as:e-i-p-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	as	as	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	amphobiles	amphobile	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_	_	_	_	_	_	_	_	_
+33	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	according	according+to	VBG	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	mwe	_	_	_	_	_	_	_	_
+35	to	according+to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	Brooke	Brooke	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+37	T.	T.	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_
+38	Mossman	Mossman	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	compound	_	appos	_	_	_	_
+39	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+40	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+41	professor	professor	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	BV	_	ARG1	_	_	_
+42	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+43	pathlogy	pathlogy	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_
+44	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+45	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+46	University	university	NNP	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+47	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+48	Vermont	Vermont	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_
+49	College	college	NNP	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	compound	_
+50	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+51	Medicine	Medicine	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1
+52	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003021
+1	More	more	RBR	-	+	comp:e-u-u	_	_	_	_	_	_	_	_	_	_
+2	common	common	JJ	-	+	a_for:e-p	comp	_	_	_	_	_	_	_	_	_
+3	chrysotile	chrysotile	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+4	fibers	fiber	NNS	-	-	n:x	_	ARG1	compound	ARG1	_	_	ARG2	_	_	_
+5	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	curly	curly	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	ARG2
+7	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+8	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_
+9	more	more	RBR	-	+	comp:e-u-u	_	_	_	_	_	_	_	_	_	_
+10	easily	easily	RB	-	+	a_for:e-e	_	_	_	_	comp	_	_	_	_	_
+11	rejected	reject	VBN	-	+	v_as:e-i-p	_	_	_	_and_c	_	ARG1	_	_	_	_
+12	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+14	body	body	NN	-	-	n:x	_	_	_	_	_	_	ARG1	BV	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+16	Dr.	Dr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+17	Mossman	Mossman	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	compound	ARG1
+18	explained	explain	VBD	+	+	v_to:e-i-h	_	_	_	_	_	_	_	_	_	_
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003022
+1	In	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+2	July	July	NNP	-	-	mofy:x-c	ARG2	_	_	_	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+5	Environmental	Environmental	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+6	Protection	Protection	NNP	-	+	named:x-c	_	_	compound	_	_	_	_	_	_	_
+7	Agency	Agency	NNP	-	-	named:x-c	_	BV	_	compound	ARG1	_	_	_	_	_
+8	imposed	impose	VBD	+	+	v_on:e-i-p-i	ARG1	_	_	_	_	_	_	_	_	_
+9	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+10	gradual	gradual	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+11	ban	ban	NN	-	-	n:x	_	_	_	_	ARG2	BV	ARG1	_	_	_
+12	on	on	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	virtually	virtually	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_
+14	all	all	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	ARG1	_	_
+15	uses	use	NNS	-	+	n_of:x-i	_	_	_	_	ARG3	_	_	_	BV	_
+16	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG1
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003023
+1	By	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+2	1997	1997	CD	-	-	yofc:x-c	ARG2	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_
+4	almost	almost	RB	-	+	x:e-u	_	_	_	_	_	_	_
+5	all	all	DT	-	+	q:i-h-h	_	ARG1	_	_	_	_	_
+6	remaining	remaining	JJ	-	+	a:e-p	_	_	_	_	_	_	_
+7	uses	use	NNS	-	+	n_of:x-i	_	_	BV	ARG1	_	_	ARG2
+8	of	of	IN	-	-	_	_	_	_	_	_	_	_
+9	cancer-causing	cause	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_
+10	asbestos	asbestos	NN	-	-	n:x	_	_	_	_	ARG1	ARG1	_
+11	will	will	MD	-	-	_	_	_	_	_	_	_	_
+12	be	be	VB	-	-	_	_	_	_	_	_	_	_
+13	outlawed	outlaw	VBN	+	+	v:e-i-p	ARG1	_	_	_	_	_	_
+14	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20003024
+1	About	about	IN	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_
+2	160	160	CD	-	+	card:i-i-c	ARG1	_	_	_	_	_	_	_	_	_	_
+3	workers	worker	NNS	-	-	n:x	_	ARG1	ARG1	_	_	_	_	_	ARG2	_	_
+4	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+5	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+6	factory	factory	NN	-	-	n:x	_	_	ARG2	BV	ARG1	_	_	_	_	_	_
+7	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+8	made	make	VBN	-	+	v:e-i-p-u	_	_	_	_	_	ARG1	_	_	_	_	_
+9	paper	paper	NN	-	-	n:x	_	_	_	_	ARG2	_	_	_	_	_	_
+10	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+12	Kent	Kent	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_
+13	filters	filter	NNS	-	-	n:x	_	_	_	_	_	ARG2	BV	compound	_	_	_
+14	were	were	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+15	exposed	expose	VBN	+	+	v_to:e-i-p-i	_	_	_	_	_	_	_	_	_	ARG1	_
+16	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG3	_	_
+18	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+19	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+20	1950s	1950s	NNS	-	-	year_range:x-c	_	_	_	_	_	_	_	_	_	ARG2	BV
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003025
+1	Areas	area	NNS	-	+	n_of:x-i	_	_	_	ARG1	_	_	_
+2	of	of	IN	-	-	_	_	_	_	_	_	_	_
+3	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_
+4	factory	factory	NN	-	-	n:x	ARG1	BV	_	_	_	_	_
+5	were	were	VBD	-	-	_	_	_	_	_	_	_	_
+6	particularly	particularly	RB	-	+	a:e-e	_	_	_	_	_	_	_
+7	dusty	dusty	JJ	+	+	a:e-p	_	_	ARG1	_	loc	_	_
+8	where	where	WRB	-	+	q:i-h-h	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_
+10	crocidolite	crocidolite	NN	-	-	n:x	_	_	_	_	_	BV	ARG2
+11	was	was	VBD	-	-	_	_	_	_	_	_	_	_
+12	used	use	VBN	-	+	v:e-i-p	_	_	_	_	loc	_	_
+13	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20003026
+1	Workers	worker	NNPS	-	-	n:x	ARG1	_	_	_	_	_	_	_	_	ARG1	_	_	ARG1	_	_	_	_	_	_
+2	dumped	dump	VBD	+	+	v:e-i-p-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	large	large	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	burlap	burlap	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	sacks	sack	NNS	-	-	n:x	ARG2	ARG1	compound	ARG1	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	imported	import	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	material	material	NN	-	-	n:x	_	_	_	ARG2	BV	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	into	into	IN	-	+	p:e-u-i	ARG3	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	huge	huge	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	bin	bin	NN	-	-	n:x	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_
+14	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	poured	pour	VBN	-	+	v_in:e-i-i	conj	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	cotton	cotton	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	acetate	acetate	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_and_c	_	_	_	_	_	_	_	_
+20	fibers	fiber	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	compound	_	_	_	_	_	_	_	_
+21	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	mechanically	mechanically	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	mixed	mix	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_and_c	_	ARG1	_	_	_	ARG1	_	_	_
+24	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	dry	dry	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	fibers	fiber	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_
+27	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	process	process	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG2	_
+30	used	use	VBN	-	+	v:e-i-i-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	make	make	VB	-	+	v:e-i-p-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_
+33	filters	filter	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+34	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003027
+1	Workers	worker	NNPS	-	-	n:x	ARG1	_	_	_	_	_	_	_	_	_	_	_
+2	described	describe	VBD	-	+	v_to:e-i-p-i	_	_	_	_	_	_	_	_	ARG1	_	_	_
+3	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	clouds	cloud	NNS	-	+	n_of:x-i	ARG2	_	_	ARG1	_	_	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	blue	blue	JJ	-	+	a:i-i	_	_	_	_	_	_	_	_	_	_	_	_
+7	dust	dust	NN	-	-	n:x	_	ARG1	ARG1	_	_	_	_	_	_	_	_	_
+8	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	that	that	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	hung	hang	VBD	-	+	v:e-i	_	_	_	_	ARG1	_	_	_	_	_	_	_
+11	over	over	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+12	parts	part	NNS	-	-	n:x	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_
+13	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+15	factory	factory	NN	-	-	n:x	_	_	_	_	_	ARG2	BV	_	_	_	_	_
+16	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	even	even	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_
+18	though	though	IN	+	+	x:e-h-h	_	_	_	_	_	_	_	ARG1	_	_	_	_
+19	exhaust	exhaust	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+20	fans	fan	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	compound	ARG1	_
+21	ventilated	ventilate	VBD	-	+	v_cause:e-i-p	_	_	_	_	_	_	_	_	ARG2	_	_	_
+22	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+23	area	area	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	ARG2	BV
+24	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003028
+1	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	There	there	EX	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	’s	’s	VBZ	-	+	v_there:e-i	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_
+4	no	no	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	question	question	NN	-	+	n_about:x-h	ARG1	BV	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	some	some	DT	-	+	q:i-h-h	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+8	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	those	those	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	workers	worker	NNS	-	+	n:x	_	_	_	part	BV	_	_	_	_	_	_	_	_	_	_
+11	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_and_c	_	_	_	_	_	_	_	_	_
+13	contracted	contract	VBD	-	+	v:e-i-p	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+14	asbestos-related	relate	JJ	-	+	v_to:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	diseases	disease	NNS	-	-	n:x	_	_	_	_	_	_	ARG2	ARG2	_	_	_	_	_	_	_
+16	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	Darrell	Darrell	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	Phillips	Phillips	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	ARG1	compound	_	appos	_	_	_
+21	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	vice	vice	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	president	president	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	compound	_	_	ARG1	_
+24	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	human	human	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	resources	resource	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG1	ARG1	_	_
+27	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	Hollingsworth	Hollingsworth	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_
+29	&	&	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	Vose	Vose	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c
+31	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003029
+1	“	_	``	-	-	_	_	_	_	_	_	_	_
+2	But	but	CC	+	+	c:i-i-i	_	_	_	_	_	_	_
+3	you	you	PRP	-	-	pron:x	_	_	ARG1	_	_	_	_
+4	have	have	VBP	-	+	v_qmodal:e-h	ARG2	_	_	_	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_	_	_	_
+6	recognize	recognize	VB	-	+	v:e-i-h-i	_	ARG1	_	_	_	_	_
+7	that	that	IN	-	-	_	_	_	_	_	_	_	_
+8	these	these	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_
+9	events	event	NNS	-	-	n_item:x	_	_	_	BV	ARG1	_	_
+10	took	take	VBD	-	+	v_of-i:e-i-i	_	_	ARG2	_	_	_	ARG1
+11	place	place	NN	-	-	n_i:x	_	_	_	_	ARG2	_	_
+12	35	35	CD	-	+	card:i-i-c	_	_	_	_	_	_	_
+13	years	year	NNS	-	-	n:x	_	_	_	_	_	ARG1	ARG2
+14	ago	ago	RB	-	+	p:e-i-u	_	_	_	_	_	_	_
+15	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20003030
+1	It	it	PRP	-	-	pron:x	ARG1	_	_	_	_	_
+2	has	have	VBZ	+	+	v:e-i-i	_	_	_	_	_	loc
+3	no	no	DT	-	+	q:i-h-h	_	_	_	_	_	_
+4	bearing	bearing	NN	-	-	n:x	ARG2	BV	ARG1	_	_	_
+5	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_
+6	our	our	PRP$	-	+	q:i-h-h	_	_	_	_	_	_
+7	work	work	NN	-	+	n:x	_	_	_	_	_	_
+8	force	force	NN	-	-	n:x	_	_	ARG2	poss	compound	_
+9	today	today	NN	-	+	time_n:x	_	_	_	_	_	_
+10	.	_	.	-	-	_	_	_	_	_	_	_
+
+#20004001
+1	Yields	yield	NNS	-	-	n:x	ARG1	_	_	_	ARG1	_	_	_	_	_	_	_
+2	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+3	money-market	market	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+4	mutual	mutual	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	-	n:x	ARG2	compound	ARG1	_	_	_	_	_	_	_	_	_
+6	continued	continue	VBD	+	+	v:e-h	_	_	_	_	_	_	_	_	_	_	_	_
+7	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	slide	slide	VB	-	+	v:e-i	_	_	_	ARG1	_	ARG1	_	_	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	amid	amid	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+11	signs	sign	NNS	-	+	n_of:x-h	_	_	_	_	_	ARG2	_	_	_	_	_	_
+12	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	portfolio	portfolio	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+14	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	compound	ARG1	_	_	_
+15	expect	expect	VBP	-	+	v:e-i-p	_	_	_	_	_	_	ARG1	_	_	_	_	_
+16	further	further	JJ	-	+	a:e-i-i	_	_	_	_	_	_	_	_	_	_	_	_
+17	declines	decline	NNS	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	ARG1	ARG1	_
+18	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+19	interest	interest	NN	-	+	n_in:x-i	_	_	_	_	_	_	_	_	_	_	_	_
+20	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	ARG2	compound
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004002
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	seven-day	day	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	compound	compound	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	yield	yield	NN	-	-	n:x	BV	ARG1	compound	compound	ARG1	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	400	400	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	taxable	taxable	JJ	-	+	a:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	funds	fund	NNS	-	-	n:x	_	_	_	_	ARG2	BV	ARG1	ARG1	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	tracked	track	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	IBC	IBC	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	Money	Money	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	Fund	Fund	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	Report	Report	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	ARG1	poss	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	eased	ease	VBD	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	ARG1	_	ARG1	_	_	_
+19	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	fraction	fraction	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_	_	_	_	_
+21	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	a	a	DT	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	percentage	percentage	NN	-	+	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	point	point	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	ARG1	compound	_	_	_	_	_	_	_	_
+25	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	8.45	8.45	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_
+28	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	8.47	8.47	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_
+31	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	week	week	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG2	_
+34	ended	end	VBD	-	+	v_cause:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	loc
+35	Tuesday	Tuesday	NNP	-	+	dofw:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004004
+1	Average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	maturity	maturity	NN	-	-	n:x	ARG1	ARG1	_	_	ARG1	_	_	_	_	_	_	_	_	_
+3	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	+	n:x	_	_	BV	_	_	_	_	_	_	_	_	_	_	_
+6	’	_	POS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	investments	investment	NNS	-	-	n:x	_	ARG2	_	poss	_	_	_	_	_	_	_	_	_	_
+8	lengthened	lengthen	VBN	+	+	v:e-i	_	_	_	_	_	ARG1	_	ARG1	_	_	_	_	_	ARG1
+9	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	day	day	NN	-	-	n_of:x-i	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_
+12	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	41	41	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	days	day	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	ARG2	ARG1	_	appos	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	longest	longest	JJS	-	+	a:e-i	_	_	_	_	_	_	_	_	_	BV	_	ARG1	_	_
+18	since	since	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	early	early	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	August	August	NNP	-	-	mofy:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_
+21	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	according	according+to	VBG	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	mwe
+23	to	according+to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	Donoghue	Donoghue	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	’s	’s	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004005
+1	Longer	longer	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	maturities	maturity	NNS	-	-	n:x	ARG1	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_
+3	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	thought	think	VBN	-	+	v:e-i-i-h	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	indicate	indicate	VB	-	+	v:e-i-p	_	ARG3	_	_	_	_	_	_	_	_	_	_	_	_
+7	declining	declining	VBG	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	interest	interest	NN	-	+	n_in:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	rates	rate	NNS	-	-	n_of:x-i	_	_	ARG2	ARG1	compound	_	_	_	_	_	_	_	_	_
+10	because	because	IN	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	they	they	PRP	-	-	pron:x	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_
+12	permit	permit	VBP	-	+	v:e-i-i-h	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_
+13	portfolio	portfolio	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_	ARG2	compound	ARG1	_	_	_	_	_
+15	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	retain	retain	VB	-	+	v:e-i-p	_	_	_	_	_	_	ARG3	_	_	_	_	ARG1	_	_
+17	relatively	relatively	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	higher	higher	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_
+19	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	_	ARG1	_	_	_
+20	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	longer	longer	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	period	period	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1
+24	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004006
+1	Shorter	shorter	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_
+2	maturities	maturity	NNS	-	-	n:x	ARG1	ARG3	_	_	_	_	_	_	_	_	_
+3	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+4	considered	consider	VBN	-	+	v:e-i-i-i	_	_	_	_	_	ARG1	_	_	_	_	_
+5	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+6	sign	sign	NN	-	+	n_of:x-i	_	ARG2	BV	_	_	_	_	_	_	_	_
+7	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+8	rising	rise	VBG	-	+	v:e-i	_	_	_	_	_	_	_	_	_	_	_
+9	rates	rate	NNS	-	-	n_of:x-i	_	_	_	ARG1	ARG1	_	_	_	_	_	_
+10	because	because	IN	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_
+11	portfolio	portfolio	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_
+12	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_	compound	_	ARG1	_	_
+13	can	can	MD	-	+	v_modal:e-h	_	_	_	_	_	ARG2	_	_	_	_	_
+14	capture	capture	VB	-	+	v:e-i-p	_	_	_	_	_	_	_	ARG1	_	_	loc
+15	higher	higher	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_
+16	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	ARG1	_
+17	sooner	sooner	RBR	-	+	time_n:x	_	_	_	_	_	_	_	_	_	_	_
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004007
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	maturity	maturity	NN	-	-	n:x	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_
+4	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	-	n:x	_	_	ARG2	ARG1	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	open	open	VBP	-	+	a:e-p	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	only	only	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	to	to	TO	-	+	p:e-u-i	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	institutions	institution	NNS	-	-	n:x	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	considered	consider	VBN	-	+	v:e-i-i-h	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_
+12	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	some	some	DT	-	-	q:i-h-h	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	be	be	VB	-	+	v_id:e-p-i	_	_	_	_	_	_	ARG3	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	stronger	stronger	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	indicator	indicator	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_
+19	because	because	IN	-	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	those	those	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	BV	ARG1	_	_	_	_	_	_	_	_
+22	watch	watch	VBP	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	ARG1	_	_	_	_	_	_
+23	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	market	market	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_
+25	closely	closely	RB	-	+	a_to:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	reached	reach	VBD	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	high	high	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	point	point	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	ARG1	_	_
+31	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	year	year	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_
+34	–	–	:	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+35	33	33	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	days	day	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	conj	_	_	_	_	ARG1
+37	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004008
+1	Nevertheless	nevertheless	RB	+	+	a:e-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	said	say	VBD	-	+	v_to:e-i-h-i	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	Brenda	Brenda	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	Malizia	Malizia	NNP	-	+	named:x-c	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	Negus	Negus	NNP	-	-	named:x-c	_	ARG1	_	compound	appos	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	editor	editor	NN	-	+	n:x	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	Money	Money	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	Fund	Fund	NNP	-	+	named:x-c	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	Report	Report	NNP	-	-	named:x-c	_	_	_	_	_	ARG2	_	compound	_	_	_	_	_	_	_	_	_	_	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	yields	yield	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_
+15	“	_	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	may	may	MD	-	+	v_modal:e-h	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	blip	blip_up	VB	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	ARG1	ARG1	ARG1	_	_	ARG1	_	_	_	_
+18	up	up	RP	-	+	p:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	again	again	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	before	before	IN	-	+	x:e-h-h	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+21	they	they	PRP	-	-	pron:x	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_
+22	blip	blip_down	VBP	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1	_	_	_	_	_
+23	down	down	RP	-	+	p:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	”	_	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	because	because+of	IN	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	mwe	_	_	_	_
+26	of	because+of	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	recent	recent	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	rises	rise	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	ARG1	_	_
+29	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	short-term	term	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	interest	interest	NN	-	+	n_in:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	compound
+33	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004009
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	yield	yield	NN	-	-	n:x	BV	ARG1	_	_	_	_	_	ARG1	_	_	_	_
+3	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+4	six-month	month	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+5	Treasury	Treasury	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+6	bills	bill	NNS	-	-	n_of:x-i	_	ARG2	compound	compound	ARG2	_	_	_	_	_	_	_
+7	sold	sell	VBN	-	+	v:e-i-p	_	_	_	_	_	ARG1	_	_	_	_	_	_
+8	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+9	Monday	Monday	NNP	-	+	dofw:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+10	’s	’s	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	auction	auction	NN	-	-	n_of:x-i	_	_	_	_	_	ARG2	poss	_	_	_	_	_
+12	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	for	for+example	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	example	for+example	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	rose	rise	VBD	+	+	v:e-i	_	_	_	_	_	_	_	_	ARG1	_	ARG1	_
+17	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+18	8.04	8.04	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+19	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_
+20	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+21	7.90	7.90	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+22	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1
+23	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004010
+1	Despite	despite	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+2	recent	recent	JJ	-	+	a:e-p	_	_	_	_	_	_	_
+3	declines	decline	NNS	-	-	n:x	ARG2	ARG1	ARG1	_	_	_	_
+4	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+5	yields	yield	NNS	-	-	n:x	_	_	ARG2	_	_	_	_
+6	,	_	,	-	-	_	_	_	_	_	_	_	_
+7	investors	investor	NNS	-	-	n:x	_	_	_	_	ARG1	_	_
+8	continue	continue	VBP	+	+	v:e-h	ARG1	_	_	_	_	_	_
+9	to	to	TO	-	-	_	_	_	_	_	_	_	_
+10	pour	pour	VB	-	+	v:e-i-p	_	_	_	ARG1	_	ARG1	_
+11	cash	cash	NN	-	-	n:x	_	_	_	_	ARG2	_	_
+12	into	into	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+13	money	money	NN	-	+	n:x	_	_	_	_	_	_	_
+14	funds	fund	NNS	-	-	n:x	_	_	_	_	_	ARG2	compound
+15	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20004011
+1	Assets	asset	NNS	-	-	n:x	ARG1	_	_	_	ARG1	_	_	_	_	_	_	_	_	_
+2	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	400	400	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	taxable	taxable	JJ	-	+	a:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	funds	fund	NNS	-	-	n:x	ARG2	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_
+7	grew	grow	VBD	+	+	v:e-i	_	_	_	_	_	ARG1	_	_	ARG1	_	_	ARG1	_	_
+8	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	$	$	$	-	-	n:x	_	_	_	_	_	ARG2	_	ARG1	_	_	_	_	_	_
+10	1.5	1.5	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	billion	billion	CD	-	+	card:i-i-c	_	_	_	_	_	_	times	_	_	_	_	_	_	_
+12	during	during	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	latest	latest	JJS	-	+	a_for:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	week	week	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_
+16	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	$	$	$	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1
+19	352.7	352.7	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	billion	billion	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	times	_
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004012
+1	Typically	typically	RB	+	+	a:e-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	money-fund	fund	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+4	yields	yield	NNS	-	-	n:x	_	compound	ARG1	_	_	_	_	_	_	_	_	_
+5	beat	beat	VBP	-	+	v_to:e-i-p	_	_	_	_	_	ARG1	_	_	_	_	_	_
+6	comparable	comparable	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+7	short-term	term	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_
+8	investments	investment	NNS	-	-	n:x	_	_	ARG2	ARG1	compound	_	_	_	_	_	_	_
+9	because	because	IN	-	+	x:e-h-h	ARG1	_	_	_	_	_	_	_	_	_	_	_
+10	portfolio	portfolio	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+11	managers	manager	NNS	-	-	n_of:x-i	_	_	_	_	_	_	compound	_	ARG1	ARG1	_	_
+12	can	can	MD	-	+	v_modal:e-h	_	_	_	_	_	ARG2	_	_	_	_	_	_
+13	vary	vary	VB	-	+	v_cause:e-i-p	_	_	_	_	_	_	_	ARG1	_	_	_	_
+14	maturities	maturity	NNS	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	_	_	_
+15	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	go	go	VB	-	+	v_after:e-i-i	_	_	_	_	_	_	_	_	_and_c	_	_	_
+17	after	after	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+19	highest	highest	JJS	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_
+20	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004014
+1	Dreyfus	Dreyfus	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	World-Wide	World-Wide	NNP	-	+	named:x-c	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	Dollar	Dollar	NNP	-	-	named:x-c	_	compound	_	_	appos	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	top-yielding	yield	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	fund	fund	NN	-	+	n:x	_	_	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	had	have	VBD	+	+	v:e-i-i	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	ARG1	_	_	_	_	_
+10	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	seven-day	day	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	compound	compound	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	yield	yield	NN	-	-	n:x	_	_	_	_	_	ARG2	BV	compound	compound	ARG1	_	_	_	_	_	_	_	_	_	_
+14	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	9.37	9.37	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_
+17	during	during	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	latest	latest	JJS	-	+	a_for:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	week	week	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_	_
+21	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	down	down	RB	-	+	p:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_
+23	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	9.45	9.45	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	ARG1
+26	a	a	DT	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	week	week	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_
+28	earlier	earlier	RBR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	measure	_
+29	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004015
+1	It	it	PRP	-	-	pron:x	ARG1	_	_	_	_	ARG1	_	_	_
+2	invests	invest	VBZ	+	+	v_in:e-i-i	_	ARG1	_	_	_	_	_	_	_
+3	heavily	heavily	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_
+4	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_
+5	dollar-denominated	denominate	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_
+6	securities	security	NNS	-	-	n:x	ARG2	_	ARG2	loc	_	_	_	_	_
+7	overseas	overseas	RB	-	+	place_n:x	_	_	_	_	_	_	_	_	_
+8	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_
+9	is	is	VBZ	-	-	_	_	_	_	_	_	_	_	_	_
+10	currently	currently	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_
+11	waiving	waive	VBG	-	+	v:e-i-p	_and_c	_	_	_	ARG1	_	_	_	_
+12	management	management	NN	-	+	n:x	_	_	_	_	_	_	_	_	_
+13	fees	fee	NNS	-	-	n:x	_	_	_	_	_	ARG2	compound	_	_
+14	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_
+15	which	which	WDT	-	-	_	_	_	_	_	_	_	_	_	_
+16	boosts	boost	VBZ	-	+	v_to:e-i-p-i	_	_	_	_	_	_	_	_	_
+17	its	its	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_
+18	yield	yield	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	poss
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20004016
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+3	seven-day	day	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_
+4	simple	simple	JJ	-	+	a_for:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+5	yield	yield	NN	-	-	n:x	BV	ARG1	compound	ARG1	ARG1	_	_	ARG1	_	_	_	_
+6	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+8	400	400	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+9	funds	fund	NNS	-	-	n:x	_	_	_	_	ARG2	BV	ARG1	_	_	_	_	_
+10	was	was	VBD	+	+	v_id:e-p-i	_	_	_	_	_	_	_	_	_	_	_	_
+11	8.12	8.12	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+12	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	ARG2	ARG1	ARG1	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	down	down	RB	-	+	p:e-i	_	_	_	_	_	_	_	_	_	_	ARG1	_
+15	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+16	8.14	8.14	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+17	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004017
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	30-day	day	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	simple	simple	JJ	-	+	a_for:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	yield	yield	NN	-	-	n:x	BV	compound	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	fell	fall	VBD	+	+	v:e-i	_	_	_	_	ARG1	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+6	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	an	an	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	8.19	8.19	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	%	%	NN	-	-	n_of:x	_	_	_	_	ARG2	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+11	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	8.22	8.22	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_
+14	;	_	:	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	30-day	day	JJ	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	compound	compound	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	yield	yield	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	BV	compound	compound	ARG1	_	_	_	_	_	_
+19	slid	slide	VBD	-	+	v:e-i	_	_	_	conj	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	ARG1	_
+20	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	an	an	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	average	average	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	8.53	8.53	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	ARG1	_	_
+25	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	8.56	8.56	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	%	%	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1
+28	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20005001
+1	J.P.	J.P.	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	Bolduc	Bolduc	NNP	-	-	named:x-c	compound	_	appos	_	_	_	_	_	_	_	_	_	ARG3	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	vice	vice	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	chairman	chairman	NN	-	+	n_of:x-i	_	compound	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	W.R.	W.R.	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	Grace	Grace	NNP	-	-	named:x-c	_	_	ARG1	compound	compound	ARG1	_	_	_	_	_	_	_	_
+9	&	&+co.	CC	-	-	n:x	_	_	_	_	mwe	_	_	_	_	_	_	_	_	_
+10	Co.	&+co.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	which	which	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	holds	hold	VBZ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	83.4	83.4	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	%	%	NN	-	+	n_of:x	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_
+17	interest	interest	NN	-	+	n_in:x-i	_	_	_	_	_	ARG2	BV	_	compound	_	_	_	_	_
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	this	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	energy-services	services	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	company	company	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	ARG1	BV	compound	_	_
+22	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	elected	elect	VBN	+	+	v:e-i-i-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	director	director	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV
+27	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20005002
+1	He	he	PRP	-	-	pron:x	ARG1	_	_	_	_	_	_	_	_	_
+2	succeeds	succeed	VBZ	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+3	Terrence	Terrence	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+4	D.	D.	NNP	-	+	named:x-c	_	compound	_	_	_	_	_	_	_	_
+5	Daniels	Daniel	NNP	-	-	named:x-c	ARG2	_	compound	_	_	_	_	_	appos	ARG1
+6	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	formerly	formerly	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_
+8	a	a	DT	-	+	q:i-h-h	_	_	_	ARG1	_	_	_	_	_	_
+9	W.R.	W.R.	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+10	Grace	Grace	NNP	-	+	named:x-c	_	_	_	_	_	compound	_	_	_	_
+11	vice	vice	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+12	chairman	chairman	NN	-	+	n_of:x-i	_	_	_	_	BV	_	compound	compound	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+14	who	who	WP	-	-	_	_	_	_	_	_	_	_	_	_	_
+15	resigned	resign	VBD	-	+	v:e-i-i	_	_	_	_	_	_	_	_	_	_
+16	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20005003
+1	W.R.	W.R.	NNP	-	+	named:x-c	_	_	_	_	_	_	_
+2	Grace	Grace	NNP	-	-	named:x-c	compound	ARG1	_	_	_	_	_
+3	holds	hold	VBZ	+	+	v:e-i-p	_	_	_	_	_	_	_
+4	three	three	CD	-	+	card:i-i-c	_	ARG2	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_
+6	Grace	Grace	NNP	-	+	named:x-c	_	_	_	_	_	_	_
+7	Energy	Energy	NNP	-	+	named:x-c	_	_	_	compound	_	_	_
+8	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_
+9	seven	seven	CD	-	+	card:i-i-c	_	_	_	_	_	_	_
+10	board	board	NN	-	+	n_of:x-i	_	_	_	_	_	_	_
+11	seats	seat	NNS	-	-	n:x	_	_	part	_	poss	ARG1	compound
+12	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20006001
+1	Pacific	Pacific	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	First	First	NNP	-	+	named:x-c	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	Financial	Financial	NNP	-	-	named:x-c	_	compound	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+4	Corp.	corp.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	shareholders	shareholder	NNS	-	-	n:x	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+7	approved	approve	VBD	-	+	v:e-i-p	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_
+8	its	its	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	acquisition	acquisition	NN	-	-	n_of:x-i	_	_	_	_	ARG2	poss	ARG1	_	_	_	ARG1	_	_	_	_	_
+10	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	Royal	Royal	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	Trustco	Trustco	NNP	-	-	named:x-c	_	_	_	_	_	_	ARG2	compound	compound	ARG1	_	_	_	_	_	_
+13	Ltd.	ltd.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	Toronto	Toronto	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_
+16	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	$	$	$	-	+	n:x	_	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1	ARG1	_	_
+18	27	27	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	a	a	DT	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	share	share	NN	-	-	n_of:x	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_
+21	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	or	or	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	$	$	$	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_or_c	_	_	_	ARG1
+24	212	212	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	million	million	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	times	_
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20006002
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+2	thrift	thrift	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+3	holding	holding	VBG	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+4	company	company	NN	-	-	n_of:x-i	BV	compound	compound	ARG1	_	_	_	_	_	_
+5	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_
+6	it	it	PRP	-	-	pron:x	_	_	_	_	ARG1	ARG1	_	ARG1	_	_
+7	expects	expect	VBZ	-	+	v:e-i-h	_	_	_	ARG2	_	_	_	_	_	_
+8	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_
+9	obtain	obtain	VB	-	+	v:e-i-p	_	_	_	_	ARG2	_	_	_	_	_
+10	regulatory	regulatory	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+11	approval	approval	NN	-	-	n_of:x-i	_	_	_	_	_	ARG2	ARG1	_	_	_
+12	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	complete	complete	VB	-	+	v:e-i-p	_	_	_	_	_	_and_c	_	_	_	ARG1
+14	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+15	transaction	transaction	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	BV	_
+16	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+17	year-end	year-+end	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20007002
+1	Finmeccanica	Finmeccanica	NNP	-	-	named:x-c	ARG1	_	_	_	_	_	_	_	_	_
+2	is	is	VBZ	+	+	v_id:e-p-i	_	_	_	_	_	_	_	_	_	_
+3	an	an	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+4	Italian	Italian	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+5	state-owned	own	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+6	holding	holding	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+7	company	company	NN	-	-	n_of:x-i	ARG2	BV	ARG1	ARG2	compound	ARG1	_	_	_	_
+8	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+9	interests	interest	NNS	-	+	n_in:x-i	_	_	_	_	_	ARG2	_	_	_	_
+10	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+12	mechanical	mechanical	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+13	engineering	engineering	NN	-	+	n:x	_	_	_	_	_	_	_	_	ARG1	_
+14	industry	industry	NN	-	-	n:x	_	_	_	_	_	_	ARG1	BV	_	compound
+15	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20007003
+1	Bailey	Bailey	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_
+2	Controls	Controls	NNP	-	-	named:x-c	compound	ARG2	ARG1	_	ARG1	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_
+4	based	base	VBN	-	+	v:e-i-p-h	_	_	_	_	_	_	_	_
+5	in	in	IN	-	+	p:e-u-i	_	ARG3	_	_	_	_	_	_
+6	Wickliffe	Wickliffe	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_	_	_	_
+8	Ohio	Ohio	NNP	-	-	named:x-c	_	_	ARG2	compound	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_
+10	makes	make	VBZ	+	+	v:e-i-p-u	_	_	_	_	_	_	_	_
+11	computerized	computerize	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_
+12	industrial	industrial	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_
+13	controls	controls	NNS	-	+	n_of:x	_	_	_	_	_	ARG2	ARG1	_
+14	systems	system	NNS	-	-	n_of:x-i	_	_	_	_	ARG2	_	_	compound
+15	.	_	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20007004
+1	It	it	PRP	-	-	pron:x	ARG1	_	ARG1	_	_	_	_
+2	employs	employ	VBZ	+	+	v:e-i-p	_	_	_	_	_	_	_
+3	2,700	2,700	CD	-	+	card:i-i-c	_	_	_	_	_	_	_
+4	people	people	NNS	-	-	n_of:x-i	ARG2	ARG1	_	_	_	_	_
+5	and	and	CC	-	-	_	_	_	_	_	_	_	_
+6	has	have	VBZ	-	+	v:e-i-i	_and_c	_	_	_	_	_	_
+7	annual	annual	JJ	-	+	a:e-p	_	_	_	_	_	_	_
+8	revenue	revenue	NN	-	-	n:x	_	_	ARG2	ARG1	ARG1	_	_
+9	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_
+10	about	about	IN	-	-	_	_	_	_	_	_	_	_
+11	$	$	$	-	-	n:x	_	_	_	_	ARG2	_	ARG1
+12	370	370	CD	-	+	card:i-i-c	_	_	_	_	_	_	_
+13	million	million	CD	-	+	card:i-i-c	_	_	_	_	_	times	_
+14	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20008001
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	federal	federal	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+3	government	government	NN	-	-	n_of:x-i	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_
+4	suspended	suspend	VBD	-	+	v:e-i-p	_	_	_	_	_	_	ARG1	_	_	_	_	_
+5	sales	sale	NNS	-	+	n_of:x-i	_	_	ARG2	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	U.S.	U.S.	NNP	-	+	named_n:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+8	savings	savings	NNS	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+9	bonds	bond	NNS	-	-	n:x	_	_	_	ARG1	compound	compound	_	_	_	_	_	_
+10	because	because	IN	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+11	Congress	Congress	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	ARG1	_	_	_
+12	has	hasn’t	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	n’t	hasn’t	RB	-	+	neg:e-h	_	_	_	_	_	_	ARG2	_	_	_	_	_
+14	lifted	lift	VBN	-	+	v_cause:e-i-p	_	_	_	_	_	_	_	neg	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+16	ceiling	ceiling	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_
+17	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+18	government	government	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_
+19	debt	debt	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	ARG2	compound
+20	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20008002
+1	Until	until	IN	-	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2
+2	Congress	Congress	NNP	-	-	named:x-c	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+3	acts	act	NNS	-	+	v:e-i	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	government	government	NN	-	-	n_of:x-i	_	_	BV	ARG1	_	_	_	_	_	_	_	_	_	_
+7	has	hasn’t	VBZ	-	+	v:e-p-i	_	_	_	_	neg	_	_	_	_	_	_	_	_	_
+8	n’t	hasn’t	JJ	-	+	v:e-p-i	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	any	any	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	authority	authority	NN	-	+	n:x-h	_	_	_	ARG2	_	BV	_	_	_	_	_	_	_	_
+11	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	issue	issue	VB	-	+	v:e-i-p	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_
+13	new	new	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	debt	debt	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	obligations	obligation	NNS	-	-	n:x	_	_	_	_	_	_	_	ARG2	ARG1	compound	ARG1	_	_	_
+16	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	any	any	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	kind	kind	NN	-	-	n_of-n:x-i	_	_	_	_	_	_	_	_	_	_	ARG2	BV	_	_
+19	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	Treasury	Treasury	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	BV	ARG1
+22	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20008003
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	government	government	NN	-	+	n_of:x-i	BV	_	_	_	_	_	_	_	_	_	_	_
+3	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	borrowing	borrow	VBG	-	+	v_from:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_
+5	authority	authority	NN	-	-	n:x	_	poss	compound	ARG1	_	_	_	_	_	_	_	_
+6	dropped	drop	VBD	+	+	v:e-i	_	_	_	_	ARG1	loc	ARG1	_	_	ARG1	_	_
+7	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+8	midnight	midnight	NN	-	-	numbered_hour:i-u-u-c	_	_	_	_	ARG2	_	_	_	_	_	_	_
+9	Tuesday	Tuesday	NNP	-	+	dofw:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+10	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+11	$	$	$	-	-	n:x	_	_	_	_	_	_	ARG2	_	ARG1	_	_	_
+12	2.80	2.80	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+13	trillion	trillion	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	times	_	_	_	_
+14	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+15	$	$	$	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1
+16	2.87	2.87	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+17	trillion	trillion	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	times	_
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20008004
+1	Legislation	legislation	NN	-	+	n:x-h	_	_	_	_	ARG2	_	_	_	_	_
+2	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_
+3	lift	lift	VB	-	+	v_cause:e-i-p	ARG1	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+5	debt	debt	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+6	ceiling	ceiling	NN	-	-	n:x	_	ARG2	BV	compound	_	_	_	_	_	_
+7	is	is	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_
+8	ensnarled	ensnarl	VBN	+	+	v:e-u-p	_	_	_	_	_	ARG1	_	_	_	_
+9	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+10	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+11	fight	fight	NN	-	-	n:x	_	_	_	_	_	ARG2	BV	ARG1	_	_
+12	over	over	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+13	cutting	cut	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	ARG2	_	_
+14	capital-gains	gains	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+15	taxes	tax	NNS	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	compound
+16	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20008005
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	House	House	NNP	-	-	named_n:x-c	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+3	has	has	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	voted	vote	VBN	+	+	v:e-i-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	raise	raise	VB	-	+	v_cause:e-i-p	_	ARG2	_	_	ARG1	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	ceiling	ceiling	NN	-	-	n:x	_	_	ARG2	BV	_	_	_	_	_	_	_	_	_	_	_
+9	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	$	$	$	-	-	n:x	_	_	_	_	ARG2	_	ARG1	_	_	_	_	_	_	_	_
+11	3.1	3.1	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	trillion	trillion	CD	-	+	card:i-i-c	_	_	_	_	_	times	_	_	_	_	_	_	_	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	but	but	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	Senate	Senate	NNP	-	-	named_n:x-c	_	_	_	_	_	_	_	BV	_	_	ARG1	_	_	_	_
+17	is	isn’t	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	n’t	isn’t	RB	-	+	neg:e-h	_	_but_c	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	expected	expect	VBN	-	+	v:e-i-h	_	_	_	_	_	_	_	_	neg	_	_	_	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	act	act	VB	-	+	v:e-i	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1	_	_	_
+22	until	until	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_
+23	next	next	JJ	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	week	week	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1	_	_
+25	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	earliest	earliest	JJS	-	-	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV
+28	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20008006
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+2	Treasury	Treasury	NNP	-	-	named:x-c	BV	ARG1	_	_	_	_	_	_	_	_
+3	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+5	U.S.	U.S.	NNP	-	-	named_n:x-c	_	_	BV	ARG1	_	_	_	_	_	_
+6	will	will	MD	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	default	default	VB	-	+	v:e-i	_	_	_	_	ARG1	_	_	_	_	_
+8	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+9	Nov.	Nov.	NNP	-	+	mofy:x-c	_	_	_	_	_	_	_	_	_	_
+10	9	9	CD	-	-	dofm:x-c	_	_	_	_	ARG2	of	ARG1	_	_	_
+11	if	if	IN	-	+	x:e-h-h	_	ARG2	_	_	_	_	_	_	_	_
+12	Congress	Congress	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	ARG1	_
+13	does	doesn’t	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_
+14	n’t	doesn’t	JJ	-	+	neg:e-h	_	_	_	_	_	_	ARG2	_	_	_
+15	act	act	NN	-	+	v:e-i	_	_	_	_	_	_	_	neg	_	ARG1
+16	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+17	then	then	RB	-	-	time_n:x	_	_	_	_	_	_	_	_	_	ARG2
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20009001
+1	Clark	Clark	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	J.	J.	NNP	-	+	named:x-c	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	Vitulli	Vitulli	NNP	-	-	named:x-c	_	compound	ARG3	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	named	name	VBN	+	+	v:e-i-i-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	senior	senior	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	vice	vice	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	president	president	NN	-	+	n_of:x-i	_	_	ARG2	ARG1	compound	_	_	_	_	_	_	_	_	_	_	_	_
+9	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	general	general	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	manager	manager	NN	-	+	n_of:x-i	_	_	_	_	_	_and_c	ARG1	_	_	_	_	_	_	_	_	_	_
+12	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	this	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	U.S.	U.S.	NNP	-	+	named_n:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	sales	sales	NNS	-	+	n_of:x	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_
+16	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	marketing	market	NN	-	-	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_and_c	_	_	_	_	_	_
+18	arm	arm	NN	-	-	n:x	_	_	_	_	_	_	_	ARG1	BV	_	compound	ARG1	_	_	_	_	_
+19	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	Japanese	Japanese	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	auto	auto	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	maker	maker	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	compound	_	_	_
+23	Mazda	Mazda	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	Motor	Motor	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	compound	compound	compound
+25	Corp	Corp	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20009002
+1	In	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+3	new	new	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+4	position	position	NN	-	-	n_of:x	ARG2	BV	ARG1	_	_	_	_	_	_	_
+5	he	he	PRP	-	-	pron:x	_	_	_	ARG1	_	_	_	_	_	_
+6	will	will	MD	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	oversee	oversee	VB	+	+	v:e-i-p	ARG1	_	_	_	_	_	_	_	_	_
+8	Mazda	Mazda	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_
+9	’s	’s	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_
+10	U.S.	U.S.	NNP	-	+	named_n:x-c	_	_	_	_	_	_	_	_	_	_
+11	sales	sale	NNS	-	+	n_of:x-i	_	_	_	ARG2	poss	compound	_	_	_	_
+12	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	service	service	NN	-	+	n:x	_	_	_	_	_	_	conj	_	_	_
+14	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+15	parts	part	NNS	-	+	n:x	_	_	_	_	_	_	_	conj	_	_
+16	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+17	marketing	market	NN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_
+18	operations	operation	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_and_c	compound
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20009003
+1	Previously	previously	RB	-	+	p:e-i	_	_	_	_	_	_	_	_	_	_	_	_
+2	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	Mr.	Mr.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+4	Vitulli	Vitulli	NNP	-	-	named:x-c	_	compound	_	_	ARG1	ARG1	_	_	_	_	_	_
+5	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	43	43	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+7	years	year	NNS	-	+	n:x	_	_	ARG1	_	_	_	_	_	_	_	_	_
+8	old	old	JJ	-	+	a:e-p	_	_	_	measure	_	_	_	_	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	was	was	VBD	+	+	v_id:e-p-i	ARG1	_	_	_	_	_	_	_	_	_	_	_
+11	general	general	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+12	marketing	market	NN	-	+	v:e-i-p	_	_	_	_	_	_	ARG1	_	_	_	_	_
+13	manager	manager	NN	-	-	n_of:x	_	_	_	_	_	ARG2	_	compound	ARG1	_	_	_
+14	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_
+15	Chrysler	Chrysler	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	compound	_
+16	Corp.	corp.	NNP	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+17	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	Chrysler	Chrysler	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+19	division	division	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	poss	_	compound
+20	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20009004
+1	He	he	PRP	-	-	pron:x	ARG1	_	_	_	_	_	_
+2	had	had	VBD	-	-	_	_	_	_	_	_	_	_
+3	been	been	VBN	+	+	v_id:e-p-i	_	_	_	_	ARG1	ARG1	_
+4	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_
+5	sales	sales	NNS	-	+	n_of:x	_	_	_	_	_	_	_
+6	and	and	CC	-	-	_	_	_	_	_	_	_	_
+7	marketing	market	NN	-	+	v:e-i-p	_	_	_and_c	_	_	_	_
+8	executive	executive	NN	-	-	n:x	ARG2	BV	compound	ARG1	_	_	_
+9	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+10	Chrysler	Chrysler	NNP	-	-	named:x-c	_	_	_	_	ARG2	_	_
+11	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+12	20	20	CD	-	+	card:i-i-c	_	_	_	_	_	_	_
+13	years	year	NNS	-	-	n:x	_	_	_	_	_	ARG2	ARG1
+14	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20010001
+1	When	when	WRB	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	it	it	PRP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	time	time	NN	-	+	a_expl-for:e-i	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	their	their	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	biannual	biannual	JJ	-	+	a:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	powwow	powwow	NN	-	-	n:x	_	ARG1	poss	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	nation	nation	NN	-	+	n_of:x-i	_	_	_	_	BV	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	manufacturing	manufacture	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	titans	titan	NNS	-	-	n:x	_	_	_	_	_	poss	compound	_	ARG1	_	_	_	_	_	_	_	_	_
+15	typically	typically	RB	-	+	a_of:e-e	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	jet	jet	VBP	-	+	v_off:e-i	ARG1	_	_	_	_	_	_	ARG1	_	ARG1	_	_	_	_	_	_	_	_
+17	off	off	RP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	sunny	sunny	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	confines	confines	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	ARG1	_	_	_	_	_
+22	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	resort	resort	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	towns	town	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	ARG1	_	_	_
+25	like	like	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	Boca	Boca	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	Raton	Raton	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	_	_
+28	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	Hot	Hot	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	Springs	Springs	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	compound
+31	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010002
+1	Not	not	RB	-	+	neg:e-h	_	_
+2	this	this	DT	-	+	q_dem:i-h-h	_	_
+3	year	year	NN	-	-	n:x	neg	BV
+4	.	_	.	-	-	_	_	_
+
+#20010003
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+2	National	National	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+3	Association	association	NNP	-	+	n_of:x-i	BV	compound	_	ARG1	_	_	_	_	_	_	_	_
+4	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	Manufacturers	Manufacturers	NNPS	-	-	named:x-c	_	_	ARG1	_	_	_	_	_	_	_	_	_
+6	settled	settle	VBD	+	+	v:e-i-p	_	_	_	_	ARG1	_	_	_	ARG1	_	_	_
+7	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+9	Hoosier	Hoosier	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+10	capital	capital	NN	-	-	n:x	_	_	_	_	ARG2	BV	compound	ARG1	_	_	_	_
+11	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_
+12	Indianapolis	Indianapolis	NNP	-	-	named:x-c	_	_	_	_	_	_	_	ARG2	_	_	_	_
+13	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+14	its	its	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+15	fall	fall	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+16	board	board	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_
+17	meeting	meeting	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	poss	compound	compound
+18	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010006
+1	On	on	IN	+	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	receiving	receive	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	end	end	NN	-	+	n_of:x-i	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	message	message	NN	-	-	n_of:x-i	_	_	_	ARG1	BV	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	were	were	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	officials	official	NNS	-	-	n:x	ARG1	_	_	_	_	ARG1	_	_	_	ARG1	_	_	_	_	_	_	_	_
+10	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	giants	giant	NNS	-	-	n:x	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_
+12	like	like	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	Du	Du	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	Pont	Pont	NNP	-	+	named:x-c	_	_	_	_	_	_	ARG2	compound	_	_	_	_	_	_	_	_	_	_
+15	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	Maytag	Maytag	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_and_c	_	_	_	_	_	_	_	_	_
+17	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	along	along+with	RB	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	mwe	_	_	_	_	_	_	_	_
+19	with	along+with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	lesser	lesser	JJR	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	knowns	known	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	ARG1	ARG1	_	_	_	_	_	_
+22	like	like	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	Trojan	Trojan	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	Steel	Steel	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	_	_	_	_	_
+25	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	Valley	Valley	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	Queen	Queen	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_
+29	Cheese	Cheese	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_
+30	Factory	factory	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	BV	_	_	compound
+31	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010007
+1	For	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	starters	starter	NNS	-	-	n_of:x-i	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	executives	executive	NNS	-	-	n:x	_	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	joined	join	VBD	+	+	v:e-i-p	ARG1	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_
+7	Mayor	mayor	NNP	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	William	William	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	H.	H.	NNP	-	+	named:x-c	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	Hudnut	Hudnut	NNP	-	+	named:x-c	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_
+11	III	III	NNP	-	-	named:x-c	_	_	ARG2	compound	_	_	compound	_	_	_	_	_	_	_	_	_	_	_
+12	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	an	an	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	evening	evening	NN	-	+	n_of:x-u	_	_	_	_	_	_	_	ARG2	BV	_	_	_	_	_	_	_	_	_
+15	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	Indianapolis	Indianapolis	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	Symphony	Symphony	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_
+19	Orchestra	Orchestra	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	ARG1	BV	_	compound	_	_	_	_	_
+20	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	guest	guest	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	pianist-comedian	pianist-comedian	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_
+24	Victor	Victor	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	Borge	Borge	NNP	-	-	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	BV	_	compound	compound
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010008
+1	Champagne	champagne	NNP	-	+	n:x	_	ARG1
+2	and	and	CC	-	-	_	_	_
+3	dessert	dessert	NN	-	-	n:x	_and_c	_
+4	followed	follow	VBD	+	+	v:e-i-p	_	_
+5	.	_	.	-	-	_	_	_
+
+#20010010
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+2	governor	governor	NN	-	-	n:x	BV	_	_	ARG1	_	_	_	_	_	_
+3	could	couldn’t	MD	-	+	neg:e-h	_	_	neg	_	_	_	_	_	_	_
+4	n’t	couldn’t	VB	-	+	neg:e-h	_	_	_	_	ARG1	_	_	_	_	_
+5	make	make	VB	-	+	v:e-i-p-u	_	ARG1	_	_	_	_	_	_	_	_
+6	it	it	PRP	-	-	pron:x	_	_	_	ARG2	_	_	_	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+8	so	so	RB	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+10	lieutenant	lieutenant	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+11	governor	governor	NN	-	-	n:x	_	_	_	_	_	BV	compound	ARG1	_	_
+12	welcomed	welcome	VBD	-	+	v:e-i-p	_	_	_	_	ARG2	_	_	_	_	_
+13	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+14	special	special	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+15	guests	guest	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	ARG2	BV	ARG1
+16	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20010011
+1	A	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+2	buffet	buffet	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_
+3	breakfast	breakfast	NN	-	-	n:x	BV	compound	ARG2	_	_	_	_	_	_	_
+4	was	was	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_
+5	held	hold	VBN	+	+	v:e-i-p	_	_	_	ARG1	_	_	_	_	_	_
+6	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_
+8	museum	museum	NN	-	+	n_of:x-i	_	_	_	ARG2	BV	_	_	_	_	_
+9	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+10	where	where	WRB	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	food	food	NN	-	+	n:x	_	_	_	_	_	_	_	ARG2	_	_
+12	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	drinks	drink	NNS	-	-	n:x	_	_	_	_	_	_	_and_c	_	_	_
+14	are	are	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_
+15	banned	ban	VBN	-	+	v_from:e-i-p	_	_	_	_	_	loc	_	_	ARG1	_
+16	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_
+17	everyday	everyday	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_
+18	visitors	visitor	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	ARG1
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20010012
+1	Then	then	RB	+	+	a:e-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	guests	guest	NNS	-	+	n_of:x-i	_	_	BV	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	’	_	POS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	honor	honor	NN	-	-	n:x	_	ARG2	_	poss	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	speedway	speedway	NN	-	-	n:x	_	_	_	_	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+11	hauled	haul	VBD	-	+	v_out:e-i-i	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_
+12	out	out	RP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	four	four	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	drivers	driver	NNS	-	+	n_of:x-i	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	crews	crew	NNS	-	+	n_of:x-i	_	_	_	_	_	_	_	conj	_	_	_	_	_	_	_	_	_	_
+17	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	even	even	RB	-	+	x:e-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_
+20	official	official	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	Indianapolis	Indianapolis	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	500	500	CD	-	+	yofc:x-c	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_
+23	announcer	announcer	NN	-	-	n:x	_	_	_	_	_	_	_	_	_and_c	_	BV	ARG1	_	compound	_	_	_	_
+24	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	10-lap	lap	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	exhibition	exhibition	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	race	race	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	compound	compound
+29	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010013
+1	After	after	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_
+3	race	race	NN	-	-	n_of:x-i	ARG2	BV	_	_	_	_	_	_	_
+4	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_
+5	Fortune	Fortune	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_
+6	500	500	CD	-	+	card:i-i-c	_	_	compound	_	_	_	_	_	_
+7	executives	executive	NNS	-	-	n:x	_	_	_	compound	ARG1	_	_	_	_
+8	drooled	drool	VBD	+	+	v:e-i-p	ARG1	_	_	_	_	ARG1	ARG1	_	_
+9	like	like	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_
+10	schoolboys	schoolboy	NNS	-	-	n:x	_	_	_	_	_	ARG2	_	_	_
+11	over	over	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_
+12	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_
+13	cars	car	NNS	-	+	n:x	_	_	_	_	_	_	ARG2	BV	_
+14	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_
+15	drivers	driver	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_and_c
+16	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20010015
+1	Back	back	RB	-	+	place_n:x	_	loc	_	_	_	_	_	_	_	_	_
+2	downtown	downtown	NN	-	+	place_n:x	_	_	_	_	_	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+5	execs	exec	NNS	-	-	n:x	_	_	BV	ARG1	_	_	_	_	_	_	_
+6	squeezed	squeeze	VBN	+	+	v_in:e-i-i	loc	_	_	_	_	_	_	ARG1	_	_	_
+7	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+8	a	a+few	DT	-	-	a:e-p	_	_	_	_	mwe	_	_	_	_	_	_
+9	few	a+few	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_
+10	meetings	meeting	NNS	-	-	n_of:x-i	_	_	_	ARG2	ARG1	ARG1	_	_	_	_	_
+11	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+12	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+13	hotel	hotel	NN	-	-	n:x	_	_	_	_	_	ARG2	BV	_	_	_	_
+14	before	before	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_
+15	boarding	board	VBG	-	+	v:e-i-p	_	_	_	_	_	_	_	ARG2	_	_	ARG1
+16	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+17	buses	bus	NNS	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	BV	_
+18	again	again	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_
+19	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010016
+1	This	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_
+2	time	time	NN	-	+	n_of:x	BV	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_
+4	it	it	PRP	-	-	pron:x	_	_	ARG1	_	_	_
+5	was	was	VBD	-	-	_	_	_	_	_	_	_
+6	for	for	IN	+	+	p:e-u-i	_	loc	_	_	_	_
+7	dinner	dinner	NN	-	+	n:x	_	_	ARG2	_	_	_
+8	and	and	CC	-	-	_	_	_	_	_	_	_
+9	dancing	dance	NN	-	-	v:e-i-p	_	_	_	_and_c	_	_
+10	–	–	:	-	-	_	_	_	_	_	_	_
+11	a	a	DT	-	+	card:i-i-c	_	_	_	_	_	_
+12	block	block	NN	-	-	n:x	_	_	conj	_	ARG1	ARG1
+13	away	away	RB	-	+	p:e-i	_	_	_	_	_	_
+14	.	_	.	-	-	_	_	_	_	_	_	_
+
+#20010017
+1	Under	under	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	stars	star	NNS	-	+	n:x	ARG2	BV	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	moons	moon	NNS	-	-	n:x	_	_	_and_c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	+	p:e-x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	renovated	renovate	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	Indiana	Indiana	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	Roof	Roof	NNP	-	+	named:x-c	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	ballroom	ballroom	NN	-	-	n:x	_	_	_	ARG2	BV	ARG2	_	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	nine	nine	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_
+14	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	hottest	hottest	JJS	-	+	a:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	chefs	chef	NNS	-	-	n:x	_	_	_	_	_	_	_	_	part	BV	ARG1	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+18	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	town	town	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_
+20	fed	feed	VBD	+	+	v:e-i-i-i	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	them	them	PRP	-	-	pron:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_	_	_	_	_	_	_	_	_	_	_
+22	Indiana	Indiana	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	duckling	duckling	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_	_
+24	mousseline	mousseline	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	compound	_	_	_	_	_	_	_	_	_
+25	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	lobster	lobster	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	consomme	consomme	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	conj	compound	_	_	_	_	_	_	_
+28	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	veal	veal	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	mignon	mignon	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	conj	compound	_	_	_	_	_
+31	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	chocolate	chocolate	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	terrine	terrine	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	compound	ARG1	_	_
+34	with	with	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+35	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	raspberry	raspberry	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+37	sauce	sauce	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	compound
+38	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010018
+1	Knowing	know	VBG	-	+	v:e-i-p	_	_	_	_	ARG1	_	_	_	_	_	_
+2	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+3	tasty	tasty	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_
+4	–	–	:	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+5	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+6	free	free	JJ	-	+	a:e-p	_	_	_and_c	_	_	_	_	_	_	_	_
+7	–	–	:	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+8	meal	meal	NN	-	-	n:x	ARG2	BV	ARG1	ARG1	_	_	_	_	_	_	_
+9	when	when	WRB	+	+	x:e-h-h	_	_	_	_	_	_	_	_	_	_	_
+10	they	they	PRP	-	-	pron:x	_	_	_	_	_	ARG1	_	_	_	_	_
+11	eat	eat	VBP	-	+	v:e-i-p	_	_	_	_	ARG2	_	_	_	_	_	_
+12	one	one	CD	-	-	card:i-i-c	_	_	_	_	_	ARG2	_	_	_	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+15	executives	executive	NNS	-	-	n:x	_	_	_	_	_	_	BV	ARG1	_	_	_
+16	gave	give	VBD	-	+	v:e-i-i-i	_	_	_	_	subord	_	_	_	_	_	_
+17	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+18	chefs	chef	NNS	-	-	n:x	_	_	_	_	_	_	_	ARG3	BV	_	_
+19	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_
+20	standing	stand	NN	-	+	v:e-i	_	_	_	_	_	_	_	_	_	_	_
+21	ovation	ovation	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	_	BV	compound
+22	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010019
+1	More	more	JJR	-	+	much-many_a:e-i	_	_	_	_	_	_	_	_	_	_	_	_
+2	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	a	a+few	DT	-	-	a:e-p	_	mwe	_	_	_	_	_	_	_	_	_	_
+4	few	a+few	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+5	CEOs	ceo	NNS	-	-	n:x	than	ARG1	_	_	_	_	_	_	_	_	_	_
+6	say	say	VBP	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+8	red-carpet	carpet	JJ	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+9	treatment	treatment	NN	-	-	n_of:x-i	_	_	_	BV	compound	ARG1	_	_	_	_	_	_
+10	tempts	tempt	VBZ	-	+	v:e-i-i-h	_	_	ARG2	_	_	_	_	_	_	_	_	_
+11	them	them	PRP	-	-	pron:x	_	_	_	_	_	ARG2	ARG1	_	_	_	_	_
+12	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	return	return	VB	-	+	v:e-i	_	_	_	_	_	ARG3	_	ARG1	_	_	ARG1	_
+14	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+15	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_
+16	heartland	heartland	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+17	city	city	NN	-	-	n:x	_	_	_	_	_	_	_	ARG2	BV	compound	_	_
+18	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+19	future	future	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_
+20	meetings	meeting	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010020
+1	But	but	CC	+	+	c:i-i-i	_	_	_	_	_	_	_
+2	for	for	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+3	now	now	RB	-	-	time_n:x	_	ARG2	_	_	_	_	_
+4	,	_	,	-	-	_	_	_	_	_	_	_	_
+5	they	they	PRP	-	-	pron:x	_	_	ARG1	_	_	_	_
+6	’re	’re	VBP	-	-	_	_	_	_	_	_	_	_
+7	looking	look	VBG	-	+	v_forward-to:e-i-i	ARG2	ARG1	_	_	_	_	_
+8	forward	forward	RB	-	-	_	_	_	_	_	_	_	_
+9	to	to	TO	-	-	_	_	_	_	_	_	_	_
+10	their	their	PRP$	-	+	q:i-h-h	_	_	_	_	_	_	_
+11	winter	winter	NN	-	+	season:x-c	_	_	_	_	_	_	_
+12	meeting	meeting	NN	-	-	n_of:x-i	_	_	ARG2	poss	compound	appos	_
+13	–	–	:	-	-	_	_	_	_	_	_	_	_
+14	Boca	Boca	NNP	-	+	named:x-c	_	_	_	_	_	_	ARG1
+15	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_
+16	February	February	NNP	-	-	mofy:x-c	_	_	_	_	_	_	ARG2
+17	.	_	.	-	-	_	_	_	_	_	_	_	_
+
+#20011001
+1	South	South	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	Korea	Korea	NNP	-	-	named:x-c	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	registered	register	VBD	-	+	v:e-i-p	_	_	_	_	_	_	_	ARG1	subord	_	_	_	ARG1	_	_	_
+4	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	trade	trade	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	deficit	deficit	NN	-	+	n_of:x-i	_	ARG2	BV	compound	_	_	_	_	_	_	_	_	_	_	_	_
+7	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	$	$	$	-	-	n:x	_	_	_	_	ARG1	_	ARG1	_	_	_	_	_	_	_	_	_
+9	101	101	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	million	million	CD	-	+	card:i-i-c	_	_	_	_	_	times	_	_	_	_	_	_	_	_	_	_
+11	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	October	October	NNP	-	-	mofy:x-c	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_
+13	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	reflecting	reflect	VBG	+	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	country	country	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	BV	_	_	_	_	_	_
+17	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	economic	economic	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	sluggishness	sluggishness	NN	-	-	n:x	_	_	_	_	_	_	_	_	ARG2	_	poss	ARG1	_	_	_	_
+20	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	according	according+to	VBG	-	-	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	mwe	_	_	_
+22	to	according+to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	government	government	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	figures	figure	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	compound	ARG2	_
+25	released	release	VBN	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	loc
+26	Wednesday	Wednesday	NNP	-	+	dofw:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011002
+1	Preliminary	preliminary	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	tallies	tally	NNS	-	-	n:x	ARG1	ARG1	_	_	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	by	by	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	Trade	Trade	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	Industry	Industry	NNP	-	-	named:x-c	_	_	_	_and_c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	Ministry	ministry	NNP	-	-	n:x	_	ARG2	BV	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	showed	show	VBD	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	subord	_	_	_	_	_
+10	another	another	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	trade	trade	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	deficit	deficit	NN	-	-	n_of:x-i	_	_	_	_	ARG2	BV	compound	ARG1	_	_	_	appos	_	_	_	_	_	_	_	_
+13	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	October	October	NNP	-	-	mofy:x-c	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	fifth	fifth	JJ	-	+	ord:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	monthly	monthly	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	setback	setback	NN	-	+	n:x	_	_	_	_	_	_	_	_	BV	ARG1	ARG1	_	_	loc	_	_	_	_	_	_
+20	this	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	year	year	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	BV	_	_	_	_	_	_	_
+22	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	casting	cast	VBG	+	+	v:e-i-p-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	cloud	cloud	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	_	_
+26	on	on	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_	_	_	_	_
+27	South	South	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	Korea	Korea	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	compound	_	_
+29	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	export-oriented	orient	JJ	-	+	v:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	economy	economy	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	poss	ARG2
+32	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011004
+1	South	South	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	Korea	Korea	NNP	-	+	named:x-c	compound	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	economic	economic	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	boom	boom	NN	-	-	n:x	_	poss	ARG1	ARG1	_	ARG1	_	_	_	_	_	_	_	_	_
+6	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	which	which	WDT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	began	begin	VBD	-	+	v:e-i-p	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_	_
+9	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	1986	1986	CD	-	-	yofc:x-c	_	_	_	_	ARG2	_	_	_	_	_	_	_	_	_	_
+11	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	stopped	stop	VBD	+	+	v:e-i-p	_	_	_	_	_	_	_	loc	ARG1	_	_	_	_	_	_
+13	this	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	year	year	NN	-	+	n:x	_	_	_	_	_	_	BV	_	_	_	_	_	_	_	_
+15	because	because+of	IN	-	-	p:e-u-i	_	_	_	_	_	_	_	_	mwe	_	_	_	_	_	_
+16	of	because+of	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	prolonged	prolonged	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	labor	labor	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	disputes	dispute	NNS	-	+	n:x	_	_	_	_	_	_	_	_	ARG2	ARG1	compound	_	_	_	_
+20	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	trade	trade	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	conflicts	conflict	NNS	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	conj	compound	_	_
+23	and	and	CC	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	sluggish	sluggish	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	exports	export	NNS	-	-	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_and_c	ARG1
+26	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011005
+1	Government	government	NNP	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	officials	official	NNS	-	-	n:x	compound	ARG1	_	_	_	_	_	_	_	_	_	_	_	_
+3	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	exports	export	NNS	-	-	n_of:x-i	_	_	ARG1	_	_	_	_	ARG1	ARG1	_	_	_	_	_
+5	at	at	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	end	end	NN	-	+	n_of:x-i	_	_	ARG2	BV	_	_	_	_	_	_	_	_	_	_
+8	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	year	year	NN	-	-	n:x	_	_	_	_	ARG1	BV	_	_	_	_	_	_	_	_
+11	would	would	MD	-	+	v_modal:e-h	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_
+12	remain	remain	VB	-	+	v:e-i-h	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_
+13	under	under	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	ARG2	_	_	_	_	_	_
+14	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	government	government	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	target	target	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	BV	compound	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	$	$	$	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	ARG1
+19	68	68	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	billion	billion	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	times	_
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011006
+1	Despite	despite	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	gloomy	gloomy	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	forecast	forecast	NN	-	-	n:x	ARG2	BV	ARG1	_	_	_	_	_	_	_	_	_	_	_
+5	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	South	South	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	Korea	Korea	NNP	-	-	named:x-c	_	_	_	compound	ARG1	_	_	_	_	_	_	_	_	_
+8	has	has	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	recorded	record	VBN	+	+	v:e-i-p	ARG1	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	trade	trade	NN	-	+	n_of:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	surplus	surplus	NN	-	+	n_of:x-i	_	_	_	_	ARG2	BV	compound	_	_	_	_	ARG1	_	loc
+13	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+14	$	$	$	-	-	n:x	_	_	_	_	_	_	_	ARG1	_	ARG1	_	_	_	_
+15	71	71	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	million	million	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	times	_	_	_	_	_
+17	so	so	IN	-	+	comp:e-u-u	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	far	far	RB	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	comp_so	_	_	_
+19	this	this	DT	-	+	q_dem:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	year	year	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	BV	_
+21	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011007
+1	From	from	IN	-	+	p:e-u-x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	January	January	NNP	-	-	mofy:x-c	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	October	October	NNP	-	-	mofy:x-c	_	ARG2	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	nation	nation	NN	-	+	n_of:x-i	_	_	BV	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	accumulated	accumulate	VBN	-	+	v_cause:e-i-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	exports	export	NNS	-	-	n_of:x-i	_	_	_	poss	ARG2	ARG1	_	_	_	_	_	_	_	_	_	_
+11	increased	increase	VBD	+	+	v:e-i	ARG1	ARG1	_	_	_	_	_	loc	ARG1	_	_	_	_	ARG1	_	_
+12	4	4	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	%	%	NN	-	+	n_of:x	_	_	_	_	_	_	ARG1	_	_	_	_	_	_	_	_	_
+14	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	same	same	JJ	-	+	a_as:e-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	period	period	NN	-	-	n_of:x-i	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	_	loc	_	_	_
+18	last	last	JJ	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	year	year	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	ARG1	_	_	_	_
+20	to	to	TO	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	$	$	$	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	_	ARG1
+22	50.45	50.45	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	billion	billion	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	times	_
+24	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011008
+1	Imports	import	NNS	-	-	n_of:x-i	ARG1	_	_	_	_
+2	were	were	VBD	-	-	_	_	_	_	_	_
+3	at	at	IN	+	+	p:e-u-i	_	_	_	ARG1	_
+4	$	$	$	-	-	n:x	ARG2	_	ARG1	_	_
+5	50.38	50.38	CD	-	+	card:i-i-c	_	_	_	_	_
+6	billion	billion	CD	-	+	card:i-i-c	_	times	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_
+8	up	up	RB	-	+	p:e-u-i	_	_	_	_	_
+9	19	19	CD	-	+	card:i-i-c	_	_	_	_	_
+10	%	%	NN	-	-	n_of:x	_	_	_	ARG2	ARG1
+11	.	_	.	-	-	_	_	_	_	_	_
+
+#20012002
+1	The	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	new	new	JJ	-	+	a:e-p	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	ad	ad	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	plan	plan	NN	-	-	n:x	BV	ARG1	compound	ARG1	_	_	_	_	_	ARG1	_	_	_	_	_	_	_
+5	from	from	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	Newsweek	Newsweek	NNP	-	-	named:x-c	_	_	_	ARG2	_	appos	_	_	_	_	_	_	_	_	_	_	_
+7	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	a	a	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	unit	unit	NN	-	+	n_of:x-i	_	_	_	_	BV	_	_	_	_	_	_	_	_	_	_	_	_
+10	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	Washington	Washington	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	Post	Post	NNP	-	+	named:x-c	_	_	_	_	_	_	_	compound	_	_	_	_	_	_	_	_	_
+14	Co.	co.	NNP	-	-	n:x	_	_	_	_	_	ARG1	BV	_	compound	_	_	_	_	_	_	_	_
+15	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	is	is	VBZ	+	+	v_id:e-p-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	second	second	JJ	-	+	ord:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	incentive	incentive	NN	-	+	n_to:x-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	plan	plan	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	ARG2	BV	ARG1	compound	_	ARG2	_	_
+21	the	the	DT	-	+	q:i-h-h	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	magazine	magazine	NN	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	BV	ARG1	_	_
+23	has	has	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	offered	offer	VBN	-	+	v:e-i-i-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG1	_
+25	advertisers	advertiser	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG3	_	_
+26	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	three	three	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	years	year	NNS	-	-	n:x	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ARG2	ARG1
+29	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20012004
+1	Alan	Alan	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+2	Spoon	Spoon	NNP	-	-	named:x-c	compound	_	ARG3	_	ARG1	_	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	recently	recently	RB	-	+	a:e-e	_	_	_	_	_	_	_	_	_	_	_	_
+5	named	name	VBN	-	+	v:e-i-i-i	_	ARG1	_	_	_	_	_	_	_	_	_	_
+6	Newsweek	Newsweek	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+7	president	president	NN	-	-	n_of:x-i	_	_	ARG2	compound	_	_	_	_	_	_	_	_
+8	,	_	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	said	say	VBD	+	+	v_to:e-i-h-i	_	_	_	_	_	_	_	_	_	_	_	_
+10	Newsweek	Newsweek	NNP	-	+	named:x-c	_	_	_	_	_	_	_	_	_	_	_	_
+11	’s	’s	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	ad	ad	NN	-	+	n:x	_	_	_	_	_	_	_	_	_	_	_	_
+13	rates	rate	NNS	-	-	n_of:x-i	_	_	_	_	_	poss	compound	_	ARG1	_	_	_
+14	would	would	MD	-	+	v_modal:e-h	_	_	_	_	ARG2	_	_	_	_	_	_	_
+15	increase	increase	VB	-	+	v:e-i	_	_	_	_	_	_	_	ARG1	_	_	loc	ARG1
+16	5	5	CD	-	+	card:i-i-c	_	_	_	_	_	_	_	_	_	_	_	_
+17	%	%	NN	-	+	n_of:x	_	_	_	_	_	_	_	_	_	ARG1	_	_
+18	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_	_	_	_	_	_	_
+19	January	January	NNP	-	-	mofy:x-c	_	_	_	_	_	_	_	_	_	_	_	ARG2
+20	.	_	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20012005
+1	A	a	DT	-	+	q:i-h-h	_	_	_	_	_	_
+2	full	full	JJ	-	+	a_of:e-p-i	_	_	_	_	_	_
+3	,	_	,	-	-	_	_	_	_	_	_	_
+4	four-color	color	JJ	-	+	n:x	_	_	_	_	_	_
+5	page	page	NN	-	-	n:x	BV	ARG1	compound	ARG1	ARG1	_
+6	in	in	IN	-	+	p:e-u-i	_	_	_	_	_	_
+7	Newsweek	Newsweek	NNP	-	-	named:x-c	_	_	_	ARG2	_	_
+8	will	will	MD	-	-	_	_	_	_	_	_	_
+9	cost	cost	VB	+	+	v:e-i-i	_	_	_	_	_	_
+10	$	$	$	-	-	n:x	_	_	_	_	ARG2	ARG1
+11	100,980	100,980	CD	-	+	card:i-i-c	_	_	_	_	_	_
+12	.	_	.	-	-	_	_	_	_	_	_	_
+

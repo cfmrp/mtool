@@ -1,0 +1,2010 @@
+# AMR release; corpus: amr-consensus; section: dev; number of AMRs: 100 (generated on Thu Jan 25, 2018 at 16:15:54)
+
+# ::id nw.wsj_0001.1 ::date 2012-04-25T16:31:34 ::annotator ISI-AMR-01 ::preferred
+# ::snt Pierre Vinken , 61 years old , will join the board as a nonexecutive director Nov. 29 .
+# ::save-date Tue Sep 17, 2013 ::file nw_wsj_0001_1.txt
+(j / join-01
+      :ARG0 (p / person :wiki -
+            :name (p2 / name :op1 "Pierre" :op2 "Vinken")
+            :age (t / temporal-quantity :quant 61
+                  :unit (y / year)))
+      :ARG1 (b / board
+            :ARG1-of (h / have-org-role-91
+                  :ARG0 p
+                  :ARG2 (d2 / director
+                        :mod (e / executive :polarity -))))
+      :time (d / date-entity :month 11 :day 29))
+
+# ::id nw.wsj_0001.2 ::date 2012-04-25T16:33:55 ::annotator ISI-AMR-01 ::preferred
+# ::snt Mr. Vinken is chairman of Elsevier N.V. , the Dutch publishing group .
+# ::save-date Wed Jan 10, 2018 ::file nw_wsj_0001_2.txt
+(h / have-org-role-91
+      :ARG0 (p / person :wiki - :name (m / name :op1 "Mr." :op2 "Vinken"))
+      :ARG1 (g / group :wiki "RELX_Group#Elsevier_NV" :name (e / name :op1 "Elsevier" :op2 "N.V.")
+            :mod (c / country :wiki "Netherlands" :name (n / name :op1 "Netherlands"))
+            :ARG0-of (p2 / publish-01))
+      :ARG2 (c2 / chairman))
+
+# ::id nw.wsj_0002.1 ::date 2012-04-25T18:26:26 ::annotator ISI-AMR-01 ::preferred
+# ::snt Rudolph Agnew , 55 years old and former chairman of Consolidated Gold Fields PLC , was named a nonexecutive director of this British industrial conglomerate .
+# ::save-date Tue Sep 17, 2013 ::file nw_wsj_0002_1.txt
+(n / name-03
+      :ARG1 (p / person :wiki -
+            :name (r / name :op1 "Rudolph" :op2 "Agnew")
+            :age (t / temporal-quantity :quant 55
+                  :unit (y / year))
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (c5 / conglomerate :wiki "Consolidated_Gold_Fields"
+                        :name (c / name :op1 "Consolidated" :op2 "Gold" :op3 "Fields" :op4 "PLC")
+                        :mod (c2 / country :wiki "United_Kingdom"
+                              :name (b / name :op1 "Britain"))
+                        :mod (i / industry))
+                  :ARG2 (c3 / chairman)
+                  :time (f / former)))
+      :ARG2 (d / director
+            :mod (e / executive :polarity -)
+            :ARG2-of (h2 / have-org-role-91
+                  :ARG0 p
+                  :ARG1 c5)))
+
+# ::id nw.wsj_0003.1 ::date 2012-04-25T20:29:42 ::annotator ISI-AMR-01 ::preferred
+# ::snt A form of asbestos once used to make Kent cigarette filters has caused a high percentage of cancer deaths among a group of workers exposed to it more than 30 years ago , researchers reported .
+# ::save-date Wed Oct 28, 2015 ::file nw_wsj_0003_1.txt
+(r / report-01
+      :ARG0 (p4 / person
+            :ARG0-of (r2 / research-01))
+      :ARG1 (c / cause-01
+            :ARG0 (a2 / asbestos
+                  :mod (f / form)
+                  :ARG1-of (u / use-01
+                        :ARG2 (m / make-01
+                              :ARG1 (p / product
+                                    :ARG0-of (f2 / filter-02)
+                                    :mod (c2 / cigarette :wiki "Kent_(cigarette)"
+                                          :name (n / name :op1 "Kent"))))
+                        :time (o / once)))
+            :ARG1 (p3 / percentage
+                  :ARG3-of (i / include-91
+                        :ARG1 (p7 / person
+                              :ARG1-of (d / die-01
+                                    :ARG1-of (c4 / cause-01
+                                          :ARG0 (d2 / disease :wiki "Cancer"
+                                                :name (n3 / name :op1 "cancer")))))
+                        :ARG2 (p6 / person
+                              :ARG0-of (w2 / work-01)
+                              :ARG1-of (e / expose-01
+                                    :ARG2 a2
+                                    :time (b / before
+                                          :op1 (n2 / now)
+                                          :quant (m2 / more-than
+                                                :op1 (t / temporal-quantity :quant 30
+                                                      :unit (y / year)))))))
+                  :ARG1-of (h / high-02))))
+
+# ::id nw.wsj_0003.2 ::date 2012-04-25T20:39:13 ::annotator ISI-AMR-01 ::preferred
+# ::snt The asbestos fiber , crocidolite , is unusually resilient once it enters the lungs , with even brief exposures to it causing symptoms that show up decades later , researchers said .
+# ::save-date Wed Sep 13, 2017 ::file nw_wsj_0003_2.txt
+(s / say-01
+      :ARG0 (p / person
+            :ARG0-of (r / research-01))
+      :ARG1 (a2 / and
+            :op1 (r2 / resilient
+                  :mod (u / usual :polarity -)
+                  :domain (c / crocidolite
+                        :mod (f / fiber
+                              :mod (a / asbestos)))
+                  :time (e / enter-01
+                        :ARG0 c
+                        :ARG1 (l / lung)))
+            :op2 (c2 / cause-01
+                  :ARG0 (e2 / expose-01
+                        :ARG2 c
+                        :duration (b / brief
+                              :mod (e3 / even)))
+                  :ARG1 (s2 / symptom
+                        :ARG1-of (s3 / show-up-02
+                              :time (a3 / after
+                                    :op1 e2
+                                    :quant (m / multiple
+                                          :op1 (t / temporal-quantity :quant 1
+                                                :unit (d2 / decade)))))))))
+
+# ::id nw.wsj_0003.3 ::date 2012-04-25T20:40:02 ::annotator ISI-AMR-01 ::preferred
+# ::snt Lorillard Inc. , the unit of New York - based Loews Corp. that makes Kent cigarettes , stopped using crocidolite in its Micronite cigarette filters in 1956 .
+# ::save-date Mon Jul 30, 2012 ::file nw_wsj_0003_3.txt
+(s2 / stop-01
+      :ARG0 (u / unit :wiki "Lorillard_Tobacco_Company"
+            :name (l / name :op1 "Lorillard" :op2 "Inc.")
+            :part-of (c3 / company :wiki "Loews_Corporation"
+                  :name (l2 / name :op1 "Loews" :op2 "Corp.")
+                  :ARG1-of (b / base-01
+                        :location (c2 / city :wiki "New_York_City"
+                              :name (n / name :op1 "New" :op2 "York"))))
+            :ARG0-of (m2 / make-01
+                  :ARG1 (c4 / cigarette :wiki "Kent_(cigarette)"
+                        :name (k / name :op1 "Kent"))))
+      :ARG1 (u2 / use-01
+            :ARG0 u
+            :ARG1 (c5 / crocidolite)
+            :prep-in (p / product :wiki -
+                  :name (n3 / name :op1 "Micronite")
+                  :ARG0-of (f / filter-02)
+                  :mod (c6 / cigarette)
+                  :poss u))
+      :time (d / date-entity :year 1956))
+
+# ::id nw.wsj_0003.4 ::date 2012-04-25T20:53:22 ::annotator ISI-AMR-01 ::preferred
+# ::snt Although preliminary findings were reported more than a year ago , the latest results appear in today 's New England Journal of Medicine , a forum likely to bring new attention to the problem .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0003_4.txt
+(a / appear-01
+      :ARG1 (t4 / thing
+            :ARG2-of (r3 / result-01
+                  :mod (l / last)))
+      :location (j / journal :wiki "The_New_England_Journal_of_Medicine" :name (n / name :op1 "New" :op2 "England" :op3 "Journal" :op4 "of" :op5 "Medicine")
+            :time (t / today)
+            :mod (f / forum
+                  :ARG0-of (b / bring-01
+                        :ARG1 (a2 / attend-02
+                              :ARG1 p
+                              :ARG1-of (n2 / new-02
+                                    :ARG2 p))
+                        :ARG2 (p / problem)
+                        :ARG1-of (l2 / likely-01))))
+      :concession (r2 / report-01
+            :ARG1 (t2 / thing
+                  :ARG1-of (f2 / find-01)
+                  :mod (p2 / preliminary))
+            :time (b2 / before
+                  :op1 (n3 / now)
+                  :quant (m3 / more-than
+                        :op1 (t3 / temporal-quantity :quant 1
+                              :unit (y / year))))))
+
+# ::id nw.wsj_0003.5 ::date 2012-04-25T21:03:01 ::annotator ISI-AMR-01 ::preferred
+# ::snt A Lorillard spokewoman said , `` This is an old story .
+# ::save-date Fri Sep 13, 2013 ::file nw_wsj_0003_5.txt
+(s / say-01
+      :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (c / company :wiki "Lorillard_Tobacco_Company"
+                        :name (l / name :op1 "Lorillard"))
+                  :ARG2 (s2 / spokeswoman)))
+      :ARG1 (s3 / story
+            :domain (t / this)
+            :mod (o2 / old)))
+
+# ::id nw.wsj_0003.6 ::date 2012-04-25T21:03:57 ::annotator ISI-AMR-01 ::preferred
+# ::snt We 're talking about years ago before anyone heard of asbestos having any questionable properties .
+# ::save-date Wed Feb 10, 2016 ::file nw_wsj_0003_6.txt
+(t / talk-01
+      :ARG0 (w / we)
+      :ARG1 (t3 / thing
+            :time (b2 / before
+                  :op1 (n / now)
+                  :quant (m / multiple
+                        :op1 (t2 / temporal-quantity :quant 1
+                              :unit (y2 / year))))
+            :time (b / before
+                  :op1 (h / hear-01
+                        :ARG0 (a / anyone)
+                        :ARG1 (h2 / have-03
+                              :ARG0 (a3 / asbestos)
+                              :ARG1 (p / property
+                                    :mod (a4 / any)
+                                    :mod (q2 / questionable)))))))
+
+# ::id nw.wsj_0003.7 ::date 2012-04-25T21:07:51 ::annotator ISI-AMR-01 ::preferred
+# ::snt There is no asbestos in our products now . ''
+# ::save-date Tue Oct 30, 2012 ::file nw_wsj_0003_7.txt
+(a / asbestos
+  :polarity -
+  :time (n / now)
+  :location (t / thing
+              :ARG1-of (p2 / produce-01
+                         :ARG0 (w2 / we))))
+
+# ::id nw.wsj_0003.8 ::date 2012-04-25T21:08:48 ::annotator ISI-AMR-01 ::preferred
+# ::snt Neither Lorillard nor the researchers who studied the workers were aware of any research on smokers of the Kent cigarettes .
+# ::save-date Fri May 11, 2012 ::file nw_wsj_0003_8.txt
+(r / realize-01 :polarity -
+      :ARG0 (a / and
+            :op1 (c / company :wiki "Lorillard_Tobacco_Company"
+                  :name (l / name :op1 "Lorillard"))
+            :op2 (p2 / person
+                  :ARG0-of (r2 / research-01)
+                  :ARG0-of (s2 / study-01
+                        :ARG1 (p3 / person
+                              :ARG0-of (w / work-01)))))
+      :ARG1 (r3 / research-01
+            :ARG1 (p4 / person
+                  :ARG0-of (s / smoke-02
+                        :ARG1 (c2 / cigarette :wiki "Kent_(cigarette)"
+                              :name (k / name :op1 "Kent"))))))
+
+# ::id nw.wsj_0003.9 ::date 2012-04-25T21:12:39 ::annotator ISI-AMR-01 ::preferred
+# ::snt `` We have no useful information on whether users are at risk , '' said James A. Talcott of Boston 's Dana - Farber Cancer Institute .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0003_9.txt
+(s / say-01
+      :ARG0 (p / person :wiki - :name (j / name :op1 "James" :op2 "A." :op3 "Talcott")
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG1 (r / research-institute :wiki "Dana–Farber_Cancer_Institute" :name (d / name :op1 "Dana-Farber" :op2 "Cancer" :op3 "Institute")
+                        :location (c / city :wiki "Boston" :name (b / name :op1 "Boston")))))
+      :ARG1 (h / have-03 :polarity -
+            :ARG0 (w / we)
+            :ARG1 (i / information
+                  :ARG1-of (u / useful-05)
+                  :topic (t / truth-value
+                        :polarity-of (e / endanger-01
+                              :ARG1 (p3 / person
+                                    :ARG0-of (u2 / use-01)))))))
+
+# ::id nw.wsj_0003.10 ::date 2012-04-25T21:16:15 ::annotator ISI-AMR-01 ::preferred
+# ::snt Dr. Talcott led a team of researchers from the National Cancer Institute and the medical schools of Harvard University and Boston University .
+# ::save-date Thu Apr 2, 2015 ::file nw_wsj_0003_10.txt
+(l / lead-02
+      :ARG0 (d / doctor :wiki - :name (n2 / name :op1 "Talcott"))
+      :ARG1 (t3 / team
+            :consist-of (p2 / person
+                  :ARG0-of (r / research-01)
+                  :ARG0-of (h2 / have-org-role-91
+                        :ARG1 (a / and
+                              :op1 (r2 / research-institute :wiki "National_Cancer_Institute" :name (n / name :op1 "National" :op2 "Cancer" :op3 "Institute"))
+                              :op2 (s / school
+                                    :mod (m / medicine)
+                                    :part-of (u / university :wiki "Harvard_University" :name (h / name :op1 "Harvard" :op2 "University")))
+                              :op3 (s2 / school
+                                    :mod (m2 / medicine)
+                                    :part-of (u2 / university :wiki "Boston_University" :name (b / name :op1 "Boston" :op2 "University"))))))))
+
+# ::id nw.wsj_0003.11 ::date 2012-04-25T21:19:35 ::annotator ISI-AMR-01 ::preferred
+# ::snt The Lorillard spokeswoman said asbestos was used in `` very modest amounts '' in making paper for the filters in the early 1950s and replaced with a different type of filter in 1956 .
+# ::save-date Fri Sep 13, 2013 ::file nw_wsj_0003_11.txt
+(s / say-01
+      :ARG0 (p4 / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (c / company :wiki "Lorillard_Tobacco_Company"
+                        :name (l / name :op1 "Lorillard"))
+                  :ARG2 (s2 / spokeswoman)))
+      :ARG1 (a3 / and
+            :op1 (u / use-01
+                  :ARG1 (a / asbestos
+                        :quant (a2 / amount
+                              :mod (m / modest
+                                    :degree (v / very))))
+                  :ARG2 (m2 / make-01
+                        :ARG1 (p / paper)
+                        :time (e2 / early
+                              :op1 (d3 / date-entity :decade 1950))
+                        :purpose (p2 / product
+                              :ARG0-of (f / filter-02))))
+            :op2 (r / replace-01
+                  :ARG1 a
+                  :ARG2 (p3 / product
+                        :ARG0-of (f2 / filter-02
+                              :mod (t / type
+                                    :ARG1-of (d2 / differ-02))))
+                  :time (d / date-entity :year 1956))))
+
+# ::id nw.wsj_0003.12 ::date 2012-04-25T21:25:40 ::annotator ISI-AMR-01 ::preferred
+# ::snt From 1953 to 1955 , 9.8 billion Kent cigarettes with the filters were sold , the company said .
+# ::save-date Thu Aug 16, 2012 ::file nw_wsj_0003_12.txt
+(s / say-01
+      :ARG0 (c / company)
+      :ARG1 (s2 / sell-01
+            :ARG1 (c2 / cigarette :quant 9800000000 :wiki "Kent_(cigarette)"
+                  :name (k / name :op1 "Kent")
+                  :part (p / product
+                        :ARG0-of (f / filter-02)))
+            :time (d / date-interval
+                  :op1 (d2 / date-entity :year 1953)
+                  :op2 (d3 / date-entity :year 1955))))
+
+# ::id nw.wsj_0003.13 ::date 2012-04-25T21:28:46 ::annotator ISI-AMR-01 ::preferred
+# ::snt Among 33 men who worked closely with the substance , 28 have died -- more than three times the expected number .
+# ::save-date Sat Jan 30, 2016 ::file nw_wsj_0003_13.txt
+(d / die-01
+      :ARG1 (m / man :quant 28
+            :quant (m4 / more-than
+                  :op1 (p / product-of :op1 3
+                        :op2 (n2 / number
+                              :ARG1-of (e2 / expect-01))))
+            :ARG1-of (i / include-91
+                  :ARG2 (m2 / man :quant 33
+                        :ARG0-of (w / work-01
+                              :ARG1 (s / substance)
+                              :manner (c / close-10))))))
+
+# ::id nw.wsj_0003.14 ::date 05/23/2012 ::annotator ISI-AMR-01 ::preferred
+# ::snt Four of the five surviving workers have asbestos - related diseases , including three with recently diagnosed cancer .
+# ::save-date Wed Oct 28, 2015 ::file nw_wsj_0003_14.txt
+(h / have-03
+      :ARG0 (p4 / person :quant 4
+            :ARG1-of (i / include-91
+                  :ARG2 (p2 / person :quant 5
+                        :ARG0-of (w / work-01)
+                        :ARG0-of (s / survive-01)))
+            :ARG2-of (i2 / include-91
+                  :ARG1 (p3 / person :quant 3
+                        :ARG1-of (d3 / diagnose-01
+                              :ARG2 (d2 / disease :wiki "Cancer"
+                                    :name (n / name :op1 "cancer"))
+                              :time (r3 / recent)))))
+      :ARG1 (d / disease
+            :ARG1-of (r / relate-01
+                  :ARG2 (a / asbestos))))
+
+# ::id nw.wsj_0003.15 ::date 2012-04-25T21:37:56 ::annotator ISI-AMR-01 ::preferred
+# ::snt The total of 18 deaths from malignant mesothelioma , lung cancer and asbestosis was far higher than expected , the researchers said .
+# ::save-date Mon Sep 11, 2017 ::file nw_wsj_0003_15.txt
+(s / say-01
+      :ARG0 (p / person
+            :ARG0-of (r / research-01))
+      :ARG1 (h2 / have-degree-91
+            :ARG1 (t2 / total
+                  :quant-of (p2 / person :quant 18
+                        :ARG1-of (d / die-01
+                              :ARG1-of (c2 / cause-01
+                                    :ARG0 (a / and
+                                          :op1 (d4 / disease :wiki "Mesothelioma" :name (n3 / name :op1 "malignant" :op2 "mesothelioma"))
+                                          :op2 (d2 / disease :wiki "Lung_cancer" :name (n / name :op1 "lung" :op2 "cancer"))
+                                          :op3 (d3 / disease :wiki "Asbestosis" :name (n2 / name :op1 "asbestosis")))))))
+            :ARG2 (h / high-02)
+            :ARG3 (m / more
+                  :quant (f / far))
+            :ARG4 (t / thing
+                  :ARG1-of (e / expect-01))))
+
+# ::id nw.wsj_0003.16 ::date 2012-04-26T08:23:12 ::annotator ISI-AMR-01 ::preferred
+# ::snt `` The morbidity rate is a striking finding among those of us who study asbestos - related diseases , '' said Dr. Talcott .
+# ::save-date Tue Feb 16, 2016 ::file nw_wsj_0003_16.txt
+(s / say-01
+      :ARG0 (d2 / doctor :wiki - :name (t / name :op1 "Talcott"))
+      :ARG1 (r2 / rate
+            :mod (d3 / die-01)
+            :ARG1-of (f / find-01)
+            :ARG1-of (s4 / strike-04
+                  :ARG3 (p2 / person
+                        :ARG0-of (s3 / study-01
+                              :ARG1 (d / disease
+                                    :ARG1-of (r / relate-01
+                                          :ARG2 (a / asbestos))))
+                        :ARG1-of (i / include-91
+                              :ARG2 (w / we))
+                        :mod (t2 / that)))))
+
+# ::id nw.wsj_0003.17 ::date 2012-04-26T08:29:32 ::annotator ISI-AMR-01 ::preferred
+# ::snt The percentage of lung cancer deaths among the workers at the West Groton , Mass. , paper factory appears to be the highest for any asbestos workers studied in Western industrialized countries , he said .
+# ::save-date Mon Sep 11, 2017 ::file nw_wsj_0003_17.txt
+(s3 / say-01
+      :ARG0 (h2 / he)
+      :ARG1 (a3 / appear-02
+            :ARG1 (h3 / have-degree-91
+                  :ARG1 (p2 / percentage
+                        :quant-of (p5 / person
+                              :ARG1-of (d2 / die-01
+                                    :ARG1-of (c4 / cause-01
+                                          :ARG0 (d / disease :wiki "Lung_cancer" :name (n2 / name :op1 "lung" :op2 "cancer"))))
+                              :ARG1-of (i2 / include-91
+                                    :ARG2 (p3 / person
+                                          :ARG0-of (w4 / work-01
+                                                :location (f / factory
+                                                      :mod (p4 / paper)
+                                                      :location (c3 / city :wiki - :name (w / name :op1 "West" :op2 "Groton")
+                                                            :location (s / state :wiki "Massachusetts" :name (m / name :op1 "Massachusetts")))))))))
+                  :ARG2 (h / high-02)
+                  :ARG3 (m2 / most)
+                  :ARG5 (p / person
+                        :ARG0-of (w2 / work-01
+                              :ARG1 (a2 / asbestos))
+                        :ARG1-of (s2 / study-01)
+                        :location (c / country
+                              :ARG1-of (i / industrialize-01)
+                              :location (w5 / world-region :wiki "Western_world" :name (n / name :op1 "West")))
+                        :mod (a / any)))))
+
+# ::id nw.wsj_0003.18 ::date 2012-04-26T08:37:40 ::annotator ISI-AMR-01 ::preferred
+# ::snt The plant , which is owned by Hollingsworth & Vose Co. , was under contract with Lorillard to make the cigarette filters .
+# ::save-date Mon Jul 30, 2012 ::file nw_wsj_0003_18.txt
+(c / contract-02
+      :ARG0 (p / plant
+            :ARG1-of (o / own-01
+                  :ARG0 (c2 / company :wiki -
+                        :name (h / name :op1 "Hollingsworth" :op2 "&" :op3 "Vose" :op4 "Co."))))
+      :ARG1 (m / make-01
+            :ARG0 p
+            :ARG1 (p2 / product
+                  :ARG0-of (f / filter-02)
+                  :mod (c4 / cigarette)))
+      :ARG2 (c3 / company :wiki "Lorillard_Tobacco_Company"
+            :name (l / name :op1 "Lorillard")))
+
+# ::id nw.wsj_0003.19 ::date 2012-04-26T08:42:27 ::annotator ISI-AMR-01 ::preferred
+# ::snt The finding probably will support those who argue that the U.S. should regulate the class of asbestos including crocidolite more stringently than the common kind of asbestos , chrysotile , found in most schools and other buildings , Dr. Talcott said .
+# ::save-date Mon Sep 11, 2017 ::file nw_wsj_0003_19.txt
+(s / say-01
+      :ARG0 (d / doctor :wiki - :name (t / name :op1 "Talcott"))
+      :ARG1 (p / probable
+            :domain (s2 / support-01
+                  :ARG0 (t2 / thing
+                        :ARG1-of (f / find-01))
+                  :ARG1 (p2 / person
+                        :ARG0-of (a / argue-01
+                              :ARG1 (r2 / recommend-01
+                                    :ARG1 (r / regulate-01
+                                          :ARG0 (c / country :wiki "United_States" :name (u / name :op1 "U.S."))
+                                          :ARG1 (a5 / asbestos
+                                                :ARG2-of (i / include-91
+                                                      :ARG1 (c3 / crocidolite))
+                                                :mod (c2 / class))
+                                          :manner (s3 / stringent
+                                                :ARG2-of (h / have-degree-91
+                                                      :ARG1 r
+                                                      :ARG3 (m / more)
+                                                      :ARG4 (c4 / chrysotile
+                                                            :ARG1-of (f2 / find-01
+                                                                  :location (a4 / and
+                                                                        :op1 (s4 / school
+                                                                              :mod (m2 / most))
+                                                                        :op2 (b / building
+                                                                              :mod (o / other))))
+                                                            :mod (a3 / asbestos
+                                                                  :mod (k / kind
+                                                                        :mod (c5 / common)))))))))))))
+
+# ::id nw.wsj_0003.20 ::date 2012-05-22T13:22:35 ::annotator ISI-AMR-01 ::preferred
+# ::snt The U.S. is one of the few industrialized nations that does n't have a higher standard of regulation for the smooth , needle - like fibers such as crocidolite that are classified as amphobiles , according to Brooke T. Mossman , a professor of pathlogy at the University of Vermont College of Medicine .
+# ::save-date Thu Jan 11, 2018 ::file nw_wsj_0003_20.txt
+(s / say-01
+      :ARG0 (p2 / person :wiki - :name (b / name :op1 "Brooke" :op2 "T." :op3 "Mossman")
+            :ARG0-of (h3 / have-org-role-91
+                  :ARG1 (c2 / college
+                        :mod (m / medicine)
+                        :part-of (u2 / university :wiki "University_of_Vermont" :name (u3 / name :op1 "University" :op2 "of" :op3 "Vermont")))
+                  :ARG2 (p3 / professor
+                        :topic (p / pathology))))
+      :ARG1 (i2 / include-91
+            :ARG1 (c / country :wiki "United_States" :name (u / name :op1 "U.S."))
+            :ARG2 (n / nation
+                  :ARG1-of (i3 / include-91
+                        :ARG2 (n3 / nation
+                              :ARG1-of (i / industrialize-01))
+                        :ARG3 (f / few))
+                  :ARG0-of (r / regulate-01 :polarity -
+                        :ARG1 f2
+                        :manner (s2 / standard-02
+                              :ARG1 (f2 / fiber
+                                    :ARG1-of (s3 / smooth-06)
+                                    :ARG2-of (r2 / resemble-01
+                                          :ARG1 (n2 / needle))
+                                    :ARG1-of (c4 / classify-01
+                                          :ARG2 (a / amphibole))
+                                    :example (c3 / crocidolite))
+                              :ARG2 n
+                              :ARG1-of (h / have-degree-91
+                                    :ARG2 (h2 / high-02
+                                          :ARG1 s2)
+                                    :ARG3 (m2 / more)))))))
+
+# ::id nw.wsj_0003.21 ::date 2012-04-26T08:56:52 ::annotator ISI-AMR-01 ::preferred
+# ::snt More common chrysotile fibers are curly and are more easily rejected by the body , Dr. Mossman explained .
+# ::save-date Thu Jan 11, 2018 ::file nw_wsj_0003_21.txt
+(e / explain-01
+      :ARG0 (d / doctor :wiki - :name (m / name :op1 "Mossman"))
+      :ARG1 (a / and
+            :op1 (c / curly
+                  :domain (f / fiber
+                        :mod (c2 / chrysotile)
+                        :ARG1-of (h2 / have-degree-91
+                              :ARG2 (c3 / common)
+                              :ARG3 (m2 / more))))
+            :op2 (r / reject-01
+                  :ARG0 (b / body)
+                  :ARG1 f
+                  :ARG1-of (h / have-degree-91
+                        :ARG2 (e2 / easy-05
+                              :ARG1 r)
+                        :ARG3 (m3 / more)))))
+
+# ::id nw.wsj_0003.22 ::date 2012-04-26T08:59:36 ::annotator ISI-AMR-01 ::preferred
+# ::snt In July , the Environmental Protection Agency imposed a gradual ban on virtually all uses of asbestos .
+# ::save-date Mon Feb 15, 2016 ::file nw_wsj_0003_22.txt
+(i / impose-01
+      :ARG0 (g2 / government-organization :wiki "United_States_Environmental_Protection_Agency" :name (e / name :op1 "Environmental" :op2 "Protection" :op3 "Agency"))
+      :ARG1 (b2 / ban-01
+            :ARG1 (u3 / use-01
+                  :ARG1 (a5 / asbestos)
+                  :ARG2 (t2 / thing
+                        :mod (a6 / all
+                              :degree (v3 / virtual))))
+            :manner (g3 / gradual))
+      :time (d / date-entity :month 7))
+
+# ::id nw.wsj_0003.23 ::date 2012-04-26T09:02:21 ::annotator ISI-AMR-01 ::preferred
+# ::snt By 1997 , almost all remaining uses of cancer - causing asbestos will be outlawed .
+# ::save-date Mon Feb 15, 2016 ::file nw_wsj_0003_23.txt
+(o / outlaw-01
+      :ARG1 (u / use-01
+            :ARG1 (a / asbestos
+                  :ARG0-of (c / cause-01
+                        :ARG1 (d2 / disease :wiki "Cancer" :name (n / name :op1 "cancer"))))
+            :ARG2 (t / thing
+                  :ARG1-of (r2 / remain-01)
+                  :mod (a2 / all
+                        :mod (a3 / almost))))
+      :time (b / by
+            :op1 (d / date-entity :year 1997)))
+
+# ::id nw.wsj_0003.24 ::date 2012-05-22T13:36:46 ::annotator ISI-AMR-01 ::preferred
+# ::snt About 160 workers at a factory that made paper for the Kent filters were exposed to asbestos in the 1950s .
+# ::save-date Tue May 29, 2012 ::file nw_wsj_0003_24.txt
+(e / expose-01
+      :ARG1 (p2 / person
+            :ARG0-of (w / work-01
+                  :location (f / factory
+                        :ARG0-of (m / make-01
+                              :ARG1 (p3 / paper
+                                    :purpose (p4 / product :wiki "Kent_(cigarette)"
+                                          :name (k / name :op1 "Kent")
+                                          :ARG0-of (f2 / filter-02))))))
+            :quant (a2 / about :op1 160))
+      :ARG2 (a / asbestos)
+      :time (d / date-entity :decade 1950))
+
+# ::id nw.wsj_0003.25 ::date 2012-04-26T09:26:05 ::annotator ISI-AMR-01 ::preferred
+# ::snt Areas of the factory were particularly dusty where the crocidolite was used .
+# ::save-date Thu Apr 26, 2012 ::file nw_wsj_0003_25.txt
+(d / dusty
+  :domain (a / area
+            :poss (f / factory)
+            :location-of (u / use-01
+                           :ARG1 (c / crocidolite)))
+  :mod (p / particular))
+
+# ::id nw.wsj_0003.26 ::date 2012-05-26T20:23:09 ::annotator ISI-AMR-01 ::preferred
+# ::snt Workers dumped large burlap sacks of the imported material into a huge bin , poured in cotton and acetate fibers and mechanically mixed the dry fibers in a process used to make filters .
+# ::save-date Tue Jul 14, 2015 ::file nw_wsj_0003_26.txt
+(a / and
+      :op1 (d / dump-01
+            :ARG0 (p2 / person
+                  :ARG0-of (w / work-01))
+            :ARG1 (m2 / material
+                  :ARG1-of (i / import-01)
+                  :quant (s / sack
+                        :consist-of (b / burlap)
+                        :mod (l / large)))
+            :destination (b2 / bin
+                  :mod (h / huge)))
+      :op2 (p / pour-01
+            :ARG0 p2
+            :ARG1 (a2 / and
+                  :op1 (f / fiber
+                        :mod (c / cotton))
+                  :op2 (f2 / fiber
+                        :mod (a3 / acetate)))
+            :ARG3 b2)
+      :op3 (m / mix-01
+            :ARG0 p2
+            :ARG1 (f3 / fiber
+                  :ARG1-of (d2 / dry-08))
+            :manner (m3 / mechanical))
+      :prep-in (p3 / process-02
+            :ARG1 m4
+            :ARG1-of (u / use-01
+                  :ARG2 (m4 / make-01
+                        :ARG1 (p4 / product
+                              :ARG0-of (f4 / filter-02))))))
+
+# ::id nw.wsj_0003.27 ::date 2012-05-26T20:23:14 ::annotator ISI-AMR-01 ::preferred
+# ::snt Workers described `` clouds of blue dust '' that hung over parts of the factory , even though exhaust fans ventilated the area .
+# ::save-date Fri May 9, 2014 ::file nw_wsj_0003_27.txt
+(d / describe-01
+      :ARG0 (p / person
+            :ARG0-of (w / work-01))
+      :ARG1 (c3 / cloud
+            :consist-of (d3 / dust
+                  :mod (b2 / blue))
+            :ARG1-of (h / hang-01
+                  :location (o / over
+                        :op1 (t / thing
+                              :part-of (f / factory)))
+                  :concession (v / ventilate-01
+                        :ARG0 (f2 / fan
+                              :mod (e / exhaust))
+                        :ARG1 (a / area)))))
+
+# ::id nw.wsj_0003.28 ::date 2012-04-26T09:36:35 ::annotator ISI-AMR-01 ::preferred
+# ::snt `` There 's no question that some of those workers and managers contracted asbestos - related diseases , '' said Darrell Phillips , vice president of human resources for Hollingsworth & Vose .
+# ::save-date Mon Apr 6, 2015 ::file nw_wsj_0003_28.txt
+(s / say-01
+      :ARG0 (p / person :wiki - :name (d / name :op1 "Darrell" :op2 "Phillips")
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (c2 / company :wiki - :name (h2 / name :op1 "Hollingsworth" :op2 "&" :op3 "Vose"))
+                  :ARG2 (p5 / president
+                        :mod (v / vice)
+                        :topic (r2 / resource
+                              :mod (h3 / human)))))
+      :ARG1 (q / question-03 :polarity -
+            :ARG1 (c / contract-04
+                  :ARG1 (p4 / person
+                        :ARG1-of (i / include-91
+                              :ARG2 (a / and
+                                    :op1 (p2 / person
+                                          :ARG0-of (w / work-01))
+                                    :op2 (p3 / person
+                                          :ARG0-of (m / manage-01))
+                                    :mod (t / that))))
+                  :ARG2 (d2 / disease
+                        :ARG1-of (r / relate-01
+                              :ARG2 (a2 / asbestos))))))
+
+# ::id nw.wsj_0003.29 ::date 2012-05-26T21:50:24 ::annotator ISI-AMR-01 ::preferred
+# ::snt `` But you have to recognize that these events took place 35 years ago .
+# ::save-date Tue Sep 24, 2013 ::file nw_wsj_0003_29.txt
+(c / contrast-01
+      :ARG2 (o / obligate-01
+            :ARG1 y
+            :ARG2 (r / recognize-02
+                  :ARG0 (y / you)
+                  :ARG1 (e / event
+                        :mod (t / this)
+                        :time (b / before
+                              :op1 (n / now)
+                              :quant (t2 / temporal-quantity :quant 35
+                                    :unit (y2 / year)))))))
+
+# ::id nw.wsj_0003.30 ::date 2012-05-26T21:53:07 ::annotator ISI-AMR-01 ::preferred
+# ::snt It has no bearing on our work force today .
+# ::save-date Thu May 31, 2012 ::file nw_wsj_0003_30.txt
+(b / bear-06 :polarity -
+      :ARG1 (i / it)
+      :ARG2 (f / force
+            :ARG0-of (w / work-01)
+            :poss (w2 / we))
+      :time (t / today))
+
+# ::id nw.wsj_0004.1 ::date 2012-04-26T09:46:40 ::annotator ISI-AMR-01 ::preferred
+# ::snt Yields on money - market mutual funds continued to slide , amid signs that portfolio managers expect further declines in interest rates .
+# ::save-date Fri Jun 1, 2012 ::file nw_wsj_0004_1.txt
+(c / continue-01
+      :ARG1 (s / slide-02
+            :ARG1 (t / thing
+                  :ARG1-of (y / yield-03
+                        :ARG0 (f / fund
+                              :mod (m2 / mutual)
+                              :mod (m3 / market
+                                    :mod (m4 / money))))))
+      :prep-amid (s2 / signal-07
+            :ARG1 (e / expect-01
+                  :ARG0 (p / person
+                        :ARG0-of (m / manage-01
+                              :ARG1 (p2 / portfolio)))
+                  :ARG1 (d / decline-01
+                        :ARG1 (r / rate
+                              :mod (i / interest))
+                        :degree (f2 / further)))))
+
+# ::id nw.wsj_0004.2 ::date 2012-04-26T12:38:16 ::annotator ISI-AMR-01 ::preferred
+# ::snt The average seven - day compound yield of the 400 taxable funds tracked by IBC 's Money Fund Report eased a fraction of a percentage point to 8.45 % from 8.47 % for the week ended Tuesday .
+# ::save-date Tue Jul 28, 2015 ::file nw_wsj_0004_2.txt
+(e / ease-01
+      :ARG1 (t5 / thing
+            :ARG1-of (y / yield-03
+                  :ARG0 (f2 / fund :quant 400
+                        :ARG2-of (t3 / tax-01
+                              :ARG2-of (o2 / obligate-01))
+                        :ARG1-of (t2 / track-down-02
+                              :ARG0 (p3 / publication :wiki - :name (m / name :op1 "Money" :op2 "Fund" :op3 "Report")
+                                    :poss (o / organization :wiki "International_Bank_of_Commerce" :name (i / name :op1 "IBC")))))
+                  :mod (t / temporal-quantity :quant 7
+                        :unit (d / day))
+                  :mod (c / compound))
+            :ARG1-of (a / average-01))
+      :ARG2 (f3 / fraction
+            :op1 (p4 / percentage-entity :value 1))
+      :ARG3 (p2 / percentage-entity :value 8.47)
+      :ARG4 (p / percentage-entity :value 8.45)
+      :time (w / week
+            :ARG1-of (e2 / end-01
+                  :time (d2 / date-entity
+                        :weekday (t4 / tuesday)))))
+
+# ::id nw.wsj_0004.3 ::date 2012-04-26T10:03:56 ::annotator ISI-AMR-01 ::preferred
+# ::snt Compound yields assume reinvestment of dividends and that the current yield continues for a year .
+# ::save-date Fri Apr 19, 2013 ::file nw_wsj_0004_3.txt
+(a / assume-02
+      :ARG0 (t2 / thing
+            :ARG1-of (y2 / yield-03
+                  :mod (c / compound)))
+      :ARG1 (a2 / and
+            :op1 (r / reinvest-00
+                  :ARG1 (t3 / thing
+                        :ARG1-of (y3 / yield-03)))
+            :op2 (c2 / continue-01
+                  :ARG1 (t4 / thing
+                        :ARG1-of (y4 / yield-03
+                              :mod (c3 / current)))
+                  :duration (t5 / temporal-quantity :quant 1
+                        :unit (y5 / year)))))
+
+# ::id nw.wsj_0004.4 ::date 2012-04-26T10:05:04 ::annotator ISI-AMR-01 ::preferred
+# ::snt Average maturity of the funds ' investments lengthened by a day to 41 days , the longest since early August , according to Donoghue 's .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0004_4.txt
+(s2 / say-01
+      :ARG0 (c / company :wiki - :name (d3 / name :op1 "Donoghue" :op2 "'s"))
+      :ARG1 (l / lengthen-01
+            :ARG1 (m / maturity
+                  :poss (t3 / thing
+                        :ARG2-of (i / invest-01
+                              :ARG0 (f / fund)))
+                  :ARG1-of (a2 / average-01))
+            :ARG2 (t / temporal-quantity :quant 1
+                  :unit (d / day))
+            :ARG4 (t2 / temporal-quantity :quant 41
+                  :unit (d2 / day)
+                  :ARG1-of (h / have-degree-91
+                        :ARG2 (l2 / long-03
+                              :ARG1 t2)
+                        :ARG3 (m2 / most)
+                        :ARG5 (m3 / maturity
+                              :time (s / since
+                                    :op1 (e2 / early
+                                          :op1 (d4 / date-entity :month 8))))))))
+
+# ::id nw.wsj_0004.5 ::date 2012-04-26T12:56:16 ::annotator ISI-AMR-01 ::preferred
+# ::snt Longer maturities are thought to indicate declining interest rates because they permit portfolio managers to retain relatively higher rates for a longer period .
+# ::save-date Tue Dec 12, 2017 ::file nw_wsj_0004_5.txt
+(t / think-01
+      :ARG1 (i / indicate-01
+            :ARG0 (m / maturity
+                  :ARG1-of (h2 / have-degree-91
+                        :ARG2 (l / long-03
+                              :ARG1 m)
+                        :ARG3 (m2 / more)))
+            :ARG1 (d / decline-01
+                  :ARG1 (r / rate
+                        :mod (i2 / interest)))
+            :ARG1-of (c / cause-01
+                  :ARG0 (p / permit-01
+                        :ARG0 m
+                        :ARG1 (r2 / retain-01
+                              :ARG0 (p2 / person
+                                    :ARG0-of (m3 / manage-01
+                                          :ARG1 (p3 / portfolio)))
+                              :ARG1 (r3 / rate
+                                    :ARG1-of (h3 / have-degree-91
+                                          :ARG2 (h / high-02
+                                                :ARG1 r3
+                                                :ARG2-of (r4 / relative-05))
+                                          :ARG3 (m4 / more)))
+                              :duration (p4 / period
+                                    :ARG1-of (h4 / have-degree-91
+                                          :ARG2 (l2 / long-03
+                                                :ARG1 p4)
+                                          :ARG3 (m5 / more))))))))
+
+# ::id nw.wsj_0004.6 ::date 2012-04-26T13:34:33 ::annotator ISI-AMR-01 ::preferred
+# ::snt Shorter maturities are considered a sign of rising rates because portfolio managers can capture higher rates sooner .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0004_6.txt
+(c / consider-01
+      :ARG1 (s / signal-07
+            :ARG0 (m / maturity
+                  :ARG1-of (h2 / have-degree-91
+                        :ARG2 (s2 / short-07
+                              :ARG1 m)
+                        :ARG3 (m2 / more)))
+            :ARG1 (r / rise-01
+                  :ARG1 (r2 / rate)))
+      :ARG1-of (c3 / cause-01
+            :ARG0 (p / possible-01
+                  :ARG1 (c2 / capture-01
+                        :ARG0 (p2 / person
+                              :ARG0-of (m3 / manage-01
+                                    :ARG1 (p3 / portfolio)))
+                        :ARG1 (r3 / rate
+                              :ARG1-of (h3 / have-degree-91
+                                    :ARG2 (h / high-02
+                                          :ARG1 r3)
+                                    :ARG3 (m4 / more)))
+                        :time (s3 / soon
+                              :ARG2-of (h4 / have-degree-91
+                                    :ARG1 c2
+                                    :ARG3 (m5 / more)))))))
+
+# ::id nw.wsj_0004.7 ::date 2012-04-26T13:38:24 ::annotator ISI-AMR-01 ::preferred
+# ::snt The average maturity for funds open only to institutions , considered by some to be a stronger indicator because those managers watch the market closely , reached a high point for the year -- 33 days .
+# ::save-date Mon Nov 20, 2017 ::file nw_wsj_0004_7.txt
+(r / reach-01
+      :ARG0 (m / maturity
+            :poss (f / fund
+                  :ARG1-of (o / open-01
+                        :ARG3 (i / institution)
+                        :mod (o2 / only)))
+            :ARG1-of (a / average-01)
+            :ARG0-of (i3 / indicate-01
+                  :ARG1-of (c / consider-01
+                        :ARG0 (s / some)
+                        :ARG1-of (c3 / cause-01
+                              :ARG0 (w / watch-01
+                                    :ARG0 (p2 / person
+                                          :ARG0-of (m3 / manage-01)
+                                          :mod (t2 / that))
+                                    :ARG1 (m4 / market)
+                                    :manner (c2 / close-10))))
+                  :ARG1-of (h2 / have-degree-91
+                        :ARG2 (s2 / strong-02
+                              :ARG1 i3)
+                        :ARG3 (m2 / more))))
+      :ARG1 (t / temporal-quantity :quant 33
+            :unit (d / day)
+            :domain (p / point
+                  :ARG1-of (h / high-02)
+                  :prep-for (y / year))))
+
+# ::id nw.wsj_0004.8 ::date 2012-04-26T13:50:20 ::annotator ISI-AMR-01 ::preferred
+# ::snt Nevertheless , said Brenda Malizia Negus , editor of Money Fund Report , yields `` may blip up again before they blip down '' because of recent rises in short - term interest rates .
+# ::save-date Sat Jan 30, 2016 ::file nw_wsj_0004_8.txt
+(s / say-01
+      :ARG0 (p3 / person :wiki - :name (b / name :op1 "Brenda" :op2 "Malizia" :op3 "Negus")
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG1 (p2 / publication :wiki - :name (m / name :op1 "Money" :op2 "Fund" :op3 "Report"))
+                  :ARG2 (e / editor)))
+      :ARG1 (p / possible-01
+            :ARG1 (b2 / blip-00
+                  :ARG1 (t / thing
+                        :ARG1-of (y2 / yield-03))
+                  :mod (a / again)
+                  :time (b3 / before
+                        :op1 (b4 / blip-00
+                              :ARG1 t
+                              :direction (d / down)))
+                  :direction (u / up)
+                  :ARG1-of (c / cause-01
+                        :ARG0 (r / rise-01
+                              :ARG1 (r2 / rate
+                                    :mod (i / interest)
+                                    :duration (s2 / short-07))
+                              :time (r3 / recent))))
+            :ARG1-of (h / have-concession-91)))
+
+# ::id nw.wsj_0004.9 ::date 2012-04-26T13:54:15 ::annotator ISI-AMR-01 ::preferred
+# ::snt The yield on six - month Treasury bills sold at Monday 's auction , for example , rose to 8.04 % from 7.90 % .
+# ::save-date Mon Feb 24, 2014 ::file nw_wsj_0004_9.txt
+(r / rise-01
+      :ARG1 (t3 / thing
+            :ARG1-of (y2 / yield-03
+                  :ARG0 (b / bill
+                        :mod (g / government-organization :wiki "United_States_Department_of_the_Treasury"
+                              :name (t2 / name :op1 "Treasury"))
+                        :mod (t / temporal-quantity :quant 6
+                              :unit (m / month))
+                        :ARG1-of (a / auction-02
+                              :time (d / date-entity
+                                    :weekday (m2 / monday))))))
+      :ARG3 (p2 / percentage-entity :value 7.90)
+      :ARG4 (p / percentage-entity :value 8.04)
+      :ARG0-of (e / exemplify-01))
+
+# ::id nw.wsj_0004.10 ::date 2012-04-26T13:57:54 ::annotator ISI-AMR-01 ::preferred
+# ::snt Despite recent declines in yields , investors continue to pour cash into money funds .
+# ::save-date Tue Jul 3, 2012 ::file nw_wsj_0004_10.txt
+(c2 / continue-01
+      :ARG0 (p2 / person
+            :ARG0-of (i / invest-01))
+      :ARG1 (p / pour-01
+            :ARG0 p2
+            :ARG1 (c / cash)
+            :ARG3 (f / fund
+                  :mod (m / money)))
+      :concession (d / decline-01
+            :ARG1 (t / thing
+                  :ARG1-of (y2 / yield-03))
+            :time (r / recent)))
+
+# ::id nw.wsj_0004.11 ::date 2012-04-26T14:01:32 ::annotator ISI-AMR-01 ::preferred
+# ::snt Assets of the 400 taxable funds grew by $ 1.5 billion during the latest week , to $ 352.7 billion .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0004_11.txt
+(g / grow-01
+      :ARG1 (a / asset
+            :poss (f / fund :quant 400
+                  :ARG3-of (t / tax-01)))
+      :ARG2 (m / monetary-quantity :quant 1500000000
+            :unit (d / dollar))
+      :ARG4 (m2 / monetary-quantity :quant 352700000000
+            :unit (d2 / dollar))
+      :time (w / week
+            :mod (l / last)))
+
+# ::id nw.wsj_0004.12 ::date 2012-04-26T14:03:52 ::annotator ISI-AMR-01 ::preferred
+# ::snt Typically , money - fund yields beat comparable short - term investments because portfolio managers can vary maturities and go after the highest rates .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0004_12.txt
+(b / beat-03
+      :ARG0 (t3 / thing
+            :ARG1-of (y2 / yield-03
+                  :ARG0 (f / fund
+                        :mod (m5 / money))))
+      :ARG1 (t / thing
+            :ARG1-of (i / invest-01
+                  :duration (s / short-07))
+            :ARG2-of (c2 / comparable-03
+                  :ARG1 t3))
+      :ARG1-of (t2 / typical-02)
+      :ARG1-of (c / cause-01
+            :ARG0 (p / possible-01
+                  :ARG1 (a / and
+                        :op1 (v / vary-01
+                              :ARG0 (p2 / person
+                                    :ARG0-of (m / manage-01
+                                          :ARG1 (p3 / portfolio)))
+                              :ARG1 (m2 / maturity))
+                        :op2 (g / go-03
+                              :ARG0 p2
+                              :ARG1 (r / rate
+                                    :ARG1-of (h2 / have-degree-91
+                                          :ARG2 (h / high-02
+                                                :ARG1 r)
+                                          :ARG3 (m3 / most))))))))
+
+# ::id nw.wsj_0004.13 ::date 2012-04-26T14:10:07 ::annotator ISI-AMR-01 ::preferred
+# ::snt The top money funds are currently yielding well over 9 % .
+# ::save-date Fri May 16, 2014 ::file nw_wsj_0004_13.txt
+(y / yield-03
+      :ARG0 (f / fund
+            :mod (t / top)
+            :mod (m / money))
+      :ARG1 (o / over
+            :op1 (p / percentage-entity :value 9)
+            :degree (w / well))
+      :time (c / current))
+
+# ::id nw.wsj_0004.14 ::date 2012-04-26T14:11:49 ::annotator ISI-AMR-01 ::preferred
+# ::snt Dreyfus World - Wide Dollar , the top - yielding fund , had a seven - day compound yield of 9.37 % during the latest week , down from 9.45 % a week earlier .
+# ::save-date Wed Sep 13, 2017 ::file nw_wsj_0004_14.txt
+(y3 / yield-03
+      :ARG0 (f / fund :wiki - :name (n / name :op1 "Dreyfus" :op2 "World-Wide" :op3 "Dollar")
+            :ARG0-of (y2 / yield-03
+                  :mod (t2 / top)))
+      :ARG1 (p / percentage-entity :value 9.37
+            :ARG4-of (d2 / decrease-01
+                  :ARG3 (p2 / percentage-entity :value 9.45
+                        :time (b / before
+                              :op1 w
+                              :quant (t3 / temporal-quantity :quant 1
+                                    :unit (w2 / week))))))
+      :time (w / week
+            :mod (l / last))
+      :mod (t / temporal-quantity :quant 7
+            :unit (d / day))
+      :mod (c2 / compound))
+
+# ::id nw.wsj_0004.15 ::date 2012-04-26T14:12:35 ::annotator ISI-AMR-01 ::preferred
+# ::snt It invests heavily in dollar - denominated securities overseas and is currently waiving management fees , which boosts its yield .
+# ::save-date Tue Jun 12, 2012 ::file nw_wsj_0004_15.txt
+(a / and
+  :op1 (i / invest-01
+         :ARG0 (i3 / it)
+         :ARG2 (s / security
+                 :ARG1-of (d / denominate-01
+                            :ARG2 (d2 / dollar))
+                 :location (o / overseas))
+         :manner (h / heavy))
+  :op2 (w / waive-01
+         :ARG0 i3
+         :ARG1 (f / fee
+                 :mod (m / manage-01))
+         :ARG0-of (b2 / boost-01
+                    :ARG1 (t / thing
+                            :ARG1-of (y / yield-03
+                                       :ARG0 i3)))
+         :time (c / current)))
+
+# ::id nw.wsj_0004.16 ::date 2012-04-26T14:50:06 ::annotator ISI-AMR-01 ::preferred
+# ::snt The average seven - day simple yield of the 400 funds was 8.12 % , down from 8.14 % .
+# ::save-date Sun Jul 26, 2015 ::file nw_wsj_0004_16.txt
+(y / yield-03
+      :ARG0 (f / fund :quant 400)
+      :ARG1 (p2 / percentage-entity :value 8.12
+            :ARG4-of (d2 / decrease-01
+                  :ARG3 (p / percentage-entity :value 8.14)))
+      :mod (t / temporal-quantity :quant 7
+            :unit (d / day))
+      :ARG1-of (s / simple-02)
+      :ARG1-of (a2 / average-01))
+
+# ::id nw.wsj_0004.17 ::date 2012-04-26T14:51:21 ::annotator ISI-AMR-01 ::preferred
+# ::snt The 30 - day simple yield fell to an average 8.19 % from 8.22 % ; the 30 - day compound yield slid to an average 8.53 % from 8.56 % .
+# ::save-date Sun Jul 26, 2015 ::file nw_wsj_0004_17.txt
+(a / and
+      :op1 (f / fall-01
+            :ARG1 (t3 / thing
+                  :ARG1-of (y / yield-03
+                        :mod (t / temporal-quantity :quant 30
+                              :unit (d / day))
+                        :ARG1-of (s2 / simple-02)))
+            :ARG3 (p2 / percentage-entity :value 8.22)
+            :ARG4 (p / percentage-entity :value 8.19
+                  :ARG2-of (a4 / average-01)))
+      :op2 (s / slide-02
+            :ARG1 (t4 / thing
+                  :ARG1-of (y2 / yield-03
+                        :mod (t2 / temporal-quantity :quant 30
+                              :unit (d2 / day))
+                        :mod (c / compound)))
+            :ARG3 (p4 / percentage-entity :value 8.56)
+            :ARG4 (p3 / percentage-entity :value 8.53
+                  :ARG2-of (a2 / average-01))))
+
+# ::id nw.wsj_0005.1 ::date 2012-04-26T14:57:32 ::annotator ISI-AMR-01 ::preferred
+# ::snt J.P. Bolduc , vice chairman of W.R. Grace & Co. , which holds a 83.4 % interest in this energy - services company , was elected a director .
+# ::save-date Tue Sep 17, 2013 ::file nw_wsj_0005_1.txt
+(e / elect-01
+      :ARG1 (p / person :wiki -
+            :name (j / name :op1 "J.P." :op2 "Bolduc")
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG1 (c / company :wiki "W._R._Grace_and_Company"
+                        :name (w / name :op1 "W.R." :op2 "Grace" :op3 "&" :op4 "Co.")
+                        :ARG0-of (h / hold-01
+                              :ARG1 (i / interest
+                                    :quant (p2 / percentage-entity :value 83.4)
+                                    :prep-in (c3 / company
+                                          :mod (t / this)
+                                          :mod (s / service
+                                                :mod (e3 / energy))))))
+                  :ARG2 (c2 / chairman
+                        :mod (v / vice))))
+      :ARG2 (d / director
+            :ARG2-of (h3 / have-org-role-91
+                  :ARG0 p)))
+
+# ::id nw.wsj_0005.2 ::date 2012-04-26T15:06:47 ::annotator ISI-AMR-01 ::preferred
+# ::snt He succeeds Terrence D. Daniels , formerly a W.R. Grace vice chairman , who resigned .
+# ::save-date Fri Sep 13, 2013 ::file nw_wsj_0005_2.txt
+(s / succeed-02
+      :ARG0 (h / he)
+      :ARG1 (p / person :wiki -
+            :name (t / name :op1 "Terrence" :op2 "D." :op3 "Daniels")
+            :ARG0-of (r / resign-01
+                  :ARG1 c2)
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG1 (c / company :wiki "W._R._Grace_and_Company"
+                        :name (w / name :op1 "W.R." :op2 "Grace"))
+                  :ARG2 (c2 / chairman
+                        :mod (v / vice))
+                  :time (f / former))))
+
+# ::id nw.wsj_0005.3 ::date 2012-04-26T15:10:19 ::annotator ISI-AMR-01 ::preferred
+# ::snt W.R. Grace holds three of Grace Energy 's seven board seats .
+# ::save-date Thu Jun 14, 2012 ::file nw_wsj_0005_3.txt
+(h / hold-01
+      :ARG0 (c / company :wiki "W._R._Grace_and_Company"
+            :name (w / name :op1 "W.R." :op2 "Grace"))
+      :ARG1 (s3 / seat :quant 3
+            :ARG1-of (i / include-91
+                  :ARG2 (s4 / seat :quant 7
+                        :mod (b / board)
+                        :poss (c2 / company :wiki -
+                              :name (g / name :op1 "Grace" :op2 "Energy"))))))
+
+# ::id nw.wsj_0007.1 ::date 2012-04-26T15:12:03 ::annotator ISI-AMR-01 ::preferred
+# ::snt McDermott International Inc. said its Babcock & Wilcox unit completed the sale of its Bailey Controls Operations to Finmeccanica S.p . A. for $ 295 million .
+# ::save-date Mon Jul 30, 2012 ::file nw_wsj_0007_1.txt
+(s / say-01
+      :ARG0 (c / company :wiki "McDermott_International"
+            :name (m / name :op1 "McDermott" :op2 "International" :op3 "Inc."))
+      :ARG1 (c2 / complete-01
+            :ARG0 (u / unit :wiki "Babcock_&_Wilcox"
+                  :name (b / name :op1 "Babcock" :op2 "&" :op3 "Wilcox")
+                  :part-of c)
+            :ARG1 (s2 / sell-01
+                  :ARG0 u
+                  :ARG1 (o / organization :wiki -
+                        :name (b2 / name :op1 "Bailey" :op2 "Controls" :op3 "Operations")
+                        :part-of u)
+                  :ARG2 (c4 / company :wiki "Leonardo_S.p.A."
+                        :name (f / name :op1 "Finmeccanica" :op2 "S.p.A."))
+                  :ARG3 (m2 / monetary-quantity :quant 295000000
+                        :unit (d / dollar)))))
+
+# ::id nw.wsj_0007.2 ::date 2012-04-26T15:34:55 ::annotator ISI-AMR-01 ::preferred
+# ::snt Finmeccanica is an Italian state - owned holding company with interests in the mechanical engineering industry .
+# ::save-date Thu Jun 14, 2012 ::file nw_wsj_0007_2.txt
+(c3 / company :wiki "Leonardo_S.p.A."
+      :name (n2 / name :op1 "Finmeccanica")
+      :ARG1-of (o / own-01
+            :ARG0 (s2 / state))
+      :prep-with (i2 / interest
+            :prep-in (i3 / industry
+                  :mod (e / engineering
+                        :mod (m / mechanics))))
+      :mod (c / country :wiki "Italy"
+            :name (i / name :op1 "Italy"))
+      :mod (h / holding))
+
+# ::id nw.wsj_0007.3 ::date 2012-04-26T15:39:30 ::annotator ISI-AMR-01 ::preferred
+# ::snt Bailey Controls , based in Wickliffe , Ohio , makes computerized industrial controls systems .
+# ::save-date Fri Jun 15, 2012 ::file nw_wsj_0007_3.txt
+(m / make-01
+      :ARG0 (c4 / company :wiki -
+            :name (b / name :op1 "Bailey" :op2 "Controls")
+            :ARG1-of (b2 / base-01
+                  :location (c / city :wiki "Wickliffe,_Ohio"
+                        :name (w / name :op1 "Wickliffe")
+                        :location (s / state :wiki "Ohio"
+                              :name (o2 / name :op1 "Ohio")))))
+      :ARG1 (s2 / system
+            :ARG1-of (c2 / computerize-01)
+            :mod (i / industry)
+            :ARG2-of (c3 / control-01)))
+
+# ::id nw.wsj_0007.4 ::date 2012-04-26T15:41:33 ::annotator ISI-AMR-01 ::preferred
+# ::snt It employs 2,700 people and has annual revenue of about $ 370 million .
+# ::save-date Mon Sep 9, 2013 ::file nw_wsj_0007_4.txt
+(a2 / and
+      :op1 (e / employ-01
+            :ARG0 (i / it)
+            :ARG1 (p / person :quant 2700))
+      :op2 (h2 / have-03
+            :ARG0 i
+            :ARG1 (r / revenue
+                  :quant (r2 / rate-entity-91
+                        :ARG1 (a / about
+                              :op1 (m / monetary-quantity :quant 370000000
+                                    :unit (d / dollar)))
+                        :ARG2 (t / temporal-quantity :quant 1
+                              :unit (y / year))))))
+
+# ::id nw.wsj_0008.1 ::date 2012-04-26T15:45:26 ::annotator ISI-AMR-01 ::preferred
+# ::snt The federal government suspended sales of U.S. savings bonds because Congress has n't lifted the ceiling on government debt .
+# ::save-date Fri Jun 15, 2012 ::file nw_wsj_0008_1.txt
+(s / suspend-01
+      :ARG0 (g4 / government-organization
+            :ARG0-of (g / govern-01)
+            :mod (f / federal))
+      :ARG1 (s2 / sell-01
+            :ARG1 (b / bond
+                  :mod (s3 / savings)
+                  :mod (c3 / country :wiki "United_States"
+                        :name (n / name :op1 "U.S."))))
+      :ARG1-of (c / cause-01
+            :ARG0 (l / lift-01 :polarity -
+                  :ARG0 (g3 / government-organization :wiki "United_States_Congress"
+                        :name (n2 / name :op1 "Congress"))
+                  :ARG1 (c4 / ceiling
+                        :prep-on (d / debt
+                              :mod (g5 / government-organization
+                                    :ARG0-of (g2 / govern-01)))))))
+
+# ::id nw.wsj_0008.2 ::date 2012-05-09T07:55:11 ::annotator ISI-AMR-01 ::preferred
+# ::snt Until Congress acts , the government has n't any authority to issue new debt obligations of any kind , the Treasury said .
+# ::save-date Wed Nov 4, 2015 ::file nw_wsj_0008_2.txt
+(s / say-01
+      :ARG0 (g3 / government-organization :wiki "United_States_Department_of_the_Treasury" :name (t / name :op1 "Treasury"))
+      :ARG1 (a / authorize-01 :polarity -
+            :ARG1 (i / issue-01
+                  :ARG0 g4
+                  :ARG1 (o2 / obligation
+                        :mod (d / debt)
+                        :ARG1-of (n / new-01)
+                        :mod (k / kind
+                              :mod (a3 / any))))
+            :ARG2 (g4 / government-organization
+                  :ARG0-of (g / govern-01))
+            :time (u / until
+                  :op1 (a2 / act-02
+                        :ARG0 (g2 / government-organization :wiki "United_States_Congress" :name (c / name :op1 "Congress"))))))
+
+# ::id nw.wsj_0008.3 ::date 2012-06-06T21:41:46 ::annotator ISI-AMR-01 ::preferred
+# ::snt The government 's borrowing authority dropped at midnight Tuesday to $ 2.80 trillion from $ 2.87 trillion .
+# ::save-date Sat May 25, 2013 ::file nw_wsj_0008_3.txt
+(d4 / drop-01
+      :ARG1 (t / thing
+            :ARG1-of (b / borrow-01
+                  :ARG0 g
+                  :ARG1-of (a / authorize-01
+                        :ARG2 (g / government-organization
+                              :ARG0-of (g2 / govern-01)))))
+      :ARG3 (m2 / monetary-quantity :quant 2870000000000
+            :unit (d3 / dollar))
+      :ARG4 (m / monetary-quantity :quant 2800000000000
+            :unit (d2 / dollar))
+      :time (d / date-entity :time "0:00"
+            :weekday (w / wednesday)))
+
+# ::id nw.wsj_0008.4 ::date 2012-05-09T08:21:34 ::annotator ISI-AMR-01 ::preferred
+# ::snt Legislation to lift the debt ceiling is ensnarled in the fight over cutting capital - gains taxes .
+# ::save-date Wed Jun 20, 2012 ::file nw_wsj_0008_4.txt
+(e / ensnarl-01
+      :ARG1 (l / legislate-01
+            :ARG1 (l2 / lift-01
+                  :ARG1 (c / ceiling
+                        :mod (d / debt))))
+      :ARG2 (f / fight-01
+            :ARG2 (c2 / cut-02
+                  :ARG1 (t2 / thing
+                        :ARG1-of (t / tax-01
+                              :ARG3 (t3 / thing
+                                    :ARG1-of (g3 / gain-02
+                                          :mod (c5 / capital))))))))
+
+# ::id nw.wsj_0008.5 ::date 2012-06-10T18:46:10 ::annotator ISI-AMR-01 ::preferred
+# ::snt The House has voted to raise the ceiling to $ 3.1 trillion , but the Senate is n't expected to act until next week at the earliest .
+# ::save-date Wed Nov 28, 2012 ::file nw_wsj_0008_5.txt
+(c2 / contrast-01
+      :ARG1 (v / vote-01
+            :ARG0 (g / government-organization :wiki "United_States_House_of_Representatives"
+                  :name (n / name :op1 "House"))
+            :ARG1 (r / raise-01
+                  :ARG1 (c / ceiling)
+                  :ARG4 (m / monetary-quantity :quant 3100000000000
+                        :unit (d / dollar))))
+      :ARG2 (e / expect-01
+            :ARG1 (a / act-02 :polarity -
+                  :ARG0 (g2 / government-organization :wiki "United_States_Senate"
+                        :name (n2 / name :op1 "Senate"))
+                  :time (b2 / before
+                        :op1 (w / week
+                              :mod (n3 / next))))))
+
+# ::id nw.wsj_0008.6 ::date 2012-06-10T19:04:13 ::annotator ISI-AMR-01 ::preferred
+# ::snt The Treasury said the U.S. will default on Nov. 9 if Congress does n't act by then .
+# ::save-date Mon Jun 18, 2012 ::file nw_wsj_0008_6.txt
+(s / say-01
+      :ARG0 (g / government-organization :wiki "United_States_Department_of_the_Treasury"
+            :name (n / name :op1 "Treasury"))
+      :ARG1 (d2 / default-01
+            :ARG1 (c / country :wiki "United_States"
+                  :name (u / name :op1 "U.S."))
+            :time (d / date-entity :month 11 :day 9)
+            :condition (a / act-02 :polarity -
+                  :ARG0 (g2 / government-organization :wiki "United_States_Congress"
+                        :name (n2 / name :op1 "Congress"))
+                  :time (b / by
+                        :op1 d))))
+
+# ::id nw.wsj_0009.1 ::date 2012-06-10T19:09:38 ::annotator ISI-AMR-01 ::preferred
+# ::snt Clark J. Vitulli was named senior vice president and general manager of this U.S. sales and marketing arm of Japanese auto maker Mazda Motor Corp .
+# ::save-date Tue Sep 17, 2013 ::file nw_wsj_0009_1.txt
+(n / name-03
+      :ARG1 (p / person :wiki -
+            :name (c / name :op1 "Clark" :op2 "J." :op3 "Vitulli"))
+      :ARG2 (a / and
+            :op1 (p2 / president
+                  :mod (v / vice)
+                  :mod (s / senior))
+            :op2 (p3 / person
+                  :ARG0-of (m2 / manage-01
+                        :ARG1 a2)
+                  :mod (g / general))
+            :ARG2-of (h / have-org-role-91
+                  :ARG0 p
+                  :ARG1 (a2 / arm
+                        :mod (t / this)
+                        :part-of (c4 / company :wiki "Mazda"
+                              :name (m / name :op1 "Mazda" :op2 "Motor" :op3 "Corp")
+                              :mod (c3 / country :wiki "Japan"
+                                    :name (j / name :op1 "Japan"))
+                              :ARG0-of (m4 / make-01
+                                    :ARG1 (a4 / auto)))
+                        :mod (c2 / country :wiki "United_States"
+                              :name (u / name :op1 "U.S."))
+                        :ARG0-of (s2 / sell-01)
+                        :ARG0-of (m3 / market-01)))))
+
+# ::id nw.wsj_0009.2 ::date 2012-06-19T09:49:13 ::annotator ISI-AMR-01 ::preferred
+# ::snt In the new position he will oversee Mazda 's U.S. sales , service , parts and marketing operations .
+# ::save-date Mon Feb 1, 2016 ::file nw_wsj_0009_2.txt
+(o2 / oversee-01
+      :ARG0 (h / he)
+      :ARG1 (a / and
+            :op1 (o / operation
+                  :ARG0-of (s / sell-01))
+            :op2 (o4 / operation
+                  :mod (s2 / service-05))
+            :op3 (o5 / operation
+                  :mod (p / part))
+            :op4 (o6 / operation
+                  :ARG0-of (m2 / market-01))
+            :poss (c2 / company :wiki "Mazda" :name (m / name :op1 "Mazda"))
+            :mod (c3 / country :wiki "United_States" :name (n / name :op1 "U.S.")))
+      :ARG3-of (h2 / have-org-role-91
+            :ARG0 h
+            :ARG2 (p2 / position
+                  :ARG1-of (n2 / new-02
+                        :ARG2 h))))
+
+# ::id nw.wsj_0009.3 ::date 2012-06-10T19:24:46 ::annotator ISI-AMR-01 ::preferred
+# ::snt Previously , Mr. Vitulli , 43 years old , was general marketing manager of Chrysler Corp. 's Chrysler division .
+# ::save-date Fri Sep 13, 2013 ::file nw_wsj_0009_3.txt
+(p / person :wiki -
+      :name (m / name :op1 "Mr." :op2 "Vitulli")
+      :ARG0-of (h / have-org-role-91
+            :ARG1 (d / division :wiki "Chrysler"
+                  :name (c3 / name :op1 "Chrysler")
+                  :part-of (c / company :wiki "Chrysler"
+                        :name (c2 / name :op1 "Chrysler" :op2 "Corp.")))
+            :ARG3 (m2 / manage-01
+                  :ARG0 p
+                  :ARG1 (m3 / market-01)
+                  :mod (g / general))
+            :time (p3 / previous))
+      :age (t / temporal-quantity :quant 43
+            :unit (y / year)))
+
+# ::id nw.wsj_0009.4 ::date 2012-06-10T19:32:03 ::annotator ISI-AMR-01 ::preferred
+# ::snt He had been a sales and marketing executive with Chrysler for 20 years .
+# ::save-date Mon Sep 23, 2013 ::file nw_wsj_0009_4.txt
+(h / have-org-role-91
+      :ARG0 (h2 / he)
+      :ARG1 (c / company :wiki "Chrysler"
+            :name (n / name :op1 "Chrysler"))
+      :ARG2 (e / executive
+            :topic (a / and
+                  :op1 (s / sell-01)
+                  :op2 (m / market-01)))
+      :duration (t / temporal-quantity :quant 20
+            :unit (y / year)))
+
+# ::id nw.wsj_0010.1 ::date 2012-05-13T20:10:19 ::annotator ISI-AMR-01 ::preferred
+# ::snt When it 's time for their biannual powwow , the nation 's manufacturing titans typically jet off to the sunny confines of resort towns like Boca Raton and Hot Springs .
+# ::save-date Thu Jan 11, 2018 ::file nw_wsj_0010_1.txt
+(j / jet-off-01
+      :ARG1 (t / titan
+            :ARG0-of (m / manufacture-01)
+            :mod (n / nation))
+      :ARG2 (t3 / town
+            :mod (r / resort)
+            :example (a / and
+                  :op1 (c2 / city :wiki "Boca_Raton,_Florida" :name (b / name :op1 "Boca" :op2 "Raton"))
+                  :op2 (c3 / city :wiki "Hot_Springs,_Arkansas" :name (h / name :op1 "Hot" :op2 "Springs")))
+            :ARG2-of (c / confine-01
+                  :mod (s / sunny)))
+      :ARG1-of (t2 / typical-02)
+      :time (p / powwow
+            :poss t
+            :frequency (r2 / rate-entity-91
+                  :ARG1 2
+                  :ARG2 (t4 / temporal-quantity :quant 1
+                        :unit (y / year)))))
+
+# ::id nw.wsj_0010.2 ::date 2012-06-19T10:30:38 ::annotator ISI-AMR-01 ::preferred
+# ::snt Not this year .
+# ::save-date Tue Jun 19, 2012 ::file nw_wsj_0010_2.txt
+(y / year
+  :mod (t / this)
+  :polarity -)
+
+# ::id nw.wsj_0010.3 ::date 2012-05-13T20:15:28 ::annotator ISI-AMR-01 ::preferred
+# ::snt The National Association of Manufacturers settled on the Hoosier capital of Indianapolis for its fall board meeting .
+# ::save-date Wed Apr 16, 2014 ::file nw_wsj_0010_3.txt
+(s / settle-01
+      :ARG0 (o / organization :wiki "National_Association_of_Manufacturers" :name (n / name :op1 "National" :op2 "Association" :op3 "of" :op4 "Manufacturers"))
+      :ARG1 (m / meet-03
+            :ARG0 (b / board
+                  :part-of o)
+            :time (d / date-entity
+                  :season (f / fall))
+            :location (c / city :wiki "Indianapolis" :name (i / name :op1 "Indianapolis")
+                  :ARG0-of (h / have-org-role-91
+                        :ARG1 (s2 / state :wiki "Indiana" :name (n3 / name :op1 "Indiana"))
+                        :ARG2 (c2 / capital)))))
+
+# ::id nw.wsj_0010.4 ::date 2012-05-13T20:21:56 ::annotator ISI-AMR-01 ::preferred
+# ::snt And the city decided to treat its guests more like royalty or rock stars than factory owners .
+# ::save-date Mon Sep 11, 2017 ::file nw_wsj_0010_4.txt
+(a / and
+      :op2 (d / decide-01
+            :ARG0 (c / city)
+            :ARG1 (h / have-degree-of-resemblance-91
+                  :ARG1 (t / treat-01
+                        :ARG0 c
+                        :ARG1 (g / guest
+                              :poss c))
+                  :ARG2 (t2 / treat-01
+                        :ARG1 (o / or
+                              :op1 (r / royalty)
+                              :op2 (s / star
+                                    :mod (r2 / rock))))
+                  :ARG3 (t3 / treat-01
+                        :ARG1 (p / person
+                              :ARG0-of (o2 / own-01
+                                    :ARG1 (f / factory))))
+                  :ARG4 (m / more))))
+
+# ::id nw.wsj_0010.5 ::date 2012-05-13T20:24:37 ::annotator ISI-AMR-01 ::preferred
+# ::snt The idea , of course : to prove to 125 corporate decision makers that the buckle on the Rust Belt is n't so rusty after all , that it 's a good place for a company to expand .
+# ::save-date Mon Dec 18, 2017 ::file nw_wsj_0010_5.txt
+(p / prove-01
+      :ARG1 (a / and
+            :op1 (r2 / rust-01 :polarity -
+                  :ARG1 (b / buckle
+                        :location (c4 / country-region :wiki "Rust_Belt" :name (r / name :op1 "Rust" :op2 "Belt")))
+                  :mod (a2 / after-all)
+                  :degree (s / so))
+            :op2 (p3 / place
+                  :ARG1-of (h / have-degree-91
+                        :ARG2 (g / good-02)
+                        :ARG3 (s2 / so)
+                        :ARG6 (e / expand-01
+                              :ARG1 (c2 / company)))
+                  :domain c4))
+      :ARG2 (p2 / person :quant 125
+            :ARG0-of (d / decide-01)
+            :mod (c3 / corporation))
+      :domain (i / idea)
+      :mod (o / of-course))
+
+# ::id nw.wsj_0010.6 ::date 2012-05-14T17:00:10 ::annotator ISI-AMR-01 ::preferred
+# ::snt On the receiving end of the message were officials from giants like Du Pont and Maytag , along with lesser knowns like Trojan Steel and the Valley Queen Cheese Factory .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0010_6.txt
+(r / receive-01
+      :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (a3 / and
+                        :op1 (g / giant
+                              :example (a / and
+                                    :op1 (c / company :wiki "DuPont" :name (d / name :op1 "Du" :op2 "Pont"))
+                                    :op2 (c2 / company :wiki "Maytag" :name (m / name :op1 "Maytag"))))
+                        :op2 (c5 / company
+                              :ARG1-of (h2 / have-degree-91
+                                    :ARG2 (k / know-02
+                                          :ARG1 c5)
+                                    :ARG3 (l / less))
+                              :example (a2 / and
+                                    :op1 (c3 / company :wiki - :name (t / name :op1 "Trojan" :op2 "Steel"))
+                                    :op2 (c4 / company :wiki - :name (v / name :op1 "Valley" :op2 "Queen" :op3 "Cheese" :op4 "Factory")))))
+                  :ARG2 (o5 / official)))
+      :ARG1 (t2 / thing
+            :ARG1-of (m3 / message-01)))
+
+# ::id nw.wsj_0010.7 ::date 2012-05-15T08:30:14 ::annotator ISI-AMR-01 ::preferred
+# ::snt For starters , the executives joined Mayor William H. Hudnut III for an evening of the Indianapolis Symphony Orchestra and a guest pianist - comedian Victor Borge .
+# ::save-date Mon Dec 18, 2017 ::file nw_wsj_0010_7.txt
+(j / join-04
+      :ARG0 (p6 / person
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG2 (e / executive)))
+      :ARG1 (p5 / person :wiki "William_H._Hudnut_III" :name (w / name :op1 "William" :op2 "H." :op3 "Hudnut" :op4 "III")
+            :ARG0-of (h / have-org-role-91
+                  :ARG2 (m / mayor)))
+      :ARG2 (e2 / evening
+            :poss (a / and
+                  :op1 (o / organization :wiki "Indianapolis_Symphony_Orchestra" :name (i / name :op1 "Indianapolis" :op2 "Symphony" :op3 "Orchestra"))
+                  :op2 (p2 / person :wiki "Victor_Borge" :name (v / name :op1 "Victor" :op2 "Borge")
+                        :mod (p / person
+                              :ARG0-of (p3 / play-11
+                                    :ARG2 (p4 / piano)))
+                        :mod (c2 / comedian)
+                        :mod (g / guest))))
+      :prep-for (s / starter))
+
+# ::id nw.wsj_0010.8 ::date 2012-05-15T08:35:10 ::annotator ISI-AMR-01 ::preferred
+# ::snt Champagne and dessert followed .
+# ::save-date Tue May 15, 2012 ::file nw_wsj_0010_8.txt
+(f / follow-01
+  :ARG1 (a / and
+          :op1 (c / champagne)
+          :op2 (d / dessert)))
+
+# ::id nw.wsj_0010.9 ::date 2012-05-15T08:35:40 ::annotator ISI-AMR-01 ::preferred
+# ::snt The next morning , with a police escort , busloads of executives and their wives raced to the Indianapolis Motor Speedway , unimpeded by traffic or red lights .
+# ::save-date Mon Jul 13, 2015 ::file nw_wsj_0010_9.txt
+(r / race-01
+      :ARG0 (a / and
+            :op1 (p2 / person
+                  :ARG0-of (h / have-org-role-91
+                        :ARG2 (e / executive)))
+            :op2 (p3 / person
+                  :ARG0-of (h2 / have-rel-role-91
+                        :ARG1 p2
+                        :ARG2 (w / wife)))
+            :quant (b / busload)
+            :ARG1-of (e2 / escort-01
+                  :ARG0 (p / police)
+                  :ARG4 s))
+      :ARG2 (s / sports-facility :wiki "Indianapolis_Motor_Speedway" :name (i / name :op1 "Indianapolis" :op2 "Motor" :op3 "Speedway"))
+      :ARG1-of (i2 / impede-01 :polarity -
+            :ARG0 (o / or
+                  :op1 (t / traffic)
+                  :op2 (l / light
+                        :ARG1-of (r2 / red-02))))
+      :time (d / date-entity
+            :dayperiod (m2 / morning)
+            :mod (n2 / next)))
+
+# ::id nw.wsj_0010.10 ::date 2012-05-15T08:40:22 ::annotator ISI-AMR-01 ::preferred
+# ::snt The governor could n't make it , so the lieutenant governor welcomed the special guests .
+# ::save-date Fri Jul 24, 2015 ::file nw_wsj_0010_10.txt
+(p / possible-01 :polarity -
+      :ARG1 (m / make-it-14
+            :ARG0 (p2 / person
+                  :ARG0-of (h / have-org-role-91
+                        :ARG2 (g3 / governor))))
+      :ARG0-of (c2 / cause-01
+            :ARG1 (w / welcome-01
+                  :ARG0 (p3 / person
+                        :ARG0-of (h2 / have-org-role-91
+                              :ARG2 (g / governor
+                                    :mod (l / lieutenant))))
+                  :ARG1 (g2 / guest
+                        :ARG1-of (s / special-02)))))
+
+# ::id nw.wsj_0010.11 ::date 2012-05-15T08:45:47 ::annotator ISI-AMR-01 ::preferred
+# ::snt A buffet breakfast was held in the museum , where food and drinks are banned to everyday visitors .
+# ::save-date Thu Jul 5, 2012 ::file nw_wsj_0010_11.txt
+(h / hold-04
+  :ARG1 (b / breakfast-01
+          :mod (b2 / buffet))
+  :location (m / museum
+              :location-of (b3 / ban-01
+                             :ARG1 (a / and
+                                     :op1 (f / food)
+                                     :op2 (d / drink))
+                             :ARG2 (p / person
+                                     :ARG0-of (v / visit-01)
+                                     :mod (e / everyday)))))
+
+# ::id nw.wsj_0010.12 ::date 2012-06-22T14:49:13 ::annotator ISI-AMR-01 ::preferred
+# ::snt Then , in the guests ' honor , the speedway hauled out four drivers , crews and even the official Indianapolis 500 announcer for a 10 - lap exhibition race .
+# ::save-date Wed May 13, 2015 ::file nw_wsj_0010_12.txt
+(h / haul-out-03
+      :ARG0 (s / speedway)
+      :ARG1 (a / and
+            :op1 (p / person :quant 4
+                  :ARG0-of (d / drive-01))
+            :op2 (c / crew)
+            :op3 (p2 / person
+                  :ARG0-of (a2 / announce-01)
+                  :mod (e / event :wiki "Indianapolis_500"
+                        :name (i / name :op1 "Indianapolis" :op2 500))
+                  :mod (o / official)
+                  :mod (e3 / even)))
+      :purpose (r / race-02
+            :mod (l / lap :quant 10)
+            :ARG1-of (e2 / exhibit-01))
+      :time (t / then)
+      :ARG3-of (h2 / honor-01
+            :ARG1 (g / guest)))
+
+# ::id nw.wsj_0010.13 ::date 2012-05-15T09:00:23 ::annotator ISI-AMR-01 ::preferred
+# ::snt After the race , Fortune 500 executives drooled like schoolboys over the cars and drivers .
+# ::save-date Mon Sep 23, 2013 ::file nw_wsj_0010_13.txt
+(d / drool-02
+      :ARG0 (p2 / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (c2 / company
+                        :mod (t / thing :wiki "Fortune_500"
+                              :name (n / name :op1 "Fortune" :op2 500)))
+                  :ARG2 (e / executive)))
+      :ARG1 (a / and
+            :op1 (c / car)
+            :op2 (p / person
+                  :ARG0-of (d2 / drive-01)))
+      :time (a2 / after
+            :op1 (r / race-02))
+      :ARG1-of (r3 / resemble-01
+            :ARG2 (d3 / drool-02
+                  :ARG0 (s2 / schoolboy))))
+
+# ::id nw.wsj_0010.14 ::date 2012-05-15T09:12:44 ::annotator ISI-AMR-01 ::preferred
+# ::snt No dummies , the drivers pointed out they still had space on their machines for another sponsor 's name or two .
+# ::save-date Thu Dec 14, 2017 ::file nw_wsj_0010_14.txt
+(p / point-out-02
+      :ARG0 (p2 / person
+            :ARG0-of (d / drive-01)
+            :mod (d2 / dummy :polarity -))
+      :ARG1 (h / have-03
+            :ARG0 p2
+            :ARG1 (s / space
+                  :location (m / machine
+                        :poss p2)
+                  :prep-for (n / name
+                        :quant (o / or :op1 1 :op2 2)
+                        :poss (c / company
+                              :ARG0-of (s4 / sponsor-01)
+                              :mod (a / another))))
+            :mod (s3 / still)))
+
+# ::id nw.wsj_0010.15 ::date 2012-05-15T09:18:33 ::annotator ISI-AMR-01 ::preferred
+# ::snt Back downtown , the execs squeezed in a few meetings at the hotel before boarding the buses again .
+# ::save-date Mon Sep 23, 2013 ::file nw_wsj_0010_15.txt
+(s / squeeze-02
+      :ARG0 (p / person
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG2 (e / executive)))
+      :ARG1 (m / meet-03
+            :location (h / hotel)
+            :quant (f / few))
+      :time (b / before
+            :op1 (b2 / board-01
+                  :ARG0 p
+                  :ARG1 (b3 / bus)
+                  :mod (a / again)))
+      :location (d / downtown
+            :mod (b4 / back)))
+
+# ::id nw.wsj_0010.16 ::date 2012-05-15T09:38:04 ::annotator ISI-AMR-01 ::preferred
+# ::snt This time , it was for dinner and dancing -- a block away .
+# ::save-date Fri Jun 21, 2013 ::file nw_wsj_0010_16.txt
+(h / have-purpose-91
+      :ARG1 (i / it)
+      :ARG2 (a / and
+            :op1 (d / dinner)
+            :op2 (d2 / dance-01)
+            :location (r / relative-position
+                  :quant (b / block)))
+      :time (t3 / time
+            :mod (t4 / this)))
+
+# ::id nw.wsj_0010.17 ::date 2012-05-15T09:38:51 ::annotator ISI-AMR-01 ::preferred
+# ::snt Under the stars and moons of the renovated Indiana Roof ballroom , nine of the hottest chefs in town fed them Indiana duckling mousseline , lobster consomme , veal mignon and chocolate terrine with a raspberry sauce .
+# ::save-date Mon Sep 18, 2017 ::file nw_wsj_0010_17.txt
+(f2 / feed-01
+      :ARG0 (c / chef :quant 9
+            :ARG1-of (i / include-91
+                  :ARG2 (c2 / chef
+                        :ARG1-of (h2 / have-degree-91
+                              :ARG2 (h / hot-03
+                                    :ARG1 c2)
+                              :ARG3 (m / most)
+                              :ARG5 (c5 / chef
+                                    :location (t2 / town))))))
+      :ARG1 (a / and
+            :op1 (m2 / mousseline
+                  :mod (d / duckling)
+                  :mod (s / state :wiki "Indiana" :name (i2 / name :op1 "Indiana")))
+            :op2 (c3 / consomme
+                  :mod (l / lobster))
+            :op3 (m3 / mignon
+                  :part-of (v / veal))
+            :op4 (t3 / terrine
+                  :mod (c4 / chocolate)
+                  :accompanier (s2 / sauce
+                        :mod (r / raspberry))))
+      :ARG2 (t / they)
+      :location (u / under
+            :op1 (a2 / and
+                  :op1 (s3 / star)
+                  :op2 (m4 / moon)
+                  :part-of (b / ballroom :wiki - :name (n / name :op1 "Indiana" :op2 "Roof")
+                        :ARG1-of (r2 / renovate-01)))))
+
+# ::id nw.wsj_0010.18 ::date 2012-05-15T09:47:26 ::annotator ISI-AMR-01 ::preferred
+# ::snt Knowing a tasty -- and free -- meal when they eat one , the executives gave the chefs a standing ovation .
+# ::save-date Thu Jan 28, 2016 ::file nw_wsj_0010_18.txt
+(o / ovation-01
+      :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG2 (e / executive)))
+      :ARG1 (c / chef)
+      :ARG2 (k / know-04
+            :ARG0 p
+            :ARG1 (m / meal
+                  :mod (t / tasty)
+                  :ARG1-of (f / free-03))
+            :time (e2 / eat-01
+                  :ARG0 p
+                  :ARG1 m))
+      :manner (s / stand-01
+            :ARG1 p))
+
+# ::id nw.wsj_0010.19 ::date 2012-05-15T09:51:15 ::annotator ISI-AMR-01 ::preferred
+# ::snt More than a few CEOs say the red - carpet treatment tempts them to return to a heartland city for future meetings .
+# ::save-date Fri Oct 16, 2015 ::file nw_wsj_0010_19.txt
+(s / say-01
+      :ARG0 (p / person
+            :ARG0-of (h2 / have-org-role-91
+                  :ARG2 (o / officer
+                        :mod (e / executive)
+                        :mod (c / chief)))
+            :quant (m / more-than
+                  :op1 (f / few)))
+      :ARG1 (t / tempt-01
+            :ARG1 p
+            :ARG2 (t2 / treat-01
+                  :manner (c3 / carpet
+                        :ARG1-of (r2 / red-02)))
+            :ARG3 (r / return-01
+                  :ARG1 p
+                  :ARG4 (c2 / city
+                        :location (h / heartland))
+                  :purpose (m2 / meet-03
+                        :time (f2 / future)))))
+
+# ::id nw.wsj_0010.20 ::date 2012-05-15T10:05:04 ::annotator ISI-AMR-01 ::preferred
+# ::snt But for now , they 're looking forward to their winter meeting -- Boca in February .
+# ::save-date Wed Nov 28, 2012 ::file nw_wsj_0010_20.txt
+(c2 / contrast-01
+      :ARG2 (l / look-forward-03
+            :ARG0 (t / they)
+            :ARG1 (m / meet-03
+                  :ARG0 t
+                  :time (d2 / date-entity
+                        :season (w / winter))
+                  :location (c / city :wiki "Boca_Raton,_Florida"
+                        :name (b / name :op1 "Boca"))
+                  :time (d3 / date-entity :month 2))
+            :time (n / now)))
+
+# ::id nw.wsj_0011.1 ::date 2012-05-15T14:08:06 ::annotator ISI-AMR-01 ::preferred
+# ::snt South Korea registered a trade deficit of $ 101 million in October , reflecting the country 's economic sluggishness , according to government figures released Wednesday .
+# ::save-date Mon May 18, 2015 ::file nw_wsj_0011_1.txt
+(s3 / say-01
+      :ARG0 (f / figure
+            :source (g2 / government-organization
+                  :ARG0-of (g / govern-01))
+            :ARG1-of (r3 / release-01
+                  :ARG0 g2
+                  :time (d3 / date-entity
+                        :weekday (w / wednesday))))
+      :ARG1 (r / register-02
+            :ARG0 (c / country :wiki "South_Korea" :name (s / name :op1 "South" :op2 "Korea"))
+            :ARG1 (d4 / deficit
+                  :mod (t / trade-01)
+                  :quant (m / monetary-quantity :quant 101000000
+                        :unit (d / dollar))
+                  :ARG1-of (r2 / reflect-01
+                        :ARG2 (s2 / sluggish
+                              :domain (e / economy
+                                    :poss c))))
+            :time (d2 / date-entity :month 10)))
+
+# ::id nw.wsj_0011.2 ::date 2012-05-15T14:18:53 ::annotator ISI-AMR-01 ::preferred
+# ::snt Preliminary tallies by the Trade and Industry Ministry showed another trade deficit in October , the fifth monthly setback this year , casting a cloud on South Korea 's export - oriented economy .
+# ::save-date Thu Jun 11, 2015 ::file nw_wsj_0011_2.txt
+(s2 / show-01
+      :ARG0 (t2 / tally-01
+            :ARG0 (g / government-organization :wiki "Ministry_of_Trade,_Industry_and_Energy_(South_Korea)" :name (t / name :op1 "Trade" :op2 "and" :op3 "Industry" :op4 "Ministry"))
+            :mod (p / preliminary))
+      :ARG1 (d2 / deficit
+            :mod (t3 / trade-01)
+            :mod (a2 / another)
+            :mod (s3 / setback
+                  :ord (o2 / ordinal-entity :value 5
+                        :range (y / year
+                              :mod (t4 / this)))
+                  :frequency (r / rate-entity-91
+                        :ARG1 1
+                        :ARG2 (t5 / temporal-quantity :quant 1
+                              :unit (m2 / month))))
+            :ARG0-of (c2 / cast-01
+                  :ARG1 (c3 / cloud)
+                  :ARG2 (e / economy
+                        :ARG1-of (o / orient-01
+                              :ARG2 (e2 / export-01))
+                        :poss (c / country :wiki "South_Korea" :name (s / name :op1 "South" :op2 "Korea"))))
+            :time (d / date-entity :month 10)))
+
+# ::id nw.wsj_0011.3 ::date 2012-05-15T14:30:37 ::annotator ISI-AMR-01 ::preferred
+# ::snt Exports in October stood at $ 5.29 billion , a mere 0.7 % increase from a year earlier , while imports increased sharply to $ 5.39 billion , up 20 % from last October .
+# ::save-date Wed Sep 13, 2017 ::file nw_wsj_0011_3.txt
+(c / contrast-01
+      :ARG1 (s / stand-04
+            :ARG1 (t2 / thing
+                  :ARG1-of (e / export-01
+                        :time (d / date-entity :month 10)))
+            :ARG2 (m / monetary-quantity :quant 5290000000
+                  :unit (d2 / dollar)
+                  :ARG4-of (u / up-02
+                        :ARG2 (p / percentage-entity :value 0.7
+                              :mod (m4 / mere))
+                        :ARG3 (m5 / monetary-quantity
+                              :time (b / before
+                                    :op1 s
+                                    :quant (t / temporal-quantity :quant 1
+                                          :unit (y / year)))))))
+      :ARG2 (i / increase-01
+            :ARG1 (t3 / thing
+                  :ARG0-of (i2 / import-01))
+            :ARG2 (p2 / percentage-entity :value 20)
+            :ARG3 (m6 / monetary-quantity
+                  :time (d4 / date-entity :month 10
+                        :mod (l / last)))
+            :ARG4 (m2 / monetary-quantity :quant 5390000000
+                  :unit (d3 / dollar))
+            :manner (s2 / sharp)))
+
+# ::id nw.wsj_0011.4 ::date 2012-05-15T14:44:22 ::annotator ISI-AMR-01 ::preferred
+# ::snt South Korea 's economic boom , which began in 1986 , stopped this year because of prolonged labor disputes , trade conflicts and sluggish exports .
+# ::save-date Wed Jun 17, 2015 ::file nw_wsj_0011_4.txt
+(s2 / stop-01
+      :ARG1 (b / boom-02
+            :ARG0 (e / economy
+                  :poss (c / country :wiki "South_Korea" :name (s / name :op1 "South" :op2 "Korea")))
+            :ARG1-of (b2 / begin-01
+                  :time (d / date-entity :year 1986)))
+      :time (y / year
+            :mod (t / this))
+      :ARG1-of (c3 / cause-01
+            :ARG0 (a / and
+                  :op1 (d2 / dispute-01
+                        :ARG2 (l / labor)
+                        :ARG1-of (p / prolong-01))
+                  :op2 (c2 / conflict-01
+                        :ARG2 (t2 / trade-01))
+                  :op3 (e2 / export-01
+                        :mod (s3 / sluggish)))))
+
+# ::id nw.wsj_0011.5 ::date 2012-05-21T17:18:43 ::annotator ISI-AMR-01 ::preferred
+# ::snt Government officials said exports at the end of the year would remain under a government target of $ 68 billion .
+# ::save-date Tue Jul 28, 2015 ::file nw_wsj_0011_5.txt
+(s / say-01
+      :ARG0 (p / person
+            :ARG0-of (h / have-org-role-91
+                  :ARG1 (g2 / government-organization
+                        :ARG0-of (g / govern-01))
+                  :ARG2 (o / official)))
+      :ARG1 (r / remain-01
+            :ARG1 (t / thing
+                  :ARG1-of (e3 / export-01)
+                  :time (e / end-01
+                        :ARG1 (y / year)))
+            :ARG3 (u / under
+                  :op1 (m2 / monetary-quantity :quant 68000000000
+                        :unit (d2 / dollar)
+                        :ARG1-of (t2 / target-01
+                              :ARG0 g2)))))
+
+# ::id nw.wsj_0011.6 ::date 2012-05-21T17:21:19 ::annotator ISI-AMR-01 ::preferred
+# ::snt Despite the gloomy forecast , South Korea has recorded a trade surplus of $ 71 million so far this year .
+# ::save-date Tue Feb 25, 2014 ::file nw_wsj_0011_6.txt
+(r / record-01
+      :ARG0 (c / country :wiki "South_Korea" :name (s / name :op1 "South" :op2 "Korea"))
+      :ARG1 (s2 / surplus
+            :mod (t / trade-01)
+            :quant (m / monetary-quantity :quant 71000000
+                  :unit (d / dollar))
+            :time (s3 / so-far
+                  :mod (y / year
+                        :mod (t2 / this))))
+      :concession (t3 / thing
+            :ARG1-of (f2 / forecast-01)
+            :mod (g / gloomy)))
+
+# ::id nw.wsj_0011.7 ::date 2012-07-09T21:15:17 ::annotator ISI-AMR-01 ::preferred
+# ::snt From January to October , the nation 's accumulated exports increased 4 % from the same period last year to $ 50.45 billion .
+# ::save-date Mon Jul 16, 2012 ::file nw_wsj_0011_7.txt
+(i / increase-01
+      :ARG1 (t / thing
+            :ARG1-of (e / export-01
+                  :ARG0 (n / nation))
+            :ARG1-of (a / accumulate-01))
+      :ARG2 (p / percentage-entity :value 4)
+      :ARG3 (m2 / monetary-quantity
+            :time (d5 / date-interval
+                  :op1 (d6 / date-entity :month 1
+                        :mod (y / year
+                              :mod (l / last)))
+                  :op2 (d7 / date-entity :month 10
+                        :mod y)))
+      :ARG4 (m / monetary-quantity :quant 50450000000
+            :unit (d / dollar)
+            :time (d2 / date-interval
+                  :op1 (d3 / date-entity :month 1)
+                  :op2 (d4 / date-entity :month 10))))
+
+# ::id nw.wsj_0011.8 ::date 2012-07-16T21:37:50 ::annotator ISI-AMR-01 ::preferred
+# ::snt Imports were at $ 50.38 billion , up 19 % .
+# ::save-date Sun Jul 26, 2015 ::file nw_wsj_0011_8.txt
+(u / up-02
+      :ARG1 (t / thing
+            :ARG1-of (i2 / import-01))
+      :ARG2 (p / percentage-entity :value 19)
+      :ARG4 (m / monetary-quantity :quant 50380000000
+            :unit (d / dollar)))
+
+# ::id nw.wsj_0012.1 ::date 2012-05-21T17:30:09 ::annotator ISI-AMR-01 ::preferred
+# ::snt Newsweek , trying to keep pace with rival Time magazine , announced new advertising rates for 1990 and said it will introduce a new incentive plan for advertisers .
+# ::save-date Wed Nov 4, 2015 ::file nw_wsj_0012_1.txt
+(a2 / and
+      :op1 (a / announce-01
+            :ARG0 (m2 / magazine :wiki "Newsweek" :name (n / name :op1 "Newsweek"))
+            :ARG1 (r / rate
+                  :ARG1-of (n2 / new-01)
+                  :mod (a4 / advertise-01)
+                  :time (d / date-entity :year 1990)))
+      :op2 (s / say-01
+            :ARG0 m2
+            :ARG1 (i / introduce-02
+                  :ARG0 m2
+                  :ARG1 (p3 / plan
+                        :ARG1-of (n3 / new-01)
+                        :ARG0-of (i2 / incentivize-01
+                              :ARG1 (c2 / company
+                                    :ARG0-of (a3 / advertise-01))))))
+      :ARG1-of (c / cause-01
+            :ARG0 (t3 / try-01
+                  :ARG0 m2
+                  :ARG1 (k2 / keep-up-05
+                        :ARG0 m2
+                        :ARG1 (m / magazine :wiki "Time_(magazine)" :name (t / name :op1 "Time")
+                              :ARG1-of (r2 / rival-01
+                                    :ARG0 m2))))))
+
+# ::id nw.wsj_0012.2 ::date 2012-05-21T19:33:10 ::annotator ISI-AMR-01 ::preferred
+# ::snt The new ad plan from Newsweek , a unit of the Washington Post Co. , is the second incentive plan the magazine has offered advertisers in three years .
+# ::save-date Wed Jan 17, 2018 ::file nw_wsj_0012_2.txt
+(p3 / plan
+      :domain (p4 / plan
+            :ARG1-of (n2 / new-01)
+            :mod (a / advertise-01)
+            :source (m / magazine :wiki "Newsweek" :name (n / name :op1 "Newsweek")
+                  :part-of (n3 / newspaper :wiki "The_Washington_Post" :name (w / name :op1 "Washington" :op2 "Post" :op3 "Co."))))
+      :ARG1-of (o / offer-01
+            :ARG0 m
+            :ARG3 (c3 / company
+                  :ARG0-of (a2 / advertise-01)))
+      :ARG0-of (i2 / incentivize-01)
+      :ord (o2 / ordinal-entity :value 2
+            :range (t / temporal-quantity :quant 3
+                  :unit (y / year))))
+
+# ::id nw.wsj_0012.3 ::date 2012-05-21T19:37:34 ::annotator ISI-AMR-01 ::preferred
+# ::snt Plans that give advertisers discounts for maintaining or increasing ad spending have become permanent fixtures at the news weeklies and underscore the fierce competition between Newsweek , Time Warner Inc. 's Time magazine , and Mortimer B. Zuckerman 's U.S. News & World Report .
+# ::save-date Tue Apr 14, 2015 ::file nw_wsj_0012_3.txt
+(a2 / and
+      :op1 (b / become-01
+            :ARG1 (p2 / plan
+                  :ARG0-of (g / give-01
+                        :ARG1 (t / thing
+                              :ARG2-of (d / discount-01))
+                        :ARG2 (c7 / company
+                              :ARG0-of (a3 / advertise-01))
+                        :ARG1-of (c8 / cause-01
+                              :ARG0 (o / or
+                                    :op1 (m2 / maintain-01
+                                          :ARG0 c7
+                                          :ARG1 (m3 / monetary-quantity
+                                                :ARG3-of (s / spend-01
+                                                      :ARG0 c7
+                                                      :ARG1 (a4 / advertise-01))))
+                                    :op2 (i / increase-01
+                                          :ARG0 c7
+                                          :ARG1 m3)))))
+            :ARG2 (f2 / fixture
+                  :mod (p3 / permanent)
+                  :prep-at (m4 / magazine
+                        :mod (r / rate-entity-91
+                              :ARG3 (t3 / temporal-quantity :quant 1
+                                    :unit (w / week)))
+                        :mod (n2 / news))))
+      :op2 (u2 / underscore-01
+            :ARG0 p2
+            :ARG1 (c2 / compete-02
+                  :ARG0 (a / and
+                        :op1 (m5 / magazine :wiki "Newsweek" :name (n / name :op1 "Newsweek"))
+                        :op2 (m6 / magazine :wiki "Time_(magazine)" :name (t2 / name :op1 "Time" :op2 "Magazine")
+                              :poss (c / company :wiki "Time_Warner" :name (n3 / name :op1 "Time" :op2 "Warner" :op3 "Inc.")))
+                        :op3 (m7 / magazine :wiki "U.S._News_&_World_Report" :name (u / name :op1 "U.S." :op2 "News" :op3 "&" :op4 "World" :op5 "Report")
+                              :poss (p / person :wiki "Mortimer_Zuckerman" :name (m / name :op1 "Mortimer" :op2 "B." :op3 "Zuckerman"))))
+                  :manner (f / fierce))))
+
+# ::id nw.wsj_0012.4 ::date 2012-05-21T19:42:25 ::annotator ISI-AMR-01 ::preferred
+# ::snt Alan Spoon , recently named Newsweek president , said Newsweek 's ad rates would increase 5 % in January .
+# ::save-date Wed Sep 10, 2014 ::file nw_wsj_0012_4.txt
+(s / say-01
+      :ARG0 (p / person :wiki - :name (a / name :op1 "Alan" :op2 "Spoon")
+            :ARG1-of (n2 / name-03
+                  :ARG2 (p3 / president
+                        :ARG2-of (h / have-org-role-91
+                              :ARG0 p
+                              :ARG1 (m / magazine :wiki "Newsweek" :name (n / name :op1 "Newsweek"))))
+                  :time (r / recent)))
+      :ARG1 (i / increase-01
+            :ARG0 m
+            :ARG1 (r2 / rate
+                  :mod (a2 / advertise-01)
+                  :poss m)
+            :ARG2 (p2 / percentage-entity :value 5)
+            :time (d / date-entity :month 1)))
+
+# ::id nw.wsj_0012.5 ::date 2012-05-21T20:34:48 ::annotator ISI-AMR-01 ::preferred
+# ::snt A full , four - color page in Newsweek will cost $ 100,980 .
+# ::save-date Fri Jul 20, 2012 ::file nw_wsj_0012_5.txt
+(c / cost-01
+      :ARG1 (p / page
+            :mod (c2 / color :quant 4)
+            :mod (f / full)
+            :part-of (m2 / magazine :wiki "Newsweek"
+                  :name (n / name :op1 "Newsweek")))
+      :ARG2 (m / monetary-quantity :quant 100980
+            :unit (d / dollar)))
+

@@ -1,0 +1,2147 @@
+#SDP 2015
+#20001001
+1	Pierre	Pierre	NNP	-	-	_	NE	_	_	_	_	_
+2	Vinken	vinken	NNP	-	+	_	_	_	_	ACT-arg	_	_
+3	,	,	,	-	-	_	_	_	_	_	_	_
+4	61	61	CD	-	-	_	_	RSTR	_	_	_	_
+5	years	year	NNS	-	+	_	_	_	EXT	_	_	_
+6	old	old	JJ	-	+	_	DESCR	_	_	_	_	_
+7	,	,	,	-	-	_	_	_	_	_	_	_
+8	will	will	MD	-	-	_	_	_	_	_	_	_
+9	join	join	VB	+	+	ev-w1777f1	_	_	_	_	_	_
+10	the	the	DT	-	-	_	_	_	_	_	_	_
+11	board	board	NN	-	-	_	_	_	_	PAT-arg	_	_
+12	as	as	IN	-	-	_	_	_	_	_	_	_
+13	a	a	DT	-	-	_	_	_	_	_	_	_
+14	nonexecutive	nonexecutive	JJ	-	-	_	_	_	_	_	RSTR	_
+15	director	director	NN	-	+	_	_	_	_	COMPL	_	_
+16	Nov.	nov.	NNP	-	+	_	_	_	_	TWHEN	_	_
+17	29	29	CD	-	-	_	_	_	_	_	_	RSTR
+18	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20001002
+1	Mr.	mr.	NNP	-	-	_	RSTR	_	_	_	_	_
+2	Vinken	vinken	NNP	-	+	_	_	ACT-arg	_	_	_	_
+3	is	be	VBZ	+	+	ev-w218f2	_	_	_	_	_	_
+4	chairman	chairman	NN	-	+	_	_	PAT-arg	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_
+6	Elsevier	Elsevier	NNP	-	-	_	_	_	_	NE	_	_
+7	N.V.	n.v.	NNP	-	+	_	_	_	APP	_	APPS.member	_
+8	,	#Comma	,	-	+	_	_	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_	_	_
+10	Dutch	dutch	NNP	-	-	_	_	_	_	_	_	RSTR
+11	publishing	publish	VBG	-	-	ev-w2430f2	_	_	_	_	_	RSTR
+12	group	group	NN	-	+	_	_	_	APP	_	APPS.member	_
+13	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20003001
+1	A	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	form	form	NN	-	+	_	_	_	_	_	ACT-arg	_	_	_	_	_	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	asbestos	asbestos	NN	-	-	_	APP	_	_	_	_	_	_	_	_	_	_	_	_
+5	once	once	RB	-	-	_	_	TWHEN	_	_	_	_	_	_	_	_	_	_	_
+6	used	use	VBN	-	+	ev-w3525f6	RSTR	_	_	_	_	_	_	_	_	_	_	_	_
+7	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	make	make	VB	-	+	ev-w1923f6	_	AIM	_	_	_	_	_	_	_	_	_	_	_
+9	Kent	kent	NNP	-	-	_	_	_	_	ID	_	_	_	_	_	_	_	_	_
+10	cigarette	cigarette	NN	-	-	_	_	_	_	RSTR	_	_	_	_	_	_	_	_	_
+11	filters	filter	NNS	-	+	_	_	_	PAT-arg	_	_	_	_	_	_	_	_	_	_
+12	has	have	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	caused	cause	VBN	-	+	ev-w467f1	_	_	_	_	_	_	_	_	_	_	_	_	PAT-arg
+14	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	high	high	JJ	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_
+16	percentage	percentage	NN	-	+	_	_	_	_	_	PAT-arg	_	_	_	_	_	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	cancer	cancer	NN	-	-	_	_	_	_	_	_	_	CAUS	_	_	_	_	_	_
+19	deaths	death	NNS	-	+	_	_	_	_	_	_	MAT	_	_	_	_	_	_	_
+20	among	among	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	group	group	NN	-	+	_	_	_	_	_	_	LOC	_	_	_	_	_	_	_
+23	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	workers	worker	NNS	-	+	_	_	_	_	_	_	_	_	MAT	_	_	_	_	_
+25	exposed	expose	VBN	-	+	ev-w1251f1	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+26	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	it	#PersPron	PRP	-	-	_	_	_	_	_	_	_	_	_	_	PAT-arg	_	_	_
+28	more	more	RBR	-	+	_	_	_	_	_	_	_	_	_	_	TWHEN	_	_	_
+29	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	30	30	CD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	RSTR	_
+31	years	year	NNS	-	+	_	_	_	_	_	_	_	_	_	_	_	CPR	_	_
+32	ago	ago	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	researchers	researcher	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	ACT-arg
+35	reported	report	VBD	+	+	ev-w2671f1	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003002
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+2	asbestos	asbestos	NN	-	-	_	RSTR	_	_	_	_	_	_	_	_	_	_
+3	fiber	fiber	NN	-	+	_	_	APPS.member	ACT-arg	_	_	_	_	_	_	_	_
+4	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+5	crocidolite	crocidolite	NN	-	-	_	_	APPS.member	ACT-arg	_	_	_	_	_	_	_	_
+6	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+7	is	be	VBZ	-	+	ev-w218f2	_	_	_	_	_	_	_	_	_	_	EFF-arg
+8	unusually	usually	RB	-	-	_	_	_	_	MANN	_	_	_	_	_	_	_
+9	resilient	resilient	JJ	-	+	_	_	_	PAT-arg	_	_	_	_	_	_	_	_
+10	once	once	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+11	it	#PersPron	PRP	-	-	_	_	_	_	_	ACT-arg	_	_	_	_	_	_
+12	enters	enter	VBZ	-	+	ev-w1171f1	_	_	TWHEN	_	_	_	_	_	_	_	_
+13	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+14	lungs	lung	NNS	-	-	_	_	_	_	_	PAT-arg	_	_	_	_	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+16	with	with	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+17	even	even	RB	-	-	_	_	_	_	_	_	RHEM	_	_	_	_	_
+18	brief	brief	JJ	-	-	_	_	_	_	_	_	THL	_	_	_	_	_
+19	exposures	exposure	NNS	-	+	_	_	_	_	_	_	_	ACT-arg	_	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+21	it	#PersPron	PRP	-	-	_	_	_	_	_	_	PAT-arg	_	_	_	_	_
+22	causing	cause	VBG	-	+	ev-w467f1	_	_	ACMP	_	_	_	_	_	_	_	_
+23	symptoms	symptom	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_	_	_	_
+24	that	that	WDT	-	-	_	_	_	_	_	_	_	_	_	ACT-arg	_	_
+25	show	show_up	VBP	-	+	ev-w2946f1	_	_	_	_	_	_	_	RSTR	_	_	_
+26	up	up	RP	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+27	decades	decade	NNS	-	-	_	_	_	_	_	_	_	_	_	_	DIFF	_
+28	later	later	JJ	-	+	_	_	_	_	_	_	_	_	_	TWHEN	_	_
+29	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+30	researchers	researcher	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_	ACT-arg
+31	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_
+32	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003003
+1	Lorillard	Lorillard	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_	_
+2	Inc.	inc.	NNP	-	+	_	_	CONJ.member	_	_	_	_	_	ACT-arg	_	_	_
+3	,	#Comma_#Cor	,	-	+	_	_	_	_	_	_	_	_	_	ACT-arg	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+5	unit	unit	NN	-	+	_	_	CONJ.member	_	_	_	_	_	ACT-arg	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+7	New	new	JJ	-	-	_	_	_	_	RSTR	_	_	_	_	_	_	_
+8	York-based	york-based	JJ	-	+	_	_	_	_	_	RSTR	_	_	_	_	_	_
+9	Loews	Loews	NNP	-	-	_	_	_	_	_	NE	_	_	_	_	_	_
+10	Corp.	corp.	NNP	-	+	_	_	_	APP	_	_	_	_	_	_	_	_
+11	that	that	WDT	-	-	_	_	_	_	_	_	ACT-arg	_	_	_	_	_
+12	makes	make	VBZ	-	+	ev-w1923f6	_	_	RSTR	_	_	_	_	_	_	_	_
+13	Kent	kent	NNP	-	-	_	_	_	_	_	_	_	ID	_	_	_	_
+14	cigarettes	cigarette	NNS	-	+	_	_	_	_	_	_	PAT-arg	_	_	_	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+16	stopped	stop	VBD	+	+	ev-w3189f5	_	_	_	_	_	_	_	_	_	_	_
+17	using	use	VBG	-	+	ev-w3525f6	_	_	_	_	_	_	_	PAT-arg	_	_	_
+18	crocidolite	crocidolite	NN	-	-	_	_	_	_	_	_	_	_	_	PAT-arg	_	_
+19	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+20	its	#PersPron	PRP$	-	-	_	_	_	_	_	_	_	_	_	_	_	APP
+21	Micronite	micronite	NN	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_
+22	cigarette	cigarette	NN	-	+	_	_	_	_	_	_	_	_	_	_	_	RSTR
+23	filters	filter	NNS	-	+	_	_	_	_	_	_	_	_	_	LOC	_	_
+24	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+25	1956	1956	CD	-	-	_	_	_	_	_	_	_	_	TWHEN	_	_	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003005
+1	A	a	DT	-	-	_	_	_	_	_
+2	Lorillard	lorillard	NNP	-	-	_	APP	_	_	_
+3	spokewoman	spokewoman	NN	-	+	_	_	ACT-arg	_	_
+4	said	say	VBD	+	+	ev-w2833f1	_	_	_	_
+5	,	,	,	-	-	_	_	_	_	_
+6	“	“	``	-	-	_	_	_	_	_
+7	This	this	DT	-	-	_	_	_	ACT-arg	_
+8	is	be	VBZ	-	+	ev-w218f2	_	EFF-arg	_	_
+9	an	an	DT	-	-	_	_	_	_	_
+10	old	old	JJ	-	-	_	_	_	_	RSTR
+11	story	story	NN	-	+	_	_	_	PAT-arg	_
+12	.	.	.	-	-	_	_	_	_	_
+
+#20003007
+1	There	there	EX	-	-	_	_	_	_
+2	is	be	VBZ	+	+	ev-w218f3	_	_	_
+3	no	no	DT	-	-	_	_	RSTR	_
+4	asbestos	asbestos	NN	-	+	_	ACT-arg	_	_
+5	in	in	IN	-	-	_	_	_	_
+6	our	#PersPron	PRP$	-	-	_	_	_	APP
+7	products	product	NNS	-	+	_	LOC	_	_
+8	now	now	RB	-	-	_	TWHEN	_	_
+9	.	.	.	-	-	_	_	_	_
+10	”	”	''	-	-	_	_	_	_
+
+#20003008
+1	Neither	neither	DT	-	-	_	_	_	_	_	_	_	_	_
+2	Lorillard	lorillard	NNP	-	-	_	CONJ.member	_	_	ACT-arg	_	_	_	_
+3	nor	neither_nor	CC	-	+	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+5	researchers	researcher	NNS	-	+	_	CONJ.member	_	_	ACT-arg	_	_	_	_
+6	who	who	WP	-	-	_	_	_	ACT-arg	_	_	_	_	_
+7	studied	study	VBD	-	+	ev-w3222f1	_	RSTR	_	_	_	_	_	_
+8	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+9	workers	worker	NNS	-	-	_	_	_	PAT-arg	_	_	_	_	_
+10	were	be	VBD	+	+	ev-w218f2	_	_	_	_	_	_	_	_
+11	aware	aware	JJ	-	+	_	_	_	_	PAT-arg	_	_	_	_
+12	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+13	any	any	DT	-	-	_	_	_	_	_	_	RSTR	_	_
+14	research	research	NN	-	+	_	_	_	_	_	PAT-arg	_	_	_
+15	on	on	IN	-	-	_	_	_	_	_	_	_	_	_
+16	smokers	smoker	NNS	-	+	_	_	_	_	_	_	PAT-arg	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+19	Kent	kent	NNP	-	-	_	_	_	_	_	_	_	_	ID
+20	cigarettes	cigarette	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20003009
+1	“	“	``	-	-	_	_	_	_	_	_	_
+2	We	#PersPron	PRP	-	-	_	ACT-arg	_	_	_	_	_
+3	have	have	VBP	-	+	ev-w1566f3	_	_	_	EFF-arg	_	_
+4	no	no	DT	-	-	_	_	RSTR	_	_	_	_
+5	useful	useful	JJ	-	-	_	_	RSTR	_	_	_	_
+6	information	information	NN	-	+	_	PAT-arg	_	_	_	_	_
+7	on	on	IN	-	-	_	_	_	_	_	_	_
+8	whether	whether	IN	-	-	_	_	_	_	_	_	_
+9	users	user	NNS	-	-	_	_	_	ACT-arg	_	_	_
+10	are	be	VBP	-	+	ev-w218f20_u_nobody	_	REG	_	_	_	_
+11	at	at	IN	-	-	_	_	_	_	_	_	_
+12	risk	risk	NN	-	-	_	_	_	LOC-arg	_	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_
+14	”	”	''	-	-	_	_	_	_	_	_	_
+15	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_
+16	James	James	NNP	-	-	_	_	_	_	_	NE	_
+17	A.	A.	NNP	-	-	_	_	_	_	_	NE	_
+18	Talcott	talcott	NNP	-	+	_	_	_	_	ACT-arg	_	_
+19	of	of	IN	-	-	_	_	_	_	_	_	_
+20	Boston	boston	NNP	-	-	_	_	_	_	_	_	APP
+21	’s	’s	POS	-	-	_	_	_	_	_	_	_
+22	Dana-Farber	Dana-Farber	NNP	-	-	_	_	_	_	_	_	NE
+23	Cancer	Cancer	NNP	-	-	_	_	_	_	_	_	NE
+24	Institute	institute	NNP	-	+	_	_	_	_	_	APP	_
+25	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20003010
+1	Dr.	dr.	NNP	-	-	_	RSTR	_	_	_	_	_	_	_	_	_
+2	Talcott	talcott	NNP	-	+	_	_	ACT-arg	_	_	_	_	_	_	_	_
+3	led	lead	VBD	+	+	ev-w1835f2	_	_	_	_	_	_	_	_	_	_
+4	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+5	team	team	NN	-	+	_	_	PAT-arg	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	researchers	researcher	NNS	-	+	_	_	_	MAT	_	_	_	_	_	_	_
+8	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+10	National	National	NNP	-	-	_	_	_	_	_	NE	_	_	_	_	_
+11	Cancer	Cancer	NNP	-	-	_	_	_	_	_	NE	_	_	_	_	_
+12	Institute	institute	NNP	-	+	_	_	_	_	DIR1	_	CONJ.member	_	_	_	_
+13	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+15	medical	medical	JJ	-	-	_	_	_	_	_	_	_	RSTR	_	_	_
+16	schools	school	NNS	-	+	_	_	_	_	DIR1	_	CONJ.member	_	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+18	Harvard	Harvard	NNP	-	-	_	_	_	_	_	_	_	_	NE	_	_
+19	University	university	NNP	-	+	_	_	_	_	_	_	_	APP	_	CONJ.member	_
+20	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+21	Boston	Boston	NNP	-	-	_	_	_	_	_	_	_	_	_	_	NE
+22	University	university	NNP	-	+	_	_	_	_	_	_	_	APP	_	CONJ.member	_
+23	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20003011
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+2	Lorillard	lorillard	NNP	-	-	_	APP	_	_	_	_	_	_	_	_	_	_
+3	spokeswoman	spokeswoman	NN	-	+	_	_	ACT-arg	_	_	_	_	_	_	_	_	_
+4	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_
+5	asbestos	asbestos	NN	-	-	_	_	_	PAT-arg	_	_	_	_	_	_	PAT-arg	_
+6	was	be	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+7	used	use	VBN	-	+	ev-w3525f6	_	EFF-arg	_	_	_	_	_	_	CONJ.member	_	_
+8	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+9	“	“	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+10	very	very	RB	-	-	_	_	_	_	EXT	_	_	_	_	_	_	_
+11	modest	modest	JJ	-	+	_	_	_	_	_	RSTR	_	_	_	_	_	_
+12	amounts	amount	NNS	-	+	_	_	_	MANN	_	_	_	_	_	_	_	_
+13	”	”	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+14	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+15	making	make	VBG	-	+	ev-w1923f6	_	_	LOC	_	_	_	_	_	_	_	_
+16	paper	paper	NN	-	+	_	_	_	_	_	_	PAT-arg	_	_	_	_	_
+17	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+19	filters	filter	NNS	-	-	_	_	_	_	_	_	_	BEN	_	_	_	_
+20	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+21	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+22	early	early	JJ	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_
+23	1950s	1950s	CD	-	+	_	_	_	TWHEN	_	_	_	_	_	_	_	_
+24	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+25	replaced	replace	VBN	-	+	ev-w2667f1	_	EFF-arg	_	_	_	_	_	_	CONJ.member	_	_
+26	with	with	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+27	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+28	different	different	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	RSTR
+29	type	type	NN	-	+	_	_	_	_	_	_	_	_	_	_	EFF-arg	_
+30	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+31	filter	filter	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	APP
+32	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+33	1956	1956	CD	-	-	_	_	_	_	_	_	_	_	_	_	TWHEN	_
+34	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003012
+1	From	from	IN	-	-	_	_	_	_	_
+2	1953	1953	CD	-	-	_	_	_	TFRWH	_
+3	to	to	TO	-	-	_	_	_	_	_
+4	1955	1955	CD	-	-	_	_	_	TTILL	_
+5	,	,	,	-	-	_	_	_	_	_
+6	9.8	9.8	CD	-	-	_	RSTR	_	_	_
+7	billion	billion	CD	-	+	_	_	RSTR	_	_
+8	Kent	kent	NNP	-	-	_	_	ID	_	_
+9	cigarettes	cigarette	NNS	-	+	_	_	_	PAT-arg	_
+10	with	with	IN	-	-	_	_	_	_	_
+11	the	the	DT	-	-	_	_	_	_	_
+12	filters	filter	NNS	-	-	_	_	ACMP	_	_
+13	were	be	VBD	-	-	_	_	_	_	_
+14	sold	sell	VBN	-	+	ev-w2888f2	_	_	_	EFF-arg
+15	,	,	,	-	-	_	_	_	_	_
+16	the	the	DT	-	-	_	_	_	_	_
+17	company	company	NN	-	-	_	_	_	_	ACT-arg
+18	said	say	VBD	+	+	ev-w2833f1	_	_	_	_
+19	.	.	.	-	-	_	_	_	_	_
+
+#20003013
+1	Among	among	IN	-	-	_	_	_	_	_	_	_	_	_
+2	33	33	CD	-	-	_	RSTR	_	_	_	_	_	_	_
+3	men	man	NNS	-	+	_	_	_	LOC	_	_	_	_	_
+4	who	who	WP	-	-	_	_	ACT-arg	_	_	_	_	_	_
+5	worked	work	VBD	-	+	ev-w3657f5	RSTR	_	_	_	_	_	_	_
+6	closely	closely	RB	-	-	_	_	MANN	_	_	_	_	_	_
+7	with	with	IN	-	-	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+9	substance	substance	NN	-	-	_	_	ACMP	_	_	_	_	_	_
+10	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+11	28	28	CD	-	+	_	_	_	_	ACT-arg	APPS.member	_	_	_
+12	have	have	VBP	-	-	_	_	_	_	_	_	_	_	_
+13	died	die	VBN	+	+	ev-w928f2	_	_	_	_	_	_	_	_
+14	–	#Dash	:	-	+	_	_	_	_	_	_	_	_	_
+15	more	more	JJ	-	+	_	_	_	_	ACT-arg	APPS.member	_	_	_
+16	than	than	IN	-	-	_	_	_	_	_	_	_	_	_
+17	three	three	CD	-	-	_	_	_	_	_	_	_	RSTR	_
+18	times	time	NNS	-	+	_	_	_	_	_	_	CPR	_	_
+19	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+20	expected	expect	VBN	-	-	ev-w1239f1	_	_	_	_	_	_	_	RSTR
+21	number	number	NN	-	+	_	_	_	_	_	_	_	PAT-arg	_
+22	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20003014
+1	Four	four	CD	-	+	_	_	_	ACT-arg	_	_	_
+2	of	of	IN	-	-	_	_	_	_	_	_	_
+3	the	the	DT	-	-	_	_	_	_	_	_	_
+4	five	five	CD	-	-	_	_	RSTR	_	_	_	_
+5	surviving	survive	VBG	-	-	ev-w3273f2	_	RSTR	_	_	_	_
+6	workers	worker	NNS	-	+	_	DIR1	_	_	_	_	_
+7	have	have	VBP	+	+	ev-w1566f3	_	_	_	_	_	_
+8	asbestos-related	asbestos-related	JJ	-	-	_	_	_	_	RSTR	_	_
+9	diseases	disease	NNS	-	+	_	_	_	PAT-arg	_	_	_
+10	,	,	,	-	-	_	_	_	_	_	_	_
+11	including	include	VBG	-	-	_	_	_	_	_	_	_
+12	three	three	CD	-	-	_	_	RESTR	_	_	_	_
+13	with	with	IN	-	-	_	_	_	_	_	_	_
+14	recently	recently	RB	-	-	_	_	_	_	_	TWHEN	_
+15	diagnosed	diagnose	VBN	-	+	ev-w923f1	_	_	_	_	_	RSTR
+16	cancer	cancer	NN	-	+	_	_	ACMP	_	_	_	_
+17	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20003015
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+2	total	total	NN	-	+	_	_	_	_	_	_	ACT-arg	_	PAT-arg	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_
+4	18	18	CD	-	-	_	_	RSTR	_	_	_	_	_	_	_
+5	deaths	death	NNS	-	+	_	APP	_	_	_	_	_	_	_	_
+6	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_
+7	malignant	malignant	JJ	-	-	_	_	_	RSTR	_	_	_	_	_	_
+8	mesothelioma	mesothelioma	NN	-	+	_	_	PAT-arg	_	_	CONJ.member	_	_	_	_
+9	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+10	lung	lung	NN	-	-	_	_	_	_	LOC	_	_	_	_	_
+11	cancer	cancer	NN	-	+	_	_	PAT-arg	_	_	CONJ.member	_	_	_	_
+12	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_
+13	asbestosis	asbestosis	NN	-	-	_	_	PAT-arg	_	_	CONJ.member	_	_	_	_
+14	was	be	VBD	-	+	ev-w218f2	_	_	_	_	_	_	_	_	EFF-arg
+15	far	far	RB	-	-	_	_	_	_	_	_	_	EXT	_	_
+16	higher	high	JJR	-	+	_	_	_	_	_	_	PAT-arg	_	_	_
+17	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_
+18	expected	expect	VBN	-	+	ev-w1239f1	_	_	_	_	_	_	CPR	_	_
+19	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+20	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+21	researchers	researcher	NNS	-	-	_	_	_	_	_	_	_	_	_	ACT-arg
+22	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_
+23	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20003016
+1	“	“	``	-	-	_	_	_	_	_	_	_	_	_
+2	The	the	DT	-	-	_	_	_	_	_	_	_	_	_
+3	morbidity	morbidity	NN	-	-	_	RSTR	_	_	_	_	_	_	_
+4	rate	rate	NN	-	+	_	_	ACT-arg	_	_	_	_	_	_
+5	is	be	VBZ	-	+	ev-w218f2	_	_	_	_	_	_	EFF-arg	_
+6	a	a	DT	-	-	_	_	_	_	_	_	_	_	_
+7	striking	striking	JJ	-	-	_	_	_	RSTR	_	_	_	_	_
+8	finding	finding	NN	-	+	_	_	PAT-arg	_	_	_	_	_	_
+9	among	among	IN	-	-	_	_	_	_	_	_	_	_	_
+10	those	those	DT	-	+	_	_	LOC	_	_	_	_	_	_
+11	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+12	us	#PersPron	PRP	-	-	_	_	_	_	APP	_	_	_	_
+13	who	who	WP	-	-	_	_	_	_	_	ACT-arg	_	_	_
+14	study	study	VBP	-	+	ev-w3222f1	_	_	_	RSTR	_	_	_	_
+15	asbestos-related	asbestos-related	JJ	-	-	_	_	_	_	_	_	RSTR	_	_
+16	diseases	disease	NNS	-	+	_	_	_	_	_	PAT-arg	_	_	_
+17	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+18	”	”	''	-	-	_	_	_	_	_	_	_	_	_
+19	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_
+20	Dr.	dr.	NNP	-	-	_	_	_	_	_	_	_	_	RSTR
+21	Talcott	talcott	NNP	-	+	_	_	_	_	_	_	_	ACT-arg	_
+22	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20003017
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	percentage	percentage	NN	-	+	_	_	_	_	_	_	_	_	ACT-arg	_	_	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	lung	lung	NN	-	-	_	_	LOC	_	_	_	_	_	_	_	_	_	_	_
+5	cancer	cancer	NN	-	+	_	_	_	PAT-arg	_	_	_	_	_	_	_	_	_	_
+6	deaths	death	NNS	-	+	_	APP	_	_	_	_	_	_	_	_	_	_	_	_
+7	among	among	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	workers	worker	NNS	-	+	_	LOC	_	_	_	_	_	_	_	_	_	_	_	_
+10	at	at	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	West	West	NNP	-	-	_	_	_	_	_	NE	_	_	_	_	_	_	_	_
+13	Groton	groton	NNP	-	+	_	_	_	_	_	_	LOC	_	_	_	_	_	_	_
+14	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	Mass.	mas.	NNP	-	-	_	_	_	_	_	PAR	_	_	_	_	_	_	_	_
+16	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	paper	paper	NN	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_
+18	factory	factory	NN	-	+	_	_	_	_	LOC	_	_	_	_	_	_	_	_	_
+19	appears	appear	VBZ	-	+	ev-w115f2	_	_	_	_	_	_	_	_	_	_	_	_	EFF-arg
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	be	be	VB	-	+	ev-w218f2	_	_	_	_	_	_	ACT-arg	_	_	_	_	_	_
+22	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	highest	high	JJS	-	+	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	_	_
+24	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	any	any	DT	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_
+26	asbestos	asbestos	NN	-	-	_	_	_	_	_	_	_	_	_	_	ACMP	_	_	_
+27	workers	worker	NNS	-	+	_	_	_	_	_	_	_	_	_	REG	_	_	_	_
+28	studied	study	VBN	-	+	ev-w3222f1	_	_	_	_	_	_	_	_	_	RSTR	_	_	_
+29	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	Western	western	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	LOC	_
+31	industrialized	industrialize	VBN	-	-	ev-w1688f1	_	_	_	_	_	_	_	_	_	_	_	RSTR	_
+32	countries	country	NNS	-	+	_	_	_	_	_	_	_	_	_	_	_	LOC	_	_
+33	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	he	#PersPron	PRP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	ACT-arg
+35	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003018
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_
+2	plant	plant	NN	-	+	_	_	_	_	_	ACT-arg	_	ACT-arg	_
+3	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+4	which	which	WDT	-	-	_	_	PAT-arg	_	_	_	_	_	_
+5	is	be	VBZ	-	-	_	_	_	_	_	_	_	_	_
+6	owned	own	VBN	-	+	ev-w2176f1	DESCR	_	_	_	_	_	_	_
+7	by	by	IN	-	-	_	_	_	_	_	_	_	_	_
+8	Hollingsworth	Hollingsworth	NNP	-	-	_	_	_	CONJ.member	NE	_	_	_	_
+9	&	#Amp	CC	-	+	_	_	_	_	_	_	_	_	_
+10	Vose	Vose	NNP	-	-	_	_	_	CONJ.member	NE	_	_	_	_
+11	Co.	co.	NNP	-	+	_	_	ACT-arg	_	_	_	_	_	_
+12	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+13	was	be	VBD	+	+	ev-w218f20_u_nobody	_	_	_	_	_	_	_	_
+14	under	under	IN	-	-	_	_	_	_	_	_	_	_	_
+15	contract	contract	NN	-	+	_	_	_	_	_	LOC-arg	_	_	_
+16	with	with	IN	-	-	_	_	_	_	_	_	_	_	_
+17	Lorillard	lorillard	NN	-	-	_	_	_	_	_	_	ACMP	_	_
+18	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+19	make	make	VB	-	+	ev-w1923f6	_	_	_	_	_	PAT-arg	_	_
+20	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+21	cigarette	cigarette	NN	-	-	_	_	_	_	_	_	_	_	RSTR
+22	filters	filter	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_
+23	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20003019
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	finding	finding	NN	-	-	_	ACT-arg	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	probably	probably	RB	-	-	_	MOD	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	will	will	MD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	support	support	VB	-	+	ev-w3262f1	_	_	_	_	_	_	_	_	_	_	_	_	_	EFF-arg
+6	those	those	DT	-	+	_	PAT-arg	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	who	who	WP	-	-	_	_	_	ACT-arg	_	_	_	_	_	_	_	_	_	_	_
+8	argue	argue	VBP	-	+	ev-w131f2	_	RSTR	_	_	_	_	_	_	_	_	_	_	_	_
+9	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+10	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	U.S.	u.s.	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	should	should	MD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	regulate	regulate	VB	-	+	ev-w2606f1	_	_	PAT-arg	_	_	_	_	_	_	_	_	_	_	_
+14	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	class	class	NN	-	+	_	_	_	_	PAT-arg	_	_	_	_	_	_	_	_	_	_
+16	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	_	_	_	_	_	APP	_	_	_	_	_	_	_	_	_
+18	including	include	VBG	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	crocidolite	crocidolite	NN	-	-	_	_	_	_	_	RESTR	_	_	_	_	_	_	_	_	_
+20	more	more	RBR	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	stringently	stringently	RB	-	-	_	_	_	_	MANN	_	_	_	_	_	_	_	_	_	_
+22	than	than	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	common	common	JJ	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_	_
+25	kind	kind	NN	-	+	_	_	_	_	PAT-arg	_	_	APPS.member	_	_	_	_	_	_	_
+26	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	asbestos	asbestos	NN	-	-	_	_	_	_	_	_	APP	_	_	_	_	_	_	_	_
+28	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	chrysotile	chrysotile	NN	-	+	_	_	_	_	PAT-arg	_	_	APPS.member	_	_	_	_	_	_	_
+30	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+31	found	find	VBN	-	+	ev-w1327f3	_	_	_	_	_	_	_	RSTR	_	_	_	_	_	_
+32	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	most	most	JJS	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+34	schools	school	NNS	-	+	_	_	_	_	_	_	_	_	_	LOC	_	CONJ.member	_	_	_
+35	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	other	other	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	RSTR	_	_
+37	buildings	building	NNS	-	+	_	_	_	_	_	_	_	_	_	LOC	_	CONJ.member	_	_	_
+38	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+39	Dr.	dr.	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	RSTR	_
+40	Talcott	talcott	NNP	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	ACT-arg
+41	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+42	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003020
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	U.S.	u.s.	NNP	-	-	_	ACT-arg	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	is	be	VBZ	+	+	ev-w218f2	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+4	one	one	CD	-	+	_	PAT-arg	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	few	few	JJ	-	-	_	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+8	industrialized	industrialize	VBN	-	-	ev-w1688f1	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+9	nations	nation	NNS	-	+	_	_	DIR1	_	_	_	_	_	_	_	_	_	_	_	_
+10	that	that	WDT	-	-	_	_	_	_	ACT-arg	_	_	_	_	_	_	_	_	_	_
+11	does	do	VBZ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	n’t	#Neg	RB	-	-	_	_	_	_	RHEM	_	_	_	_	_	_	_	_	_	_
+13	have	have	VB	-	+	ev-w1566f3	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+14	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	higher	high	JJR	-	-	_	_	_	_	_	RSTR	_	_	_	_	_	_	_	_	_
+16	standard	standard	NN	-	+	_	_	_	_	PAT-arg	_	_	_	_	_	_	_	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	regulation	regulation	NN	-	-	_	_	_	_	_	APP	_	_	_	_	_	_	_	_	_
+19	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	smooth	smooth	JJ	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_	_
+22	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	needle-like	needle-like	JJ	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_	_
+24	fibers	fiber	NNS	-	+	_	_	_	_	_	BEN	_	APPS.member	_	_	_	_	_	_	_
+25	such	such	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	as	such_as	IN	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	crocidolite	crocidolite	NN	-	+	_	_	_	_	_	BEN	_	APPS.member	_	_	_	_	_	_	_
+28	that	that	WDT	-	-	_	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	_	_
+29	are	be	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	classified	classify	VBN	-	+	ev-w541f1	_	_	_	_	_	RSTR	_	RSTR	_	_	_	_	_	_
+31	as	as	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	amphobiles	amphobile	NNS	-	-	_	_	_	_	_	_	_	_	_	EFF-arg	_	_	_	_	_
+33	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+34	according	accord	VBG	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+35	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	Brooke	Brooke	NNP	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+37	T.	T.	NNP	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+38	Mossman	mossman	NNP	-	+	_	CRIT	_	_	_	_	_	_	_	_	_	APPS.member	_	_	_
+39	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+40	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+41	professor	professor	NN	-	+	_	CRIT	_	_	_	_	_	_	_	_	_	APPS.member	_	_	_
+42	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+43	pathlogy	pathlogy	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	APP	_	_
+44	at	at	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+45	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+46	University	University	NNP	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	NE
+47	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+48	Vermont	Vermont	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	NE	_
+49	College	college	NNP	-	+	_	_	_	_	_	_	_	_	_	_	_	_	LOC	_	_
+50	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+51	Medicine	Medicine	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	NE
+52	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003021
+1	More	more	RBR	-	-	_	_	_	_	_	_	_
+2	common	common	JJ	-	-	_	RSTR	_	_	_	_	_
+3	chrysotile	chrysotile	NN	-	-	_	RSTR	_	_	_	_	_
+4	fibers	fiber	NNS	-	+	_	_	ACT-arg	_	PAT-arg	_	_
+5	are	be	VBP	-	+	ev-w218f2	_	_	CONJ.member	_	_	PAT-arg
+6	curly	curly	JJ	-	-	_	_	PAT-arg	_	_	_	_
+7	and	and	CC	-	+	_	_	_	_	_	_	_
+8	are	be	VBP	-	-	_	_	_	_	_	_	_
+9	more	more	RBR	-	-	_	_	_	_	_	_	_
+10	easily	easily	RB	-	-	_	_	_	_	MANN	_	_
+11	rejected	reject	VBN	-	+	ev-w2622f1	_	_	CONJ.member	_	_	PAT-arg
+12	by	by	IN	-	-	_	_	_	_	_	_	_
+13	the	the	DT	-	-	_	_	_	_	_	_	_
+14	body	body	NN	-	-	_	_	_	_	ACT-arg	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_
+16	Dr.	dr.	NNP	-	-	_	_	_	_	_	RSTR	_
+17	Mossman	mossman	NNP	-	+	_	_	_	_	_	_	ACT-arg
+18	explained	explain	VBD	+	+	ev-w1246f1	_	_	_	_	_	_
+19	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20003022
+1	In	in	IN	-	-	_	_	_	_	_	_
+2	July	july	NNP	-	-	_	_	_	TWHEN	_	_
+3	,	,	,	-	-	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_
+5	Environmental	Environmental	NNP	-	-	_	NE	_	_	_	_
+6	Protection	Protection	NNP	-	+	_	_	NE	_	_	_
+7	Agency	agency	NNP	-	+	_	_	_	ACT-arg	_	_
+8	imposed	impose	VBD	+	+	ev-w1663f1	_	_	_	_	_
+9	a	a	DT	-	-	_	_	_	_	_	_
+10	gradual	gradual	JJ	-	-	_	_	_	_	MANN	_
+11	ban	ban	NN	-	+	_	_	_	PAT-arg	_	_
+12	on	on	IN	-	-	_	_	_	_	_	_
+13	virtually	virtually	RB	-	-	_	_	_	_	_	ATT
+14	all	all	DT	-	-	_	_	_	_	_	RSTR
+15	uses	use	NNS	-	+	_	_	_	ADDR-arg	_	_
+16	of	of	IN	-	-	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	_	_	_	_	_	PAT-arg
+18	.	.	.	-	-	_	_	_	_	_	_
+
+#20003023
+1	By	by	IN	-	-	_	_	_	_	_
+2	1997	1997	CD	-	-	_	_	_	_	TTILL
+3	,	,	,	-	-	_	_	_	_	_
+4	almost	almost	RB	-	-	_	EXT	_	_	_
+5	all	all	DT	-	+	_	_	RSTR	_	_
+6	remaining	remain	VBG	-	-	ev-w2638f1	_	RSTR	_	_
+7	uses	use	NNS	-	+	_	_	_	_	PAT-arg
+8	of	of	IN	-	-	_	_	_	_	_
+9	cancer-causing	cancer-causing	JJ	-	-	_	_	_	RSTR	_
+10	asbestos	asbestos	NN	-	+	_	_	PAT-arg	_	_
+11	will	will	MD	-	-	_	_	_	_	_
+12	be	be	VB	-	-	_	_	_	_	_
+13	outlawed	outlaw	VBN	+	+	ev-w2131f1	_	_	_	_
+14	.	.	.	-	-	_	_	_	_	_
+
+#20003024
+1	About	about	IN	-	-	_	EXT	_	_	_	_	_	_
+2	160	160	CD	-	+	_	_	RSTR	_	_	_	_	_
+3	workers	worker	NNS	-	+	_	_	_	_	_	_	_	ADDR-arg
+4	at	at	IN	-	-	_	_	_	_	_	_	_	_
+5	a	a	DT	-	-	_	_	_	_	_	_	_	_
+6	factory	factory	NN	-	+	_	_	LOC	_	_	_	_	_
+7	that	that	WDT	-	-	_	_	_	_	ACT-arg	_	_	_
+8	made	make	VBD	-	+	ev-w1923f6	_	_	RSTR	_	_	_	_
+9	paper	paper	NN	-	+	_	_	_	_	PAT-arg	_	_	_
+10	for	for	IN	-	-	_	_	_	_	_	_	_	_
+11	the	the	DT	-	-	_	_	_	_	_	_	_	_
+12	Kent	kent	NNP	-	-	_	_	_	_	_	_	ID	_
+13	filters	filter	NNS	-	+	_	_	_	_	_	BEN	_	_
+14	were	be	VBD	-	-	_	_	_	_	_	_	_	_
+15	exposed	expose	VBN	+	+	ev-w1251f1	_	_	_	_	_	_	_
+16	to	to	TO	-	-	_	_	_	_	_	_	_	_
+17	asbestos	asbestos	NN	-	-	_	_	_	_	_	_	_	PAT-arg
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_
+19	the	the	DT	-	-	_	_	_	_	_	_	_	_
+20	1950s	1950s	CD	-	-	_	_	_	_	_	_	_	TWHEN
+21	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20003025
+1	Areas	area	NNS	-	+	_	_	ACT-arg	_	_
+2	of	of	IN	-	-	_	_	_	_	_
+3	the	the	DT	-	-	_	_	_	_	_
+4	factory	factory	NN	-	-	_	APP	_	_	_
+5	were	be	VBD	+	+	ev-w218f2	_	_	_	_
+6	particularly	particularly	RB	-	-	_	_	_	EXT	_
+7	dusty	dusty	JJ	-	+	_	_	PAT-arg	_	_
+8	where	where	WRB	-	-	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_
+10	crocidolite	crocidolite	NN	-	-	_	_	_	_	PAT-arg
+11	was	be	VBD	-	-	_	_	_	_	_
+12	used	use	VBN	-	+	ev-w3525f6	RSTR	_	_	_
+13	.	.	.	-	-	_	_	_	_	_
+
+#20003026
+1	Workers	worker	NNS	-	-	_	ACT-arg	_	_	_	ACT-arg	_	_	_	ACT-arg	_	_	_	_
+2	dumped	dump	VBD	+	+	ev-w1074f1	_	_	_	_	_	_	_	CONJ.member	_	_	_	_	_
+3	large	large	JJ	-	-	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+4	burlap	burlap	NN	-	-	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+5	sacks	sack	NNS	-	+	_	PAT-arg	_	_	_	_	_	_	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	imported	import	VBN	-	-	ev-w1662f1	_	_	RSTR	_	_	_	_	_	_	_	_	_	_
+9	material	material	NN	-	+	_	_	MAT	_	_	_	_	_	_	_	_	_	_	_
+10	into	into	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	huge	huge	JJ	-	-	_	_	_	_	RSTR	_	_	_	_	_	_	_	_	_
+13	bin	bin	NN	-	+	_	DIR3	_	_	_	_	_	_	_	_	_	_	_	_
+14	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	poured	pour_in	VBD	+	+	v-w452_u_nobodyf1_u_nobody	_	_	_	_	_	_	_	CONJ.member	_	_	_	_	_
+16	in	in	RP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	cotton	cotton	NN	-	-	_	_	_	_	_	_	CONJ.member	RSTR	_	_	_	_	_	_
+18	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	acetate	acetate	NN	-	-	_	_	_	_	_	_	CONJ.member	RSTR	_	_	_	_	_	_
+20	fibers	fiber	NNS	-	+	_	_	_	_	_	PAT-arg	_	_	_	_	_	_	_	_
+21	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	mechanically	mechanically	RB	-	-	_	_	_	_	_	_	_	_	_	MANN	_	_	_	_
+23	mixed	mix	VBD	+	+	ev-w2010f1	_	_	_	_	_	_	_	CONJ.member	_	_	_	_	_
+24	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	dry	dry	JJ	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_
+26	fibers	fiber	NNS	-	+	_	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	_
+27	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	process	process	NN	-	+	_	_	_	_	_	_	_	_	_	LOC	_	_	_	_
+30	used	use	VBN	-	+	ev-w3525f6	_	_	_	_	_	_	_	_	_	_	RSTR	_	_
+31	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	make	make	VB	-	+	ev-w1923f6	_	_	_	_	_	_	_	_	_	_	_	AIM	_
+33	filters	filter	NNS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	PAT-arg
+34	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003027
+1	Workers	worker	NNS	-	-	_	ACT-arg	_	_	_	_	_	_
+2	described	describe	VBD	+	+	ev-w894f2	_	_	_	_	_	_	_
+3	“	“	``	-	-	_	_	_	_	_	_	_	_
+4	clouds	cloud	NNS	-	+	_	PAT-arg	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_
+6	blue	blue	JJ	-	-	_	_	_	RSTR	_	_	_	_
+7	dust	dust	NN	-	+	_	_	MAT	_	_	_	_	_
+8	”	”	''	-	-	_	_	_	_	_	_	_	_
+9	that	that	WDT	-	-	_	_	_	_	ACT-arg	_	_	_
+10	hung	hang	VBD	-	+	ev-w1547f5	_	RSTR	_	_	_	_	_
+11	over	over	IN	-	-	_	_	_	_	_	_	_	_
+12	parts	part	NNS	-	+	_	_	_	_	LOC	_	_	_
+13	of	of	IN	-	-	_	_	_	_	_	_	_	_
+14	the	the	DT	-	-	_	_	_	_	_	_	_	_
+15	factory	factory	NN	-	-	_	_	_	_	_	APP	_	_
+16	,	,	,	-	-	_	_	_	_	_	_	_	_
+17	even	even	RB	-	-	_	_	_	_	_	_	_	_
+18	though	though	IN	-	-	_	_	_	_	_	_	_	_
+19	exhaust	exhaust	NN	-	-	_	_	_	_	_	_	RSTR	_
+20	fans	fan	NNS	-	+	_	_	_	_	_	_	_	ACT-arg
+21	ventilated	ventilate	VBD	-	+	ev-w3543f1	_	_	_	CNCS	_	_	_
+22	the	the	DT	-	-	_	_	_	_	_	_	_	_
+23	area	area	NN	-	-	_	_	_	_	_	_	_	PAT-arg
+24	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20003028
+1	“	“	``	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	There	there	EX	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	’s	be	VBZ	-	+	ev-w218f3	_	_	_	_	_	_	_	_	EFF-arg	_	_	_	_	_
+4	no	no	DT	-	-	_	_	RSTR	_	_	_	_	_	_	_	_	_	_	_	_
+5	question	question	NN	-	+	_	ACT-arg	_	_	_	_	_	_	_	_	_	_	_	_	_
+6	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	some	some	DT	-	+	_	_	_	_	_	_	_	ACT-arg	_	_	_	_	_	_	_
+8	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	those	those	DT	-	-	_	_	_	_	RSTR	_	RSTR	_	_	_	_	_	_	_	_
+10	workers	worker	NNS	-	+	_	_	_	DIR1	_	CONJ.member	_	_	_	_	_	_	_	_	_
+11	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+12	managers	manager	NNS	-	+	_	_	_	DIR1	_	CONJ.member	_	_	_	_	_	_	_	_	_
+13	contracted	contract	VBD	-	+	ev-w686f3	_	PAT-arg	_	_	_	_	_	_	_	_	_	_	_	_
+14	asbestos-related	asbestos-related	JJ	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_	_	_	_
+15	diseases	disease	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_	_	_	_	_	_	_
+16	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	”	”	''	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+18	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	Darrell	Darrell	NNP	-	-	_	_	_	_	_	_	_	_	_	_	NE	_	_	_	_
+20	Phillips	Phillips	NNP	-	+	_	_	_	_	_	_	_	_	_	ACT-arg	_	APPS.member	_	_	_
+21	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	vice	vice	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	RSTR	_	_
+23	president	president	NN	-	+	_	_	_	_	_	_	_	_	_	ACT-arg	_	APPS.member	_	_	_
+24	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+25	human	human	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	NE	_
+26	resources	resource	NNS	-	+	_	_	_	_	_	_	_	_	_	_	_	_	APP	_	_
+27	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+28	Hollingsworth	Hollingsworth	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	NE	_	CONJ.member
+29	&	#Amp	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+30	Vose	Vose	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	NE	_	CONJ.member
+31	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20003029
+1	“	“	``	-	-	_	_	_	_	_
+2	But	but	CC	-	-	_	PREC	_	_	_
+3	you	#PersPron	PRP	-	-	_	ACT-arg	_	_	_
+4	have	have	VBP	-	-	_	_	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_
+6	recognize	recognize	VB	+	+	ev-w2549f2	_	_	_	_
+7	that	that	IN	-	-	_	_	_	_	_
+8	these	these	DT	-	-	_	_	RSTR	_	_
+9	events	event	NNS	-	+	_	_	_	ACT-arg	_
+10	took	take	VBD	-	+	ev-w3310f37_u_nobody	PAT-arg	_	_	_
+11	place	place	NN	-	-	_	_	_	CPHR-arg	_
+12	35	35	CD	-	-	_	_	_	_	RSTR
+13	years	year	NNS	-	+	_	_	_	TWHEN	_
+14	ago	ago	IN	-	-	_	_	_	_	_
+15	.	.	.	-	-	_	_	_	_	_
+
+#20003030
+1	It	#PersPron	PRP	-	-	_	ACT-arg	_	_
+2	has	have	VBZ	+	+	ev-w1566f3	_	_	_
+3	no	no	DT	-	-	_	_	RSTR	_
+4	bearing	bearing	NN	-	+	_	PAT-arg	_	_
+5	on	on	IN	-	-	_	_	_	_
+6	our	#PersPron	PRP$	-	-	_	_	_	APP
+7	work	work	NN	-	-	_	_	_	RSTR
+8	force	force	NN	-	+	_	_	RSTR	_
+9	today	today	NN	-	-	_	_	_	TWHEN
+10	.	.	.	-	-	_	_	_	_
+
+#20004001
+1	Yields	yield	NNS	-	+	_	_	_	ACT-arg	ACT-arg	_	_	_	_	_
+2	on	on	IN	-	-	_	_	_	_	_	_	_	_	_	_
+3	money-market	money-market	JJ	-	-	_	_	RSTR	_	_	_	_	_	_	_
+4	mutual	mutual	JJ	-	-	_	_	RSTR	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	+	_	LOC	_	_	_	_	_	_	_	_
+6	continued	continue	VBD	+	+	ev-w685f2	_	_	_	_	_	_	_	_	_
+7	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_
+8	slide	slide	VB	-	+	ev-w3012f1	_	_	PAT-arg	_	_	_	_	_	_
+9	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+10	amid	amid	IN	-	-	_	_	_	_	_	_	_	_	_	_
+11	signs	sign	NNS	-	+	_	_	_	LOC	_	_	_	_	_	_
+12	that	that	IN	-	-	_	_	_	_	_	_	_	_	_	_
+13	portfolio	portfolio	NN	-	-	_	_	_	_	_	_	PAT-arg	_	_	_
+14	managers	manager	NNS	-	+	_	_	_	_	_	_	_	ACT-arg	_	_
+15	expect	expect	VBP	-	+	ev-w1239f1	_	_	_	_	PAT-arg	_	_	_	_
+16	further	further	JJ	-	-	_	_	_	_	_	_	_	_	MANN	_
+17	declines	decline	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_	_
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_
+19	interest	interest	NN	-	-	_	_	_	_	_	_	_	_	_	RSTR
+20	rates	rate	NNS	-	+	_	_	_	_	_	_	_	_	LOC	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20004002
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	average	average	JJ	-	-	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+3	seven-day	seven-day	JJ	-	-	_	TFHL	_	_	_	_	_	_	_	_	_	_	_
+4	compound	compound	NN	-	-	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+5	yield	yield	NN	-	+	_	_	_	_	_	_	ACT-arg	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	400	400	CD	-	-	_	_	RSTR	_	_	_	_	_	_	_	_	_	_
+9	taxable	taxable	JJ	-	-	_	_	RSTR	_	_	_	_	_	_	_	_	_	_
+10	funds	fund	NNS	-	+	_	APP	_	_	_	_	_	_	_	_	_	_	_
+11	tracked	track	VBN	-	+	ev-w3416f3	_	RSTR	_	_	_	_	_	_	_	_	_	_
+12	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	IBC	ibc	NNP	-	-	_	_	_	_	_	AUTH	_	_	_	_	_	_	_
+14	’s	’s	POS	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	Money	Money	NNP	-	-	_	_	_	_	NE	_	_	_	_	_	_	_	_
+16	Fund	Fund	NNP	-	+	_	_	_	_	_	NE	_	_	_	_	_	_	_
+17	Report	report	NNP	-	+	_	_	_	ACT-arg	_	_	_	_	_	_	_	_	_
+18	eased	ease	VBD	+	+	ev-w1084f1	_	_	_	_	_	_	_	_	_	_	_	_
+19	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	fraction	fraction	NN	-	+	_	_	_	_	_	_	DIFF	_	_	_	_	_	_
+21	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+22	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+23	percentage	percentage	NN	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+24	point	point	NN	-	+	_	_	_	_	_	_	_	APP	_	_	_	_	_
+25	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	8.45	8.45	CD	-	-	_	_	_	_	_	_	_	_	_	RSTR	_	_	_
+27	%	#Percnt	NN	-	+	_	_	_	_	_	_	PAT-arg	_	_	_	_	_	_
+28	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	8.47	8.47	CD	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_
+30	%	#Percnt	NN	-	+	_	_	_	_	_	_	ORIG-arg	_	_	_	_	_	_
+31	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	week	week	NN	-	+	_	_	_	_	_	_	TFHL	_	_	_	_	_	_
+34	ended	end	VBD	-	+	ev-w1142f3	_	_	_	_	_	_	_	_	_	_	RSTR	_
+35	Tuesday	tuesday	NNP	-	-	_	_	_	_	_	_	_	_	_	_	_	_	ACT-arg
+36	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004004
+1	Average	average	JJ	-	-	_	RSTR	_	_	_	_	_	_
+2	maturity	maturity	NN	-	+	_	_	_	ACT-arg	_	_	_	_
+3	of	of	IN	-	-	_	_	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	-	_	_	APP	_	_	_	_	_
+6	’	’	POS	-	-	_	_	_	_	_	_	_	_
+7	investments	investment	NNS	-	+	_	APP	_	_	_	_	_	_
+8	lengthened	lengthen	VBD	+	+	ev-w1850f1	_	_	_	_	_	_	_
+9	by	by	IN	-	-	_	_	_	_	_	_	_	_
+10	a	a	DT	-	-	_	_	_	_	_	_	_	_
+11	day	day	NN	-	-	_	_	_	DIFF	_	_	_	_
+12	to	to	TO	-	-	_	_	_	_	_	_	_	_
+13	41	41	CD	-	-	_	_	_	_	RSTR	_	_	_
+14	days	day	NNS	-	+	_	_	_	DIR3	_	APPS.member	_	_
+15	,	#Comma	,	-	+	_	_	_	_	_	_	_	_
+16	the	the	DT	-	-	_	_	_	_	_	_	_	_
+17	longest	long	JJS	-	+	_	_	_	DIR3	_	APPS.member	_	_
+18	since	since	IN	-	-	_	_	_	_	_	_	_	_
+19	early	early	JJ	-	-	_	_	_	_	_	_	_	TWHEN
+20	August	august	NNP	-	+	_	_	_	_	_	_	TSIN	_
+21	,	,	,	-	-	_	_	_	_	_	_	_	_
+22	according	accord	VBG	-	-	_	_	_	_	_	_	_	_
+23	to	to	TO	-	-	_	_	_	_	_	_	_	_
+24	Donoghue	donoghue	NNP	-	-	_	_	_	REG	_	_	_	_
+25	’s	’s	POS	-	-	_	_	_	_	_	_	_	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20004005
+1	Longer	Long	JJR	-	-	_	RSTR	_	_	_	_	_	_	_	_	_
+2	maturities	maturity	NNS	-	+	_	_	_	ACT-arg	_	_	_	_	_	_	_
+3	are	be	VBP	-	-	_	_	_	_	_	_	_	_	_	_	_
+4	thought	think	VBN	+	+	ev-w3363f4	_	_	_	_	_	_	_	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	indicate	indicate	VB	-	+	ev-w1683f1	_	EFF-arg	_	_	_	_	_	_	_	_
+7	declining	decline	VBG	-	-	ev-w829f2	_	_	_	RSTR	_	_	_	_	_	_
+8	interest	interest	NN	-	-	_	_	_	_	RSTR	_	_	_	_	_	_
+9	rates	rate	NNS	-	+	_	_	_	PAT-arg	_	_	_	_	_	_	_
+10	because	because	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	they	#PersPron	PRP	-	-	_	_	_	_	_	ACT-arg	_	_	_	_	_
+12	permit	permit	VBP	-	+	ev-w2248f2	_	_	CAUS	_	_	_	_	_	_	_
+13	portfolio	portfolio	NN	-	-	_	_	_	_	_	_	PAT-arg	_	_	_	_
+14	managers	manager	NNS	-	+	_	_	_	_	_	ADDR-arg	_	ACT-arg	_	_	_
+15	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_
+16	retain	retain	VB	-	+	ev-w2718f1	_	_	_	_	PAT-arg	_	_	_	_	_
+17	relatively	relatively	RB	-	-	_	_	_	_	_	_	_	_	MANN	_	_
+18	higher	high	JJR	-	+	_	_	_	_	_	_	_	_	_	RSTR	_
+19	rates	rate	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_	_	_
+20	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+21	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+22	longer	long	JJR	-	-	_	_	_	_	_	_	_	_	_	_	RSTR
+23	period	period	NN	-	+	_	_	_	_	_	_	_	TFHL	_	_	_
+24	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20004006
+1	Shorter	Short	JJR	-	-	_	RSTR	_	_	_	_	_	_
+2	maturities	maturity	NNS	-	+	_	_	PAT-arg	_	_	_	_	_
+3	are	be	VBP	-	-	_	_	_	_	_	_	_	_
+4	considered	consider	VBN	+	+	ev-w662f2	_	_	_	_	_	_	_
+5	a	a	DT	-	-	_	_	_	_	_	_	_	_
+6	sign	sign	NN	-	+	_	_	EFF-arg	_	_	_	_	_
+7	of	of	IN	-	-	_	_	_	_	_	_	_	_
+8	rising	rise	VBG	-	-	ev-w2772f1	_	_	_	RSTR	_	_	_
+9	rates	rate	NNS	-	+	_	_	_	PAT-arg	_	_	_	_
+10	because	because	IN	-	-	_	_	_	_	_	_	_	_
+11	portfolio	portfolio	NN	-	-	_	_	_	_	_	PAT-arg	_	_
+12	managers	manager	NNS	-	+	_	_	_	_	_	_	ACT-arg	_
+13	can	can	MD	-	-	_	_	_	_	_	_	_	_
+14	capture	capture	VB	-	+	ev-w438f1	_	CAUS	_	_	_	_	_
+15	higher	high	JJR	-	-	_	_	_	_	_	_	_	RSTR
+16	rates	rate	NNS	-	+	_	_	_	_	_	_	PAT-arg	_
+17	sooner	sooner	RB	-	-	_	_	_	_	_	_	TWHEN	_
+18	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20004007
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	average	average	JJ	-	-	_	RSTR	_	_	_	_	_	_	_	_	_	_	_
+3	maturity	maturity	NN	-	+	_	_	_	_	_	_	_	_	_	ACT-arg	_	_	_
+4	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	funds	fund	NNS	-	+	_	BEN	_	_	_	_	_	_	_	_	_	_	_
+6	open	open	JJ	-	+	_	_	RSTR	_	_	_	_	_	_	_	_	_	_
+7	only	only	RB	-	-	_	_	_	RHEM	_	_	_	_	_	_	_	_	_
+8	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+9	institutions	institution	NNS	-	-	_	_	_	PAT-arg	_	_	_	_	_	_	_	_	_
+10	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+11	considered	consider	VBN	-	+	ev-w662f2	RSTR	_	_	_	_	_	_	_	_	_	_	_
+12	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	some	some	DT	-	-	_	_	_	_	ACT-arg	_	_	_	_	_	_	_	_
+14	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	be	be	VB	-	+	ev-w218f2	_	_	_	EFF-arg	_	_	_	_	_	_	_	_
+16	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+17	stronger	strong	JJR	-	-	_	_	_	_	_	_	RSTR	_	_	_	_	_	_
+18	indicator	indicator	NN	-	+	_	_	_	_	_	PAT-arg	_	_	_	_	_	_	_
+19	because	because	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+20	those	those	DT	-	-	_	_	_	_	_	_	_	RSTR	_	_	_	_	_
+21	managers	manager	NNS	-	+	_	_	_	_	_	_	_	_	ACT-arg	_	_	_	_
+22	watch	watch	VBP	-	+	ev-w3595f2	_	_	_	_	CAUS	_	_	_	_	_	_	_
+23	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+24	market	market	NN	-	-	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	_
+25	closely	closely	RB	-	-	_	_	_	_	_	_	_	_	MANN	_	_	_	_
+26	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+27	reached	reach	VBD	+	+	ev-w2510f5	_	_	_	_	_	_	_	_	_	_	_	_
+28	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	high	high	JJ	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_
+30	point	point	NN	-	+	_	_	_	_	_	_	_	_	_	PAT-arg	_	APPS.member	_
+31	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+33	year	year	NN	-	-	_	_	_	_	_	_	_	_	_	_	TFHL	_	_
+34	–	#Dash	:	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_
+35	33	33	CD	-	-	_	_	_	_	_	_	_	_	_	_	_	_	RSTR
+36	days	day	NNS	-	+	_	_	_	_	_	_	_	_	_	PAT-arg	_	APPS.member	_
+37	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20004008
+1	Nevertheless	nevertheless	RB	-	-	_	PREC	_	_	_	_	_	_	_	_	_
+2	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+3	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_
+4	Brenda	Brenda	NNP	-	-	_	_	NE	_	_	_	_	_	_	_	_
+5	Malizia	Malizia	NNP	-	-	_	_	NE	_	_	_	_	_	_	_	_
+6	Negus	Negus	NNP	-	+	_	ACT-arg	_	APPS.member	_	_	_	_	_	_	_
+7	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_
+8	editor	editor	NN	-	+	_	ACT-arg	_	APPS.member	_	_	_	_	_	_	_
+9	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+10	Money	Money	NNP	-	-	_	_	_	_	_	NE	_	_	_	_	_
+11	Fund	Fund	NNP	-	+	_	_	_	_	_	_	NE	_	_	_	_
+12	Report	report	NNP	-	+	_	_	_	_	PAT-arg	_	_	_	_	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+14	yields	yield	NNS	-	-	_	_	_	_	_	_	_	ACT-arg	_	_	_
+15	“	“	``	-	-	_	_	_	_	_	_	_	_	_	_	_
+16	may	may	MD	-	-	_	_	_	_	_	_	_	_	_	_	_
+17	blip	blip_up	VB	-	+	v-w178_u_nobodyf1_u_nobody	EFF-arg	_	_	_	_	_	_	_	_	_
+18	up	up	RP	-	-	_	_	_	_	_	_	_	_	_	_	_
+19	again	again	RB	-	-	_	_	_	_	_	_	_	THO	_	_	_
+20	before	before	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+21	they	#PersPron	PRP	-	-	_	_	_	_	_	_	_	_	ACT-arg	_	_
+22	blip	blip_down	VBP	-	+	v-w179_u_nobodyf2	_	_	_	_	_	_	TWHEN	_	_	_
+23	down	down	RP	-	-	_	_	_	_	_	_	_	_	_	_	_
+24	”	”	''	-	-	_	_	_	_	_	_	_	_	_	_	_
+25	because	because	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+26	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+27	recent	recent	JJ	-	-	_	_	_	_	_	_	_	_	_	TWHEN	_
+28	rises	rise	NNS	-	+	_	_	_	_	_	_	_	CAUS	_	_	_
+29	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+30	short-term	short-term	JJ	-	-	_	_	_	_	_	_	_	_	_	_	TFHL
+31	interest	interest	NN	-	-	_	_	_	_	_	_	_	_	_	_	RSTR
+32	rates	rate	NNS	-	+	_	_	_	_	_	_	_	_	_	LOC	_
+33	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20004009
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_
+2	yield	yield	NN	-	+	_	_	_	_	_	ACT-arg	_	_
+3	on	on	IN	-	-	_	_	_	_	_	_	_	_
+4	six-month	six-month	JJ	-	-	_	_	THL	_	_	_	_	_
+5	Treasury	treasury	NNP	-	-	_	_	RSTR	_	_	_	_	_
+6	bills	bill	NNS	-	+	_	ORIG-arg	_	_	_	_	_	_
+7	sold	sell	VBN	-	+	ev-w2888f2	_	RSTR	_	_	_	_	_
+8	at	at	IN	-	-	_	_	_	_	_	_	_	_
+9	Monday	monday	NNP	-	-	_	_	_	_	TWHEN	_	_	_
+10	’s	’s	POS	-	-	_	_	_	_	_	_	_	_
+11	auction	auction	NN	-	+	_	_	_	LOC	_	_	_	_
+12	,	,	,	-	-	_	_	_	_	_	_	_	_
+13	for	for	IN	-	-	_	_	_	_	_	_	_	_
+14	example	example	NN	-	-	_	_	_	_	_	RHEM	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_	_
+16	rose	rise	VBD	+	+	ev-w2772f1	_	_	_	_	_	_	_
+17	to	to	TO	-	-	_	_	_	_	_	_	_	_
+18	8.04	8.04	CD	-	-	_	_	_	_	_	_	RSTR	_
+19	%	#Percnt	NN	-	+	_	_	_	_	_	PAT-arg	_	_
+20	from	from	IN	-	-	_	_	_	_	_	_	_	_
+21	7.90	7.90	CD	-	-	_	_	_	_	_	_	_	RSTR
+22	%	#Percnt	NN	-	+	_	_	_	_	_	ORIG-arg	_	_
+23	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20004010
+1	Despite	despite	IN	-	-	_	_	_	_	_
+2	recent	recent	JJ	-	-	_	TWHEN	_	_	_
+3	declines	decline	NNS	-	+	_	_	CNCS	_	_
+4	in	in	IN	-	-	_	_	_	_	_
+5	yields	yield	NNS	-	-	_	LOC	_	_	_
+6	,	,	,	-	-	_	_	_	_	_
+7	investors	investor	NNS	-	-	_	_	ACT-arg	ACT-arg	_
+8	continue	continue	VBP	+	+	ev-w685f2	_	_	_	_
+9	to	to	TO	-	-	_	_	_	_	_
+10	pour	pour	VB	-	+	ev-w2348f2	_	PAT-arg	_	_
+11	cash	cash	NN	-	-	_	_	_	PAT-arg	_
+12	into	into	IN	-	-	_	_	_	_	_
+13	money	money	NN	-	-	_	_	_	_	MAT
+14	funds	fund	NNS	-	+	_	_	_	DIR3-arg	_
+15	.	.	.	-	-	_	_	_	_	_
+
+#20004011
+1	Assets	asset	NNS	-	+	_	_	_	ACT-arg	_	_	_	_	_
+2	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+3	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+4	400	400	CD	-	-	_	_	RSTR	_	_	_	_	_	_
+5	taxable	taxable	JJ	-	-	_	_	RSTR	_	_	_	_	_	_
+6	funds	fund	NNS	-	+	_	APP	_	_	_	_	_	_	_
+7	grew	grow	VBD	+	+	ev-w1517f3	_	_	_	_	_	_	_	_
+8	by	by	IN	-	-	_	_	_	_	_	_	_	_	_
+9	$	$	$	-	+	_	_	_	DIFF	_	_	_	_	_
+10	1.5	1.5	CD	-	-	_	_	_	_	_	RSTR	_	_	_
+11	billion	billion	CD	-	+	_	_	_	_	RSTR	_	_	_	_
+12	during	during	IN	-	-	_	_	_	_	_	_	_	_	_
+13	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+14	latest	late	JJS	-	-	_	_	_	_	_	_	TWHEN	_	_
+15	week	week	NN	-	+	_	_	_	TPAR	_	_	_	_	_
+16	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+17	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+18	$	$	$	-	+	_	_	_	PAT-arg	_	_	_	_	_
+19	352.7	352.7	CD	-	-	_	_	_	_	_	_	_	_	RSTR
+20	billion	billion	CD	-	+	_	_	_	_	_	_	_	RSTR	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20004012
+1	Typically	typically	RB	-	-	_	_	ATT	_	_	_	_	_	_
+2	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+3	money-fund	money-fund	NN	-	-	_	ORIG-arg	_	_	_	_	_	_	_
+4	yields	yield	NNS	-	+	_	_	ACT-arg	_	_	_	_	_	_
+5	beat	beat	VBP	+	+	ev-w223f4	_	_	_	_	_	_	_	_
+6	comparable	comparable	JJ	-	-	_	_	_	RSTR	_	_	_	_	_
+7	short-term	short-term	JJ	-	-	_	_	_	TFHL	_	_	_	_	_
+8	investments	investment	NNS	-	+	_	_	ADDR-arg	_	_	_	_	_	_
+9	because	because	IN	-	-	_	_	_	_	_	_	_	_	_
+10	portfolio	portfolio	NN	-	-	_	_	_	_	PAT-arg	_	_	_	_
+11	managers	manager	NNS	-	+	_	_	_	_	_	ACT-arg	_	ACT-arg	_
+12	can	can	MD	-	-	_	_	_	_	_	_	_	_	_
+13	vary	vary	VB	-	+	ev-w3537f2	_	CAUS	_	_	_	CONJ.member	_	_
+14	maturities	maturity	NNS	-	-	_	_	_	_	_	PAT-arg	_	_	_
+15	and	and	CC	-	+	_	_	_	_	_	_	_	_	_
+16	go	go	VB	-	+	ev-w1484f21	_	CAUS	_	_	_	CONJ.member	_	_
+17	after	after	IN	-	-	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+19	highest	high	JJS	-	-	_	_	_	_	_	_	_	_	RSTR
+20	rates	rate	NNS	-	+	_	_	_	_	_	_	_	PAT-arg	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20004014
+1	Dreyfus	Dreyfus	NNP	-	-	_	APP	_	_	_	_	_	_	_	_	_
+2	World-Wide	world-wide	NNP	-	-	_	LOC	_	_	_	_	_	_	_	_	_
+3	Dollar	dollar	NNP	-	+	_	_	APPS.member	_	ACT-arg	_	_	_	_	_	_
+4	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_
+5	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	top-yielding	top-yielding	JJ	-	-	_	_	_	RSTR	_	_	_	_	_	_	_
+7	fund	fund	NN	-	+	_	_	APPS.member	_	ACT-arg	_	_	_	_	_	_
+8	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+9	had	have	VBD	+	+	ev-w1566f3	_	_	_	_	_	_	_	_	_	_
+10	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	seven-day	seven-day	JJ	-	-	_	_	_	_	_	THL	_	_	_	_	_
+12	compound	compound	NN	-	-	_	_	_	_	_	RSTR	_	_	_	_	_
+13	yield	yield	NN	-	+	_	_	_	_	PAT-arg	_	_	_	_	_	_
+14	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+15	9.37	9.37	CD	-	-	_	_	_	_	_	_	RSTR	_	_	_	_
+16	%	#Percnt	NN	-	+	_	_	_	_	_	APP	_	_	_	_	_
+17	during	during	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+18	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+19	latest	late	JJS	-	-	_	_	_	_	_	_	_	TWHEN	_	_	_
+20	week	week	NN	-	+	_	_	_	_	TPAR	_	_	_	_	_	_
+21	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+22	down	down	RB	-	+	_	_	_	_	LOC	_	_	_	_	_	_
+23	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+24	9.45	9.45	CD	-	-	_	_	_	_	_	_	_	_	_	RSTR	_
+25	%	#Percnt	NN	-	+	_	_	_	_	_	_	_	_	DIR1	_	_
+26	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+27	week	week	NN	-	-	_	_	_	_	_	_	_	_	_	_	DIFF
+28	earlier	early	JJR	-	+	_	_	_	_	_	_	_	_	_	RSTR	_
+29	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20004015
+1	It	#PersPron	PRP	-	-	_	ACT-arg	_	_	ACT-arg	_	_	_
+2	invests	invest	VBZ	+	+	ev-w1752f1	_	_	CONJ.member	_	_	_	_
+3	heavily	heavily	RB	-	-	_	MANN	_	_	_	_	_	_
+4	in	in	IN	-	-	_	_	_	_	_	_	_	_
+5	dollar-denominated	dollar-denominated	JJ	-	-	_	_	RSTR	_	_	_	_	_
+6	securities	security	NNS	-	+	_	DIR3	_	_	_	_	_	_
+7	overseas	overseas	RB	-	-	_	LOC	_	_	_	_	_	_
+8	and	and	CC	-	+	_	_	_	_	_	_	_	_
+9	is	be	VBZ	-	-	_	_	_	_	_	_	_	_
+10	currently	currently	RB	-	-	_	_	_	_	TWHEN	_	_	_
+11	waiving	waive	VBG	+	+	ev-w3578f1	_	_	CONJ.member	_	_	_	_
+12	management	management	NN	-	-	_	_	_	_	_	RSTR	_	_
+13	fees	fee	NNS	-	+	_	_	_	_	PAT-arg	_	_	_
+14	,	,	,	-	-	_	_	_	_	_	_	_	_
+15	which	which	WDT	-	-	_	_	_	_	_	_	ACT-arg	_
+16	boosts	boost	VBZ	-	+	ev-w315f1	_	_	_	DESCR	_	_	_
+17	its	#PersPron	PRP$	-	-	_	_	_	_	_	_	_	ACT-arg
+18	yield	yield	NN	-	+	_	_	_	_	_	_	PAT-arg	_
+19	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20004016
+1	The	the	DT	-	-	_	_	_	_	_	_
+2	average	average	JJ	-	-	_	RSTR	_	_	_	_
+3	seven-day	seven-day	JJ	-	-	_	TFHL	_	_	_	_
+4	simple	simple	JJ	-	-	_	RSTR	_	_	_	_
+5	yield	yield	NN	-	+	_	_	_	ACT-arg	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_
+8	400	400	CD	-	-	_	_	RSTR	_	_	_
+9	funds	fund	NNS	-	+	_	ORIG-arg	_	_	_	_
+10	was	be	VBD	+	+	ev-w218f4_u_nobody	_	_	_	_	_
+11	8.12	8.12	CD	-	-	_	_	_	_	RSTR	_
+12	%	#Percnt	NN	-	+	_	_	_	PAT-arg	_	_
+13	,	,	,	-	-	_	_	_	_	_	_
+14	down	down	RB	-	-	_	_	_	CPHR-arg	_	_
+15	from	from	IN	-	-	_	_	_	_	_	_
+16	8.14	8.14	CD	-	-	_	_	_	_	_	RSTR
+17	%	#Percnt	NN	-	+	_	_	_	ORIG-arg	_	_
+18	.	.	.	-	-	_	_	_	_	_	_
+
+#20004017
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+2	30-day	30-day	JJ	-	-	_	TFHL	_	_	_	_	_	_	_	_
+3	simple	simple	JJ	-	-	_	RSTR	_	_	_	_	_	_	_	_
+4	yield	yield	NN	-	+	_	_	ACT-arg	_	_	_	_	_	_	_
+5	fell	fall	VBD	+	+	ev-w1273f5	_	_	_	_	CONJ.member	_	_	_	_
+6	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_
+7	an	an	DT	-	-	_	_	_	_	_	_	_	_	_	_
+8	average	average	JJ	-	-	_	_	_	RSTR	_	_	_	_	_	_
+9	8.19	8.19	CD	-	-	_	_	_	RSTR	_	_	_	_	_	_
+10	%	#Percnt	NN	-	+	_	_	PAT-arg	_	_	_	_	_	_	_
+11	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_
+12	8.22	8.22	CD	-	-	_	_	_	_	RSTR	_	_	_	_	_
+13	%	#Percnt	NN	-	+	_	_	ORIG-arg	_	_	_	_	_	_	_
+14	;	#Semicolon	:	-	+	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+16	30-day	30-day	JJ	-	-	_	_	_	_	_	_	TFHL	_	_	_
+17	compound	compound	NN	-	-	_	_	_	_	_	_	RSTR	_	_	_
+18	yield	yield	NN	-	+	_	_	_	_	_	_	_	ACT-arg	_	_
+19	slid	slide	VBD	+	+	ev-w3012f1	_	_	_	_	CONJ.member	_	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_
+21	an	an	DT	-	-	_	_	_	_	_	_	_	_	_	_
+22	average	average	JJ	-	-	_	_	_	_	_	_	_	_	RSTR	_
+23	8.53	8.53	CD	-	-	_	_	_	_	_	_	_	_	RSTR	_
+24	%	#Percnt	NN	-	+	_	_	_	_	_	_	_	PAT-arg	_	_
+25	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_
+26	8.56	8.56	CD	-	-	_	_	_	_	_	_	_	_	_	RSTR
+27	%	#Percnt	NN	-	+	_	_	_	_	_	_	_	ORIG-arg	_	_
+28	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20005001
+1	J.P.	J.P.	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_	_
+2	Bolduc	bolduc	NNP	-	+	_	_	APPS.member	_	_	_	_	_	_	_	_	PAT-arg
+3	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+4	vice	vice	NN	-	-	_	_	_	RSTR	_	_	_	_	_	_	_	_
+5	chairman	chairman	NN	-	+	_	_	APPS.member	_	_	_	_	_	_	_	_	PAT-arg
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+7	W.R.	W.R.	NNP	-	-	_	_	_	_	NE	_	_	_	_	_	_	_
+8	Grace	Grace	NNP	-	+	_	_	_	NE	_	CONJ.member	_	_	_	_	_	_
+9	&	#Amp	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+10	Co.	Co.	NNP	-	+	_	_	_	NE	_	CONJ.member	_	_	_	_	_	_
+11	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+12	which	which	WDT	-	-	_	_	_	_	_	_	_	ACT-arg	_	_	_	_
+13	holds	hold	VBZ	-	+	ev-w1601f7	_	_	_	DESCR	_	DESCR	_	_	_	_	_
+14	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+15	83.4	83.4	CD	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_
+16	%	#Percnt	NN	-	+	_	_	_	_	_	_	_	_	_	RSTR	_	_
+17	interest	interest	NN	-	+	_	_	_	_	_	_	_	PAT-arg	_	_	_	_
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+19	this	this	DT	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_
+20	energy-services	energy-services	JJ	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_
+21	company	company	NN	-	+	_	_	_	_	_	_	_	_	_	LOC	_	_
+22	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+23	was	be	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+24	elected	elect	VBN	+	+	ev-w1102f1	_	_	_	_	_	_	_	_	_	_	_
+25	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+26	director	director	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	EFF-arg
+27	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20005002
+1	He	#PersPron	PRP	-	-	_	ACT-arg	_	_	_	_	_
+2	succeeds	succeed	VBZ	+	+	ev-w3245f2	_	_	_	_	_	_
+3	Terrence	Terrence	NNP	-	-	_	_	NE	_	_	_	_
+4	D.	D.	NNP	-	-	_	_	NE	_	_	_	_
+5	Daniels	Daniels	NNP	-	+	_	PAT-arg	_	APPS.member	_	_	_
+6	,	#Comma	,	-	+	_	_	_	_	_	_	_
+7	formerly	formerly	RB	-	-	_	_	_	_	_	TWHEN	_
+8	a	a	DT	-	-	_	_	_	_	_	_	_
+9	W.R.	W.R.	NNP	-	-	_	_	_	_	NE	_	_
+10	Grace	grace	NNP	-	+	_	_	_	_	_	APP	_
+11	vice	vice	NN	-	-	_	_	_	_	_	RSTR	_
+12	chairman	chairman	NN	-	+	_	PAT-arg	_	APPS.member	_	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_
+14	who	who	WP	-	-	_	_	_	_	_	_	ACT-arg
+15	resigned	resign	VBD	-	+	ev-w2696f3	_	DESCR	_	_	DESCR	_
+16	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20005003
+1	W.R.	W.R.	NNP	-	-	_	NE	_	_	_	_	_
+2	Grace	grace	NNP	-	+	_	_	ACT-arg	_	_	_	_
+3	holds	hold	VBZ	+	+	ev-w1601f5	_	_	_	_	_	_
+4	three	three	CD	-	+	_	_	CPHR-arg	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_
+6	Grace	Grace	NNP	-	-	_	_	_	_	NE	_	_
+7	Energy	energy	NNP	-	+	_	_	_	_	_	_	APP
+8	’s	’s	POS	-	-	_	_	_	_	_	_	_
+9	seven	seven	CD	-	-	_	_	_	_	_	RSTR	_
+10	board	board	NN	-	+	_	_	_	_	_	_	LOC
+11	seats	seat	NNS	-	+	_	_	_	DIR1	_	_	_
+12	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20006001
+1	Pacific	Pacific	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_	_
+2	First	First	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_	_
+3	Financial	Financial	NNP	-	+	_	_	NE	_	_	_	_	_	_	_	_	_
+4	Corp.	corp.	NNP	-	+	_	_	_	ACT-arg	_	_	_	_	_	_	_	_
+5	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_	_	_	_
+6	shareholders	shareholder	NNS	-	-	_	_	_	_	ACT-arg	_	_	_	_	_	_	_
+7	approved	approve	VBD	-	+	ev-w126f1	_	_	EFF-arg	_	_	_	_	_	_	_	_
+8	its	#PersPron	PRP$	-	-	_	_	_	_	_	PAT-arg	_	_	_	_	_	_
+9	acquisition	acquisition	NN	-	+	_	_	_	_	PAT-arg	_	_	_	_	_	_	_
+10	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+11	Royal	Royal	NNP	-	-	_	_	_	_	_	_	NE	_	_	_	_	_
+12	Trustco	Trustco	NNP	-	+	_	_	_	_	_	_	_	NE	_	_	_	_
+13	Ltd.	ltd.	NNP	-	+	_	_	_	_	_	ACT-arg	_	_	_	_	_	_
+14	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+15	Toronto	toronto	NNP	-	-	_	_	_	_	_	_	_	APP	_	_	_	_
+16	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+17	$	$	$	-	+	_	_	_	_	_	EXT	_	_	_	APPS.member	_	_
+18	27	27	CD	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_
+19	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+20	share	share	NN	-	-	_	_	_	_	_	_	_	_	REG	_	_	_
+21	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+22	or	or	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+23	$	$	$	-	+	_	_	_	_	_	EXT	_	_	_	APPS.member	_	_
+24	212	212	CD	-	-	_	_	_	_	_	_	_	_	_	_	_	RSTR
+25	million	million	CD	-	+	_	_	_	_	_	_	_	_	_	_	RSTR	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20006002
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_
+2	thrift	thrift	NN	-	-	_	RSTR	_	_	_	_	_	_
+3	holding	hold	VBG	-	-	ev-w1601f7	RSTR	_	_	_	_	_	_
+4	company	company	NN	-	+	_	_	ACT-arg	_	_	_	_	_
+5	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_
+6	it	#PersPron_#Cor	PRP	-	-	_	_	_	ACT-arg	ACT-arg	_	_	ACT-arg
+7	expects	expect	VBZ	-	+	ev-w1239f1	_	EFF-arg	_	_	_	_	_
+8	to	to	TO	-	-	_	_	_	_	_	_	_	_
+9	obtain	obtain	VB	-	+	ev-w2099f1	_	_	PAT-arg	_	_	CONJ.member	_
+10	regulatory	regulatory	JJ	-	-	_	_	_	_	_	RSTR	_	_
+11	approval	approval	NN	-	+	_	_	_	_	PAT-arg	_	_	_
+12	and	and	CC	-	+	_	_	_	_	_	_	_	_
+13	complete	complete	VB	-	+	ev-w620f1	_	_	PAT-arg	_	_	CONJ.member	_
+14	the	the	DT	-	-	_	_	_	_	_	_	_	_
+15	transaction	transaction	NN	-	-	_	_	_	_	_	_	_	PAT-arg
+16	by	by	IN	-	-	_	_	_	_	_	_	_	_
+17	year-end	year-end	NN	-	-	_	_	_	_	TTILL	_	_	TTILL
+18	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20007002
+1	Finmeccanica	finmeccanica	NNP	-	-	_	ACT-arg	_	_	_	_
+2	is	be	VBZ	+	+	ev-w218f2	_	_	_	_	_
+3	an	an	DT	-	-	_	_	_	_	_	_
+4	Italian	italian	JJ	-	-	_	_	RSTR	_	_	_
+5	state-owned	state-owned	JJ	-	-	_	_	RSTR	_	_	_
+6	holding	hold	VBG	-	-	ev-w1601f7	_	RSTR	_	_	_
+7	company	company	NN	-	+	_	PAT-arg	_	_	_	_
+8	with	with	IN	-	-	_	_	_	_	_	_
+9	interests	interest	NNS	-	+	_	_	ACMP	_	_	_
+10	in	in	IN	-	-	_	_	_	_	_	_
+11	the	the	DT	-	-	_	_	_	_	_	_
+12	mechanical	mechanical	JJ	-	-	_	_	_	_	RSTR	_
+13	engineering	engineering	NN	-	+	_	_	_	_	_	RSTR
+14	industry	industry	NN	-	+	_	_	_	LOC	_	_
+15	.	.	.	-	-	_	_	_	_	_	_
+
+#20007003
+1	Bailey	Bailey	NNP	-	-	_	NE	_	_	_	_
+2	Controls	Controls	NNP	-	+	_	_	_	_	ACT-arg	_
+3	,	,	,	-	-	_	_	_	_	_	_
+4	based	base	VBN	-	+	ev-w211f1	DESCR	_	_	_	_
+5	in	in	IN	-	-	_	_	_	_	_	_
+6	Wickliffe	wickliffe	NNP	-	+	_	_	LOC-arg	_	_	_
+7	,	,	,	-	-	_	_	_	_	_	_
+8	Ohio	ohio	NNP	-	-	_	_	_	PAR	_	_
+9	,	,	,	-	-	_	_	_	_	_	_
+10	makes	make	VBZ	+	+	ev-w1923f6	_	_	_	_	_
+11	computerized	computerized	JJ	-	-	_	_	_	_	_	RSTR
+12	industrial	industrial	JJ	-	-	_	_	_	_	_	RSTR
+13	controls	control	NNS	-	-	_	_	_	_	_	RSTR
+14	systems	system	NNS	-	+	_	_	_	_	PAT-arg	_
+15	.	.	.	-	-	_	_	_	_	_	_
+
+#20007004
+1	It	#PersPron	PRP	-	-	_	ACT-arg	_	_	ACT-arg	_	_	_	_
+2	employs	employ	VBZ	+	+	ev-w1125f1	_	_	CONJ.member	_	_	_	_	_
+3	2,700	2_700	CD	-	-	_	_	RSTR	_	_	_	_	_	_
+4	people	people	NNS	-	+	_	PAT-arg	_	_	_	_	_	_	_
+5	and	and	CC	-	+	_	_	_	_	_	_	_	_	_
+6	has	have	VBZ	+	+	ev-w1566f3	_	_	CONJ.member	_	_	_	_	_
+7	annual	annual	JJ	-	-	_	_	_	_	_	THO	_	_	_
+8	revenue	revenue	NN	-	+	_	_	_	_	PAT-arg	_	_	_	_
+9	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+10	about	about	IN	-	-	_	_	_	_	_	_	_	EXT	_
+11	$	$	$	-	+	_	_	_	_	_	APP	_	_	_
+12	370	370	CD	-	+	_	_	_	_	_	_	_	_	RSTR
+13	million	million	CD	-	+	_	_	_	_	_	_	RSTR	_	_
+14	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20008001
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_
+2	federal	federal	JJ	-	-	_	RSTR	_	_	_	_	_	_
+3	government	government	NN	-	+	_	_	ACT-arg	_	_	_	_	_
+4	suspended	suspend	VBD	+	+	ev-w3275f2	_	_	_	_	_	_	_
+5	sales	sale	NNS	-	+	_	_	PAT-arg	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_
+7	U.S.	u.s.	NNP	-	-	_	_	_	_	RSTR	_	_	_
+8	savings	savings	NNS	-	-	_	_	_	_	RSTR	_	_	_
+9	bonds	bond	NNS	-	+	_	_	_	PAT-arg	_	_	_	_
+10	because	because	IN	-	-	_	_	_	_	_	_	_	_
+11	Congress	Congress	NNP	-	-	_	_	_	_	_	ACT-arg	_	_
+12	has	have	VBZ	-	-	_	_	_	_	_	_	_	_
+13	n’t	#Neg	RB	-	-	_	_	_	_	_	RHEM	_	_
+14	lifted	lift	VBN	-	+	ev-w1863f4	_	CAUS	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_
+16	ceiling	ceiling	NN	-	+	_	_	_	_	_	PAT-arg	_	_
+17	on	on	IN	-	-	_	_	_	_	_	_	_	_
+18	government	government	NN	-	-	_	_	_	_	_	_	_	APP
+19	debt	debt	NN	-	+	_	_	_	_	_	_	REG	_
+20	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20008002
+1	Until	until	IN	-	-	_	_	_	_	_	_	_	_
+2	Congress	Congress	NNP	-	-	_	ACT-arg	_	_	_	_	_	_
+3	acts	act	VBZ	-	+	ev-w42f1	_	TTILL	_	_	_	_	_
+4	,	,	,	-	-	_	_	_	_	_	_	_	_
+5	the	the	DT	-	-	_	_	_	_	_	_	_	_
+6	government	government	NN	-	-	_	_	ACT-arg	_	ACT-arg	_	_	_
+7	has	have	VBZ	-	+	ev-w1566f3	_	_	_	_	_	_	EFF-arg
+8	n’t	#Neg	RB	-	-	_	_	RHEM	_	_	_	_	_
+9	any	any	DT	-	-	_	_	_	RSTR	_	_	_	_
+10	authority	authority	NN	-	+	_	_	PAT-arg	_	_	_	_	_
+11	to	to	TO	-	-	_	_	_	_	_	_	_	_
+12	issue	issue	VB	-	+	ev-w1762f1	_	_	PAT-arg	_	_	_	_
+13	new	new	JJ	-	-	_	_	_	_	_	RSTR	_	_
+14	debt	debt	NN	-	-	_	_	_	_	_	RSTR	_	_
+15	obligations	obligation	NNS	-	+	_	_	_	_	PAT-arg	_	_	_
+16	of	of	IN	-	-	_	_	_	_	_	_	_	_
+17	any	any	DT	-	-	_	_	_	_	_	_	RSTR	_
+18	kind	kind	NN	-	+	_	_	_	_	_	APP	_	_
+19	,	,	,	-	-	_	_	_	_	_	_	_	_
+20	the	the	DT	-	-	_	_	_	_	_	_	_	_
+21	Treasury	treasury	NNP	-	-	_	_	_	_	_	_	_	ACT-arg
+22	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_
+23	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20008003
+1	The	the	DT	-	-	_	_	_	_	_	_	_
+2	government	government	NN	-	-	_	APP	_	_	_	_	_
+3	’s	’s	POS	-	-	_	_	_	_	_	_	_
+4	borrowing	borrowing	NN	-	-	_	RSTR	_	_	_	_	_
+5	authority	authority	NN	-	+	_	_	ACT-arg	_	_	_	_
+6	dropped	drop	VBD	+	+	ev-w1065f3	_	_	_	_	_	_
+7	at	at	IN	-	-	_	_	_	_	_	_	_
+8	midnight	midnight	NN	-	-	_	_	TWHEN	_	_	_	_
+9	Tuesday	tuesday	NNP	-	-	_	_	TWHEN	_	_	_	_
+10	to	to	TO	-	-	_	_	_	_	_	_	_
+11	$	$	$	-	+	_	_	PAT-arg	_	_	_	_
+12	2.80	2.80	CD	-	-	_	_	_	_	RSTR	_	_
+13	trillion	trillion	CD	-	+	_	_	_	RSTR	_	_	_
+14	from	from	IN	-	-	_	_	_	_	_	_	_
+15	$	$	$	-	+	_	_	ORIG-arg	_	_	_	_
+16	2.87	2.87	CD	-	-	_	_	_	_	_	_	RSTR
+17	trillion	trillion	CD	-	+	_	_	_	_	_	RSTR	_
+18	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20008004
+1	Legislation	legislation	NN	-	+	_	_	_	_	PAT-arg	_	_	_
+2	to	to	TO	-	-	_	_	_	_	_	_	_	_
+3	lift	lift	VB	-	+	ev-w1863f4	RSTR	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_
+5	debt	debt	NN	-	-	_	_	_	RSTR	_	_	_	_
+6	ceiling	ceiling	NN	-	+	_	_	PAT-arg	_	_	_	_	_
+7	is	be	VBZ	-	-	_	_	_	_	_	_	_	_
+8	ensnarled	ensnarl	VBN	+	+	ev-w1166f2	_	_	_	_	_	_	_
+9	in	in	IN	-	-	_	_	_	_	_	_	_	_
+10	the	the	DT	-	-	_	_	_	_	_	_	_	_
+11	fight	fight	NN	-	+	_	_	_	_	EFF-arg	_	_	_
+12	over	over	IN	-	-	_	_	_	_	_	_	_	_
+13	cutting	cut	VBG	-	+	ev-w790f1	_	_	_	_	PAT-arg	_	_
+14	capital-gains	capital-gains	JJ	-	-	_	_	_	_	_	_	_	RSTR
+15	taxes	tax	NNS	-	+	_	_	_	_	_	_	PAT-arg	_
+16	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20008005
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_
+2	House	house	NNP	-	-	_	ACT-arg	ACT-arg	_	_	_	_	_	_
+3	has	have	VBZ	-	-	_	_	_	_	_	_	_	_	_
+4	voted	vote	VBN	+	+	ev-w3564f2	_	_	_	_	ADVS.member	_	_	_
+5	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+6	raise	raise	VB	-	+	ev-w2481f3	PAT-arg	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+8	ceiling	ceiling	NN	-	-	_	_	PAT-arg	_	_	_	_	_	_
+9	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+10	$	$	$	-	+	_	_	EFF-arg	_	_	_	_	_	_
+11	3.1	3.1	CD	-	-	_	_	_	_	RSTR	_	_	_	_
+12	trillion	trillion	CD	-	+	_	_	_	RSTR	_	_	_	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+14	but	but	CC	-	+	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+16	Senate	senate	NNP	-	-	_	_	_	_	_	_	_	ACT-arg	_
+17	is	be	VBZ	-	-	_	_	_	_	_	_	_	_	_
+18	n’t	#Neg	RB	-	-	_	_	_	_	_	_	RHEM	_	_
+19	expected	expect	VBN	+	+	ev-w1239f1	_	_	_	_	ADVS.member	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+21	act	act	VB	-	+	ev-w42f1	_	_	_	_	_	PAT-arg	_	_
+22	until	until	IN	-	-	_	_	_	_	_	_	_	_	_
+23	next	next	JJ	-	-	_	_	_	_	_	_	_	_	RSTR
+24	week	week	NN	-	+	_	_	_	_	_	_	_	TTILL	_
+25	at	at	IN	-	-	_	_	_	_	_	_	_	_	_
+26	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+27	earliest	early	JJS	-	-	_	_	_	_	_	_	_	TWHEN	_
+28	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20008006
+1	The	the	DT	-	-	_	_	_	_	_
+2	Treasury	treasury	NNP	-	-	_	ACT-arg	_	_	_
+3	said	say	VBD	+	+	ev-w2833f1	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_
+5	U.S.	u.s.	NNP	-	-	_	_	ACT-arg	_	_
+6	will	will	MD	-	-	_	_	_	_	_
+7	default	default	VB	-	+	ev-w840f1	EFF-arg	_	_	_
+8	on	on	IN	-	-	_	_	_	_	_
+9	Nov.	nov.	NNP	-	+	_	_	TWHEN	_	_
+10	9	9	CD	-	-	_	_	_	RSTR	_
+11	if	if	IN	-	-	_	_	_	_	_
+12	Congress	Congress	NNP	-	-	_	_	_	_	ACT-arg
+13	does	do	VBZ	-	-	_	_	_	_	_
+14	n’t	#Neg	RB	-	-	_	_	_	_	RHEM
+15	act	act	VB	-	+	ev-w42f1	_	COND	_	_
+16	by	by	IN	-	-	_	_	_	_	_
+17	then	then	RB	-	-	_	_	_	_	TTILL
+18	.	.	.	-	-	_	_	_	_	_
+
+#20009001
+1	Clark	Clark	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_
+2	J.	J.	NNP	-	-	_	NE	_	_	_	_	_	_	_	_	_
+3	Vitulli	vitulli	NNP	-	+	_	_	PAT-arg	_	_	_	_	_	_	_	_
+4	was	be	VBD	-	-	_	_	_	_	_	_	_	_	_	_	_
+5	named	name	VBN	+	+	ev-w2055f1	_	_	_	_	_	_	_	_	_	_
+6	senior	senior	JJ	-	-	_	_	_	RSTR	_	_	_	_	_	_	_
+7	vice	vice	NN	-	-	_	_	_	RSTR	_	_	_	_	_	_	_
+8	president	president	NN	-	+	_	_	EFF-arg	_	CONJ.member	_	_	_	_	_	_
+9	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+10	general	general	JJ	-	-	_	_	_	_	_	RSTR	_	_	_	_	_
+11	manager	manager	NN	-	+	_	_	EFF-arg	_	CONJ.member	_	_	_	_	_	_
+12	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	this	this	DT	-	-	_	_	_	_	_	_	_	RSTR	_	_	_
+14	U.S.	u.s.	NNP	-	-	_	_	_	_	_	_	_	RSTR	_	_	_
+15	sales	sale	NNS	-	-	_	_	_	_	_	_	CONJ.member	RSTR	_	_	_
+16	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+17	marketing	marketing	NN	-	-	_	_	_	_	_	_	CONJ.member	RSTR	_	_	_
+18	arm	arm	NN	-	+	_	_	_	APP	_	APP	_	_	_	_	_
+19	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+20	Japanese	japanese	JJ	-	-	_	_	_	_	_	_	_	_	RSTR	_	_
+21	auto	auto	NN	-	-	_	_	_	_	_	_	_	_	PAT-arg	_	_
+22	maker	maker	NN	-	+	_	_	_	_	_	_	_	_	_	_	RSTR
+23	Mazda	Mazda	NNP	-	-	_	_	_	_	_	_	_	_	_	NE	_
+24	Motor	Motor	NNP	-	+	_	_	_	_	_	_	_	_	_	_	NE
+25	Corp	corp	NNP	-	+	_	_	_	_	_	_	_	APP	_	_	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20009002
+1	In	in	IN	-	-	_	_	_	_	_	_
+2	the	the	DT	-	-	_	_	_	_	_	_
+3	new	new	JJ	-	-	_	RSTR	_	_	_	_
+4	position	position	NN	-	+	_	_	LOC	_	_	_
+5	he	#PersPron	PRP	-	-	_	_	ACT-arg	_	_	_
+6	will	will	MD	-	-	_	_	_	_	_	_
+7	oversee	oversee	VB	+	+	ev-w2161f1	_	_	_	_	_
+8	Mazda	mazda	NNP	-	-	_	_	_	ACT-arg	_	_
+9	’s	’s	POS	-	-	_	_	_	_	_	_
+10	U.S.	u.s.	NNP	-	-	_	_	_	LOC	_	_
+11	sales	sale	NNS	-	+	_	_	_	_	_	RSTR
+12	,	,	,	-	-	_	_	_	_	_	_
+13	service	service	NN	-	-	_	_	_	_	CONJ.member	PAT-arg
+14	,	,	,	-	-	_	_	_	_	_	_
+15	parts	part	NNS	-	-	_	_	_	_	CONJ.member	PAT-arg
+16	and	and	CC	-	+	_	_	_	_	_	_
+17	marketing	marketing	NN	-	-	_	_	_	_	CONJ.member	PAT-arg
+18	operations	operation	NNS	-	+	_	_	PAT-arg	_	_	_
+19	.	.	.	-	-	_	_	_	_	_	_
+
+#20009003
+1	Previously	previously	RB	-	-	_	_	_	_	TWHEN	_	_	_
+2	,	,	,	-	-	_	_	_	_	_	_	_	_
+3	Mr.	mr.	NNP	-	-	_	RSTR	_	_	_	_	_	_
+4	Vitulli	vitulli	NNP	-	+	_	_	_	_	ACT-arg	_	_	_
+5	,	,	,	-	-	_	_	_	_	_	_	_	_
+6	43	43	CD	-	-	_	_	RSTR	_	_	_	_	_
+7	years	year	NNS	-	+	_	_	_	EXT	_	_	_	_
+8	old	old	JJ	-	+	_	DESCR	_	_	_	_	_	_
+9	,	,	,	-	-	_	_	_	_	_	_	_	_
+10	was	be	VBD	+	+	ev-w218f2	_	_	_	_	_	_	_
+11	general	general	JJ	-	-	_	_	_	_	_	RSTR	_	_
+12	marketing	marketing	NN	-	-	_	_	_	_	_	RSTR	_	_
+13	manager	manager	NN	-	+	_	_	_	_	PAT-arg	_	_	_
+14	of	of	IN	-	-	_	_	_	_	_	_	_	_
+15	Chrysler	Chrysler	NNP	-	-	_	_	_	_	_	_	NE	_
+16	Corp.	corp.	NNP	-	+	_	_	_	_	_	_	_	APP
+17	’s	’s	POS	-	-	_	_	_	_	_	_	_	_
+18	Chrysler	chrysler	NNP	-	-	_	_	_	_	_	_	_	RSTR
+19	division	division	NN	-	+	_	_	_	_	_	APP	_	_
+20	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20009004
+1	He	#PersPron	PRP	-	-	_	ACT-arg	_	_	_
+2	had	have	VBD	-	-	_	_	_	_	_
+3	been	be	VBN	+	+	ev-w218f2	_	_	_	_
+4	a	a	DT	-	-	_	_	_	_	_
+5	sales	sale	NNS	-	-	_	_	CONJ.member	RSTR	_
+6	and	and	CC	-	+	_	_	_	_	_
+7	marketing	marketing	NN	-	-	_	_	CONJ.member	RSTR	_
+8	executive	executive	NN	-	+	_	PAT-arg	_	_	_
+9	with	with	IN	-	-	_	_	_	_	_
+10	Chrysler	chrysler	NNP	-	-	_	_	_	ACMP	_
+11	for	for	IN	-	-	_	_	_	_	_
+12	20	20	CD	-	-	_	_	_	_	RSTR
+13	years	year	NNS	-	+	_	TFHL	_	_	_
+14	.	.	.	-	-	_	_	_	_	_
+
+#20010001
+1	When	when	WRB	-	-	_	_	_	_	_	_	_	_	_	_
+2	it	#PersPron	PRP	-	-	_	ACT-arg	_	_	_	_	_	_	_	_
+3	’s	be	VBZ	-	+	ev-w218f2	_	_	_	_	TWHEN	_	_	_	_
+4	time	time	NN	-	+	_	PAT-arg	_	_	_	_	_	_	_	_
+5	for	for	IN	-	-	_	_	_	_	_	_	_	_	_	_
+6	their	#PersPron	PRP$	-	-	_	_	_	APP	_	_	_	_	_	_
+7	biannual	biannual	JJ	-	-	_	_	_	THO	_	_	_	_	_	_
+8	powwow	powwow	NN	-	+	_	_	PAT-arg	_	_	_	_	_	_	_
+9	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+10	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+11	nation	nation	NN	-	-	_	_	_	_	APP	_	_	_	_	_
+12	’s	’s	POS	-	-	_	_	_	_	_	_	_	_	_	_
+13	manufacturing	manufacture	VBG	-	-	ev-w1936f1	_	_	_	RSTR	_	_	_	_	_
+14	titans	titan	NNS	-	+	_	_	_	_	_	ACT-arg	_	_	_	_
+15	typically	typically	RB	-	-	_	_	_	_	_	MANN	_	_	_	_
+16	jet	jet_off	VBP	+	+	ev-w1771f1	_	_	_	_	_	_	_	_	_
+17	off	off	RP	-	-	_	_	_	_	_	_	_	_	_	_
+18	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_
+19	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+20	sunny	sunny	JJ	-	-	_	_	_	_	_	_	RSTR	_	_	_
+21	confines	confines	NNS	-	+	_	_	_	_	_	DIR3-arg	_	_	_	_
+22	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_
+23	resort	resort	NN	-	-	_	_	_	_	_	_	_	RSTR	_	_
+24	towns	town	NNS	-	+	_	_	_	_	_	_	APP	_	_	_
+25	like	like	IN	-	-	_	_	_	_	_	_	_	_	_	_
+26	Boca	Boca	NNP	-	-	_	_	_	_	_	_	_	CPR	CONJ.member	_
+27	Raton	Raton	NNP	-	-	_	_	_	_	_	_	_	CPR	CONJ.member	_
+28	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_
+29	Hot	Hot	NNP	-	-	_	_	_	_	_	_	_	_	_	NE
+30	Springs	Springs	NNP	-	+	_	_	_	_	_	_	_	CPR	CONJ.member	_
+31	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20010002
+1	Not	#Neg	RB	+	-	_	_
+2	this	this	DT	-	-	_	RSTR
+3	year	year	NN	+	+	_	_
+4	.	.	.	-	-	_	_
+
+#20010003
+1	The	the	DT	-	-	_	_	_	_	_
+2	National	National	NNP	-	-	_	NE	_	_	_
+3	Association	association	NNP	-	+	_	_	ACT-arg	_	_
+4	of	of	IN	-	-	_	_	_	_	_
+5	Manufacturers	Manufacturers	NNP	-	-	_	NE	_	_	_
+6	settled	settle	VBD	+	+	ev-w2904f3	_	_	_	_
+7	on	on	IN	-	-	_	_	_	_	_
+8	the	the	DT	-	-	_	_	_	_	_
+9	Hoosier	hoosier	NNP	-	-	_	_	_	RSTR	_
+10	capital	capital	NN	-	+	_	_	PAT-arg	_	_
+11	of	of	IN	-	-	_	_	_	_	_
+12	Indianapolis	Indianapolis	NNP	-	-	_	_	_	APP	_
+13	for	for	IN	-	-	_	_	_	_	_
+14	its	#PersPron	PRP$	-	-	_	_	_	_	APP
+15	fall	fall	NN	-	-	_	_	_	_	TWHEN
+16	board	board	NN	-	-	_	_	_	_	ACT-arg
+17	meeting	meeting	NN	-	+	_	_	AIM	_	_
+18	.	.	.	-	-	_	_	_	_	_
+
+#20010006
+1	On	on	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+3	receiving	receive	VBG	-	-	ev-w2542f1	RSTR	_	_	_	_	_	_	_	_	_
+4	end	end	NN	-	+	_	_	LOC-arg	_	_	_	_	_	_	_	_
+5	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+7	message	message	NN	-	-	_	APP	_	_	_	_	_	_	_	_	_
+8	were	be	VBD	+	+	ev-w218f7_u_nobody	_	_	_	_	_	_	_	_	_	_
+9	officials	official	NNS	-	+	_	_	ACT-arg	_	_	_	_	_	_	_	_
+10	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+11	giants	giant	NNS	-	+	_	_	_	DIR1	_	_	_	_	_	_	_
+12	like	like	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+13	Du	Du	NNP	-	-	_	_	_	_	CPR	CONJ.member	_	_	_	_	_
+14	Pont	Pont	NNP	-	-	_	_	_	_	CPR	CONJ.member	_	_	_	_	_
+15	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+16	Maytag	maytag	NNP	-	-	_	_	_	_	CPR	CONJ.member	_	_	_	_	_
+17	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_
+18	along	along	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+19	with	with	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+20	lesser	less	JJR	-	-	_	_	_	_	_	_	EXT	_	_	_	_
+21	knowns	known	NNS	-	+	_	_	_	ACMP	_	_	_	_	_	_	_
+22	like	like	IN	-	-	_	_	_	_	_	_	_	_	_	_	_
+23	Trojan	Trojan	NNP	-	-	_	_	_	_	_	_	_	NE	_	_	_
+24	Steel	steel	NNP	-	+	_	_	_	_	_	_	CPR	_	CONJ.member	_	_
+25	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_
+26	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_
+27	Valley	Valley	NNP	-	-	_	_	_	_	_	_	_	_	_	NE	_
+28	Queen	Queen	NNP	-	+	_	_	_	_	_	_	_	_	_	_	NE
+29	Cheese	Cheese	NNP	-	-	_	_	_	_	_	_	_	_	_	_	NE
+30	Factory	factory	NNP	-	+	_	_	_	_	_	_	CPR	_	CONJ.member	_	_
+31	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_
+
+#20010007
+1	For	for	IN	-	-	_	_	_	_	_	_	_	_
+2	starters	starter	NNS	-	-	_	REG	_	_	_	_	_	_
+3	,	,	,	-	-	_	_	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_
+5	executives	executive	NNS	-	-	_	ACT-arg	_	_	_	_	_	_
+6	joined	join	VBD	+	+	ev-w1777f1	_	_	_	_	_	_	_
+7	Mayor	mayor	NNP	-	-	_	_	RSTR	_	_	_	_	_
+8	William	William	NNP	-	-	_	_	NE	_	_	_	_	_
+9	H.	H.	NNP	-	-	_	_	NE	_	_	_	_	_
+10	Hudnut	hudnut	NNP	-	+	_	PAT-arg	_	_	_	_	_	_
+11	III	III	NNP	-	-	_	_	NE	_	_	_	_	_
+12	for	for	IN	-	-	_	_	_	_	_	_	_	_
+13	an	an	DT	-	-	_	_	_	_	_	_	_	_
+14	evening	evening	NN	-	+	_	AIM	_	_	_	_	_	_
+15	of	of	IN	-	-	_	_	_	_	_	_	_	_
+16	the	the	DT	-	-	_	_	_	_	_	_	_	_
+17	Indianapolis	Indianapolis	NNP	-	-	_	_	_	_	NE	_	_	_
+18	Symphony	Symphony	NNP	-	-	_	_	_	_	NE	_	_	_
+19	Orchestra	orchestra	NNP	-	+	_	_	_	APP	_	CONJ.member	_	_
+20	and	and	CC	-	+	_	_	_	_	_	_	_	_
+21	a	a	DT	-	-	_	_	_	_	_	_	_	_
+22	guest	guest	NN	-	-	_	_	_	_	_	_	RSTR	_
+23	pianist-comedian	pianist-comedian	NN	-	+	_	_	_	_	_	_	_	RSTR
+24	Victor	Victor	NNP	-	-	_	_	_	_	_	_	_	NE
+25	Borge	borge	NNP	-	+	_	_	_	APP	_	CONJ.member	_	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20010008
+1	Champagne	champagne	NN	-	-	_	CONJ.member	ACT-arg
+2	and	and	CC	-	+	_	_	_
+3	dessert	dessert	NN	-	-	_	CONJ.member	ACT-arg
+4	followed	follow	VBD	+	+	ev-w1378f2	_	_
+5	.	.	.	-	-	_	_	_
+
+#20010010
+1	The	the	DT	-	-	_	_	_	_	_	_
+2	governor	governor	NN	-	-	_	ACT-arg	_	_	_	_
+3	could	could	MD	-	-	_	_	_	_	_	_
+4	n’t	#Neg	RB	-	-	_	RHEM	_	_	_	_
+5	make	make	VB	+	+	ev-w1923f28	_	CSQ.member	_	_	_
+6	it	#PersPron	PRP	-	-	_	DPHR-arg	_	_	_	_
+7	,	,	,	-	-	_	_	_	_	_	_
+8	so	so	IN	-	+	_	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_	_
+10	lieutenant	lieutenant	NN	-	-	_	_	_	RSTR	_	_
+11	governor	governor	NN	-	+	_	_	_	_	ACT-arg	_
+12	welcomed	welcome	VBD	+	+	ev-w3616f1	_	CSQ.member	_	_	_
+13	the	the	DT	-	-	_	_	_	_	_	_
+14	special	special	JJ	-	-	_	_	_	_	_	RSTR
+15	guests	guest	NNS	-	+	_	_	_	_	PAT-arg	_
+16	.	.	.	-	-	_	_	_	_	_	_
+
+#20010011
+1	A	a	DT	-	-	_	_	_	_	_	_	_
+2	buffet	buffet	NN	-	-	_	RSTR	_	_	_	_	_
+3	breakfast	breakfast	NN	-	+	_	_	CPHR-arg	_	_	_	_
+4	was	be	VBD	-	-	_	_	_	_	_	_	_
+5	held	hold	VBN	+	+	ev-w1601f5	_	_	_	_	_	_
+6	in	in	IN	-	-	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_
+8	museum	museum	NN	-	+	_	_	LOC	_	_	_	_
+9	,	,	,	-	-	_	_	_	_	_	_	_
+10	where	where	WRB	-	-	_	_	_	_	_	_	_
+11	food	food	NN	-	-	_	_	_	_	CONJ.member	PAT-arg	_
+12	and	and	CC	-	+	_	_	_	_	_	_	_
+13	drinks	drink	NNS	-	-	_	_	_	_	CONJ.member	PAT-arg	_
+14	are	be	VBP	-	-	_	_	_	_	_	_	_
+15	banned	ban	VBN	-	+	ev-w193f1	_	_	DESCR	_	_	_
+16	to	to	TO	-	-	_	_	_	_	_	_	_
+17	everyday	everyday	JJ	-	-	_	_	_	_	_	_	THO
+18	visitors	visitor	NNS	-	+	_	_	_	_	_	BEN	_
+19	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20010012
+1	Then	then	RB	-	-	_	_	TWHEN	_	_	_	_	_	_
+2	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+3	in	in	IN	-	-	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+5	guests	guest	NNS	-	-	_	RSTR	_	_	_	_	_	_	_
+6	’	’	POS	-	-	_	_	_	_	_	_	_	_	_
+7	honor	honor	NN	-	+	_	_	APP	_	_	_	_	_	_
+8	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+10	speedway	speedway	NN	-	-	_	_	ACT-arg	_	_	_	_	_	_
+11	hauled	haul_out	VBD	+	+	ev-w1564f1	_	_	_	_	_	_	_	_
+12	out	out	RP	-	-	_	_	_	_	_	_	_	_	_
+13	four	four	CD	-	-	_	_	_	RSTR	_	_	_	_	_
+14	drivers	driver	NNS	-	+	_	_	PAT-arg	_	_	CONJ.member	_	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_	_	_
+16	crews	crew	NNS	-	+	_	_	PAT-arg	_	_	CONJ.member	_	_	_
+17	and	and	CC	-	+	_	_	_	_	_	_	_	_	_
+18	even	even	RB	-	-	_	_	_	CM	CM	_	_	CM	_
+19	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+20	official	official	JJ	-	-	_	_	_	_	_	_	_	RSTR	_
+21	Indianapolis	Indianapolis	NNP	-	+	_	_	_	_	_	_	_	BEN	_
+22	500	500	CD	-	-	_	_	_	_	_	_	RSTR	_	_
+23	announcer	announcer	NN	-	+	_	_	PAT-arg	_	_	CONJ.member	_	_	_
+24	for	for	IN	-	-	_	_	_	_	_	_	_	_	_
+25	a	a	DT	-	-	_	_	_	_	_	_	_	_	_
+26	10-lap	10-lap	JJ	-	-	_	_	_	_	_	_	_	_	RSTR
+27	exhibition	exhibition	NN	-	-	_	_	_	_	_	_	_	_	RSTR
+28	race	race	NN	-	+	_	_	DIR3	_	_	_	_	_	_
+29	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20010013
+1	After	after	IN	-	-	_	_	_	_	_
+2	the	the	DT	-	-	_	_	_	_	_
+3	race	race	NN	-	-	_	_	_	TWHEN	_
+4	,	,	,	-	-	_	_	_	_	_
+5	Fortune	fortune	NNP	-	+	_	_	APP	_	_
+6	500	500	CD	-	-	_	RSTR	_	_	_
+7	executives	executive	NNS	-	+	_	_	_	ACT-arg	_
+8	drooled	drool	VBD	+	+	ev-w1064f2	_	_	_	_
+9	like	like	IN	-	-	_	_	_	_	_
+10	schoolboys	schoolboy	NNS	-	-	_	_	_	ACT-arg	_
+11	over	over	IN	-	-	_	_	_	_	_
+12	the	the	DT	-	-	_	_	_	_	_
+13	cars	car	NNS	-	-	_	_	_	PAT-arg	CONJ.member
+14	and	and	CC	-	+	_	_	_	PAT-arg	_
+15	drivers	driver	NNS	-	-	_	_	_	PAT-arg	CONJ.member
+16	.	.	.	-	-	_	_	_	_	_
+
+#20010015
+1	Back	back	RB	-	+	_	_	LOC	_	_
+2	downtown	downtown	NN	-	-	_	LOC	_	_	_
+3	,	,	,	-	-	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_
+5	execs	exec	NNS	-	-	_	_	ACT-arg	_	ACT-arg
+6	squeezed	squeeze_in	VBD	+	+	v-w543_u_nobodyf4	_	_	_	_
+7	in	in	RP	-	-	_	_	_	_	_
+8	a	a	DT	-	-	_	_	_	_	_
+9	few	few	JJ	-	-	_	_	_	RSTR	_
+10	meetings	meeting	NNS	-	+	_	_	PAT-arg	_	_
+11	at	at	IN	-	-	_	_	_	_	_
+12	the	the	DT	-	-	_	_	_	_	_
+13	hotel	hotel	NN	-	-	_	_	_	LOC	_
+14	before	before	IN	-	-	_	_	_	_	_
+15	boarding	board	VBG	-	+	ev-w297f1	_	TWHEN	_	_
+16	the	the	DT	-	-	_	_	_	_	_
+17	buses	bus	NNS	-	-	_	_	_	_	PAT-arg
+18	again	again	RB	-	-	_	_	_	_	THO
+19	.	.	.	-	-	_	_	_	_	_
+
+#20010016
+1	This	this	DT	-	-	_	RSTR	_	_	_
+2	time	time	NN	-	+	_	_	TWHEN	_	_
+3	,	,	,	-	-	_	_	_	_	_
+4	it	#PersPron	PRP	-	-	_	_	ACT-arg	_	_
+5	was	be	VBD	+	+	ev-w218f21_u_nobody	_	_	_	_
+6	for	for	IN	-	-	_	_	_	_	_
+7	dinner	dinner	NN	-	-	_	_	AIM-arg	CONJ.member	_
+8	and	and	CC	-	+	_	_	_	_	_
+9	dancing	dancing	NN	-	-	_	_	AIM-arg	CONJ.member	_
+10	–	–	:	-	-	_	_	_	_	_
+11	a	a	DT	-	-	_	_	_	_	_
+12	block	block	NN	-	-	_	_	_	_	DIFF
+13	away	away	RB	-	+	_	_	LOC	_	_
+14	.	.	.	-	-	_	_	_	_	_
+
+#20010017
+1	Under	under	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+2	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+3	stars	star	NNS	-	+	_	_	CONJ.member	_	_	_	_	_	LOC	_	_	_	_	_	_
+4	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+5	moons	moon	NNS	-	+	_	_	CONJ.member	_	_	_	_	_	LOC	_	_	_	_	_	_
+6	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+8	renovated	renovate	VBN	-	-	ev-w2655f1	_	_	_	_	RSTR	_	_	_	_	_	_	_	_	_
+9	Indiana	Indiana	NNP	-	-	_	_	_	_	NE	_	_	_	_	_	_	_	_	_	_
+10	Roof	Roof	NNP	-	+	_	_	_	_	_	NE	_	_	_	_	_	_	_	_	_
+11	ballroom	ballroom	NN	-	+	_	APP	_	APP	_	_	_	_	_	_	_	_	_	_	_
+12	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+13	nine	nine	CD	-	+	_	_	_	_	_	_	_	_	ACT-arg	_	_	_	_	_	_
+14	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+16	hottest	hot	JJS	-	-	_	_	_	_	_	_	_	RSTR	_	_	_	_	_	_	_
+17	chefs	chef	NNS	-	+	_	_	_	_	_	_	DIR1	_	_	_	_	_	_	_	_
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+19	town	town	NN	-	-	_	_	_	_	_	_	_	LOC	_	_	_	_	_	_	_
+20	fed	feed	VBD	+	+	ev-w1296f1	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+21	them	#PersPron	PRP	-	-	_	_	_	_	_	_	_	_	ADDR-arg	_	_	_	_	_	_
+22	Indiana	indiana	NNP	-	-	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_	_
+23	duckling	duckling	NN	-	-	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_	_
+24	mousseline	mousseline	NN	-	+	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	CONJ.member	_	_
+25	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+26	lobster	lobster	NN	-	-	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_	_
+27	consomme	consomme	NN	-	+	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	CONJ.member	_	_
+28	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+29	veal	veal	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	RSTR	_	_	_
+30	mignon	mignon	NN	-	+	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	CONJ.member	_	_
+31	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+32	chocolate	chocolate	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	RSTR	_
+33	terrine	terrine	NN	-	+	_	_	_	_	_	_	_	_	PAT-arg	_	_	_	CONJ.member	_	_
+34	with	with	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+35	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+36	raspberry	raspberry	NN	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	RSTR
+37	sauce	sauce	NN	-	+	_	_	_	_	_	_	_	_	_	_	_	_	_	ACMP	_
+38	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20010018
+1	Knowing	know	VBG	-	+	ev-w1810f6_u_nobody	_	_	_	_	CAUS	_
+2	a	a	DT	-	-	_	_	_	_	_	_	_
+3	tasty	tasty	JJ	-	-	_	_	CONJ.member	RSTR	_	_	_
+4	–	–	:	-	-	_	_	_	_	_	_	_
+5	and	and	CC	-	+	_	_	_	_	_	_	_
+6	free	free	JJ	-	-	_	_	CONJ.member	RSTR	_	_	_
+7	–	–	:	-	-	_	_	_	_	_	_	_
+8	meal	meal	NN	-	+	_	PAT-arg	_	_	_	_	_
+9	when	when	WRB	-	-	_	_	_	_	_	_	_
+10	they	#PersPron	PRP	-	-	_	_	_	_	ACT-arg	_	_
+11	eat	eat	VBP	-	+	ev-w1086f1	TWHEN	_	_	_	_	_
+12	one	one	CD	-	-	_	_	_	_	PAT-arg	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_
+14	the	the	DT	-	-	_	_	_	_	_	_	_
+15	executives	executive	NNS	-	-	_	ACT-arg	_	_	_	ACT-arg	_
+16	gave	give	VBD	+	+	ev-w1465f9_u_nobody	_	_	_	_	_	_
+17	the	the	DT	-	-	_	_	_	_	_	_	_
+18	chefs	chef	NNS	-	-	_	_	_	_	_	ADDR-arg	_
+19	a	a	DT	-	-	_	_	_	_	_	_	_
+20	standing	standing	JJ	-	-	_	_	_	_	_	_	RSTR
+21	ovation	ovation	NN	-	+	_	_	_	_	_	CPHR-arg	_
+22	.	.	.	-	-	_	_	_	_	_	_	_
+
+#20010019
+1	More	more	JJR	-	+	_	_	_	ACT-arg	_	_	_	_	_
+2	than	than	IN	-	-	_	_	_	_	_	_	_	_	_
+3	a	a	DT	-	-	_	_	_	_	_	_	_	_	_
+4	few	few	JJ	-	-	_	_	RSTR	_	_	_	_	_	_
+5	CEOs	ceo	NNS	-	+	_	CPR	_	_	_	_	_	_	_
+6	say	say	VBP	+	+	ev-w2833f1	_	_	_	_	_	_	_	_
+7	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+8	red-carpet	red-carpet	JJ	-	-	_	_	_	_	MANN	_	_	_	_
+9	treatment	treatment	NN	-	+	_	_	_	_	_	ACT-arg	_	_	_
+10	tempts	tempt	VBZ	-	+	ev-w3350f1	_	_	EFF-arg	_	_	_	_	_
+11	them	#PersPron_#Cor	PRP	-	-	_	_	_	_	_	ADDR-arg	ACT-arg	_	_
+12	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+13	return	return	VB	-	+	ev-w2734f1	_	_	_	_	PAT-arg	_	_	_
+14	to	to	TO	-	-	_	_	_	_	_	_	_	_	_
+15	a	a	DT	-	-	_	_	_	_	_	_	_	_	_
+16	heartland	heartland	NN	-	-	_	_	_	_	_	_	_	LOC	_
+17	city	city	NN	-	+	_	_	_	_	_	_	DIR3-arg	_	_
+18	for	for	IN	-	-	_	_	_	_	_	_	_	_	_
+19	future	future	JJ	-	-	_	_	_	_	_	_	_	_	TWHEN
+20	meetings	meeting	NNS	-	+	_	_	_	_	_	_	AIM	_	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20010020
+1	But	but	CC	-	-	_	PREC	_
+2	for	for	IN	-	-	_	_	_
+3	now	now	RB	-	-	_	TWHEN	_
+4	,	,	,	-	-	_	_	_
+5	they	#PersPron	PRP	-	-	_	ACT-arg	_
+6	’re	be	VBP	-	-	_	_	_
+7	looking	look_forward	VBG	+	+	ev-w1900f1	_	_
+8	forward	forward	RB	-	-	_	_	_
+9	to	to	TO	-	-	_	_	_
+10	their	#PersPron	PRP$	-	-	_	_	ACT-arg
+11	winter	winter	NN	-	-	_	_	TWHEN
+12	meeting	meeting	NN	-	+	_	PAT-arg	_
+13	–	–	:	-	-	_	_	_
+14	Boca	boca	NNP	-	-	_	_	RSTR
+15	in	in	IN	-	-	_	_	_
+16	February	february	NNP	-	-	_	_	RSTR
+17	.	.	.	-	-	_	_	_
+
+#20011001
+1	South	South	NNP	-	-	_	NE	_	_	_	_	_	_	_	_
+2	Korea	korea	NNP	-	+	_	_	ACT-arg	_	_	_	_	_	_	_
+3	registered	register	VBD	+	+	ev-w2603f3	_	_	_	_	_	_	_	_	_
+4	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_
+5	trade	trade	NN	-	-	_	_	_	RSTR	_	_	_	_	_	_
+6	deficit	deficit	NN	-	+	_	_	PAT-arg	_	_	_	_	_	_	_
+7	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_
+8	$	$	$	-	+	_	_	_	APP	_	_	_	_	_	_
+9	101	101	CD	-	-	_	_	_	_	_	RSTR	_	_	_	_
+10	million	million	CD	-	+	_	_	_	_	RSTR	_	_	_	_	_
+11	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_
+12	October	october	NNP	-	-	_	_	TWHEN	_	_	_	_	_	_	_
+13	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+14	reflecting	reflect	VBG	-	+	ev-w2589f1	_	_	DESCR	_	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+16	country	country	NN	-	-	_	_	_	_	_	_	_	APP	_	_
+17	’s	’s	POS	-	-	_	_	_	_	_	_	_	_	_	_
+18	economic	economic	JJ	-	-	_	_	_	_	_	_	_	RSTR	_	_
+19	sluggishness	sluggishness	NN	-	+	_	_	_	_	_	_	PAT-arg	_	_	_
+20	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+21	according	accord	VBG	-	-	_	_	_	_	_	_	_	_	_	_
+22	to	to	TO	-	-	_	_	_	_	_	_	_	_	_	_
+23	government	government	NN	-	-	_	_	_	_	_	_	_	_	RSTR	_
+24	figures	figure	NNS	-	+	_	_	REG	_	_	_	_	_	_	_
+25	released	release	VBD	-	+	ev-w2629f1	_	_	_	_	_	_	_	RSTR	_
+26	Wednesday	wednesday	NNP	-	-	_	_	_	_	_	_	_	_	_	TWHEN
+27	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20011002
+1	Preliminary	preliminary	JJ	-	-	_	RSTR	_	_	_	_	_	_	_	_	_	_
+2	tallies	tally	NNS	-	+	_	_	_	_	ACT-arg	_	_	_	_	ACT-arg	_	_
+3	by	by	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+4	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+5	Trade	Trade	NNP	-	-	_	_	CONJ.member	NE	_	_	_	_	_	_	_	_
+6	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+7	Industry	Industry	NNP	-	-	_	_	CONJ.member	NE	_	_	_	_	_	_	_	_
+8	Ministry	ministry	NNP	-	+	_	ACT-arg	_	_	_	_	_	_	_	_	_	_
+9	showed	show	VBD	+	+	ev-w2945f1	_	_	_	_	_	_	_	_	_	_	_
+10	another	another	DT	-	-	_	_	_	_	_	RSTR	_	_	_	_	_	_
+11	trade	trade	NN	-	-	_	_	_	_	_	RSTR	_	_	_	_	_	_
+12	deficit	deficit	NN	-	+	_	_	_	_	PAT-arg	_	APPS.member	_	_	_	_	_
+13	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+14	October	october	NNP	-	-	_	_	_	_	_	TWHEN	_	_	_	_	_	_
+15	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_	_	_
+16	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+17	fifth	fifth	JJ	-	-	_	_	_	_	_	_	_	RSTR	_	_	_	_
+18	monthly	monthly	JJ	-	-	_	_	_	_	_	_	_	THO	_	_	_	_
+19	setback	setback	NN	-	+	_	_	_	_	PAT-arg	_	APPS.member	_	_	_	_	_
+20	this	this	DT	-	-	_	_	_	_	_	_	_	_	RSTR	_	_	_
+21	year	year	NN	-	+	_	_	_	_	_	_	_	TWHEN	_	_	_	_
+22	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+23	casting	cast	VBG	-	+	ev-w456f1	_	_	_	COMPL	_	_	_	_	_	_	_
+24	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+25	cloud	cloud	NN	-	-	_	_	_	_	_	_	_	_	_	CPHR-arg	_	_
+26	on	on	IN	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+27	South	South	NNP	-	-	_	_	_	_	_	_	_	_	_	_	NE	_
+28	Korea	korea	NNP	-	+	_	_	_	_	_	_	_	_	_	_	_	APP
+29	’s	’s	POS	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+30	export-oriented	export-oriented	JJ	-	-	_	_	_	_	_	_	_	_	_	_	_	RSTR
+31	economy	economy	NN	-	+	_	_	_	_	_	_	_	_	_	PAT-arg	_	_
+32	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_	_	_
+
+#20011004
+1	South	South	NNP	-	-	_	NE	_	_	_	_	_	_	_	_
+2	Korea	korea	NNP	-	+	_	_	ACT-arg	_	_	_	_	_	_	_
+3	’s	’s	POS	-	-	_	_	_	_	_	_	_	_	_	_
+4	economic	economic	JJ	-	-	_	_	RSTR	_	_	_	_	_	_	_
+5	boom	boom	NN	-	+	_	_	_	_	ACT-arg	_	_	_	_	_
+6	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+7	which	which	WDT	-	-	_	_	_	ACT-arg	_	_	_	_	_	_
+8	began	begin	VBD	-	+	ev-w234f3	_	DESCR	_	_	_	_	_	_	_
+9	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_
+10	1986	1986	CD	-	-	_	_	_	TWHEN	_	_	_	_	_	_
+11	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+12	stopped	stop	VBD	+	+	ev-w3189f3	_	_	_	_	_	_	_	_	_
+13	this	this	DT	-	-	_	_	_	_	_	RSTR	_	_	_	_
+14	year	year	NN	-	+	_	_	_	_	TWHEN	_	_	_	_	_
+15	because	because	IN	-	-	_	_	_	_	_	_	_	_	_	_
+16	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_
+17	prolonged	prolong	VBN	-	-	ev-w2407f1	_	_	_	_	_	RSTR	_	_	_
+18	labor	labor	NN	-	-	_	_	_	_	_	_	REG	_	_	_
+19	disputes	dispute	NNS	-	+	_	_	_	_	CAUS	_	_	_	CONJ.member	_
+20	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+21	trade	trade	NN	-	-	_	_	_	_	_	_	_	REG	_	_
+22	conflicts	conflict	NNS	-	+	_	_	_	_	CAUS	_	_	_	CONJ.member	_
+23	and	and	CC	-	+	_	_	_	_	_	_	_	_	_	_
+24	sluggish	sluggish	JJ	-	-	_	_	_	_	_	_	_	_	_	MANN
+25	exports	export	NNS	-	+	_	_	_	_	CAUS	_	_	_	CONJ.member	_
+26	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20011005
+1	Government	government	NN	-	-	_	RSTR	_	_	_	_	_	_	_
+2	officials	official	NNS	-	+	_	_	ACT-arg	_	_	_	_	_	_
+3	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_	_
+4	exports	export	NNS	-	+	_	_	_	_	_	ACT-arg	_	_	_
+5	at	at	IN	-	-	_	_	_	_	_	_	_	_	_
+6	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+7	end	end	NN	-	+	_	_	_	TWHEN	_	_	_	_	_
+8	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+9	the	the	DT	-	-	_	_	_	_	_	_	_	_	_
+10	year	year	NN	-	-	_	_	_	_	APP	_	_	_	_
+11	would	would	MD	-	-	_	_	_	_	_	_	_	_	_
+12	remain	remain	VB	-	+	ev-w2638f1	_	EFF-arg	_	_	_	_	_	_
+13	under	under	IN	-	-	_	_	_	_	_	_	_	_	_
+14	a	a	DT	-	-	_	_	_	_	_	_	_	_	_
+15	government	government	NN	-	-	_	_	_	_	_	_	RSTR	_	_
+16	target	target	NN	-	+	_	_	_	_	_	LOC-arg	_	_	_
+17	of	of	IN	-	-	_	_	_	_	_	_	_	_	_
+18	$	$	$	-	+	_	_	_	_	_	_	RSTR	_	_
+19	68	68	CD	-	-	_	_	_	_	_	_	_	_	RSTR
+20	billion	billion	CD	-	+	_	_	_	_	_	_	_	RSTR	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_	_
+
+#20011006
+1	Despite	despite	IN	-	-	_	_	_	_	_	_	_	_
+2	the	the	DT	-	-	_	_	_	_	_	_	_	_
+3	gloomy	gloomy	JJ	-	-	_	RSTR	_	_	_	_	_	_
+4	forecast	forecast	NN	-	+	_	_	_	CNCS	_	_	_	_
+5	,	,	,	-	-	_	_	_	_	_	_	_	_
+6	South	South	NNP	-	-	_	_	NE	_	_	_	_	_
+7	Korea	korea	NNP	-	+	_	_	_	ACT-arg	_	_	_	_
+8	has	have	VBZ	-	-	_	_	_	_	_	_	_	_
+9	recorded	record	VBN	+	+	ev-w2554f1	_	_	_	_	_	_	_
+10	a	a	DT	-	-	_	_	_	_	_	_	_	_
+11	trade	trade	NN	-	-	_	_	_	_	RSTR	_	_	_
+12	surplus	surplus	NN	-	+	_	_	_	PAT-arg	_	_	_	_
+13	of	of	IN	-	-	_	_	_	_	_	_	_	_
+14	$	$	$	-	+	_	_	_	_	RSTR	_	_	_
+15	71	71	CD	-	-	_	_	_	_	_	_	RSTR	_
+16	million	million	CD	-	+	_	_	_	_	_	RSTR	_	_
+17	so	so	IN	-	-	_	_	_	_	_	_	_	_
+18	far	so_far	IN	-	-	_	_	_	TTILL	_	_	_	_
+19	this	this	DT	-	-	_	_	_	_	_	_	_	RSTR
+20	year	year	NN	-	+	_	_	_	TWHEN	_	_	_	_
+21	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20011007
+1	From	from	IN	-	-	_	_	_	_	_	_	_	_
+2	January	january	NNP	-	-	_	_	TFRWH	_	_	_	_	_
+3	to	to	TO	-	-	_	_	_	_	_	_	_	_
+4	October	october	NNP	-	-	_	_	TOWH	_	_	_	_	_
+5	,	,	,	-	-	_	_	_	_	_	_	_	_
+6	the	the	DT	-	-	_	_	_	_	_	_	_	_
+7	nation	nation	NN	-	-	_	APP	_	_	_	_	_	_
+8	’s	’s	POS	-	-	_	_	_	_	_	_	_	_
+9	accumulated	accumulate	VBN	-	-	ev-w30f1	RSTR	_	_	_	_	_	_
+10	exports	export	NNS	-	+	_	_	ACT-arg	_	_	_	_	_
+11	increased	increase	VBD	+	+	ev-w1678f2	_	_	_	_	_	_	_
+12	4	4	CD	-	-	_	_	_	RSTR	_	_	_	_
+13	%	#Percnt	NN	-	+	_	_	DIFF	_	_	_	_	_
+14	from	from	IN	-	-	_	_	_	_	_	_	_	_
+15	the	the	DT	-	-	_	_	_	_	_	_	_	_
+16	same	same	JJ	-	-	_	_	_	_	RSTR	_	_	_
+17	period	period	NN	-	+	_	_	CPR	_	_	_	_	_
+18	last	last	JJ	-	-	_	_	_	_	_	RSTR	_	_
+19	year	year	NN	-	+	_	_	_	_	TWHEN	_	_	_
+20	to	to	TO	-	-	_	_	_	_	_	_	_	_
+21	$	$	$	-	+	_	_	PAT-arg	_	_	_	_	_
+22	50.45	50.45	CD	-	-	_	_	_	_	_	_	_	RSTR
+23	billion	billion	CD	-	+	_	_	_	_	_	_	RSTR	_
+24	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20011008
+1	Imports	import	NNS	-	-	_	ACT-arg	_	_	_
+2	were	be	VBD	+	+	ev-w218f4_u_nobody	_	_	_	_
+3	at	at	IN	-	-	_	_	_	_	_
+4	$	$	$	-	+	_	PAT-arg	_	_	_
+5	50.38	50.38	CD	-	-	_	_	_	RSTR	_
+6	billion	billion	CD	-	+	_	_	RSTR	_	_
+7	,	,	,	-	-	_	_	_	_	_
+8	up	up	RB	-	-	_	CPHR-arg	_	_	_
+9	19	19	CD	-	-	_	_	_	_	RSTR
+10	%	#Percnt	NN	-	+	_	DIFF	_	_	_
+11	.	.	.	-	-	_	_	_	_	_
+
+#20012002
+1	The	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+2	new	new	JJ	-	-	_	RSTR	_	_	_	_	_	_	_	_
+3	ad	ad	NN	-	-	_	RSTR	_	_	_	_	_	_	_	_
+4	plan	plan	NN	-	+	_	_	_	_	_	_	ACT-arg	_	_	_
+5	from	from	IN	-	-	_	_	_	_	_	_	_	_	_	_
+6	Newsweek	newsweek	NNP	-	-	_	DIR1	APPS.member	_	_	_	_	_	_	_
+7	,	#Comma	,	-	+	_	_	_	_	_	_	_	_	_	_
+8	a	a	DT	-	-	_	_	_	_	_	_	_	_	_	_
+9	unit	unit	NN	-	+	_	DIR1	APPS.member	_	_	_	_	_	_	_
+10	of	of	IN	-	-	_	_	_	_	_	_	_	_	_	_
+11	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+12	Washington	Washington	NNP	-	-	_	_	_	_	NE	_	_	_	_	_
+13	Post	Post	NNP	-	+	_	_	_	_	_	NE	_	_	_	_
+14	Co.	co.	NNP	-	+	_	_	_	APP	_	_	_	_	_	_
+15	,	,	,	-	-	_	_	_	_	_	_	_	_	_	_
+16	is	be	VBZ	+	+	ev-w218f2	_	_	_	_	_	_	_	_	_
+17	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+18	second	second	JJ	-	-	_	_	_	_	_	_	_	RSTR	_	_
+19	incentive	incentive	NN	-	-	_	_	_	_	_	_	_	RSTR	_	_
+20	plan	plan	NN	-	+	_	_	_	_	_	_	PAT-arg	_	_	_
+21	the	the	DT	-	-	_	_	_	_	_	_	_	_	_	_
+22	magazine	magazine	NN	-	-	_	_	_	_	_	_	_	_	ACT-arg	_
+23	has	have	VBZ	-	-	_	_	_	_	_	_	_	_	_	_
+24	offered	offer	VBN	-	+	ev-w2105f1	_	_	_	_	_	_	RSTR	_	_
+25	advertisers	advertiser	NNS	-	-	_	_	_	_	_	_	_	_	ADDR-arg	_
+26	in	in	IN	-	-	_	_	_	_	_	_	_	_	_	_
+27	three	three	CD	-	-	_	_	_	_	_	_	_	_	_	RSTR
+28	years	year	NNS	-	+	_	_	_	_	_	_	_	_	TPAR	_
+29	.	.	.	-	-	_	_	_	_	_	_	_	_	_	_
+
+#20012004
+1	Alan	Alan	NNP	-	-	_	NE	_	_	_	_	_	_
+2	Spoon	spoon	NNP	-	+	_	_	_	_	ACT-arg	_	_	_
+3	,	,	,	-	-	_	_	_	_	_	_	_	_
+4	recently	recently	RB	-	-	_	_	TWHEN	_	_	_	_	_
+5	named	name	VBN	-	+	ev-w2055f1	DESCR	_	_	_	_	_	_
+6	Newsweek	newsweek	NNP	-	-	_	_	_	APP	_	_	_	_
+7	president	president	NN	-	+	_	_	EFF-arg	_	_	_	_	_
+8	,	,	,	-	-	_	_	_	_	_	_	_	_
+9	said	say	VBD	+	+	ev-w2833f1	_	_	_	_	_	_	_
+10	Newsweek	newsweek	NNP	-	-	_	_	_	_	_	APP	_	_
+11	’s	’s	POS	-	-	_	_	_	_	_	_	_	_
+12	ad	ad	NN	-	-	_	_	_	_	_	RSTR	_	_
+13	rates	rate	NNS	-	+	_	_	_	_	_	_	ACT-arg	_
+14	would	would	MD	-	-	_	_	_	_	_	_	_	_
+15	increase	increase	VB	-	+	ev-w1678f2	_	_	_	EFF-arg	_	_	_
+16	5	5	CD	-	-	_	_	_	_	_	_	_	RSTR
+17	%	#Percnt	NN	-	+	_	_	_	_	_	_	DIFF	_
+18	in	in	IN	-	-	_	_	_	_	_	_	_	_
+19	January	january	NNP	-	-	_	_	_	_	_	_	TWHEN	_
+20	.	.	.	-	-	_	_	_	_	_	_	_	_
+
+#20012005
+1	A	a	DT	-	-	_	_	_	_
+2	full	full	JJ	-	-	_	RSTR	_	_
+3	,	,	,	-	-	_	_	_	_
+4	four-color	four-color	JJ	-	-	_	RSTR	_	_
+5	page	page	NN	-	+	_	_	ACT-arg	_
+6	in	in	IN	-	-	_	_	_	_
+7	Newsweek	newsweek	NNP	-	-	_	LOC	_	_
+8	will	will	MD	-	-	_	_	_	_
+9	cost	cost	VB	+	+	ev-w716f1	_	_	_
+10	$	$	$	-	+	_	_	EXT-arg	_
+11	100,980	100_980	CD	-	-	_	_	_	RSTR
+12	.	.	.	-	-	_	_	_	_
+
