@@ -1,0 +1,44 @@
+digraph "20012005" {
+  top [ style=invis ];
+  top -> 13;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">A</font></td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">full</font></td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">,</font></td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">four-color</font></td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">page</font></td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">in</font></td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">Newsweek</font></td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">will</font></td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">cost</font></td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">$</font></td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">100,980</font></td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">.</font></td></tr></table>> ];
+  12 [ shape=point, width=0.2 ];
+  13 [ shape=point, width=0.2 ];
+  14 [ shape=point, width=0.2 ];
+  15 [ shape=point, width=0.2 ];
+  16 [ shape=point, width=0.2 ];
+  17 [ shape=point, width=0.2 ];
+  18 [ shape=point, width=0.2 ];
+  12 -> 16 [ label="E" ];
+  13 -> 14 [ label="H" ];
+  12 -> 0 [ label="F" ];
+  12 -> 17 [ label="E" ];
+  18 -> 10 [ label="Q" ];
+  15 -> 1 [ label="S" ];
+  16 -> 4 [ label="A", style=dashed ];
+  12 -> 15 [ label="E" ];
+  17 -> 6 [ label="C" ];
+  14 -> 8 [ label="S" ];
+  12 -> 2 [ label="U" ];
+  17 -> 5 [ label="R" ];
+  12 -> 4 [ label="C" ];
+  14 -> 7 [ label="F" ];
+  14 -> 12 [ label="A" ];
+  18 -> 11 [ label="U" ];
+  18 -> 9 [ label="C" ];
+  16 -> 3 [ label="S" ];
+  14 -> 18 [ label="A" ];
+  15 -> 4 [ label="A", style=dashed ];
+}
+

@@ -1,0 +1,34 @@
+digraph "20003014" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-03</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">4</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">include-91</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">5</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">work-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">survive-01</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">include-91</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">3</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">diagnose-01</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">cancer</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">recent</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">relate-01</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr></table>> ];
+  9 -> 10 [ label="name" ];
+  8 -> 9 [ label="ARG2" ];
+  8 -> 11 [ label="time" ];
+  1 -> 6 [ label="(ARG2)-of" ];
+  3 -> 5 [ label="(ARG0)-of" ];
+  2 -> 3 [ label="ARG2" ];
+  3 -> 4 [ label="(ARG0)-of" ];
+  7 -> 8 [ label="(ARG1)-of" ];
+  12 -> 13 [ label="(ARG1)-of" ];
+  1 -> 2 [ label="(ARG1)-of" ];
+  6 -> 7 [ label="ARG1" ];
+  13 -> 14 [ label="ARG2" ];
+  0 -> 1 [ label="ARG0" ];
+  0 -> 12 [ label="ARG1" ];
+}
+

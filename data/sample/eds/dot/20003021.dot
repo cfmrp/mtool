@@ -1,0 +1,45 @@
+digraph "20003021" {
+  top [ style=invis ];
+  top -> 19;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈0:29〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">comp</td></tr><tr><td colspan="2">〈0:4〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_common_a_for</td></tr><tr><td colspan="2">〈5:11〉</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈12:29〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈12:22〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_chrysotile_n_unknown</td></tr><tr><td colspan="2">〈12:22〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_fiber_n_1</td></tr><tr><td colspan="2">〈23:29〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_curly_a_1</td></tr><tr><td colspan="2">〈34:39〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_and_c</td></tr><tr><td colspan="2">〈40:43〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">comp</td></tr><tr><td colspan="2">〈48:52〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_easy_a_for</td></tr><tr><td colspan="2">〈53:59〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_reject_v_as</td></tr><tr><td colspan="2">〈60:68〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈72:75〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_body_n_1</td></tr><tr><td colspan="2">〈76:81〉</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈82:93〉</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈82:93〉</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈82:85〉</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_doctor_n_1</td></tr><tr><td colspan="2">〈82:85〉</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">named</td></tr><tr><td colspan="2">〈86:93〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Mossman</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_explain_v_to</td></tr><tr><td colspan="2">〈94:104〉</td></tr></table>> ];
+  19 -> 18 [ label="ARG1" ];
+  8 -> 7 [ label="L-HNDL" ];
+  2 -> 6 [ label="ARG1" ];
+  0 -> 6 [ label="BV" ];
+  14 -> 18 [ label="BV" ];
+  11 -> 13 [ label="ARG1" ];
+  15 -> 17 [ label="ARG2" ];
+  3 -> 6 [ label="ARG1" ];
+  8 -> 11 [ label="R-HNDL" ];
+  15 -> 18 [ label="ARG1" ];
+  19 -> 8 [ label="ARG2" ];
+  10 -> 11 [ label="ARG1" ];
+  7 -> 6 [ label="ARG1" ];
+  12 -> 13 [ label="BV" ];
+  16 -> 17 [ label="BV" ];
+  9 -> 10 [ label="ARG1" ];
+  3 -> 5 [ label="ARG2" ];
+  4 -> 5 [ label="BV" ];
+  11 -> 6 [ label="ARG2" ];
+  1 -> 2 [ label="ARG1" ];
+}
+

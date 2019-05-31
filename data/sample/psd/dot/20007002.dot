@@ -1,0 +1,24 @@
+digraph "20007002" {
+  top [ style=invis ];
+  top -> 1;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">finmeccanica</td></tr><tr><td colspan="2">〈0:12〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">be</td></tr><tr><td colspan="2">〈13:15〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w218f2</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">italian</td></tr><tr><td colspan="2">〈19:26〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">state-owned</td></tr><tr><td colspan="2">〈27:38〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">hold</td></tr><tr><td colspan="2">〈39:46〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBG</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1601f7</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">company</td></tr><tr><td colspan="2">〈47:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">interest</td></tr><tr><td colspan="2">〈60:69〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">mechanical</td></tr><tr><td colspan="2">〈77:87〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">engineering</td></tr><tr><td colspan="2">〈88:99〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">industry</td></tr><tr><td colspan="2">〈100:108〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  8 -> 13 [ label="LOC" ];
+  1 -> 0 [ label="ACT-arg" ];
+  6 -> 3 [ label="RSTR" ];
+  1 -> 6 [ label="PAT-arg" ];
+  6 -> 4 [ label="RSTR" ];
+  6 -> 8 [ label="ACMP" ];
+  6 -> 5 [ label="RSTR" ];
+  13 -> 12 [ label="RSTR" ];
+  12 -> 11 [ label="RSTR" ];
+}
+

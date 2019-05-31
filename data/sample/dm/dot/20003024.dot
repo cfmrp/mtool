@@ -1,0 +1,38 @@
+digraph "20003024" {
+  top [ style=invis ];
+  top -> 14;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">about</td></tr><tr><td colspan="2">〈0:5〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">x:e-u</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">160</td></tr><tr><td colspan="2">〈6:9〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">card:i-i-c</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">worker</td></tr><tr><td colspan="2">〈10:17〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">at</td></tr><tr><td colspan="2">〈18:20〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">p:e-u-i</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">a</td></tr><tr><td colspan="2">〈21:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">q:i-h-h</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">factory</td></tr><tr><td colspan="2">〈23:30〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">make</td></tr><tr><td colspan="2">〈36:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">v:e-i-p-u</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">paper</td></tr><tr><td colspan="2">〈41:46〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">for</td></tr><tr><td colspan="2">〈47:50〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">p:e-u-i</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">the</td></tr><tr><td colspan="2">〈51:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">q:i-h-h</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Kent</td></tr><tr><td colspan="2">〈55:59〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">named:x-c</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">filter</td></tr><tr><td colspan="2">〈60:67〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expose</td></tr><tr><td colspan="2">〈73:80〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">v_to:e-i-p-i</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr><tr><td colspan="2">〈84:92〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">in</td></tr><tr><td colspan="2">〈93:95〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">p:e-u-i</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">the</td></tr><tr><td colspan="2">〈96:99〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">q:i-h-h</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">1950s</td></tr><tr><td colspan="2">〈100:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">year_range:x-c</td></tr></table>> ];
+  7 -> 5 [ label="ARG1" ];
+  0 -> 1 [ label="ARG1" ];
+  9 -> 7 [ label="ARG1" ];
+  9 -> 12 [ label="ARG2" ];
+  14 -> 2 [ label="ARG2" ];
+  1 -> 2 [ label="ARG1" ];
+  4 -> 5 [ label="BV" ];
+  18 -> 19 [ label="BV" ];
+  17 -> 14 [ label="ARG1" ];
+  10 -> 12 [ label="BV" ];
+  11 -> 12 [ label="compound" ];
+  3 -> 5 [ label="ARG2" ];
+  7 -> 8 [ label="ARG2" ];
+  14 -> 16 [ label="ARG3" ];
+  17 -> 19 [ label="ARG2" ];
+  3 -> 2 [ label="ARG1" ];
+}
+

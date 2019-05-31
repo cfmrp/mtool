@@ -1,0 +1,34 @@
+digraph "20003016" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">doctor</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Talcott</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">rate</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">die-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">find-01</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">strike-04</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">study-01</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">relate-01</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">include-91</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">we</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">that</td></tr></table>> ];
+  3 -> 6 [ label="(ARG1)-of" ];
+  7 -> 8 [ label="(ARG0)-of" ];
+  3 -> 4 [ label="mod (domain)" ];
+  0 -> 1 [ label="ARG0" ];
+  7 -> 14 [ label="mod (domain)" ];
+  9 -> 10 [ label="(ARG1)-of" ];
+  3 -> 5 [ label="(ARG1)-of" ];
+  7 -> 12 [ label="(ARG1)-of" ];
+  0 -> 3 [ label="ARG1" ];
+  6 -> 7 [ label="ARG3" ];
+  12 -> 13 [ label="ARG2" ];
+  1 -> 2 [ label="name" ];
+  8 -> 9 [ label="ARG1" ];
+  10 -> 11 [ label="ARG2" ];
+}
+

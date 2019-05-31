@@ -1,0 +1,32 @@
+digraph "20003023" {
+  top [ style=invis ];
+  top -> 13;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_by_p_temp</td></tr><tr><td colspan="2">〈0:2〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈3:8〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">yofc</td></tr><tr><td colspan="2">〈3:8〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">1997</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_almost_x_deg</td></tr><tr><td colspan="2">〈9:15〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_all_q</td></tr><tr><td colspan="2">〈16:19〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_remaining_a_1</td></tr><tr><td colspan="2">〈20:29〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_use_n_of</td></tr><tr><td colspan="2">〈30:34〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈38:61〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈38:52〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈38:52〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_cancer_n_1</td></tr><tr><td colspan="2">〈38:52〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_cause_v_1</td></tr><tr><td colspan="2">〈38:52〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_asbestos_n_1</td></tr><tr><td colspan="2">〈53:61〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_outlaw_v_1</td></tr><tr><td colspan="2">〈70:79〉</td></tr></table>> ];
+  4 -> 6 [ label="BV" ];
+  8 -> 10 [ label="ARG2" ];
+  0 -> 13 [ label="ARG1" ];
+  5 -> 6 [ label="ARG1" ];
+  1 -> 2 [ label="BV" ];
+  13 -> 6 [ label="ARG2" ];
+  0 -> 2 [ label="ARG2" ];
+  8 -> 11 [ label="ARG1" ];
+  6 -> 12 [ label="ARG1" ];
+  11 -> 12 [ label="ARG1" ];
+  7 -> 12 [ label="BV" ];
+  9 -> 10 [ label="BV" ];
+  3 -> 4 [ label="ARG1" ];
+}
+

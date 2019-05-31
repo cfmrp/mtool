@@ -1,0 +1,39 @@
+digraph "20011007" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">increase-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">thing</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">export-01</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">nation</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">accumulate-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">percentage-entity</td></tr><tr><td sides="l" border="1" align="left">value</td><td sides="r" border="1" align="left">4</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">monetary-quantity</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-interval</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-entity</td></tr><tr><td sides="l" border="1" align="left">month</td><td sides="r" border="1" align="left">1</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">year</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">last</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-entity</td></tr><tr><td sides="l" border="1" align="left">month</td><td sides="r" border="1" align="left">10</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">monetary-quantity</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">50450000000</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">dollar</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-interval</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-entity</td></tr><tr><td sides="l" border="1" align="left">month</td><td sides="r" border="1" align="left">1</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-entity</td></tr><tr><td sides="l" border="1" align="left">month</td><td sides="r" border="1" align="left">10</td></tr></table>> ];
+  0 -> 12 [ label="ARG4" ];
+  0 -> 1 [ label="ARG1" ];
+  7 -> 11 [ label="op2" ];
+  0 -> 5 [ label="ARG2" ];
+  7 -> 8 [ label="op1" ];
+  9 -> 10 [ label="mod (domain)" ];
+  2 -> 3 [ label="ARG0" ];
+  11 -> 9 [ label="mod (domain)" ];
+  6 -> 7 [ label="time" ];
+  8 -> 9 [ label="mod (domain)" ];
+  12 -> 13 [ label="unit" ];
+  14 -> 16 [ label="op2" ];
+  1 -> 2 [ label="(ARG1)-of" ];
+  12 -> 14 [ label="time" ];
+  0 -> 6 [ label="ARG3" ];
+  1 -> 4 [ label="(ARG1)-of" ];
+  14 -> 15 [ label="op1" ];
+}
+

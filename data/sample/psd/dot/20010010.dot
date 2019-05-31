@@ -1,0 +1,25 @@
+digraph "20010010" {
+  top [ style=invis ];
+  top -> 4;
+  top -> 11;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">governor</td></tr><tr><td colspan="2">〈4:12〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Neg</td></tr><tr><td colspan="2">〈18:21〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">make</td></tr><tr><td colspan="2">〈22:26〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1923f28</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈27:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">so</td></tr><tr><td colspan="2">〈31:33〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lieutenant</td></tr><tr><td colspan="2">〈38:48〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">governor</td></tr><tr><td colspan="2">〈49:57〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">welcome</td></tr><tr><td colspan="2">〈58:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3616f1</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">special</td></tr><tr><td colspan="2">〈71:78〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">guest</td></tr><tr><td colspan="2">〈79:85〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  11 -> 10 [ label="ACT-arg" ];
+  14 -> 13 [ label="RSTR" ];
+  4 -> 1 [ label="ACT-arg" ];
+  7 -> 4 [ label="CSQ.member" ];
+  10 -> 9 [ label="RSTR" ];
+  7 -> 11 [ label="CSQ.member" ];
+  11 -> 14 [ label="PAT-arg" ];
+  4 -> 5 [ label="DPHR-arg" ];
+  4 -> 3 [ label="RHEM" ];
+}
+

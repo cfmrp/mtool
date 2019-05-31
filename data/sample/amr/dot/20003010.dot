@@ -1,0 +1,40 @@
+digraph "20003010" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lead-02</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">doctor</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Talcott</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">team</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">research-01</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-org-role-91</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">research-institute</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">National</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">Cancer</td></tr><tr><td sides="l" border="1" align="left">op3</td><td sides="r" border="1" align="left">Institute</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">school</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">medicine</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">university</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Harvard</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">University</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">school</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">medicine</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">university</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Boston</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">University</td></tr></table>> ];
+  3 -> 4 [ label="(consist)-of" ];
+  1 -> 2 [ label="name" ];
+  7 -> 10 [ label="op2" ];
+  4 -> 6 [ label="(ARG0)-of" ];
+  7 -> 8 [ label="op1" ];
+  16 -> 17 [ label="name" ];
+  8 -> 9 [ label="name" ];
+  7 -> 14 [ label="op3" ];
+  0 -> 3 [ label="ARG1" ];
+  4 -> 5 [ label="(ARG0)-of" ];
+  14 -> 15 [ label="mod (domain)" ];
+  10 -> 11 [ label="mod (domain)" ];
+  12 -> 13 [ label="name" ];
+  14 -> 16 [ label="(part)-of" ];
+  6 -> 7 [ label="ARG1" ];
+  0 -> 1 [ label="ARG0" ];
+  10 -> 12 [ label="(part)-of" ];
+}
+

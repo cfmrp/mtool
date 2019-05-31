@@ -1,0 +1,30 @@
+digraph "20010010" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">possible-01</td></tr><tr><td sides="l" border="1" align="left">polarity</td><td sides="r" border="1" align="left">-</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">make-it-14</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-org-role-91</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">governor</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cause-01</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">welcome-01</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-org-role-91</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">governor</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lieutenant</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">guest</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">special-02</td></tr></table>> ];
+  6 -> 7 [ label="ARG0" ];
+  0 -> 1 [ label="ARG1" ];
+  8 -> 9 [ label="ARG2" ];
+  1 -> 2 [ label="ARG0" ];
+  9 -> 10 [ label="mod (domain)" ];
+  5 -> 6 [ label="ARG1" ];
+  6 -> 11 [ label="ARG1" ];
+  11 -> 12 [ label="(ARG1)-of" ];
+  0 -> 5 [ label="(ARG0)-of" ];
+  3 -> 4 [ label="ARG2" ];
+  7 -> 8 [ label="(ARG0)-of" ];
+  2 -> 3 [ label="(ARG0)-of" ];
+}
+

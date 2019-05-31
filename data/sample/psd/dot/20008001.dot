@@ -1,0 +1,30 @@
+digraph "20008001" {
+  top [ style=invis ];
+  top -> 3;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">federal</td></tr><tr><td colspan="2">〈4:11〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">government</td></tr><tr><td colspan="2">〈12:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">suspend</td></tr><tr><td colspan="2">〈23:32〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3275f2</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">sale</td></tr><tr><td colspan="2">〈33:38〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">u.s.</td></tr><tr><td colspan="2">〈42:46〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">savings</td></tr><tr><td colspan="2">〈47:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">bond</td></tr><tr><td colspan="2">〈55:60〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Congress</td></tr><tr><td colspan="2">〈69:77〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Neg</td></tr><tr><td colspan="2">〈81:84〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lift</td></tr><tr><td colspan="2">〈85:91〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1863f4</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ceiling</td></tr><tr><td colspan="2">〈96:103〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">government</td></tr><tr><td colspan="2">〈107:117〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">debt</td></tr><tr><td colspan="2">〈118:122〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 -> 15 [ label="PAT-arg" ];
+  3 -> 13 [ label="CAUS" ];
+  18 -> 17 [ label="APP" ];
+  8 -> 7 [ label="RSTR" ];
+  8 -> 6 [ label="RSTR" ];
+  3 -> 2 [ label="ACT-arg" ];
+  4 -> 8 [ label="PAT-arg" ];
+  13 -> 12 [ label="RHEM" ];
+  15 -> 18 [ label="REG" ];
+  13 -> 10 [ label="ACT-arg" ];
+  3 -> 4 [ label="PAT-arg" ];
+  2 -> 1 [ label="RSTR" ];
+}
+

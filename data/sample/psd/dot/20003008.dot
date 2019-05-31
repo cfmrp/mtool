@@ -1,0 +1,31 @@
+digraph "20003008" {
+  top [ style=invis ];
+  top -> 9;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lorillard</td></tr><tr><td colspan="2">〈8:17〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">neither_nor</td></tr><tr><td colspan="2">〈18:21〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">researcher</td></tr><tr><td colspan="2">〈26:37〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">who</td></tr><tr><td colspan="2">〈38:41〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">WP</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">study</td></tr><tr><td colspan="2">〈42:49〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3222f1</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">worker</td></tr><tr><td colspan="2">〈54:61〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">be</td></tr><tr><td colspan="2">〈62:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w218f2</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">aware</td></tr><tr><td colspan="2">〈67:72〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">any</td></tr><tr><td colspan="2">〈76:79〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">research</td></tr><tr><td colspan="2">〈80:88〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">smoker</td></tr><tr><td colspan="2">〈92:99〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">kent</td></tr><tr><td colspan="2">〈107:111〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cigarette</td></tr><tr><td colspan="2">〈112:122〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  2 -> 4 [ label="CONJ.member" ];
+  9 -> 4 [ label="ACT-arg" ];
+  4 -> 6 [ label="RSTR" ];
+  19 -> 18 [ label="ID" ];
+  2 -> 1 [ label="CONJ.member" ];
+  9 -> 1 [ label="ACT-arg" ];
+  6 -> 8 [ label="PAT-arg" ];
+  13 -> 15 [ label="PAT-arg" ];
+  10 -> 13 [ label="PAT-arg" ];
+  6 -> 5 [ label="ACT-arg" ];
+  13 -> 12 [ label="RSTR" ];
+  15 -> 19 [ label="PAT-arg" ];
+  9 -> 10 [ label="PAT-arg" ];
+}
+

@@ -1,0 +1,36 @@
+digraph "20008005" {
+  top [ style=invis ];
+  top -> 3;
+  top -> 18;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">house</td></tr><tr><td colspan="2">〈4:9〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">vote</td></tr><tr><td colspan="2">〈14:19〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3564f2</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">raise</td></tr><tr><td colspan="2">〈23:28〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2481f3</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ceiling</td></tr><tr><td colspan="2">〈33:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">$</td></tr><tr><td colspan="2">〈44:45〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">$</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">3.1</td></tr><tr><td colspan="2">〈45:48〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">trillion</td></tr><tr><td colspan="2">〈49:57〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">but</td></tr><tr><td colspan="2">〈59:62〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">senate</td></tr><tr><td colspan="2">〈67:73〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Neg</td></tr><tr><td colspan="2">〈76:79〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expect</td></tr><tr><td colspan="2">〈80:88〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1239f1</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">act</td></tr><tr><td colspan="2">〈92:95〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w42f1</td></tr></table>> ];
+  22 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">next</td></tr><tr><td colspan="2">〈102:106〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  23 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">week</td></tr><tr><td colspan="2">〈107:111〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  26 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">early</td></tr><tr><td colspan="2">〈119:127〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJS</td></tr></table>> ];
+  5 -> 9 [ label="EFF-arg" ];
+  20 -> 23 [ label="TTILL" ];
+  18 -> 17 [ label="RHEM" ];
+  13 -> 3 [ label="ADVS.member" ];
+  18 -> 20 [ label="PAT-arg" ];
+  3 -> 1 [ label="ACT-arg" ];
+  9 -> 11 [ label="RSTR" ];
+  20 -> 15 [ label="ACT-arg" ];
+  13 -> 18 [ label="ADVS.member" ];
+  20 -> 26 [ label="TWHEN" ];
+  5 -> 7 [ label="PAT-arg" ];
+  11 -> 10 [ label="RSTR" ];
+  23 -> 22 [ label="RSTR" ];
+  3 -> 5 [ label="PAT-arg" ];
+  5 -> 1 [ label="ACT-arg" ];
+}
+

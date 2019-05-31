@@ -1,0 +1,32 @@
+digraph "20005002" {
+  top [ style=invis ];
+  top -> 1;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈0:2〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">succeed</td></tr><tr><td colspan="2">〈3:11〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3245f2</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Terrence</td></tr><tr><td colspan="2">〈12:20〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">D.</td></tr><tr><td colspan="2">〈21:23〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Daniels</td></tr><tr><td colspan="2">〈24:31〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Comma</td></tr><tr><td colspan="2">〈31:32〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">,</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">formerly</td></tr><tr><td colspan="2">〈33:41〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">W.R.</td></tr><tr><td colspan="2">〈44:48〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">grace</td></tr><tr><td colspan="2">〈49:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">vice</td></tr><tr><td colspan="2">〈55:59〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">chairman</td></tr><tr><td colspan="2">〈60:68〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">who</td></tr><tr><td colspan="2">〈70:73〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">WP</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">resign</td></tr><tr><td colspan="2">〈74:82〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2696f3</td></tr></table>> ];
+  1 -> 11 [ label="PAT-arg" ];
+  1 -> 0 [ label="ACT-arg" ];
+  5 -> 4 [ label="APPS.member" ];
+  9 -> 8 [ label="NE" ];
+  4 -> 14 [ label="DESCR" ];
+  4 -> 2 [ label="NE" ];
+  14 -> 13 [ label="ACT-arg" ];
+  5 -> 11 [ label="APPS.member" ];
+  11 -> 6 [ label="TWHEN" ];
+  11 -> 9 [ label="APP" ];
+  11 -> 14 [ label="DESCR" ];
+  11 -> 10 [ label="RSTR" ];
+  1 -> 4 [ label="PAT-arg" ];
+  4 -> 3 [ label="NE" ];
+}
+

@@ -1,0 +1,27 @@
+digraph "20005002" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">succeed-02</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">he</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Terrence</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">D.</td></tr><tr><td sides="l" border="1" align="left">op3</td><td sides="r" border="1" align="left">Daniels</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">resign-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-org-role-91</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">company</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">W.R.</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">Grace</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">chairman</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">vice</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">former</td></tr></table>> ];
+  0 -> 2 [ label="ARG1" ];
+  4 -> 8 [ label="ARG1" ];
+  2 -> 3 [ label="name" ];
+  0 -> 1 [ label="ARG0" ];
+  5 -> 6 [ label="ARG1" ];
+  5 -> 8 [ label="ARG2" ];
+  5 -> 10 [ label="time" ];
+  8 -> 9 [ label="mod (domain)" ];
+  2 -> 5 [ label="(ARG0)-of" ];
+  6 -> 7 [ label="name" ];
+  2 -> 4 [ label="(ARG0)-of" ];
+}
+

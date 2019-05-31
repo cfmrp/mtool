@@ -1,0 +1,33 @@
+digraph "20004001" {
+  top [ style=invis ];
+  top -> 5;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">yield</td></tr><tr><td colspan="2">〈0:6〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">money-market</td></tr><tr><td colspan="2">〈10:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">mutual</td></tr><tr><td colspan="2">〈23:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">fund</td></tr><tr><td colspan="2">〈30:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">continue</td></tr><tr><td colspan="2">〈36:45〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w685f2</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">slide</td></tr><tr><td colspan="2">〈49:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3012f1</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">sign</td></tr><tr><td colspan="2">〈61:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">portfolio</td></tr><tr><td colspan="2">〈72:81〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">manager</td></tr><tr><td colspan="2">〈82:90〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expect</td></tr><tr><td colspan="2">〈91:97〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1239f1</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">further</td></tr><tr><td colspan="2">〈98:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">decline</td></tr><tr><td colspan="2">〈106:114〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">interest</td></tr><tr><td colspan="2">〈118:126〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">rate</td></tr><tr><td colspan="2">〈127:132〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  4 -> 3 [ label="RSTR" ];
+  16 -> 15 [ label="MANN" ];
+  16 -> 19 [ label="LOC" ];
+  4 -> 2 [ label="RSTR" ];
+  0 -> 4 [ label="LOC" ];
+  5 -> 0 [ label="ACT-arg" ];
+  5 -> 7 [ label="PAT-arg" ];
+  19 -> 18 [ label="RSTR" ];
+  5 -> 10 [ label="LOC" ];
+  13 -> 12 [ label="PAT-arg" ];
+  14 -> 16 [ label="PAT-arg" ];
+  14 -> 13 [ label="ACT-arg" ];
+  10 -> 14 [ label="PAT-arg" ];
+  7 -> 0 [ label="ACT-arg" ];
+}
+

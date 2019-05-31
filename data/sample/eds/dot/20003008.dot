@@ -1,0 +1,44 @@
+digraph "20003008" {
+  top [ style=invis ];
+  top -> 9;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈0:61〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈8:17〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">named</td></tr><tr><td colspan="2">〈8:17〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Lorillard</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_nor_c</td></tr><tr><td colspan="2">〈18:21〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈22:25〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_researcher_n_of</td></tr><tr><td colspan="2">〈26:37〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_study_v_1</td></tr><tr><td colspan="2">〈42:49〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈50:53〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_worker_n_1</td></tr><tr><td colspan="2">〈54:61〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_aware_a_of</td></tr><tr><td colspan="2">〈67:72〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_any_q</td></tr><tr><td colspan="2">〈76:79〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_research_n_1</td></tr><tr><td colspan="2">〈80:88〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_on_p</td></tr><tr><td colspan="2">〈89:91〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈92:123〉</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_smoker_n_of</td></tr><tr><td colspan="2">〈92:99〉</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈103:106〉</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈107:123〉</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈107:111〉</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">named</td></tr><tr><td colspan="2">〈107:111〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Kent</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_cigarette_n_1</td></tr><tr><td colspan="2">〈112:123〉</td></tr></table>> ];
+  3 -> 5 [ label="R-INDEX" ];
+  9 -> 11 [ label="ARG2" ];
+  0 -> 3 [ label="BV" ];
+  16 -> 19 [ label="ARG1" ];
+  14 -> 19 [ label="ARG1" ];
+  12 -> 14 [ label="ARG2" ];
+  17 -> 18 [ label="BV" ];
+  15 -> 19 [ label="BV" ];
+  12 -> 11 [ label="ARG1" ];
+  6 -> 8 [ label="ARG2" ];
+  6 -> 5 [ label="ARG1" ];
+  7 -> 8 [ label="BV" ];
+  4 -> 5 [ label="BV" ];
+  3 -> 2 [ label="L-INDEX" ];
+  9 -> 3 [ label="ARG1" ];
+  16 -> 18 [ label="ARG2" ];
+  10 -> 11 [ label="BV" ];
+  13 -> 14 [ label="BV" ];
+  1 -> 2 [ label="BV" ];
+}
+

@@ -1,0 +1,40 @@
+digraph "20010012" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">haul-out-03</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">speedway</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">4</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">drive-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">crew</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">announce-01</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">event</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Indianapolis</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">500</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">official</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">even</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">race-02</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lap</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">10</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">exhibit-01</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">then</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">honor-01</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">guest</td></tr></table>> ];
+  12 -> 13 [ label="mod (domain)" ];
+  16 -> 17 [ label="ARG1" ];
+  0 -> 2 [ label="ARG1" ];
+  6 -> 8 [ label="mod (domain)" ];
+  2 -> 3 [ label="op1" ];
+  6 -> 11 [ label="mod (domain)" ];
+  2 -> 5 [ label="op2" ];
+  2 -> 6 [ label="op3" ];
+  0 -> 12 [ label="purpose" ];
+  0 -> 16 [ label="(ARG3)-of" ];
+  0 -> 15 [ label="time" ];
+  3 -> 4 [ label="(ARG0)-of" ];
+  6 -> 10 [ label="mod (domain)" ];
+  6 -> 7 [ label="(ARG0)-of" ];
+  8 -> 9 [ label="name" ];
+  12 -> 14 [ label="(ARG1)-of" ];
+  0 -> 1 [ label="ARG0" ];
+}
+

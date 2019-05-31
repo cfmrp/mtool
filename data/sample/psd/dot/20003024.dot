@@ -1,0 +1,28 @@
+digraph "20003024" {
+  top [ style=invis ];
+  top -> 14;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">about</td></tr><tr><td colspan="2">〈0:5〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">160</td></tr><tr><td colspan="2">〈6:9〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">worker</td></tr><tr><td colspan="2">〈10:17〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">factory</td></tr><tr><td colspan="2">〈23:30〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">that</td></tr><tr><td colspan="2">〈31:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">WDT</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">make</td></tr><tr><td colspan="2">〈36:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1923f6</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">paper</td></tr><tr><td colspan="2">〈41:46〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">kent</td></tr><tr><td colspan="2">〈55:59〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">filter</td></tr><tr><td colspan="2">〈60:67〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expose</td></tr><tr><td colspan="2">〈73:80〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1251f1</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr><tr><td colspan="2">〈84:92〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">1950s</td></tr><tr><td colspan="2">〈100:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  8 -> 12 [ label="BEN" ];
+  14 -> 19 [ label="TWHEN" ];
+  7 -> 6 [ label="ACT-arg" ];
+  14 -> 2 [ label="ADDR-arg" ];
+  14 -> 16 [ label="PAT-arg" ];
+  5 -> 7 [ label="RSTR" ];
+  2 -> 1 [ label="RSTR" ];
+  1 -> 0 [ label="EXT" ];
+  7 -> 8 [ label="PAT-arg" ];
+  2 -> 5 [ label="LOC" ];
+  12 -> 11 [ label="ID" ];
+}
+

@@ -1,0 +1,31 @@
+digraph "20010019" {
+  top [ style=invis ];
+  top -> 5;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">more</td></tr><tr><td colspan="2">〈0:4〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJR</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">few</td></tr><tr><td colspan="2">〈12:15〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ceo</td></tr><tr><td colspan="2">〈16:20〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say</td></tr><tr><td colspan="2">〈21:24〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2833f1</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">red-carpet</td></tr><tr><td colspan="2">〈29:39〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">treatment</td></tr><tr><td colspan="2">〈40:49〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">tempt</td></tr><tr><td colspan="2">〈50:56〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3350f1</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron_#Cor</td></tr><tr><td colspan="2">〈57:61〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">return</td></tr><tr><td colspan="2">〈65:71〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2734f1</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">heartland</td></tr><tr><td colspan="2">〈77:86〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">city</td></tr><tr><td colspan="2">〈87:91〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">future</td></tr><tr><td colspan="2">〈96:102〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">meeting</td></tr><tr><td colspan="2">〈103:111〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  9 -> 8 [ label="ACT-arg" ];
+  12 -> 16 [ label="DIR3-arg" ];
+  19 -> 18 [ label="TWHEN" ];
+  9 -> 12 [ label="PAT-arg" ];
+  5 -> 9 [ label="EFF-arg" ];
+  12 -> 10 [ label="ACT-arg" ];
+  12 -> 19 [ label="AIM" ];
+  9 -> 10 [ label="ADDR-arg" ];
+  5 -> 0 [ label="ACT-arg" ];
+  4 -> 3 [ label="RSTR" ];
+  0 -> 4 [ label="CPR" ];
+  16 -> 15 [ label="LOC" ];
+  8 -> 7 [ label="MANN" ];
+}
+

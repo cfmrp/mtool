@@ -1,0 +1,48 @@
+digraph "20010020" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_but_c</td></tr><tr><td colspan="2">〈0:3〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_for_p</td></tr><tr><td colspan="2">〈4:7〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">time_n</td></tr><tr><td colspan="2">〈8:12〉</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">def_implicit_q</td></tr><tr><td colspan="2">〈8:12〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_now_a_1</td></tr><tr><td colspan="2">〈8:12〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">pron</td></tr><tr><td colspan="2">〈13:17〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">pronoun_q</td></tr><tr><td colspan="2">〈13:17〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_look_v_forward-to</td></tr><tr><td colspan="2">〈21:28〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">appos</td></tr><tr><td colspan="2">〈40:81〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">def_explicit_q</td></tr><tr><td colspan="2">〈40:45〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">poss</td></tr><tr><td colspan="2">〈40:45〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">pronoun_q</td></tr><tr><td colspan="2">〈40:45〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">pron</td></tr><tr><td colspan="2">〈40:45〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈46:63〉</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈46:52〉</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">season</td></tr><tr><td colspan="2">〈46:52〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">winter</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_meeting_n_of</td></tr><tr><td colspan="2">〈53:60〉</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈64:81〉</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">named</td></tr><tr><td colspan="2">〈64:68〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Boca</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_in_p_temp</td></tr><tr><td colspan="2">〈69:71〉</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈72:81〉</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">mofy</td></tr><tr><td colspan="2">〈72:81〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Feb</td></tr></table>> ];
+  14 -> 15 [ label="BV" ];
+  0 -> 7 [ label="R-HNDL" ];
+  3 -> 2 [ label="BV" ];
+  17 -> 18 [ label="BV" ];
+  13 -> 15 [ label="ARG2" ];
+  19 -> 18 [ label="ARG1" ];
+  1 -> 2 [ label="ARG2" ];
+  7 -> 5 [ label="ARG1" ];
+  8 -> 16 [ label="ARG1" ];
+  11 -> 12 [ label="BV" ];
+  1 -> 7 [ label="ARG1" ];
+  19 -> 21 [ label="ARG2" ];
+  10 -> 16 [ label="ARG1" ];
+  8 -> 18 [ label="ARG2" ];
+  13 -> 16 [ label="ARG1" ];
+  20 -> 21 [ label="BV" ];
+  6 -> 5 [ label="BV" ];
+  4 -> 2 [ label="ARG1" ];
+  7 -> 16 [ label="ARG2" ];
+  9 -> 16 [ label="BV" ];
+  10 -> 12 [ label="ARG2" ];
+}
+

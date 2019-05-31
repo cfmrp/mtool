@@ -1,0 +1,45 @@
+digraph "20006001" {
+  top [ style=invis ];
+  top -> 4;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Pacific</td></tr><tr><td colspan="2">〈0:7〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">First</td></tr><tr><td colspan="2">〈8:13〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Financial</td></tr><tr><td colspan="2">〈14:23〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">corp.</td></tr><tr><td colspan="2">〈24:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say</td></tr><tr><td colspan="2">〈30:34〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2833f1</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">shareholder</td></tr><tr><td colspan="2">〈35:47〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">approve</td></tr><tr><td colspan="2">〈48:56〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w126f1</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈57:60〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP$</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">acquisition</td></tr><tr><td colspan="2">〈61:72〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Royal</td></tr><tr><td colspan="2">〈76:81〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Trustco</td></tr><tr><td colspan="2">〈82:89〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ltd.</td></tr><tr><td colspan="2">〈90:94〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">toronto</td></tr><tr><td colspan="2">〈98:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">$</td></tr><tr><td colspan="2">〈110:111〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">$</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">27</td></tr><tr><td colspan="2">〈111:113〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">share</td></tr><tr><td colspan="2">〈116:121〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">or</td></tr><tr><td colspan="2">〈123:125〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  22 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">$</td></tr><tr><td colspan="2">〈126:127〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">$</td></tr></table>> ];
+  23 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">212</td></tr><tr><td colspan="2">〈127:130〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  24 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">million</td></tr><tr><td colspan="2">〈131:138〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  8 -> 16 [ label="EXT" ];
+  12 -> 11 [ label="NE" ];
+  6 -> 5 [ label="ACT-arg" ];
+  22 -> 24 [ label="RSTR" ];
+  12 -> 14 [ label="APP" ];
+  4 -> 6 [ label="EFF-arg" ];
+  24 -> 23 [ label="RSTR" ];
+  21 -> 16 [ label="APPS.member" ];
+  4 -> 3 [ label="ACT-arg" ];
+  8 -> 12 [ label="ACT-arg" ];
+  21 -> 22 [ label="APPS.member" ];
+  2 -> 0 [ label="NE" ];
+  3 -> 2 [ label="NE" ];
+  8 -> 22 [ label="EXT" ];
+  16 -> 17 [ label="RSTR" ];
+  8 -> 7 [ label="PAT-arg" ];
+  2 -> 1 [ label="NE" ];
+  6 -> 8 [ label="PAT-arg" ];
+  16 -> 19 [ label="REG" ];
+  11 -> 10 [ label="NE" ];
+}
+

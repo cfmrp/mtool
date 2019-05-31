@@ -1,0 +1,37 @@
+digraph "20003015" {
+  top [ style=invis ];
+  top -> 21;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">total</td></tr><tr><td colspan="2">〈4:9〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">18</td></tr><tr><td colspan="2">〈13:15〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">death</td></tr><tr><td colspan="2">〈16:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">malignant</td></tr><tr><td colspan="2">〈28:37〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">mesothelioma</td></tr><tr><td colspan="2">〈38:50〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lung</td></tr><tr><td colspan="2">〈52:56〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cancer</td></tr><tr><td colspan="2">〈57:63〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr><tr><td colspan="2">〈64:67〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestosis</td></tr><tr><td colspan="2">〈68:78〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">be</td></tr><tr><td colspan="2">〈79:82〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w218f2</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">far</td></tr><tr><td colspan="2">〈83:86〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">high</td></tr><tr><td colspan="2">〈87:93〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJR</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expect</td></tr><tr><td colspan="2">〈99:107〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1239f1</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">researcher</td></tr><tr><td colspan="2">〈113:124〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say</td></tr><tr><td colspan="2">〈125:129〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2833f1</td></tr></table>> ];
+  21 -> 20 [ label="ACT-arg" ];
+  21 -> 13 [ label="EFF-arg" ];
+  11 -> 7 [ label="CONJ.member" ];
+  10 -> 9 [ label="LOC" ];
+  17 -> 1 [ label="PAT-arg" ];
+  4 -> 3 [ label="RSTR" ];
+  15 -> 17 [ label="CPR" ];
+  11 -> 12 [ label="CONJ.member" ];
+  15 -> 14 [ label="EXT" ];
+  1 -> 4 [ label="APP" ];
+  4 -> 7 [ label="PAT-arg" ];
+  13 -> 1 [ label="ACT-arg" ];
+  7 -> 6 [ label="RSTR" ];
+  4 -> 10 [ label="PAT-arg" ];
+  13 -> 15 [ label="PAT-arg" ];
+  11 -> 10 [ label="CONJ.member" ];
+  4 -> 12 [ label="PAT-arg" ];
+}
+

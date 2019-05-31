@@ -1,0 +1,42 @@
+digraph "20009002" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">oversee-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">he</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">operation</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">sell-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">operation</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">service-05</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">operation</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">part</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">operation</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">market-01</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">company</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">Mazda</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">country</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">U.S.</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-org-role-91</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">position</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">new-02</td></tr></table>> ];
+  5 -> 6 [ label="mod (domain)" ];
+  16 -> 17 [ label="(ARG1)-of" ];
+  15 -> 16 [ label="ARG2" ];
+  17 -> 1 [ label="ARG2" ];
+  2 -> 5 [ label="op2" ];
+  2 -> 13 [ label="mod (domain)" ];
+  13 -> 14 [ label="name" ];
+  2 -> 3 [ label="op1" ];
+  3 -> 4 [ label="(ARG0)-of" ];
+  0 -> 1 [ label="ARG0" ];
+  2 -> 11 [ label="poss" ];
+  2 -> 7 [ label="op3" ];
+  0 -> 2 [ label="ARG1" ];
+  7 -> 8 [ label="mod (domain)" ];
+  0 -> 15 [ label="(ARG3)-of" ];
+  2 -> 9 [ label="op4" ];
+  15 -> 1 [ label="ARG0" ];
+  9 -> 10 [ label="(ARG0)-of" ];
+  11 -> 12 [ label="name" ];
+}
+

@@ -1,0 +1,35 @@
+digraph "20008002" {
+  top [ style=invis ];
+  top -> 21;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Congress</td></tr><tr><td colspan="2">〈6:14〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">act</td></tr><tr><td colspan="2">〈15:19〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w42f1</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">government</td></tr><tr><td colspan="2">〈25:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have</td></tr><tr><td colspan="2">〈36:39〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1566f3</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Neg</td></tr><tr><td colspan="2">〈39:42〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">any</td></tr><tr><td colspan="2">〈43:46〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">authority</td></tr><tr><td colspan="2">〈47:56〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">issue</td></tr><tr><td colspan="2">〈60:65〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1762f1</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">new</td></tr><tr><td colspan="2">〈66:69〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">debt</td></tr><tr><td colspan="2">〈70:74〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">obligation</td></tr><tr><td colspan="2">〈75:86〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">any</td></tr><tr><td colspan="2">〈90:93〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">kind</td></tr><tr><td colspan="2">〈94:98〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">treasury</td></tr><tr><td colspan="2">〈104:112〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say</td></tr><tr><td colspan="2">〈113:117〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2833f1</td></tr></table>> ];
+  6 -> 9 [ label="PAT-arg" ];
+  9 -> 11 [ label="PAT-arg" ];
+  14 -> 17 [ label="APP" ];
+  11 -> 14 [ label="PAT-arg" ];
+  21 -> 20 [ label="ACT-arg" ];
+  9 -> 8 [ label="RSTR" ];
+  14 -> 13 [ label="RSTR" ];
+  2 -> 1 [ label="ACT-arg" ];
+  21 -> 6 [ label="EFF-arg" ];
+  6 -> 2 [ label="TTILL" ];
+  14 -> 12 [ label="RSTR" ];
+  6 -> 5 [ label="ACT-arg" ];
+  11 -> 5 [ label="ACT-arg" ];
+  17 -> 16 [ label="RSTR" ];
+  6 -> 7 [ label="RHEM" ];
+}
+

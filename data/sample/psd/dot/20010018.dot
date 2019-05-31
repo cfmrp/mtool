@@ -1,0 +1,32 @@
+digraph "20010018" {
+  top [ style=invis ];
+  top -> 15;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">know</td></tr><tr><td colspan="2">〈0:7〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBG</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1810f6_u_nobody</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">tasty</td></tr><tr><td colspan="2">〈10:15〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr><tr><td colspan="2">〈19:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">free</td></tr><tr><td colspan="2">〈23:27〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">meal</td></tr><tr><td colspan="2">〈31:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈41:45〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">eat</td></tr><tr><td colspan="2">〈46:49〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1086f1</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">one</td></tr><tr><td colspan="2">〈50:53〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">executive</td></tr><tr><td colspan="2">〈59:69〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">give</td></tr><tr><td colspan="2">〈70:74〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1465f9_u_nobody</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">chef</td></tr><tr><td colspan="2">〈79:84〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">standing</td></tr><tr><td colspan="2">〈87:95〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ovation</td></tr><tr><td colspan="2">〈96:103〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  15 -> 0 [ label="CAUS" ];
+  7 -> 2 [ label="RSTR" ];
+  10 -> 9 [ label="ACT-arg" ];
+  0 -> 14 [ label="ACT-arg" ];
+  20 -> 19 [ label="RSTR" ];
+  7 -> 5 [ label="RSTR" ];
+  4 -> 5 [ label="CONJ.member" ];
+  4 -> 2 [ label="CONJ.member" ];
+  0 -> 10 [ label="TWHEN" ];
+  15 -> 20 [ label="CPHR-arg" ];
+  15 -> 14 [ label="ACT-arg" ];
+  15 -> 17 [ label="ADDR-arg" ];
+  10 -> 11 [ label="PAT-arg" ];
+  0 -> 7 [ label="PAT-arg" ];
+}
+

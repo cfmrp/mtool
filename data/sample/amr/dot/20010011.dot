@@ -1,0 +1,26 @@
+digraph "20010011" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">hold-04</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">breakfast-01</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">buffet</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">museum</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ban-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">food</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">drink</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">visit-01</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">everyday</td></tr></table>> ];
+  0 -> 1 [ label="ARG1" ];
+  8 -> 9 [ label="(ARG0)-of" ];
+  1 -> 2 [ label="mod (domain)" ];
+  0 -> 3 [ label="location" ];
+  4 -> 5 [ label="ARG1" ];
+  3 -> 4 [ label="(location)-of" ];
+  8 -> 10 [ label="mod (domain)" ];
+  5 -> 6 [ label="op1" ];
+  4 -> 8 [ label="ARG2" ];
+  5 -> 7 [ label="op2" ];
+}
+

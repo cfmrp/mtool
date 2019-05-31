@@ -1,0 +1,10 @@
+digraph "20010008" {
+  top [ style=invis ];
+  top -> 3;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">champagne</td></tr><tr><td colspan="2">〈0:9〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">dessert</td></tr><tr><td colspan="2">〈14:21〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">follow</td></tr><tr><td colspan="2">〈22:30〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">v:e-i-p</td></tr></table>> ];
+  0 -> 2 [ label="_and_c" ];
+  3 -> 0 [ label="ARG1" ];
+}
+

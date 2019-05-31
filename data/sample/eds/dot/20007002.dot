@@ -1,0 +1,48 @@
+digraph "20007002" {
+  top [ style=invis ];
+  top -> 2;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">proper_q</td></tr><tr><td colspan="2">〈0:12〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">named</td></tr><tr><td colspan="2">〈0:12〉</td></tr><tr><td sides="l" border="1" align="left">carg</td><td sides="r" border="1" align="left">Finmeccanica</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_be_v_id</td></tr><tr><td colspan="2">〈13:15〉</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_a_q</td></tr><tr><td colspan="2">〈16:18〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_italian_a_1</td></tr><tr><td colspan="2">〈19:26〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈27:38〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈27:38〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_state_n_of</td></tr><tr><td colspan="2">〈27:38〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_own_v_1</td></tr><tr><td colspan="2">〈27:38〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈39:54〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈39:46〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_holding_n_1</td></tr><tr><td colspan="2">〈39:46〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_company_n_of</td></tr><tr><td colspan="2">〈47:54〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_with_p</td></tr><tr><td colspan="2">〈55:59〉</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈60:109〉</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_interest_n_in</td></tr><tr><td colspan="2">〈60:69〉</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈73:76〉</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈77:109〉</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈77:99〉</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_mechanical_a_1</td></tr><tr><td colspan="2">〈77:87〉</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_engineering_n_1</td></tr><tr><td colspan="2">〈88:99〉</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_industry_n_1</td></tr><tr><td colspan="2">〈100:109〉</td></tr></table>> ];
+  9 -> 11 [ label="ARG2" ];
+  2 -> 12 [ label="ARG2" ];
+  10 -> 11 [ label="BV" ];
+  19 -> 20 [ label="ARG1" ];
+  17 -> 20 [ label="ARG2" ];
+  13 -> 15 [ label="ARG2" ];
+  15 -> 21 [ label="ARG1" ];
+  16 -> 21 [ label="BV" ];
+  8 -> 12 [ label="ARG2" ];
+  3 -> 12 [ label="BV" ];
+  5 -> 7 [ label="ARG2" ];
+  6 -> 7 [ label="BV" ];
+  0 -> 1 [ label="BV" ];
+  14 -> 15 [ label="BV" ];
+  5 -> 8 [ label="ARG1" ];
+  9 -> 12 [ label="ARG1" ];
+  18 -> 20 [ label="BV" ];
+  17 -> 21 [ label="ARG1" ];
+  13 -> 12 [ label="ARG1" ];
+  2 -> 1 [ label="ARG1" ];
+  4 -> 12 [ label="ARG1" ];
+}
+

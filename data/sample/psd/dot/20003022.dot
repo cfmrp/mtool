@@ -1,0 +1,26 @@
+digraph "20003022" {
+  top [ style=invis ];
+  top -> 7;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">july</td></tr><tr><td colspan="2">〈3:7〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Environmental</td></tr><tr><td colspan="2">〈13:26〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Protection</td></tr><tr><td colspan="2">〈27:37〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">agency</td></tr><tr><td colspan="2">〈38:44〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">impose</td></tr><tr><td colspan="2">〈45:52〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1663f1</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">gradual</td></tr><tr><td colspan="2">〈55:62〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">ban</td></tr><tr><td colspan="2">〈63:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">virtually</td></tr><tr><td colspan="2">〈70:79〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">all</td></tr><tr><td colspan="2">〈80:83〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">use</td></tr><tr><td colspan="2">〈84:88〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr><tr><td colspan="2">〈92:100〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  7 -> 10 [ label="PAT-arg" ];
+  14 -> 16 [ label="PAT-arg" ];
+  7 -> 1 [ label="TWHEN" ];
+  14 -> 12 [ label="ATT" ];
+  10 -> 9 [ label="MANN" ];
+  14 -> 13 [ label="RSTR" ];
+  5 -> 4 [ label="NE" ];
+  6 -> 5 [ label="NE" ];
+  7 -> 14 [ label="ADDR-arg" ];
+  7 -> 6 [ label="ACT-arg" ];
+}
+

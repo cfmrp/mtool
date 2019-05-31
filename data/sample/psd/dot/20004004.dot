@@ -1,0 +1,31 @@
+digraph "20004004" {
+  top [ style=invis ];
+  top -> 7;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">average</td></tr><tr><td colspan="2">〈0:7〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">maturity</td></tr><tr><td colspan="2">〈8:16〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">fund</td></tr><tr><td colspan="2">〈24:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">investment</td></tr><tr><td colspan="2">〈31:42〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lengthen</td></tr><tr><td colspan="2">〈43:53〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1850f1</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">day</td></tr><tr><td colspan="2">〈59:62〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">41</td></tr><tr><td colspan="2">〈66:68〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">day</td></tr><tr><td colspan="2">〈69:73〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#Comma</td></tr><tr><td colspan="2">〈73:74〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">,</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">long</td></tr><tr><td colspan="2">〈79:86〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJS</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">early</td></tr><tr><td colspan="2">〈93:98〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">august</td></tr><tr><td colspan="2">〈99:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  23 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">donoghue</td></tr><tr><td colspan="2">〈120:128〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  13 -> 12 [ label="RSTR" ];
+  14 -> 16 [ label="APPS.member" ];
+  19 -> 18 [ label="TWHEN" ];
+  7 -> 1 [ label="ACT-arg" ];
+  14 -> 13 [ label="APPS.member" ];
+  7 -> 10 [ label="DIFF" ];
+  7 -> 13 [ label="DIR3" ];
+  7 -> 16 [ label="DIR3" ];
+  1 -> 6 [ label="APP" ];
+  6 -> 4 [ label="APP" ];
+  1 -> 0 [ label="RSTR" ];
+  7 -> 23 [ label="REG" ];
+  16 -> 19 [ label="TSIN" ];
+}
+

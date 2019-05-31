@@ -1,0 +1,20 @@
+digraph "20003023" {
+  top [ style=invis ];
+  top -> 12;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">1997</td></tr><tr><td colspan="2">〈3:7〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">almost</td></tr><tr><td colspan="2">〈9:15〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">all</td></tr><tr><td colspan="2">〈16:19〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">remain</td></tr><tr><td colspan="2">〈20:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBG</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2638f1</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">use</td></tr><tr><td colspan="2">〈30:34〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cancer-causing</td></tr><tr><td colspan="2">〈38:52〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr><tr><td colspan="2">〈53:61〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">outlaw</td></tr><tr><td colspan="2">〈70:78〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2131f1</td></tr></table>> ];
+  12 -> 6 [ label="PAT-arg" ];
+  6 -> 9 [ label="PAT-arg" ];
+  9 -> 8 [ label="RSTR" ];
+  6 -> 4 [ label="RSTR" ];
+  6 -> 5 [ label="RSTR" ];
+  4 -> 3 [ label="EXT" ];
+  12 -> 1 [ label="TTILL" ];
+}
+

@@ -1,0 +1,28 @@
+digraph "20003023" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">outlaw-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">use-01</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cause-01</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">cancer</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">thing</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">remain-01</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">all</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">almost</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">by</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">date-entity</td></tr><tr><td sides="l" border="1" align="left">year</td><td sides="r" border="1" align="left">1997</td></tr></table>> ];
+  8 -> 9 [ label="mod (domain)" ];
+  6 -> 7 [ label="(ARG1)-of" ];
+  0 -> 10 [ label="time" ];
+  3 -> 4 [ label="ARG1" ];
+  6 -> 8 [ label="mod (domain)" ];
+  10 -> 11 [ label="op1" ];
+  1 -> 2 [ label="ARG1" ];
+  4 -> 5 [ label="name" ];
+  0 -> 1 [ label="ARG1" ];
+  2 -> 3 [ label="(ARG0)-of" ];
+  1 -> 6 [ label="ARG2" ];
+}
+

@@ -1,0 +1,20 @@
+digraph "20010008" {
+  top [ style=invis ];
+  top -> 6;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">Champagne</font></td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">and</font></td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">dessert</font></td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">followed</font></td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2"><font face="Courier">.</font></td></tr></table>> ];
+  5 [ shape=point, width=0.2 ];
+  6 [ shape=point, width=0.2 ];
+  7 [ shape=point, width=0.2 ];
+  5 -> 1 [ label="N" ];
+  5 -> 2 [ label="C" ];
+  7 -> 5 [ label="A" ];
+  5 -> 0 [ label="C" ];
+  7 -> 3 [ label="P" ];
+  7 -> 4 [ label="U" ];
+  6 -> 7 [ label="H" ];
+}
+

@@ -1,0 +1,23 @@
+digraph "20004010" {
+  top [ style=invis ];
+  top -> 7;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">recent</td></tr><tr><td colspan="2">〈8:14〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">decline</td></tr><tr><td colspan="2">〈15:23〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">yield</td></tr><tr><td colspan="2">〈27:33〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">investor</td></tr><tr><td colspan="2">〈35:44〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">continue</td></tr><tr><td colspan="2">〈45:53〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBP</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w685f2</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">pour</td></tr><tr><td colspan="2">〈57:61〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2348f2</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cash</td></tr><tr><td colspan="2">〈62:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">money</td></tr><tr><td colspan="2">〈72:77〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">fund</td></tr><tr><td colspan="2">〈78:83〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  2 -> 4 [ label="LOC" ];
+  7 -> 2 [ label="CNCS" ];
+  7 -> 9 [ label="PAT-arg" ];
+  2 -> 1 [ label="TWHEN" ];
+  9 -> 10 [ label="PAT-arg" ];
+  7 -> 6 [ label="ACT-arg" ];
+  13 -> 12 [ label="MAT" ];
+  9 -> 13 [ label="DIR3-arg" ];
+  9 -> 6 [ label="ACT-arg" ];
+}
+

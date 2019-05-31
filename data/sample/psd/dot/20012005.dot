@@ -1,0 +1,18 @@
+digraph "20012005" {
+  top [ style=invis ];
+  top -> 8;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">full</td></tr><tr><td colspan="2">〈2:6〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">four-color</td></tr><tr><td colspan="2">〈8:18〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">page</td></tr><tr><td colspan="2">〈19:23〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">newsweek</td></tr><tr><td colspan="2">〈27:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cost</td></tr><tr><td colspan="2">〈41:45〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w716f1</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">$</td></tr><tr><td colspan="2">〈46:47〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">$</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">100_980</td></tr><tr><td colspan="2">〈47:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  8 -> 9 [ label="EXT-arg" ];
+  4 -> 6 [ label="LOC" ];
+  4 -> 3 [ label="RSTR" ];
+  9 -> 10 [ label="RSTR" ];
+  4 -> 1 [ label="RSTR" ];
+  8 -> 4 [ label="ACT-arg" ];
+}
+

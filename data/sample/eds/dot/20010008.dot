@@ -1,0 +1,18 @@
+digraph "20010008" {
+  top [ style=invis ];
+  top -> 6;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈0:21〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈0:9〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_champagne_n_1</td></tr><tr><td colspan="2">〈0:9〉</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_and_c</td></tr><tr><td colspan="2">〈10:13〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈14:21〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_dessert_n_1</td></tr><tr><td colspan="2">〈14:21〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_follow_v_1</td></tr><tr><td colspan="2">〈22:31〉</td></tr></table>> ];
+  4 -> 5 [ label="BV" ];
+  3 -> 2 [ label="L-INDEX" ];
+  1 -> 2 [ label="BV" ];
+  6 -> 3 [ label="ARG1" ];
+  3 -> 5 [ label="R-INDEX" ];
+  0 -> 3 [ label="BV" ];
+}
+

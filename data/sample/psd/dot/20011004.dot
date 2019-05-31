@@ -1,0 +1,42 @@
+digraph "20011004" {
+  top [ style=invis ];
+  top -> 11;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">South</td></tr><tr><td colspan="2">〈0:5〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">korea</td></tr><tr><td colspan="2">〈6:11〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">economic</td></tr><tr><td colspan="2">〈14:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">boom</td></tr><tr><td colspan="2">〈23:27〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">which</td></tr><tr><td colspan="2">〈29:34〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">WDT</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">begin</td></tr><tr><td colspan="2">〈35:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w234f3</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">1986</td></tr><tr><td colspan="2">〈44:48〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">stop</td></tr><tr><td colspan="2">〈50:57〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3189f3</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">this</td></tr><tr><td colspan="2">〈58:62〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">year</td></tr><tr><td colspan="2">〈63:67〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">prolong</td></tr><tr><td colspan="2">〈79:88〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2407f1</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">labor</td></tr><tr><td colspan="2">〈89:94〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">dispute</td></tr><tr><td colspan="2">〈95:103〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">trade</td></tr><tr><td colspan="2">〈105:110〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  21 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">conflict</td></tr><tr><td colspan="2">〈111:120〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  22 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr><tr><td colspan="2">〈121:124〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  23 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">sluggish</td></tr><tr><td colspan="2">〈125:133〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  24 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">export</td></tr><tr><td colspan="2">〈134:141〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  1 -> 0 [ label="NE" ];
+  24 -> 23 [ label="MANN" ];
+  11 -> 18 [ label="CAUS" ];
+  22 -> 24 [ label="CONJ.member" ];
+  13 -> 12 [ label="RSTR" ];
+  4 -> 3 [ label="RSTR" ];
+  11 -> 13 [ label="TWHEN" ];
+  22 -> 21 [ label="CONJ.member" ];
+  7 -> 9 [ label="TWHEN" ];
+  18 -> 16 [ label="RSTR" ];
+  7 -> 6 [ label="ACT-arg" ];
+  4 -> 1 [ label="ACT-arg" ];
+  11 -> 24 [ label="CAUS" ];
+  18 -> 17 [ label="REG" ];
+  21 -> 20 [ label="REG" ];
+  4 -> 7 [ label="DESCR" ];
+  22 -> 18 [ label="CONJ.member" ];
+  11 -> 4 [ label="ACT-arg" ];
+  11 -> 21 [ label="CAUS" ];
+}
+

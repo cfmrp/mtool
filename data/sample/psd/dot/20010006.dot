@@ -1,0 +1,45 @@
+digraph "20010006" {
+  top [ style=invis ];
+  top -> 7;
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">receive</td></tr><tr><td colspan="2">〈7:16〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBG</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2542f1</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">end</td></tr><tr><td colspan="2">〈17:20〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">message</td></tr><tr><td colspan="2">〈28:35〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">be</td></tr><tr><td colspan="2">〈36:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w218f7_u_nobody</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">official</td></tr><tr><td colspan="2">〈41:50〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">giant</td></tr><tr><td colspan="2">〈56:62〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Du</td></tr><tr><td colspan="2">〈68:70〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Pont</td></tr><tr><td colspan="2">〈71:75〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr><tr><td colspan="2">〈76:79〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">maytag</td></tr><tr><td colspan="2">〈80:86〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">less</td></tr><tr><td colspan="2">〈99:105〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJR</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">known</td></tr><tr><td colspan="2">〈106:112〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  22 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Trojan</td></tr><tr><td colspan="2">〈118:124〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  23 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">steel</td></tr><tr><td colspan="2">〈125:130〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  24 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr><tr><td colspan="2">〈131:134〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  26 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Valley</td></tr><tr><td colspan="2">〈139:145〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  27 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Queen</td></tr><tr><td colspan="2">〈146:151〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  28 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">Cheese</td></tr><tr><td colspan="2">〈152:158〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  29 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">factory</td></tr><tr><td colspan="2">〈159:166〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  10 -> 15 [ label="CPR" ];
+  20 -> 23 [ label="CPR" ];
+  7 -> 3 [ label="LOC-arg" ];
+  20 -> 19 [ label="EXT" ];
+  24 -> 29 [ label="CONJ.member" ];
+  20 -> 29 [ label="CPR" ];
+  7 -> 8 [ label="ACT-arg" ];
+  27 -> 26 [ label="NE" ];
+  29 -> 27 [ label="NE" ];
+  3 -> 2 [ label="RSTR" ];
+  3 -> 6 [ label="APP" ];
+  14 -> 15 [ label="CONJ.member" ];
+  10 -> 13 [ label="CPR" ];
+  24 -> 23 [ label="CONJ.member" ];
+  29 -> 28 [ label="NE" ];
+  14 -> 12 [ label="CONJ.member" ];
+  23 -> 22 [ label="NE" ];
+  8 -> 10 [ label="DIR1" ];
+  8 -> 20 [ label="ACMP" ];
+  10 -> 12 [ label="CPR" ];
+  14 -> 13 [ label="CONJ.member" ];
+}
+

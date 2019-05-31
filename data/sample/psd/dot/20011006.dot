@@ -1,0 +1,30 @@
+digraph "20011006" {
+  top [ style=invis ];
+  top -> 8;
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">gloomy</td></tr><tr><td colspan="2">〈12:18〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">forecast</td></tr><tr><td colspan="2">〈19:27〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">South</td></tr><tr><td colspan="2">〈29:34〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">korea</td></tr><tr><td colspan="2">〈35:40〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">record</td></tr><tr><td colspan="2">〈45:53〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2554f1</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">trade</td></tr><tr><td colspan="2">〈56:61〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">surplus</td></tr><tr><td colspan="2">〈62:69〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">$</td></tr><tr><td colspan="2">〈73:74〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">$</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">71</td></tr><tr><td colspan="2">〈74:76〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">million</td></tr><tr><td colspan="2">〈77:84〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">so_far</td></tr><tr><td colspan="2">〈88:91〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">IN</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">this</td></tr><tr><td colspan="2">〈92:96〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">year</td></tr><tr><td colspan="2">〈97:101〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  13 -> 15 [ label="RSTR" ];
+  8 -> 3 [ label="CNCS" ];
+  8 -> 6 [ label="ACT-arg" ];
+  8 -> 11 [ label="PAT-arg" ];
+  11 -> 13 [ label="RSTR" ];
+  3 -> 2 [ label="RSTR" ];
+  15 -> 14 [ label="RSTR" ];
+  19 -> 18 [ label="RSTR" ];
+  8 -> 19 [ label="TWHEN" ];
+  8 -> 17 [ label="TTILL" ];
+  6 -> 5 [ label="NE" ];
+  11 -> 10 [ label="RSTR" ];
+}
+

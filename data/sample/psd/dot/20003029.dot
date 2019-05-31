@@ -1,0 +1,22 @@
+digraph "20003029" {
+  top [ style=invis ];
+  top -> 5;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">but</td></tr><tr><td colspan="2">〈1:4〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CC</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈5:8〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">recognize</td></tr><tr><td colspan="2">〈17:26〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2549f2</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">these</td></tr><tr><td colspan="2">〈32:37〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">event</td></tr><tr><td colspan="2">〈38:44〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">take</td></tr><tr><td colspan="2">〈45:49〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3310f37_u_nobody</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">place</td></tr><tr><td colspan="2">〈50:55〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">35</td></tr><tr><td colspan="2">〈56:58〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">CD</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">year</td></tr><tr><td colspan="2">〈59:64〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  9 -> 10 [ label="CPHR-arg" ];
+  8 -> 7 [ label="RSTR" ];
+  12 -> 11 [ label="RSTR" ];
+  5 -> 2 [ label="ACT-arg" ];
+  9 -> 8 [ label="ACT-arg" ];
+  5 -> 9 [ label="PAT-arg" ];
+  5 -> 1 [ label="PREC" ];
+  9 -> 12 [ label="TWHEN" ];
+}
+

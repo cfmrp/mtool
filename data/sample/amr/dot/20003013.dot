@@ -1,0 +1,26 @@
+digraph "20003013" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">die-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">man</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">28</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">more-than</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">product-of</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">3</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">number</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expect-01</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">include-91</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">man</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">33</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">work-01</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">substance</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">close-10</td></tr></table>> ];
+  4 -> 5 [ label="(ARG1)-of" ];
+  8 -> 10 [ label="manner" ];
+  2 -> 3 [ label="op1" ];
+  0 -> 1 [ label="ARG1" ];
+  1 -> 6 [ label="(ARG1)-of" ];
+  7 -> 8 [ label="(ARG0)-of" ];
+  6 -> 7 [ label="ARG2" ];
+  3 -> 4 [ label="op2" ];
+  1 -> 2 [ label="quant" ];
+  8 -> 9 [ label="ARG1" ];
+}
+

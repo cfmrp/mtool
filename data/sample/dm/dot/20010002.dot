@@ -1,0 +1,9 @@
+digraph "20010002" {
+  top [ style=invis ];
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">not</td></tr><tr><td colspan="2">〈0:3〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">RB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">neg:e-h</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">this</td></tr><tr><td colspan="2">〈4:8〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">q_dem:i-h-h</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">year</td></tr><tr><td colspan="2">〈9:13〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">n:x</td></tr></table>> ];
+  1 -> 2 [ label="BV" ];
+  0 -> 2 [ label="neg" ];
+}
+

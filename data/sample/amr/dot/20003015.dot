@@ -1,0 +1,44 @@
+digraph "20003015" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">research-01</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">have-degree-91</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">total</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">18</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">die-01</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cause-01</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">and</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">malignant</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">mesothelioma</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">lung</td></tr><tr><td sides="l" border="1" align="left">op2</td><td sides="r" border="1" align="left">cancer</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">disease</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">asbestosis</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">high-02</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">more</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">far</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">thing</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">expect-01</td></tr></table>> ];
+  8 -> 13 [ label="op3" ];
+  13 -> 14 [ label="name" ];
+  4 -> 5 [ label="(quant)-of" ];
+  8 -> 9 [ label="op1" ];
+  8 -> 11 [ label="op2" ];
+  9 -> 10 [ label="name" ];
+  3 -> 15 [ label="ARG2" ];
+  3 -> 16 [ label="ARG3" ];
+  16 -> 17 [ label="quant" ];
+  3 -> 4 [ label="ARG1" ];
+  7 -> 8 [ label="ARG0" ];
+  3 -> 18 [ label="ARG4" ];
+  11 -> 12 [ label="name" ];
+  1 -> 2 [ label="(ARG0)-of" ];
+  5 -> 6 [ label="(ARG1)-of" ];
+  0 -> 3 [ label="ARG1" ];
+  18 -> 19 [ label="(ARG1)-of" ];
+  0 -> 1 [ label="ARG0" ];
+  6 -> 7 [ label="(ARG1)-of" ];
+}
+

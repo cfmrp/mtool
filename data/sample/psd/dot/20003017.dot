@@ -1,0 +1,48 @@
+digraph "20003017" {
+  top [ style=invis ];
+  top -> 34;
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">percentage</td></tr><tr><td colspan="2">〈4:14〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">lung</td></tr><tr><td colspan="2">〈18:22〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">cancer</td></tr><tr><td colspan="2">〈23:29〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">death</td></tr><tr><td colspan="2">〈30:36〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">worker</td></tr><tr><td colspan="2">〈47:54〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">West</td></tr><tr><td colspan="2">〈62:66〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">groton</td></tr><tr><td colspan="2">〈67:73〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">mas.</td></tr><tr><td colspan="2">〈75:80〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNP</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">paper</td></tr><tr><td colspan="2">〈82:87〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">factory</td></tr><tr><td colspan="2">〈88:95〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">appear</td></tr><tr><td colspan="2">〈96:103〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBZ</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w115f2</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">be</td></tr><tr><td colspan="2">〈107:109〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VB</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w218f2</td></tr></table>> ];
+  22 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">high</td></tr><tr><td colspan="2">〈114:121〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJS</td></tr></table>> ];
+  24 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">any</td></tr><tr><td colspan="2">〈126:129〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">DT</td></tr></table>> ];
+  25 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asbestos</td></tr><tr><td colspan="2">〈130:138〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NN</td></tr></table>> ];
+  26 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">worker</td></tr><tr><td colspan="2">〈139:146〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  27 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">study</td></tr><tr><td colspan="2">〈147:154〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w3222f1</td></tr></table>> ];
+  29 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">western</td></tr><tr><td colspan="2">〈158:165〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">JJ</td></tr></table>> ];
+  30 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">industrialize</td></tr><tr><td colspan="2">〈166:180〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBN</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w1688f1</td></tr></table>> ];
+  31 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">country</td></tr><tr><td colspan="2">〈181:190〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">NNS</td></tr></table>> ];
+  33 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">#PersPron</td></tr><tr><td colspan="2">〈192:194〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">PRP</td></tr></table>> ];
+  34 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">say</td></tr><tr><td colspan="2">〈195:199〉</td></tr><tr><td sides="l" border="1" align="left">pos</td><td sides="r" border="1" align="left">VBD</td></tr><tr><td sides="l" border="1" align="left">frame</td><td sides="r" border="1" align="left">ev-w2833f1</td></tr></table>> ];
+  17 -> 16 [ label="RSTR" ];
+  12 -> 11 [ label="NE" ];
+  34 -> 18 [ label="EFF-arg" ];
+  31 -> 29 [ label="LOC" ];
+  26 -> 24 [ label="RSTR" ];
+  1 -> 8 [ label="LOC" ];
+  4 -> 3 [ label="LOC" ];
+  22 -> 26 [ label="REG" ];
+  18 -> 20 [ label="ACT-arg" ];
+  20 -> 22 [ label="PAT-arg" ];
+  34 -> 33 [ label="ACT-arg" ];
+  26 -> 25 [ label="ACMP" ];
+  5 -> 4 [ label="PAT-arg" ];
+  27 -> 31 [ label="LOC" ];
+  26 -> 27 [ label="RSTR" ];
+  17 -> 12 [ label="LOC" ];
+  20 -> 1 [ label="ACT-arg" ];
+  1 -> 5 [ label="APP" ];
+  12 -> 14 [ label="PAR" ];
+  8 -> 17 [ label="LOC" ];
+  31 -> 30 [ label="RSTR" ];
+}
+

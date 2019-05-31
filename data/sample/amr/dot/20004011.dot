@@ -1,0 +1,24 @@
+digraph "20004011" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">grow-01</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">asset</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">fund</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">400</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">tax-01</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">monetary-quantity</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">1500000000</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">dollar</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">monetary-quantity</td></tr><tr><td sides="l" border="1" align="left">quant</td><td sides="r" border="1" align="left">352700000000</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">dollar</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">week</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">last</td></tr></table>> ];
+  0 -> 4 [ label="ARG2" ];
+  4 -> 5 [ label="unit" ];
+  1 -> 2 [ label="poss" ];
+  2 -> 3 [ label="(ARG3)-of" ];
+  0 -> 6 [ label="ARG4" ];
+  0 -> 8 [ label="time" ];
+  0 -> 1 [ label="ARG1" ];
+  8 -> 9 [ label="mod (domain)" ];
+  6 -> 7 [ label="unit" ];
+}
+

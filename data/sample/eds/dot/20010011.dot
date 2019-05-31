@@ -1,0 +1,46 @@
+digraph "20010011" {
+  top [ style=invis ];
+  top -> 5;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_a_q</td></tr><tr><td colspan="2">〈0:1〉</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">compound</td></tr><tr><td colspan="2">〈2:18〉</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈2:8〉</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_buffet_n_1</td></tr><tr><td colspan="2">〈2:8〉</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_breakfast_n_1</td></tr><tr><td colspan="2">〈9:18〉</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_hold_v_1</td></tr><tr><td colspan="2">〈23:27〉</td></tr></table>> ];
+  6 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_in_p</td></tr><tr><td colspan="2">〈28:30〉</td></tr></table>> ];
+  7 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_the_q</td></tr><tr><td colspan="2">〈31:34〉</td></tr></table>> ];
+  8 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_museum_n_of</td></tr><tr><td colspan="2">〈35:42〉</td></tr></table>> ];
+  9 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">loc_nonsp</td></tr><tr><td colspan="2">〈43:48〉</td></tr></table>> ];
+  10 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈49:64〉</td></tr></table>> ];
+  11 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈49:53〉</td></tr></table>> ];
+  12 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_food_n_1</td></tr><tr><td colspan="2">〈49:53〉</td></tr></table>> ];
+  13 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_and_c</td></tr><tr><td colspan="2">〈54:57〉</td></tr></table>> ];
+  14 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈58:64〉</td></tr></table>> ];
+  15 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_drink_n_1</td></tr><tr><td colspan="2">〈58:64〉</td></tr></table>> ];
+  16 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_ban_v_from</td></tr><tr><td colspan="2">〈69:75〉</td></tr></table>> ];
+  17 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_to_p</td></tr><tr><td colspan="2">〈76:78〉</td></tr></table>> ];
+  18 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">udef_q</td></tr><tr><td colspan="2">〈79:97〉</td></tr></table>> ];
+  19 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_everyday_a_1</td></tr><tr><td colspan="2">〈79:87〉</td></tr></table>> ];
+  20 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">_visitor_n_of</td></tr><tr><td colspan="2">〈88:97〉</td></tr></table>> ];
+  14 -> 15 [ label="BV" ];
+  0 -> 4 [ label="BV" ];
+  17 -> 16 [ label="ARG1" ];
+  17 -> 20 [ label="ARG2" ];
+  18 -> 20 [ label="BV" ];
+  13 -> 15 [ label="R-INDEX" ];
+  13 -> 12 [ label="L-INDEX" ];
+  16 -> 13 [ label="ARG2" ];
+  7 -> 8 [ label="BV" ];
+  11 -> 12 [ label="BV" ];
+  1 -> 3 [ label="ARG2" ];
+  2 -> 3 [ label="BV" ];
+  10 -> 13 [ label="BV" ];
+  1 -> 4 [ label="ARG1" ];
+  5 -> 4 [ label="ARG2" ];
+  6 -> 5 [ label="ARG1" ];
+  9 -> 16 [ label="ARG1" ];
+  9 -> 8 [ label="ARG2" ];
+  19 -> 20 [ label="ARG1" ];
+  6 -> 8 [ label="ARG2" ];
+}
+
