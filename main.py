@@ -26,7 +26,8 @@ __version__ = "0.1"
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
-                prefix = None, text = None):
+                prefix = None, text = None,
+                id = None, n = None, i = None):
 
   graphs = None;
   if format == "amr":
@@ -43,6 +44,12 @@ def read_graphs(stream, format = None,
   elif format == "mrp":
     graphs = codec.mrp.read(stream)
 
+  if id is not None:
+    graphs = [graph for graph in graphs if graph.id == id];
+  elif n is not None and n >= 1:
+    graphs = list(graphs)[0:n]
+  elif i is not None and i >= 0:
+    graphs = list(graphs)[i:i + 1];
   return graphs;
 
 if __name__ == "__main__":
@@ -85,7 +92,8 @@ if __name__ == "__main__":
 
   graphs = read_graphs(arguments.input, format = arguments.read,
                        full = arguments.full, normalize = arguments.normalize,
-                       reify = arguments.reify, text = text);
+                       reify = arguments.reify, text = text,
+                       id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
     print("main.py(): invalid input format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
@@ -106,10 +114,12 @@ if __name__ == "__main__":
     for metric in arguments.score.split(","):
       if metric == "edm":
         score.edm.evaluate(gold, graphs,
-                           arguments.output, format = arguments.write);
+                           arguments.output, format = arguments.write,
+                           trace = arguments.trace);
       elif metric == "sdp":
         score.sdp.evaluate(gold, graphs,
-                           arguments.output, format = arguments.write);
+                           arguments.output, format = arguments.write,
+                           trace = arguments.trace);
       elif metric == "smatch":
         score.smatch.evaluate(gold, graphs,
                               arguments.output, format = arguments.write,
@@ -124,10 +134,7 @@ if __name__ == "__main__":
         sys.exit(1);
     sys.exit(0);
       
-  for i, graph in enumerate(graphs):
-    if arguments.i is not None and i != arguments.i: continue;
-    if arguments.n is not None and i >= arguments.n: sys.exit(0);
-    if arguments.id is not None and graph.id != arguments.id: continue;
+  for graph in graphs:
     if arguments.write == "mrp":
       json.dump(graph.encode(), arguments.output,
                 indent = None, ensure_ascii = False);

@@ -129,7 +129,7 @@ class Scorer(object):
             json[info] = measure.report()
         return json
 
-def evaluate(gold, system, stream, format = "json"):
+def evaluate(gold, system, stream, format = "json", trace = False):
     scorer = Scorer(include_virtual=True, stream=stream)
     for g, s in intersect(gold, system):
         scorer.update(g, s)

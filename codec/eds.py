@@ -12,11 +12,6 @@ def read_instances(fp):
       sentence_id = int(os.path.splitext(os.path.basename(fp.name))[0]);
     except:
       pass;
-    # In the current version of the data, graphs are terminated by two
-    # curly braces (each on a separate line) instead of just one.  The
-    # purpose of the following flag is to implement sanity checks
-    # (non-void sentence id, top handle, predicate list) under these
-    # circumstances.  It can be removed once the data files are fixed.
     first_curly = True
     for line in fp:
         line = line.strip()
@@ -45,6 +40,7 @@ def read_instances(fp):
             arguments = [tuple(arg.split()) for arg in arguments.split(',') if len(arg) > 0]
             predicates.append((node_id, label.strip(), arguments))
 
+PROPERTIES_MATCHER = re.compile(r"{(.+)}$");
 CARG_MATCHER = re.compile(r'\(\"(.+)(?<!\\)"\)$');
 LNK_MATCHER = re.compile(r"<([0-9]+):([0-9]+)>$");
 
@@ -56,6 +52,11 @@ def instance2graph(instance, reify = False, text = None):
     handle2node = {};
     for handle, label, _ in predicates:
         assert handle not in handle2node
+        properties = None;
+        values = None;
+        match = PROPERTIES_MATCHER.search(label);
+        if match:
+            label = label[:match.start()];
         carg = None;
         match = CARG_MATCHER.search(label);
         if match:
@@ -66,9 +67,8 @@ def instance2graph(instance, reify = False, text = None):
         if match:
             label = label[:match.start()];
             anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
-        properties = None;
         handle2node[handle] = \
-          graph.add_node(label = label, anchors = anchors);
+          graph.add_node(label = label, properties = properties, values = values, anchors = anchors);
         if carg:
             if reify:
                 carg = graph.add_node(label = carg, anchors = anchors);
