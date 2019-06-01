@@ -1,16 +1,16 @@
 from score.core import identify, intersect, fscore;
 
 def tuples(graph):
-  mapping = dict();
+  identities = dict();
   for node in graph.nodes:
-    mapping = identify(graph, node.id, mapping);
+    identities = identify(graph, node.id, identities);
   lprimary = set();
   lremote = set();
   uprimary = set();
   uremote = set();
   for edge in graph.edges:
-    source = mapping[edge.src];
-    target = mapping[edge.tgt];
+    source = identities[edge.src];
+    target = identities[edge.tgt];
     if edge.properties and "remote" in edge.properties:
       lremote.add((source, target, edge.lab));
       uremote.add((source, target));

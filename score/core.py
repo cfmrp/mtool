@@ -16,6 +16,9 @@ def anchor(node):
   return result;
 
 def identify(graph, node, mapping = None, recursion = False):
+  #
+  # somewhat UCCA-specific: determine anchoring yields for all nodes
+  #
   if mapping is None: mapping = dict();
   if node in mapping:
     return mapping;

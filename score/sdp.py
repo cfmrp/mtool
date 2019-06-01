@@ -2,6 +2,8 @@
 
 import sys
 
+from score.core import anchor, intersect;
+
 class Measure(object):
 
     def __init__(self, get_items):
@@ -12,9 +14,9 @@ class Measure(object):
         self.n_updates = 0
         self.n_matches = 0
 
-    def update(self, gold, system):
-        g_items = set(self.get_items(gold))
-        s_items = set(self.get_items(system))
+    def update(self, gold, system, gidentities, sidentities):
+        g_items = set(self.get_items(gold, gidentities))
+        s_items = set(self.get_items(system, sidentities))
         self.g += len(g_items)
         self.s += len(s_items)
         self.c += len(g_items & s_items)
@@ -37,6 +39,9 @@ class Measure(object):
 
     def report(self):
         json = {}
+        json["g"] = self.g
+        json["s"] = self.s
+        json["c"] = self.c
         json["p"] = self.p()
         json["r"] = self.r()
         json["f"] = self.f()
@@ -65,20 +70,23 @@ class Scorer(object):
         # self.measureS = Measure(self.get_itemsS)
         self.include_virtual = include_virtual
 
-    def get_itemsL(self, graph):
-        result = {(e.src, e.tgt, e.lab) for e in graph.edges}
+    def identify(self, id):
+        return self.identities[id]
+    
+    def get_itemsL(self, graph, identities):
+        result = {(identities[e.src], identities[e.tgt], e.lab) for e in graph.edges}
         if self.include_virtual:
             for node in graph.nodes:
                 if node.is_top:
-                    result.add((-1, node.id, None))
+                    result.add((-1, identities[node.id], None))
         return result
 
-    def get_itemsU(self, graph):
-        result = {(e.src, e.tgt) for e in graph.edges}
+    def get_itemsU(self, graph, identities):
+        result = {(identities[e.src], identities[e.tgt]) for e in graph.edges}
         if self.include_virtual:
             for node in graph.nodes:
                 if node.is_top:
-                    result.add((-1, node.id))
+                    result.add((-1, identities[node.id]))
         return result
 
     # def get_itemsP(self, graph):
@@ -110,8 +118,10 @@ class Scorer(object):
     #     report_predications(self.complete_predications(g))
 
     def update(self, g, s):
+        gidentities = {node.id: tuple(anchor(node)) for node in g.nodes}
+        sidentities = {node.id: tuple(anchor(node)) for node in s.nodes}
         for _, measure in self.measures:
-            measure.update(g, s)
+            measure.update(g, s, gidentities, sidentities)
 
     def report(self):
         json = {}
@@ -121,6 +131,6 @@ class Scorer(object):
 
 def evaluate(gold, system, stream, format = "json"):
     scorer = Scorer(include_virtual=True, stream=stream)
-    for g, s in zip(gold, system):
+    for g, s in intersect(gold, system):
         scorer.update(g, s)
     print(scorer.report())

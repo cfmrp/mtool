@@ -1,5 +1,5 @@
 import sys;
-from score.core import fscore;
+from score.core import fscore, intersect;
 from smatch.smatch import get_amr_match;
 
 def tuples(graph, prefix):
@@ -25,7 +25,7 @@ def tuples(graph, prefix):
 def evaluate(golds, systems, stream, format = "json", trace = None):
   tg = ts = tm = n = 0;
   gprefix = "g"; sprefix = "s";
-  for gold, system in zip(golds, systems):
+  for gold, system in intersect(golds, systems):
     ginstances, gattributes, grelations = tuples(gold, gprefix);
     sinstances, sattributes, srelations = tuples(system, sprefix);
     match, system, gold \
