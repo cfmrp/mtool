@@ -1,5 +1,4 @@
-.PHONY: dm/wsj.mrp eds/wsj.mrp psd/wsj.mrp ucca/wsj.mrp \
-	amr/pdf dm/pdf eds/pdf psd/pdf ucca/pdf \
+.PHONY: amr/pdf dm/pdf eds/pdf psd/pdf ucca/pdf \
 	clean release
 
 amr/wsj.mrp: wsj.ids ../wsj.txt amr/wsj.amr
@@ -14,16 +13,17 @@ amr/pdf:
 	  --id $$i --write dot \
 	  ./amr/wsj.amr ./amr/dot/$$i.dot; \
 	done
+	rm $$(find ./amr/dot -size 0);
 	for i in ./amr/dot/*.dot; do \
 	  j=$$(basename $$i .dot); \
 	  dot -Tpdf $$i > ./amr/pdf/$${j}.pdf; \
 	done
 
-dm/wsj.mrp:
+dm/wsj.mrp: wsj.ids ../wsj.txt dm/wsj.sdp
 	for i in $$(cat wsj.ids); do \
 	  ../../main.py --text ../wsj.txt --read dm \
 	    --id $$i --write mrp ./dm/wsj.sdp; \
-	done > ./dm/wsj.mrp;
+	done > $@;
 
 dm/pdf:
 	for i in $$(cat wsj.ids); do \
@@ -36,11 +36,11 @@ dm/pdf:
 	  dot -Tpdf $$i > ./dm/pdf/$${j}.pdf; \
 	done
 
-eds/wsj.mrp:
+eds/wsj.mrp: wsj.ids ../wsj.txt eds/wsj.eds
 	for i in $$(cat wsj.ids); do \
 	  ../../main.py --text ../wsj.txt --read eds \
 	    --id $$i --write mrp ./eds/wsj.eds; \
-	done > ./eds/wsj.mrp;
+	done > $@;
 
 eds/pdf:
 	for i in $$(cat wsj.ids); do \
@@ -53,11 +53,11 @@ eds/pdf:
 	  dot -Tpdf $$i > ./eds/pdf/$${j}.pdf; \
 	done
 
-psd/wsj.mrp:
+psd/wsj.mrp: wsj.ids ../wsj.txt psd/wsj.sdp
 	for i in $$(cat wsj.ids); do \
 	  ../../main.py --text ../wsj.txt --read psd \
 	    --id $$i --write mrp ./psd/wsj.sdp; \
-	done > ./psd/wsj.mrp;
+	done > $@;
 
 psd/pdf:
 	for i in $$(cat wsj.ids); do \
@@ -70,11 +70,11 @@ psd/pdf:
 	  dot -Tpdf $$i > ./psd/pdf/$${j}.pdf; \
 	done
 
-ucca/wsj.mrp:
+ucca/wsj.mrp: wsj.ids ../wsj.txt ucca/xml/files.txt ucca/xml/*.xml
 	for i in $$(cat wsj.ids); do \
 	  ../../main.py --text ../wsj.txt --read ucca \
 	    --id $$i --write mrp ./ucca/xml/files.txt; \
-	done > ./ucca/wsj.mrp;
+	done > $@;
 
 ucca/pdf:
 	for i in $$(cat wsj.ids); do \
@@ -89,7 +89,7 @@ ucca/pdf:
 	done
 
 clean:
-	rm */wsj.mrp
+	rm */wsj.mrp */dot/*.dot */pdf/*pdf
 
 release: 
 	tar zpScvf ../public/sample.tgz --transform='s@^@mrp/2019/sample/@'\
