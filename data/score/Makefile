@@ -16,14 +16,14 @@ sdp:
 	  ../sample/dm/wsj.mrp
 
 peking:
-	../../main.py --score sdp \
+	../../main.py --score sdp --text ../wsj.txt \
 	  --format dm --gold ../../../evaluation/dm/wsj.sdp \
-	  --read dm peking.wsj.dm.sdp
+	  --read dm dm/peking.wsj.sdp
 
 smatch:
 	../../main.py --score smatch \
-	  --read amr --gold test1.amr \
-	  test2.amr
+	  --read amr --gold amr/test1.amr \
+	  amr/test2.amr
 
 ucca:
 	../../main.py --score ucca \
