@@ -17,7 +17,7 @@ viz.
 
 + EDM (Elementary Dependency Match; [Dridan & Oepen, 2011](http://aclweb.org/anthology/W/W11/W11-2927.pdf));
 + SDP Labeled and Unlabeled Dependency F1 ([Oepen et al., 2015](http://aclweb.org/anthology/S/S14/S14-2008.pdf));
-+ SMATCH ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
++ SMATCH Precision, Recall, and F1 ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
 + UCCA Labeled and Unlabeled Dependency F1 (Hershcovich et al., 2019).
 
 Albeit originally defined for one specific framework (EDS, DM and PSD, AMR, and UCCA, respectively),
