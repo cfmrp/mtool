@@ -26,7 +26,14 @@ of semantic graphs enables such cross-framework application, in principle, but t
 remains largely untested so far.
 
 The `Makefile` in the `data/score/` sub-directory shows some example calls for the MRP scorer.
-Initially, it is recommend to score graphs in each framework using its ‘traditional’ metric, e.g.
+Initially, it is recommended to score graphs in each framework using its ‘own’ metric, for
+example (for AMR and UCCA, respectively):
+```
+../../main.py --read mrp --score smatch --gold amr/test1.mrp amr/test2.mrp 
+{'n': 3, 'p': 0.8, 'r': 0.8275862068965517, 'f': 0.8135593220338982}
+
+```
+
 ```
  ../../main.py --read mrp --score ucca --gold ucca/ewt.gold.mrp ucca/ewt.tupa.mrp 
 {'n': 3757,
