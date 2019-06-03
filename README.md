@@ -31,7 +31,6 @@ example (for AMR and UCCA, respectively):
 ```
 ../../main.py --read mrp --score smatch --gold amr/test1.mrp amr/test2.mrp 
 {'n': 3, 'p': 0.8, 'r': 0.8275862068965517, 'f': 0.8135593220338982}
-
 ```
 
 ```
