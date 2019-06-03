@@ -17,8 +17,8 @@ viz.
 
 + EDM (Elementary Dependency Match; [Dridan & Oepen, 2011](http://aclweb.org/anthology/W/W11/W11-2927.pdf));
 + SDP Labeled and Unlabeled Dependency F1 ([Oepen et al., 2015](http://aclweb.org/anthology/S/S14/S14-2008.pdf));
-+ SMATCH ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
-+ UCCA Labeled and Unlabeled Dependency F1 (Hershcovich et al., 2019).
++ SMATCH Precision, Recall, and F1 ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
++ UCCA Labeled and Unlabeled Dependency F1 ([Hershcovich et al., 2019](https://www.aclweb.org/anthology/S19-2001)).
 
 Albeit originally defined for one specific framework (EDS, DM and PSD, AMR, and UCCA, respectively),
 these metrics are to some degree applicable to other frameworks too: the unified MRP representation
@@ -26,7 +26,13 @@ of semantic graphs enables such cross-framework application, in principle, but t
 remains largely untested so far.
 
 The `Makefile` in the `data/score/` sub-directory shows some example calls for the MRP scorer.
-Initially, it is recommend to score graphs in each framework using its ‘traditional’ metric, e.g.
+Initially, it is recommended to score graphs in each framework using its ‘own’ metric, for
+example (for AMR and UCCA, respectively):
+```
+../../main.py --read mrp --score smatch --gold amr/test1.mrp amr/test2.mrp 
+{'n': 3, 'p': 0.8, 'r': 0.8275862068965517, 'f': 0.8135593220338982}
+```
+
 ```
  ../../main.py --read mrp --score ucca --gold ucca/ewt.gold.mrp ucca/ewt.tupa.mrp 
 {'n': 3757,
