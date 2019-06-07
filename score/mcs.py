@@ -18,7 +18,7 @@ class InternalGraph():
             tgt = graph.find_node(edge.tgt)
             self.edges.append(((node2id[src], node2id[tgt]), edge.lab))
 
-def make_edge_correspondence(graph1, graph2, respect_label=True):
+def make_edge_correspondence(graph1, graph2, respect_label):
     correspondence = dict()
     for raw_edge1 in graph1.edges:
         edge1, lab1 = raw_edge1
@@ -29,7 +29,7 @@ def make_edge_correspondence(graph1, graph2, respect_label=True):
                 correspondence[edge1].add(edge2)
     return correspondence
 
-def update_edge_correspondence(edge_correspondence, i, j):
+def update_edge_correspondence_old(cv, edge_correspondence, i, j):
     new_correspondence = dict()
     new_potential = 0
     for edge1 in edge_correspondence:
@@ -41,9 +41,32 @@ def update_edge_correspondence(edge_correspondence, i, j):
             new_correspondence[edge1] = set()
             for edge2 in edge_correspondence[edge1]:
                 src2, tgt2 = edge2
-                if src1 == i and src2 == j:
+                if src1 == i and src2 == j and (tgt1 not in cv or tgt2 == cv[tgt1]):
                     new_correspondence[edge1].add(edge2)
-                if tgt1 == i and tgt2 == j:
+                if tgt1 == i and tgt2 == j and (src1 not in cv or src2 == cv[src1]):
+                    new_correspondence[edge1].add(edge2)
+            new_potential += len(new_correspondence[edge1]) > 0
+    return new_correspondence, new_potential
+
+def update_edge_correspondence(cv, edge_correspondence, i, j):
+    new_correspondence = dict()
+    new_potential = 0
+    for edge1 in edge_correspondence:
+        src1, tgt1 = edge1
+        if src1 != i and tgt1 != i:
+            new_correspondence[edge1] = set()
+            for edge2 in edge_correspondence[edge1]:
+                src2, tgt2 = edge2
+                if (src1 not in cv or cv[src1] == src2) and (tgt1 not in cv or cv[tgt1] == tgt2):
+                    new_correspondence[edge1].add(edge2)
+            new_potential += len(new_correspondence[edge1]) > 0
+        else:
+            new_correspondence[edge1] = set()
+            for edge2 in edge_correspondence[edge1]:
+                src2, tgt2 = edge2
+                if src1 == i and src2 == j and (tgt1 not in cv or tgt2 == cv[tgt1]):
+                    new_correspondence[edge1].add(edge2)
+                if tgt1 == i and tgt2 == j and (src1 not in cv or src2 == cv[src1]):
                     new_correspondence[edge1].add(edge2)
             new_potential += len(new_correspondence[edge1]) > 0
     return new_correspondence, new_potential
@@ -60,6 +83,9 @@ def adjacent(graph, i):
         if i == tgt:
             yield src
 
+def degree(graph, i):
+    return sum(i == src or i == tgt for src, tgt in graph.edges)
+        
 def evaluate_candidate(graph1, graph2, cv, i, j):
     mapped_i_neighbours = set()
     for neighbour in adjacent(graph1, i):
@@ -72,27 +98,35 @@ def sorted_splits(graph1, graph2, cv, i, xs):
     sorted_xs = sorted(xs, key=lambda x: evaluate_candidate(graph1, graph2, cv, i, x), reverse=True)
     yield from splits(sorted_xs)
 
+def source_iterator(graph):
+    for i in range(len(graph.nodes)):
+        yield graph.nodes[i], graph.nodes[i+1:]
+
+def potential(edge_correspondence):
+    return sum(len(xs) > 0 for xs in edge_correspondence.values())
+        
 def correspondences(graph1, graph2):
     graph1 = InternalGraph(graph1)
     graph2 = InternalGraph(graph2)
     cv = dict()
     ce = make_edge_correspondence(graph1, graph2)
-    i = 0
-    todo = [(cv, ce, i, splits(graph2.nodes))]
+    source_todo = sorted(graph1.nodes, key=lambda x: degree(graph1, x), reverse=True)
+    todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
     n_matched = 0
     while todo:
-        cv, ce, i, untried = todo[-1]
+        cv, ce, source_todo, untried = todo[-1]
+        i = source_todo[0]
         try:
             j, new_untried = next(untried)
             new_cv = dict(cv)
             new_cv[i] = j
-            new_ce, new_potential = update_edge_correspondence(ce, i, j)
-            if i < len(graph1.nodes):
-                if new_potential > n_matched:
-                    todo.append((new_cv, new_ce, i+1, sorted_splits(graph1, graph2, new_cv, i+1, new_untried)))
-            else:
-                yield new_cv, new_ce
-                n_matched = max(n_matched, new_potential)
+            new_ce, new_potential = update_edge_correspondence(cv, ce, i, j)
+            if new_potential > n_matched:
+                if source_todo[1:]:
+                    todo.append((new_cv, new_ce, source_todo[1:], sorted_splits(graph1, graph2, new_cv, i+1, new_untried)))
+                else:
+                    yield new_cv, new_ce
+                    n_matched = new_potential
         except StopIteration:
             todo.pop()
 
