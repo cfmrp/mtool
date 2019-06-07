@@ -18,7 +18,7 @@ class InternalGraph():
             tgt = graph.find_node(edge.tgt)
             self.edges.append(((node2id[src], node2id[tgt]), edge.lab))
 
-def make_edge_correspondence(graph1, graph2, respect_label):
+def make_edge_correspondence(graph1, graph2, respect_label=True):
     correspondence = dict()
     for raw_edge1 in graph1.edges:
         edge1, lab1 = raw_edge1
