@@ -20,6 +20,7 @@ import score.edm;
 import score.sdp;
 import score.smatch;
 import score.ucca;
+import score.mcs;
 
 __author__ = "oe"
 __version__ = "0.1"
@@ -126,6 +127,10 @@ if __name__ == "__main__":
                               trace = arguments.trace);
       elif metric == "ucca":
         score.ucca.evaluate(gold, graphs,
+                            arguments.output, format = arguments.write,
+                            trace = arguments.trace);
+      elif metric == "mcs":
+        score.mcs.evaluate(gold, graphs,
                             arguments.output, format = arguments.write,
                             trace = arguments.trace);
       else:  
