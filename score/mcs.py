@@ -1,22 +1,60 @@
+import numpy as np;
+
+from graph import Graph;
 from score.core import intersect
 
 class InternalGraph():
 
     def __init__(self, graph):
         self.id2node = dict()
-        node2id = dict()
+        self.node2id = dict()
         self.nodes = []
         self.id2edge = dict()
         self.edges = []
         for i, node in enumerate(graph.nodes):
             self.id2node[i] = node
-            node2id[node] = i
+            self.node2id[node] = i
             self.nodes.append(i)
         for i, edge in enumerate(graph.edges):
             self.id2edge[i] = edge
             src = graph.find_node(edge.src)
             tgt = graph.find_node(edge.tgt)
-            self.edges.append(((node2id[src], node2id[tgt]), edge.lab))
+            self.edges.append(((self.node2id[src], self.node2id[tgt]), edge.lab))
+
+    def map_node(self, node):
+        return self.node2id(node);
+
+    def unmap_node(self, id):
+        return self.id2node(id);
+
+
+def initial_match_making(graph1, graph2):
+    #
+    # in the following, we assume that nodes in raw and internal
+    # graphs correspond by position into the .nodes. list
+    #
+    rewards = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
+                       dtype = np.int8);
+    for i, node1 in enumerate(graph1.nodes):
+        for j, node2 in enumerate(graph2.nodes + [None]):
+            rewards[i, j], _, _, _ = node1.compare(node2);
+    pairs = [];
+    used = set();
+    bottom = rewards.min() - 1;
+    top = rewards.max();
+    copy = np.array(rewards);
+    while top > bottom:
+        i, j = np.unravel_index(copy.argmax(), copy.shape);
+        copy[i] = bottom;
+        copy[:, j] = bottom;
+        pairs.append((i, j if j < len(graph2.nodes) else None));
+        used.add(i);
+        top = copy.max();
+    for i in range(len(graph1.nodes)):
+        if i not in used:
+            pairs.append((i, None));
+            used.add(i);
+    return pairs, rewards;
 
 def make_edge_correspondence(graph1, graph2, respect_label=True):
     correspondence = dict()
@@ -104,8 +142,8 @@ def source_iterator(graph):
 
 def potential(edge_correspondence):
     return sum(len(xs) > 0 for xs in edge_correspondence.values())
-        
-def correspondences(graph1, graph2):
+
+def correspondences(graph1, graph2, pairs, rewards):
     graph1 = InternalGraph(graph1)
     graph2 = InternalGraph(graph2)
     cv = dict()
@@ -148,12 +186,15 @@ def evaluate(gold, system, stream, format = "json", trace = False):
     for g, s in intersect(gold, system):
 #        if len(s.nodes) > 10:
 #            continue
-        print("Number of nodes: {}".format(len(g.nodes)))
+        print("Number of gold nodes: {}".format(len(g.nodes)))
+        print("Number of system nodes: {}".format(len(s.nodes)))
         print("Number of edges: {}".format(len(g.edges)))
+        pairs, rewards = initial_match_making(g, s);
+        print("{}\n{}\n".format(rewards, pairs));
         n_matched = 0
         i = 0
         best_cv, best_ce = None, None
-        for cv, ce in correspondences(g, s):
+        for cv, ce in correspondences(g, s, pairs, rewards):
             assert is_valid(ce)
             assert is_injective(ce)
             print("\r{}".format(i), end="")

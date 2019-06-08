@@ -1,5 +1,6 @@
-from graph import Graph;
 from operator import itemgetter;
+
+from graph import Graph;
 
 def intersect(golds, systems):
   gold = {graph.id: graph for graph in golds};
@@ -39,3 +40,5 @@ def fscore(gold, system, correct):
   r = correct / gold if gold else 0.0;
   f = 2 * p * r / (p + r) if p + r != 0 else 0.0;
   return p, r, f;
+    
+      
