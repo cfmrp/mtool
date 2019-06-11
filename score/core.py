@@ -5,7 +5,7 @@ from graph import Graph;
 def intersect(golds, systems):
   gold = {graph.id: graph for graph in golds};
   system = {graph.id: graph for graph in systems};
-  for key in gold.keys() & system.keys():
+  for key in sorted(gold.keys() & system.keys()):
     yield gold[key], system[key];
 
 def anchor(node):
