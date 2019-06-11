@@ -132,8 +132,8 @@ def evaluate_candidate(graph1, graph2, cv, i, j):
     j_neighbours = set(adjacent(graph2, j))
     return len(mapped_i_neighbours & j_neighbours)
 
-def sorted_splits(graph1, graph2, cv, i, xs):
-    sorted_xs = sorted(xs, key=lambda x: evaluate_candidate(graph1, graph2, cv, i, x), reverse=True)
+def sorted_splits(i, xs, rewards):
+    sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
     yield from splits(sorted_xs)
 
 def source_iterator(graph):
@@ -148,7 +148,7 @@ def correspondences(graph1, graph2, pairs, rewards):
     graph2 = InternalGraph(graph2)
     cv = dict()
     ce = make_edge_correspondence(graph1, graph2)
-    source_todo = sorted(graph1.nodes, key=lambda x: degree(graph1, x), reverse=True)
+    source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
     todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
     n_matched = 0
     while todo:
@@ -161,7 +161,7 @@ def correspondences(graph1, graph2, pairs, rewards):
             new_ce, new_potential = update_edge_correspondence(cv, ce, i, j)
             if new_potential > n_matched:
                 if source_todo[1:]:
-                    todo.append((new_cv, new_ce, source_todo[1:], sorted_splits(graph1, graph2, new_cv, i+1, new_untried)))
+                    todo.append((new_cv, new_ce, source_todo[1:], sorted_splits(i+1, new_untried, rewards)))
                 else:
                     yield new_cv, new_ce
                     n_matched = new_potential
