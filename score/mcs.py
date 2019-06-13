@@ -3,9 +3,17 @@ import numpy as np;
 from graph import Graph;
 from score.core import intersect
 
+def reindex(i):
+    return 2 - i
+
+def get_or_update(index, key):
+    if key not in index:
+        index[key] = len(index)
+    return index[key]
+
 class InternalGraph():
 
-    def __init__(self, graph):
+    def __init__(self, graph, index=None):
         self.id2node = dict()
         self.node2id = dict()
         self.nodes = []
@@ -19,7 +27,19 @@ class InternalGraph():
             self.id2edge[i] = edge
             src = graph.find_node(edge.src)
             tgt = graph.find_node(edge.tgt)
-            self.edges.append(((self.node2id[src], self.node2id[tgt]), edge.lab))
+            self.edges.append((self.node2id[src], self.node2id[tgt]))
+        if index is None:
+            index = dict()
+        for i, node in enumerate(graph.nodes):
+            j = get_or_update(index, node.label)
+            self.edges.append((i, reindex(j)))
+            for anchor in node.anchors:
+                j = get_or_update(index, "{from}:{to}".format(**anchor))
+                self.edges.append((i, reindex(j)))
+            if node.properties:
+                for prop, val in zip(node.properties, node.values):
+                    j = get_or_update(index, prop + "=" + val)
+                    self.edges.append((i, reindex(j)))
 
     def map_node(self, node):
         return self.node2id(node);
@@ -56,15 +76,33 @@ def initial_match_making(graph1, graph2):
             used.add(i);
     return pairs, rewards;
 
-def make_edge_correspondence(graph1, graph2, respect_label=True):
+def make_edge_correspondence(graph1, graph2):
     correspondence = dict()
-    for raw_edge1 in graph1.edges:
-        edge1, lab1 = raw_edge1
+    for edge1 in graph1.edges:
+        src1, tgt1 = edge1
         correspondence[edge1] = set()
-        for raw_edge2 in graph2.edges:
-            edge2, lab2 = raw_edge2
-            if not respect_label or lab1 == lab2:
+        for edge2 in graph2.edges:
+            src2, tgt2 = edge2
+            if tgt1 < 0:
+                if tgt2 == tgt1:
+                    correspondence[edge1].add(edge2)
+            else:
+                if tgt2 >= 0:
+                    correspondence[edge1].add(edge2)
+    return correspondence
+
+def make_edge_correspondence_new(graph1, graph2):
+    correspondence = dict()
+    for edge1 in graph1.edges:
+        src1, tgt1 = edge1
+        correspondence[edge1] = set()
+        if tgt1 >= 0:
+            for edge2 in graph2.edges:
                 correspondence[edge1].add(edge2)
+        else:
+            for src2, tgt2 in graph2.edges:
+                if tgt2 == tgt1:
+                    correspondence[edge1].add(edge2)
     return correspondence
 
 def update_edge_correspondence_old(cv, edge_correspondence, i, j):
@@ -144,10 +182,15 @@ def potential(edge_correspondence):
     return sum(len(xs) > 0 for xs in edge_correspondence.values())
 
 def correspondences(graph1, graph2, pairs, rewards):
-    graph1 = InternalGraph(graph1)
-    graph2 = InternalGraph(graph2)
+    index = dict()
+    graph1 = InternalGraph(graph1, index)
+    graph2 = InternalGraph(graph2, index)
     cv = dict()
     ce = make_edge_correspondence(graph1, graph2)
+    for _, tgt in graph1.edges:
+        if tgt < -1:
+            cv[tgt] = tgt
+            ce, _ = update_edge_correspondence(cv, ce, tgt, tgt)
     source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
     todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
     n_matched = 0
