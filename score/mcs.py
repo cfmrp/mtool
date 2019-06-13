@@ -163,6 +163,18 @@ def splits(xs):
     # The source graph node is not mapped to any target graph node.
     yield -1, xs
 
+def guided_splits(source, nodes, pairs):
+    match = None;
+    for node1, node2 in pairs:
+        if node1 == source: match = node2;
+    if match is not None:
+        i = nodes.index(match);
+        yield match, nodes[:i] + nodes[i + 1:];
+    for i, node in enumerate(nodes):
+        if node is not match:
+            yield node, nodes[:i] + nodes[i + 1:];
+    yield -1, nodes;
+
 def sorted_splits(i, xs, rewards):
     sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
     yield from splits(sorted_xs)
@@ -174,14 +186,18 @@ def correspondences(graph1, graph2, pairs, rewards):
     cv = dict()
     ce = make_edge_correspondence(graph1, graph2)
     # Visit the source graph nodes in descending order of rewards.
-    source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
-    todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
+#    source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
+    source_todo = [pair[0] for pair in pairs];
+#    todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
+    todo = [(cv, ce, source_todo, sorted_splits(source_todo[0], graph2.nodes, rewards))]
+#    todo = [(cv, ce, source_todo, guided_splits(source_todo[0], graph2.nodes, pairs))]
     n_matched = 0
     while todo:
         cv, ce, source_todo, untried = todo[-1]
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
+#            print(" ({}:{})".format(i, j), end="");
             new_cv = dict(cv)
             new_cv[i] = j
             new_ce, new_potential = update_edge_correspondence(cv, ce, i, j)
@@ -210,6 +226,7 @@ def correspondences(graph1, graph2, pairs, rewards):
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
+#            print();
             todo.pop()
 
 def is_valid(correspondence):
@@ -241,12 +258,12 @@ def evaluate(gold, system, stream, format = "json", trace = False):
         for cv, ce in correspondences(g, s, pairs, rewards):
             assert is_valid(ce)
             assert is_injective(ce)
-            print("\r{}".format(i), end="")
             n = 0
             for edge1 in ce:
                 for edge2 in ce[edge1]:
                     n += 1
             if n > n_matched:
+                print("\nsolution #{}; matches: {}".format(i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
