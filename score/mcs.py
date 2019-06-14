@@ -37,9 +37,10 @@ class InternalGraph():
             j = get_or_update(index, node.label)
             self.edges.append((i, reindex(j)))
             # anchors
-            for anchor in node.anchors:
-                j = get_or_update(index, "{from}:{to}".format(**anchor))
-                self.edges.append((i, reindex(j)))
+            if node.anchors is not None:
+                for anchor in node.anchors:
+                    j = get_or_update(index, "{from}:{to}".format(**anchor))
+                    self.edges.append((i, reindex(j)))
             # properties
             if node.properties:
                 for prop, val in zip(node.properties, node.values):
@@ -179,7 +180,7 @@ def sorted_splits(i, xs, rewards):
     sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
     yield from splits(sorted_xs)
 
-def correspondences(graph1, graph2, pairs, rewards):
+def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -197,7 +198,7 @@ def correspondences(graph1, graph2, pairs, rewards):
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
-#            print(" ({}:{})".format(i, j), end="");
+            if verbose > 1: print("({}:{}) ".format(i, j), end="");
             new_cv = dict(cv)
             new_cv[i] = j
             new_ce, new_potential = update_edge_correspondence(cv, ce, i, j)
@@ -221,12 +222,14 @@ def correspondences(graph1, graph2, pairs, rewards):
                 source_todo = new_source_todo
                 # End "optimization" here
                 if new_source_todo:
+                    if verbose > 1: print("> ", end = "");
                     todo.append((new_cv, new_ce, new_source_todo, sorted_splits(new_source_todo[0], new_untried, rewards)))
                 else:
+                    if verbose: print()
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
-#            print();
+            if verbose > 1: print("< ");
             todo.pop()
 
 def is_valid(correspondence):
@@ -244,18 +247,21 @@ def is_injective(correspondence):
 
 def evaluate(gold, system, stream, format = "json", trace = False):
     counter = 0
+    verbose = 1;
     for g, s in intersect(gold, system):
 #        if len(s.nodes) > 10:
 #            continue
-        print("Number of gold nodes: {}".format(len(g.nodes)))
-        print("Number of system nodes: {}".format(len(s.nodes)))
-        print("Number of edges: {}".format(len(g.edges)))
         pairs, rewards = initial_match_making(g, s);
-        print("{}\n{}\n".format(rewards, pairs));
+        if verbose:
+            print("Number of gold nodes: {}".format(len(g.nodes)))
+            print("Number of system nodes: {}".format(len(s.nodes)))
+            print("Number of edges: {}".format(len(g.edges)))
+            if verbose > 1:
+                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs));
         n_matched = 0
         i = 0
         best_cv, best_ce = None, None
-        for cv, ce in correspondences(g, s, pairs, rewards):
+        for cv, ce in correspondences(g, s, pairs, rewards, verbose):
             assert is_valid(ce)
             assert is_injective(ce)
             n = 0
@@ -263,7 +269,7 @@ def evaluate(gold, system, stream, format = "json", trace = False):
                 for edge2 in ce[edge1]:
                     n += 1
             if n > n_matched:
-                print("\nsolution #{}; matches: {}".format(i, n));
+                if verbose: print("\nsolution #{}; matches: {}".format(i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
