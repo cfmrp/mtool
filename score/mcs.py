@@ -3,6 +3,9 @@ import numpy as np;
 from graph import Graph;
 from score.core import intersect
 
+limit = None;
+counter = 0;
+
 def reindex(i):
     return -2 - i
 
@@ -181,6 +184,7 @@ def sorted_splits(i, xs, rewards):
     yield from splits(sorted_xs)
 
 def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
+    global counter;
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -193,11 +197,12 @@ def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
     todo = [(cv, ce, source_todo, sorted_splits(source_todo[0], graph2.nodes, rewards))]
 #    todo = [(cv, ce, source_todo, guided_splits(source_todo[0], graph2.nodes, pairs))]
     n_matched = 0
-    while todo:
+    while todo and (limit is None or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
+            counter += 1;
             if verbose > 1: print("({}:{}) ".format(i, j), end="");
             new_cv = dict(cv)
             new_cv[i] = j
@@ -225,7 +230,7 @@ def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
                     if verbose > 1: print("> ", end = "");
                     todo.append((new_cv, new_ce, new_source_todo, sorted_splits(new_source_todo[0], new_untried, rewards)))
                 else:
-                    if verbose: print()
+                    if verbose > 1: print()
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
@@ -246,9 +251,11 @@ def is_injective(correspondence):
     return True
 
 def evaluate(gold, system, stream, format = "json", trace = False):
-    counter = 0
+    global counter, limit;
+    limit = 100000;
     verbose = 1;
     for g, s in intersect(gold, system):
+        counter = 0;
 #        if len(s.nodes) > 10:
 #            continue
         pairs, rewards = initial_match_making(g, s);
@@ -274,10 +281,8 @@ def evaluate(gold, system, stream, format = "json", trace = False):
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
-        print()
-        print("Number of edges in correspondence: {}".format(n_matched))
-        print(best_cv)
-        print(best_ce)
-        counter += 1
-#        if counter > 5:
-#            break
+        if verbose:
+            print("Number of edges in correspondence: {}".format(n_matched))
+            if verbose > 1:
+                print(best_cv)
+                print(best_ce)
