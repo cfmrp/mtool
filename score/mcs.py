@@ -172,7 +172,7 @@ def sorted_splits(i, xs, rewards):
     yield from splits(sorted_xs)
 
 def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
-    global counter;
+    global counter, limit;
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -263,12 +263,12 @@ def evaluate(gold, system, stream, format = "json", trace = False):
                 for edge2 in ce[edge1]:
                     n += 1
             if n > n_matched:
-                if verbose: print("\nsolution #{}; matches: {}".format(i, n));
+                if verbose: print("\n[{}] solution #{}; matches: {}".format(counter, i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
         if verbose:
-            print("Number of edges in correspondence: {}".format(n_matched))
+            print("[{}] Number of edges in correspondence: {}".format(counter, n_matched))
             if verbose > 1:
                 print(best_cv)
                 print(best_ce)
