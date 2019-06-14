@@ -28,19 +28,12 @@ def amr2graph(id, amr, full = False, normalize = False, reify = False):
     for n, v, a in zip(amr.nodes, amr.node_values, amr.attributes):
         id = i
         node2id[n] = id
-        #top = "TOP" in a;
         top = False;
         for key, val in a:
             if key == "TOP":
                 top = True;
         node = graph.add_node(id, label = v, top=top)
         i += 1
-        #
-        # creating separate 'atom' nodes for the concepts and 'instance' edges
-        # is how SMATCH scores (inspired by # EDM_n, i suspect), but really
-        # these extra elements of structure seem superfluous, seeing as we have
-        # a notion of a designated label property on nodes.
-        #
         for key, val in a:
             if key != "TOP" \
                and (key not in {"wiki"} or full):
@@ -54,7 +47,6 @@ def amr2graph(id, amr, full = False, normalize = False, reify = False):
                     node.set_property(key, val);
 
     for src, r in zip(amr.nodes, amr.relations):
-#        for tgt, rel_name in r.items():
         for label, tgt in r:
             normal = None;
             if label == "mod":
