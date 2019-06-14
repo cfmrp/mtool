@@ -767,7 +767,6 @@ def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattrib
         doinstance = dorelation = False
     if justrelation:
         doinstance = doattribute = False
-#    print("{}\n{}\n{}\n\n{}\n{}\n{}\n".format(instance1, attributes1, relation1, instance2, attributes2, relation2));
     (best_mapping, best_match_num) = get_best_match(instance1, attributes1, relation1,
                                                     instance2, attributes2, relation2,
                                                     prefix1, prefix2, doinstance=doinstance,
