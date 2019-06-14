@@ -350,10 +350,14 @@ class Graph(object):
                 if node.label is not None: labels.add((identity, node.label));
                 if node.properties is not None:
                     for property, value in zip(node.properties, node.values):
-                        properties.add((identity, property, value));
+                        properties.add((identity, property, value.lower()));
                 if node.anchors is not None:
                     anchors.add(tuple([identity] + node.anchoring()));
             for edge in graph.edges:
+                #
+                # _fix_me_
+                # still need to normalize inverted edges here
+                #
                 edges.add((identities[edge.src], identities[edge.tgt], edge.lab));
             return tops, labels, properties, anchors, edges;
 
