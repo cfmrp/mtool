@@ -47,6 +47,43 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
+    def compare(self, node):
+        count1 = both = count2 = 0;
+        if node is None:
+            if self.is_top:
+                count1 += 1;
+            if self.label is not None:
+                count1 += 1;
+            if self.properties is not None:
+                count1 += len(self.properties);
+            return both - count1 - count2, count1, both, count2;
+        if self.is_top:
+            if node.is_top: both += 1;
+            else: count1 += 1;
+        else:
+            if node.is_top: count2 += 1;
+            else: both += 1;
+        if self.label is not None:
+            if self.label == node.label:
+                both += 1;
+            else:
+                count1 += 1;
+                if node.label is not None: count2 += 1;
+        if self.properties is not None:
+            if node.properties is None:
+                count1 += len(self.properties);
+            else:
+                properties1 = {(property, self.values[i]) for i, property in enumerate(self.properties)};
+                properties2 = {(property, node.values[i]) for i, property in enumerate(node.properties)};
+                n = len(properties1 & properties2);
+                count1 += len(properties1) - n;
+                both += n;
+                count2 += len(properties2) - n;
+        else:
+            if node.properties is not None:
+                count2 += len(node.properties);
+        return both - count1 - count2, count1, both, count2;
+                   
     def encode(self):
         json = {"id": self.id};
         if self.label:
