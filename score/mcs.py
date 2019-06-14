@@ -247,6 +247,7 @@ def evaluate(gold, system, stream, format = "json", trace = False):
     for g, s in intersect(gold, system):
 #        if len(s.nodes) > 10:
 #            continue
+        print("\n\ngraph #{}".format(g.id));
         print("Number of gold nodes: {}".format(len(g.nodes)))
         print("Number of system nodes: {}".format(len(s.nodes)))
         print("Number of edges: {}".format(len(g.edges)))
