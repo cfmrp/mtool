@@ -64,6 +64,7 @@ if __name__ == "__main__":
   parser.add_argument("--gold", type = argparse.FileType("r"));
   parser.add_argument("--format");
   parser.add_argument("--score");
+  parser.add_argument("--limit", type = int, default = 500000);
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -132,6 +133,7 @@ if __name__ == "__main__":
       elif metric == "mces":
         score.mces.evaluate(gold, graphs,
                             arguments.output, format = arguments.write,
+                            limit = arguments.limit,
                             trace = arguments.trace);
       else:  
         print("main.py(): invalid evaluation metric: {}; exit."

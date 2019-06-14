@@ -1,9 +1,8 @@
 import numpy as np
-
+from operator import itemgetter
 from graph import Graph
 from score.core import intersect
 
-limit = None
 counter = 0
 
 
@@ -42,6 +41,10 @@ class InternalGraph():
             # labels
             j = get_or_update(index, ("L", node.label))
             self.edges.append((i, reindex(j)))
+            # tops
+            if node.is_top:
+                j = get_or_update(index, ("T"))
+                self.edges.append((i, reindex(j)))
             # anchors
             if node.anchors is not None:
                 for anchor in node.anchors:
@@ -53,40 +56,61 @@ class InternalGraph():
                     j = get_or_update(index, ("P", prop, val))
                     self.edges.append((i, reindex(j)))
 
-    def map_node(self, node):
-        return self.node2id(node)
 
-    def unmap_node(self, id):
-        return self.id2node(id)
-
-
-def initial_match_making(graph1, graph2):
+def initial_node_correspondences(graph1, graph2):
     #
     # in the following, we assume that nodes in raw and internal
     # graphs correspond by position into the .nodes. list
     #
     rewards = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                       dtype=np.int8)
+                       dtype=np.int8);
+    edges = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
+                     dtype=np.int8);
+    queue = [];
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):
-            rewards[i, j], _, _, _ = node1.compare(node2)
-    pairs = []
-    used = set()
-    bottom = rewards.min() - 1
-    top = rewards.max()
-    copy = np.array(rewards)
+            rewards[i, j], _, _, _ = node1.compare(node2);
+            #
+            # also determine the maximum number of edge matches we
+            # can hope to score, for each node-node correspondence
+            #
+            if node2 is not None:
+                for edge1 in graph1.edges:
+                    for edge2 in graph2.edges:
+                        if edge1.src == node1.id \
+                           and edge2.src == node2.id \
+                           and edge1.lab == edge2.lab:
+                            edges[i, j] += 1;
+            queue.append((rewards[i, j], edges[i, j],
+                          i, j if node2 is not None else None));
+    if False:
+        pairs = [];
+        sources = set();
+        targets = set();
+        for _, _, i, j in sorted(queue, key = itemgetter(0, 1), reverse = True):
+            if i not in sources and j not in targets:
+                pairs.append((i, j));
+                sources.add(i);
+                if j is not None: targets.add(j);
+        print(pairs);
+        return pairs, rewards;
+    pairs = [];
+    used = set();
+    bottom = rewards.min() - 1;
+    top = rewards.max();
+    copy = np.array(rewards);
     while top > bottom:
-        i, j = np.unravel_index(copy.argmax(), copy.shape)
-        copy[i] = bottom
-        copy[:, j] = bottom
-        pairs.append((i, j if j < len(graph2.nodes) else None))
-        used.add(i)
-        top = copy.max()
+        i, j = np.unravel_index(copy.argmax(), copy.shape);
+        copy[i] = bottom;
+        copy[:, j] = bottom;
+        pairs.append((i, j if j < len(graph2.nodes) else None));
+        used.add(i);
+        top = copy.max();
     for i in range(len(graph1.nodes)):
         if i not in used:
-            pairs.append((i, None))
-            used.add(i)
-    return pairs, rewards
+            pairs.append((i, None));
+            used.add(i);
+    return pairs, rewards;
 
 
 # The next function constructs the initial table with the candidates
@@ -163,8 +187,8 @@ def sorted_splits(i, xs, rewards):
 # (graph1) and the target graph (graph2). This implements the
 # algorithm of McGregor (1982).
 
-def correspondences(graph1, graph2, pairs, rewards, verbose=0):
-    global counter, limit
+def correspondences(graph1, graph2, pairs, rewards, limit=0, verbose=0):
+    global counter
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -175,7 +199,7 @@ def correspondences(graph1, graph2, pairs, rewards, verbose=0):
     todo = [(cv, ce, source_todo, sorted_splits(
         source_todo[0], graph2.nodes, rewards))]
     n_matched = 0
-    while todo and (limit is None or counter <= limit):
+    while todo and (limit == 0 or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
         i = source_todo[0]
         try:
@@ -219,26 +243,26 @@ def is_injective(correspondence):
     return True
 
 
-def evaluate(gold, system, stream, format="json", trace=False):
-    global counter, limit
-    limit = 500000
-    verbose = 1
+def evaluate(gold, system, stream, format="json", limit=500000, trace=False):
+    global counter
+    total_matches = total_steps = 0;
+    verbose = 1 if trace else 0
     for g, s in intersect(gold, system):
         counter = 0
 #        if len(s.nodes) > 10:
 #            continue
-        pairs, rewards = initial_match_making(g, s)
+        pairs, rewards = initial_node_correspondences(g, s)
         if verbose:
             print("\n\ngraph #{}".format(g.id))
             print("Number of gold nodes: {}".format(len(g.nodes)))
             print("Number of system nodes: {}".format(len(s.nodes)))
             print("Number of edges: {}".format(len(g.edges)))
             if verbose > 1:
-                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
+                print("Rewards and Pairs:\n{}\n{}\n{}\n".format(rewards, pairs))
         n_matched = 0
         i = 0
         best_cv, best_ce = None, None
-        for cv, ce in correspondences(g, s, pairs, rewards, verbose):
+        for cv, ce in correspondences(g, s, pairs, rewards, limit, verbose):
             assert is_valid(ce)
             assert is_injective(ce)
             n = 0
@@ -251,8 +275,11 @@ def evaluate(gold, system, stream, format="json", trace=False):
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
+        total_matches += n_matched;
+        total_steps += counter
         if verbose:
             print("[{}] Number of edges in correspondence: {}".format(counter, n_matched))
+            print("[{}] Total matches: {}".format(total_steps, total_matches));
             if verbose > 1:
                 print(best_cv)
                 print(best_ce)
