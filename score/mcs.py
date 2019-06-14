@@ -1,20 +1,23 @@
-import numpy as np;
+import numpy as np
 
-from graph import Graph;
+from graph import Graph
 from score.core import intersect
 
-limit = None;
-counter = 0;
+limit = None
+counter = 0
+
 
 def reindex(i):
     return -2 - i
 
+
 def get_or_update(index, key):
     return index.setdefault(key, len(index))
 
+
 class InternalGraph():
 
-    def __init__(self, graph, index=None):
+    def __init__(self, graph, index):
         self.id2node = dict()
         self.node2id = dict()
         self.nodes = []
@@ -37,24 +40,24 @@ class InternalGraph():
             index = dict()
         for i, node in enumerate(graph.nodes):
             # labels
-            j = get_or_update(index, node.label)
+            j = get_or_update(index, ("L", node.label))
             self.edges.append((i, reindex(j)))
             # anchors
             if node.anchors is not None:
                 for anchor in node.anchors:
-                    j = get_or_update(index, "{from}:{to}".format(**anchor))
+                    j = get_or_update(index, ("A", anchor["from"], anchor["to"]))
                     self.edges.append((i, reindex(j)))
             # properties
             if node.properties:
                 for prop, val in zip(node.properties, node.values):
-                    j = get_or_update(index, prop + "=" + val)
+                    j = get_or_update(index, ("P", prop, val))
                     self.edges.append((i, reindex(j)))
 
     def map_node(self, node):
-        return self.node2id(node);
+        return self.node2id(node)
 
     def unmap_node(self, id):
-        return self.id2node(id);
+        return self.id2node(id)
 
 
 def initial_match_making(graph1, graph2):
@@ -63,102 +66,85 @@ def initial_match_making(graph1, graph2):
     # graphs correspond by position into the .nodes. list
     #
     rewards = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                       dtype = np.int8);
+                       dtype=np.int8)
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):
-            rewards[i, j], _, _, _ = node1.compare(node2);
-    pairs = [];
-    used = set();
-    bottom = rewards.min() - 1;
-    top = rewards.max();
-    copy = np.array(rewards);
+            rewards[i, j], _, _, _ = node1.compare(node2)
+    pairs = []
+    used = set()
+    bottom = rewards.min() - 1
+    top = rewards.max()
+    copy = np.array(rewards)
     while top > bottom:
-        i, j = np.unravel_index(copy.argmax(), copy.shape);
-        copy[i] = bottom;
-        copy[:, j] = bottom;
-        pairs.append((i, j if j < len(graph2.nodes) else None));
-        used.add(i);
-        top = copy.max();
+        i, j = np.unravel_index(copy.argmax(), copy.shape)
+        copy[i] = bottom
+        copy[:, j] = bottom
+        pairs.append((i, j if j < len(graph2.nodes) else None))
+        used.add(i)
+        top = copy.max()
     for i in range(len(graph1.nodes)):
         if i not in used:
-            pairs.append((i, None));
-            used.add(i);
-    return pairs, rewards;
+            pairs.append((i, None))
+            used.add(i)
+    return pairs, rewards
 
-def make_edge_correspondence(graph1, graph2):
-    correspondence = dict()
+
+# The next function constructs the initial table with the candidates
+# for the edge-to-edge correspondence. Each edge in the source graph
+# is mapped to the set of all edges in the target graph.
+
+def make_edge_candidates(graph1, graph2):
+    candidates = dict()
     for edge1 in graph1.edges:
         src1, tgt1 = edge1
-        correspondence[edge1] = set()
+        candidates[edge1] = set()
         for edge2 in graph2.edges:
             src2, tgt2 = edge2
             if tgt1 < 0:
-                # Pseudoedges can correspond to each other only if
-                # they point to the same pseudonode.
+                # Edge edge1 is a pseudoedge. This can only map to
+                # another pseudoedge pointing to the same pseudonode.
                 if tgt2 == tgt1:
-                    correspondence[edge1].add(edge2)
+                    candidates[edge1].add(edge2)
             else:
-                # Real edge. Check that the other edge also is real.
+                # Edge edge1 is a real edge. This can only map to
+                # another real edge.
                 if tgt2 >= 0:
-                    correspondence[edge1].add(edge2)
-    return correspondence
+                    candidates[edge1].add(edge2)
+    return candidates
 
-def make_edge_correspondence_new(graph1, graph2):
-    correspondence = dict()
-    for edge1 in graph1.edges:
-        src1, tgt1 = edge1
-        correspondence[edge1] = set()
-        if tgt1 >= 0:
-            for edge2 in graph2.edges:
-                correspondence[edge1].add(edge2)
-        else:
-            for src2, tgt2 in graph2.edges:
-                if tgt2 == tgt1:
-                    correspondence[edge1].add(edge2)
-    return correspondence
 
-def update_edge_correspondence_old(cv, edge_correspondence, i, j):
-    new_correspondence = dict()
+# The next function updates the table with the candidates for the
+# edge-to-edge correspondence when node `i` is tentatively mapped to
+# node `j`.
+
+def update_edge_candidates(edge_candidates, i, j):
+    new_candidates = dict()
     new_potential = 0
-    for edge1 in edge_correspondence:
+    for edge1 in edge_candidates:
         src1, tgt1 = edge1
         if src1 != i and tgt1 != i:
-            new_correspondence[edge1] = edge_correspondence[edge1]
-            new_potential += len(new_correspondence[edge1]) > 0
+            # Edge edge1 is not affected by the tentative
+            # assignment. Just include a pointer to the candidates for
+            # edge1 in the old assignment.
+            new_candidates[edge1] = edge_candidates[edge1]
         else:
-            new_correspondence[edge1] = set()
-            for edge2 in edge_correspondence[edge1]:
+            # Edge edge1 is affected by the tentative assignment. Need
+            # to explicitly construct the new set of candidates for
+            # edge1.
+            new_candidates[edge1] = set()
+            for edge2 in edge_candidates[edge1]:
                 src2, tgt2 = edge2
-                if src1 == i and src2 == j and (tgt1 not in cv or tgt2 == cv[tgt1]):
-                    new_correspondence[edge1].add(edge2)
-                if tgt1 == i and tgt2 == j and (src1 not in cv or src2 == cv[src1]):
-                    new_correspondence[edge1].add(edge2)
-            new_potential += len(new_correspondence[edge1]) > 0
-    return new_correspondence, new_potential
+                if src1 == i and src2 == j:
+                    # Both edges share the same source node (modulo
+                    # the tentative assignment).
+                    new_candidates[edge1].add(edge2)
+                if tgt1 == i and tgt2 == j:
+                    # Both edges share the same target node (modulo
+                    # the tentative assignment).
+                    new_candidates[edge1].add(edge2)
+        new_potential += len(new_candidates[edge1]) > 0
+    return new_candidates, new_potential
 
-def update_edge_correspondence(cv, edge_correspondence, i, j):
-    new_correspondence = dict()
-    new_potential = 0
-    for edge1 in edge_correspondence:
-        src1, tgt1 = edge1
-        if src1 != i and tgt1 != i:
-            new_correspondence[edge1] = edge_correspondence[edge1]
-            # new_correspondence[edge1] = set()
-            # for edge2 in edge_correspondence[edge1]:
-            #     src2, tgt2 = edge2
-            #     if (src1 not in cv or cv[src1] == src2) and (tgt1 not in cv or cv[tgt1] == tgt2):
-            #         new_correspondence[edge1].add(edge2)
-            new_potential += len(new_correspondence[edge1]) > 0
-        else:
-            new_correspondence[edge1] = set()
-            for edge2 in edge_correspondence[edge1]:
-                src2, tgt2 = edge2
-                if src1 == i and src2 == j: # and (tgt1 not in cv or tgt2 == cv[tgt1]):
-                    new_correspondence[edge1].add(edge2)
-                if tgt1 == i and tgt2 == j: # and (src1 not in cv or src2 == cv[src1]):
-                    new_correspondence[edge1].add(edge2)
-            new_potential += len(new_correspondence[edge1]) > 0
-    return new_correspondence, new_potential
 
 def splits(xs):
     # The source graph node is mapped to some target graph node (x).
@@ -167,64 +153,60 @@ def splits(xs):
     # The source graph node is not mapped to any target graph node.
     yield -1, xs
 
+
 def sorted_splits(i, xs, rewards):
     sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
     yield from splits(sorted_xs)
 
-def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
-    global counter;
+
+# Find all maximum edge correspondences between the source graph
+# (graph1) and the target graph (graph2). This implements the
+# algorithm of McGregor (1982).
+
+def correspondences(graph1, graph2, pairs, rewards, verbose=0):
+    global counter
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
     cv = dict()
-    ce = make_edge_correspondence(graph1, graph2)
+    ce = make_edge_candidates(graph1, graph2)
     # Visit the source graph nodes in descending order of rewards.
-#    source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
-    source_todo = [pair[0] for pair in pairs];
-    todo = [(cv, ce, source_todo, sorted_splits(source_todo[0], graph2.nodes, rewards))]
+    source_todo = [pair[0] for pair in pairs]
+    todo = [(cv, ce, source_todo, sorted_splits(
+        source_todo[0], graph2.nodes, rewards))]
     n_matched = 0
     while todo and (limit is None or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
-            counter += 1;
-            if verbose > 1: print("({}:{}) ".format(i, j), end="");
+            counter += 1
+            if verbose > 1:
+                print("({}:{}) ".format(i, j), end="")
             new_cv = dict(cv)
             new_cv[i] = j
-            new_ce, new_potential = update_edge_correspondence(cv, ce, i, j)
+            new_ce, new_potential = update_edge_candidates(ce, i, j)
             if new_potential > n_matched:
-                # Which source graph nodes i could make a difference, in
-                # the sense that assigning them could change the edge
-                # correspondence? (Not sure whether this actually helps.)
-                relevant = set()
-                for edge1 in new_ce:
-                    if new_ce[edge1]:
-                        src1, tgt1 = edge1
-                        if src1 not in cv:
-                            assert src1 >= 0
-                            relevant.add(src1)
-                        if tgt1 not in cv and tgt1 >= 0:
-                            relevant.add(tgt1)
-                new_source_todo = []
-                for new_i in source_todo[1:]:
-                    if new_i in relevant:
-                        new_source_todo.append(new_i)
-                source_todo = new_source_todo
-                # End "optimization" here
+                new_source_todo = source_todo[1:]
                 if new_source_todo:
-                    if verbose > 1: print("> ", end = "");
-                    todo.append((new_cv, new_ce, new_source_todo, sorted_splits(new_source_todo[0], new_untried, rewards)))
+                    if verbose > 1:
+                        print("> ", end="")
+                    todo.append((new_cv, new_ce, new_source_todo, sorted_splits(
+                        new_source_todo[0], new_untried, rewards)))
                 else:
-                    if verbose > 1: print()
+                    if verbose > 1:
+                        print()
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
-            if verbose > 1: print("< ");
+            if verbose > 1:
+                print("< ")
             todo.pop()
+
 
 def is_valid(correspondence):
     return all(len(x) <= 1 for x in correspondence.values())
+
 
 def is_injective(correspondence):
     seen = set()
@@ -236,22 +218,23 @@ def is_injective(correspondence):
                 seen.add(x)
     return True
 
-def evaluate(gold, system, stream, format = "json", trace = False):
-    global counter, limit;
-    limit = 500000;
-    verbose = 1;
+
+def evaluate(gold, system, stream, format="json", trace=False):
+    global counter, limit
+    limit = 500000
+    verbose = 1
     for g, s in intersect(gold, system):
-        counter = 0;
+        counter = 0
 #        if len(s.nodes) > 10:
 #            continue
-        pairs, rewards = initial_match_making(g, s);
+        pairs, rewards = initial_match_making(g, s)
         if verbose:
-            print("\n\ngraph #{}".format(g.id));
+            print("\n\ngraph #{}".format(g.id))
             print("Number of gold nodes: {}".format(len(g.nodes)))
             print("Number of system nodes: {}".format(len(s.nodes)))
             print("Number of edges: {}".format(len(g.edges)))
             if verbose > 1:
-                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs));
+                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
         n_matched = 0
         i = 0
         best_cv, best_ce = None, None
@@ -263,7 +246,8 @@ def evaluate(gold, system, stream, format = "json", trace = False):
                 for edge2 in ce[edge1]:
                     n += 1
             if n > n_matched:
-                if verbose: print("\nsolution #{}; matches: {}".format(i, n));
+                if verbose:
+                    print("\nsolution #{}; matches: {}".format(i, n))
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
