@@ -60,8 +60,7 @@ class Measure(object):
 
 class Scorer(object):
 
-    def __init__(self, include_virtual=True, stream=sys.stderr):
-        self.stream = stream
+    def __init__(self, include_virtual=True):
         self.measures = []
         self.measures.append(("labeled", Measure(self.get_itemsL)))
         self.measures.append(("unlabeled", Measure(self.get_itemsU)))
@@ -130,7 +129,7 @@ class Scorer(object):
         return json
 
 def evaluate(gold, system, format = "json", trace = False):
-    scorer = Scorer(include_virtual=True, stream=stream)
+    scorer = Scorer(include_virtual=True)
     for g, s in intersect(gold, system):
         scorer.update(g, s)
     return scorer.report()
