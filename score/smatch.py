@@ -28,7 +28,7 @@ def evaluate(golds, systems, format = "json", trace = None):
   for gold, system in intersect(golds, systems):
     ginstances, gattributes, grelations = tuples(gold, gprefix);
     sinstances, sattributes, srelations = tuples(system, sprefix);
-    correct, system, gold \
+    correct, gold, system \
       = get_amr_match(None, None, gold.id,
                       instance1 = ginstances, attributes1 = gattributes,
                       relation1 = grelations, prefix1 = gprefix,
