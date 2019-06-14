@@ -17,10 +17,10 @@ import codec.mrp;
 import codec.sdp;
 import codec.ucca;
 import score.edm;
+import score.mces;
 import score.sdp;
 import score.smatch;
 import score.ucca;
-import score.mces;
 
 __author__ = "oe"
 __version__ = "0.1"
@@ -114,31 +114,36 @@ if __name__ == "__main__":
             "".format(arguments.read), file = sys.stderr);
       sys.exit(1);
     for metric in arguments.score.split(","):
+      result = None;
       if metric == "edm":
-        score.edm.evaluate(gold, graphs,
-                           arguments.output, format = arguments.write,
-                           trace = arguments.trace);
-      elif metric == "sdp":
-        score.sdp.evaluate(gold, graphs,
-                           arguments.output, format = arguments.write,
-                           trace = arguments.trace);
-      elif metric == "smatch":
-        score.smatch.evaluate(gold, graphs,
-                              arguments.output, format = arguments.write,
-                              trace = arguments.trace);
-      elif metric == "ucca":
-        score.ucca.evaluate(gold, graphs,
-                            arguments.output, format = arguments.write,
-                            trace = arguments.trace);
+        result = score.edm.evaluate(gold, graphs,
+                                    format = arguments.write,
+                                    trace = arguments.trace);
       elif metric == "mces":
-        score.mces.evaluate(gold, graphs,
-                            arguments.output, format = arguments.write,
-                            limit = arguments.limit,
-                            trace = arguments.trace);
+        result = score.mces.evaluate(gold, graphs,
+                                     format = arguments.write,
+                                     limit = arguments.limit,
+                                     trace = arguments.trace);
+      elif metric == "sdp":
+        result = score.sdp.evaluate(gold, graphs,
+                                    format = arguments.write,
+                                    trace = arguments.trace);
+      elif metric == "smatch":
+        result = score.smatch.evaluate(gold, graphs,
+                                       format = arguments.write,
+                                       trace = arguments.trace);
+      elif metric == "ucca":
+        result = score.ucca.evaluate(gold, graphs,
+                                     format = arguments.write,
+                                     trace = arguments.trace);
       else:  
         print("main.py(): invalid evaluation metric: {}; exit."
               "".format(arguments.score), file = sys.stderr);
         sys.exit(1);
+      if result is not None:
+        if arguments.write == "json" or True:
+          json.dump(result, arguments.output, indent = None);
+          print(file = arguments.output);
     sys.exit(0);
       
   for graph in graphs:

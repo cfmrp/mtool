@@ -1,7 +1,7 @@
 import numpy as np
 from operator import itemgetter
 from graph import Graph
-from score.core import intersect
+from score.core import fscore, intersect
 
 counter = 0
 
@@ -243,9 +243,25 @@ def is_injective(correspondence):
     return True
 
 
-def evaluate(gold, system, stream, format="json", limit=500000, trace=False):
+def evaluate(gold, system, format="json", limit=500000, trace=False):
+
     global counter
+
+    def update(total, counts):
+        for key in ("g", "s", "c"):
+            total[key] += counts[key];
+
+    def finalize(counts):
+        p, r, f = fscore(counts["g"], counts["s"], counts["c"]);
+        counts.update({"p": p, "r": r, "f": f});
+
     total_matches = total_steps = 0;
+    total_pairs = 0;
+    total_tops = {"g": 0, "s": 0, "c": 0}
+    total_labels = {"g": 0, "s": 0, "c": 0}
+    total_properties = {"g": 0, "s": 0, "c": 0}
+    total_anchors = {"g": 0, "s": 0, "c": 0}
+    total_edges = {"g": 0, "s": 0, "c": 0}
     verbose = 1 if trace else 0
     for g, s in intersect(gold, system):
         counter = 0
@@ -276,10 +292,30 @@ def evaluate(gold, system, stream, format="json", limit=500000, trace=False):
                 best_cv, best_ce = cv, ce
             i += 1
         total_matches += n_matched;
-        total_steps += counter
+        total_steps += counter;
+        tops, labels, properties, anchors, edges = g.score(s, best_cv);
+        update(total_tops, tops);
+        update(total_labels, labels);
+        update(total_properties, properties);
+        update(total_anchors, anchors);
+        update(total_edges, edges);
+        total_pairs += 1;
         if verbose:
             print("[{}] Number of edges in correspondence: {}".format(counter, n_matched))
             print("[{}] Total matches: {}".format(total_steps, total_matches));
+            print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}\nedges: {}"
+                  "".format(tops, labels, properties, anchors, edges));
             if verbose > 1:
                 print(best_cv)
                 print(best_ce)
+
+    total_all = {"g": 0, "s": 0, "c": 0};
+    for counts in [total_tops, total_labels, total_properties, total_anchors, total_edges]:
+        update(total_all, counts);
+        finalize(counts);
+    finalize(total_all);
+    return {"n": total_pairs,
+            "tops": total_tops, "labels": total_labels,
+            "properties": total_properties,
+            "anchors": total_anchors, "edges": total_edges,
+            "all": total_all};

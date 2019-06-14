@@ -19,7 +19,7 @@ def tuples(graph):
     arguments.add((identities[edge.src], identities[edge.tgt], edge.lab));
   return names, arguments, properties, tops;
 
-def evaluate(golds, systems, stream, format = "json", trace = False):
+def evaluate(golds, systems, format = "json", trace = False):
   tgn = tsn = tcn = 0;
   tga = tsa = tca = 0;
   tgt = tst = tct = 0;
@@ -55,4 +55,9 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
   result["tops"] = {"g": tgt, "s": tst, "c": tct, "p": p, "r": r, "f": f};
   p, r, f = fscore(tgp, tsp, tcp);
   result["properties"] = {"g": tgp, "s": tsp, "c": tcp, "p": p, "r": r, "f": f};
-  print(result, file = stream);
+  tga = tgn + tga + tgt + tgp;
+  tsa = tsn + tsa + tst + tsp;
+  tca = tcn + tca + tct + tcp;
+  p, r, f = fscore(tga, tsa, tca);
+  result["all"] = {"g": tga, "s": tsa, "c": tca, "p": p, "r": r, "f": f};
+  return result;

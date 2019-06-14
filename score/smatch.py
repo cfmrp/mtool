@@ -22,24 +22,23 @@ def tuples(graph, prefix):
     relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations;
         
-def evaluate(golds, systems, stream, format = "json", trace = None):
-  tg = ts = tm = n = 0;
+def evaluate(golds, systems, format = "json", trace = None):
+  tg = ts = tc = n = 0;
   gprefix = "g"; sprefix = "s";
   for gold, system in intersect(golds, systems):
     ginstances, gattributes, grelations = tuples(gold, gprefix);
     sinstances, sattributes, srelations = tuples(system, sprefix);
-    match, system, gold \
+    correct, system, gold \
       = get_amr_match(None, None, gold.id,
                       instance1 = ginstances, attributes1 = gattributes,
                       relation1 = grelations, prefix1 = gprefix,
                       instance2 = sinstances, attributes2 = sattributes,
                       relation2 = srelations, prefix2 = sprefix);
     if trace:
-      p, r, f = fscore(match, system, gold);
-      print("G: {}; S: {}; M: {}; P: {}; R: {}; F: {}"
-            "".format(gold, system, match, p, r, f), file = sys.stderr);
-    tg += gold; ts += system; tm += match;
+      p, r, f = fscore(gold, system, correct);
+      print("G: {}; S: {}; C: {}; P: {}; R: {}; F: {}"
+            "".format(gold, system, correct, p, r, f), file = sys.stderr);
+    tg += gold; ts += system; tc += correct;
     n += 1;
-  p, r, f = fscore(tg, ts, tm);
-  result = {"n": n, "p": p, "r": r, "f": f};
-  print(result, file = stream);
+  p, r, f = fscore(tg, ts, tc);
+  return {"n": n, "g": tg, "s": ts, "c": tc, "p": p, "r": r, "f": f};

@@ -47,6 +47,18 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
+    def anchoring(self):
+        #
+        # _fix_me_
+        # we should normalize further; see mtool issue #4
+        #
+        result = list();
+        if self.anchors is not None:
+            for span in self.anchors:
+                if "from" in span and "to" in span:
+                    result.append((span["from"], span["to"]));
+        return result;
+
     def compare(self, node):
         count1 = both = count2 = 0;
         if node is None:
@@ -324,6 +336,51 @@ class Graph(object):
                     else:
                         raise Exception("failed to anchor |{}| in |{}| ({})"
                                         "".format(form, self.input, i));
+
+    def score(self, graph, correspondences):
+        def tuples(graph, identities):
+            tops = set();
+            labels = set();
+            properties = set();
+            anchors = set();
+            edges = set();
+            for node in graph.nodes:
+                identity = identities[node.id];
+                if node.is_top: tops.add(identity);
+                if node.label is not None: labels.add((identity, node.label));
+                if node.properties is not None:
+                    for property, value in zip(node.properties, node.values):
+                        properties.add((identity, property, value));
+                if node.anchors is not None:
+                    anchors.add(tuple([identity] + node.anchoring()));
+            for edge in graph.edges:
+                edges.add((identities[edge.src], identities[edge.tgt], edge.lab));
+            return tops, labels, properties, anchors, edges;
+
+        def count(gold, system):
+            return {"g": len(gold), "s": len(system), "c": len(gold & system)};
+
+        identities1 = dict();
+        identities2 = dict();
+        for i, pair in enumerate(correspondences.items()):
+            identities1[self.nodes[pair[0]].id] = i;
+            if pair[1] >= 0:
+                identities2[graph.nodes[pair[1]].id] = i;
+        i = len(correspondences);
+        for node in self.nodes:
+            if node.id not in identities1:
+                identities1[node.id] = i;
+                i += 1;
+        for node in graph.nodes:
+            if node.id not in identities2:
+                identities2[node.id] = i;
+                i += 1;
+
+        gtops, glabels, gproperties, ganchors, gedges = tuples(self, identities1);
+        stops, slabels, sproperties, sanchors, sedges = tuples(graph, identities2);
+        return count(gtops, stops), count(glabels, slabels), \
+            count(gproperties, sproperties), \
+            count(ganchors, sanchors), count(gedges, sedges);
 
     def encode(self):
         json = {"id": self.id};
