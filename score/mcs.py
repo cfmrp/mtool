@@ -253,6 +253,7 @@ def evaluate(gold, system, stream, format = "json", trace = False):
 #            continue
         pairs, rewards = initial_match_making(g, s);
         if verbose:
+            print("\n\ngraph #{}".format(g.id));
             print("Number of gold nodes: {}".format(len(g.nodes)))
             print("Number of system nodes: {}".format(len(s.nodes)))
             print("Number of edges: {}".format(len(g.edges)))
