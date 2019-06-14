@@ -167,18 +167,6 @@ def splits(xs):
     # The source graph node is not mapped to any target graph node.
     yield -1, xs
 
-def guided_splits(source, nodes, pairs):
-    match = None;
-    for node1, node2 in pairs:
-        if node1 == source: match = node2;
-    if match is not None:
-        i = nodes.index(match);
-        yield match, nodes[:i] + nodes[i + 1:];
-    for i, node in enumerate(nodes):
-        if node is not match:
-            yield node, nodes[:i] + nodes[i + 1:];
-    yield -1, nodes;
-
 def sorted_splits(i, xs, rewards):
     sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
     yield from splits(sorted_xs)
@@ -193,9 +181,7 @@ def correspondences(graph1, graph2, pairs, rewards, verbose = 0):
     # Visit the source graph nodes in descending order of rewards.
 #    source_todo = sorted(graph1.nodes, key=lambda i: sum(rewards[i]), reverse=True)
     source_todo = [pair[0] for pair in pairs];
-#    todo = [(cv, ce, graph1.nodes, splits(graph2.nodes))]
     todo = [(cv, ce, source_todo, sorted_splits(source_todo[0], graph2.nodes, rewards))]
-#    todo = [(cv, ce, source_todo, guided_splits(source_todo[0], graph2.nodes, pairs))]
     n_matched = 0
     while todo and (limit is None or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
@@ -252,7 +238,7 @@ def is_injective(correspondence):
 
 def evaluate(gold, system, stream, format = "json", trace = False):
     global counter, limit;
-    limit = 100000;
+    limit = 500000;
     verbose = 1;
     for g, s in intersect(gold, system):
         counter = 0;
