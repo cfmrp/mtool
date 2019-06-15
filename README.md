@@ -21,6 +21,23 @@ a range of framework-specific graph similarity metrics, viz.
 + SMATCH Precision, Recall, and F1 ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
 + UCCA Labeled and Unlabeled Dependency F1 ([Hershcovich et al., 2019](https://www.aclweb.org/anthology/S19-2001)).
 
+The ‘official’ cross-framework metric for the MRP 2019 shared task is a generalization
+of the framework-specific metrics, considering all applicable ‘pieces of information’ (i.e.
+tuples representing basic structural elements) for each framework:
+
+1. top nodes;
+2. node labels;
+3. node properties;
+4. node anchoring;
+5. directed edges;
+6. edge labels; and
+7. edge properties.
+
+When comparing two graphs, node-to-node correspondences need to be established (via a
+potentially approximative search) to maximize the aggregate, unweighted score of all of the tuple
+types that apply for each specific framework.
+Directed edges and edge labels, however, are always considered in conjunction during
+this search.
 ```
 ./main.py --read mrp --score mces --gold data/sample/eds/wsj.mrp data/score/eds/wsj.pet.mrp
 {"n": 87,
@@ -58,23 +75,6 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
     "remote": {"g": 2629, "s": 1248, "c": 595,
                "p": 0.47676282051282054, "r": 0.22632179535945227, "f": 0.3069383543977302}}}
 ```
-
-The ‘official’ cross-framework metric for the MRP 2019 shared task will be a generalization
-of the framework-specific metrics, considering all applicable ‘pieces of information’ (i.e.
-tuples representing basic structural elements) for each framework:
-
-1. top nodes;
-2. node labels;
-3. node properties;
-4. node anchoring;
-5. directed edges;
-6. edge labels; and
-7. edge properties.
-
-When comparing two graphs, node-to-node correspondences need to be established (via a
-potentially approximative search) to maximize the aggregate, unweighted score of all of the tuple
-types that apply for each specific framework.
-Directed edges and edge labels, however, are always considered in conjunction.
 
 Analytics
 ---------
