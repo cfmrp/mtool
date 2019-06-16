@@ -153,7 +153,7 @@ if __name__ == "__main__":
           for key in result:
             if start: start = False;
             else: print(",\n ", file = arguments.output, end = ""     );
-            print("{}: ".format(key), file = arguments.output, end = "");
+            print("\"{}\": ".format(key), file = arguments.output, end = "");
             json.dump(result[key], arguments.output, indent = None);
           print("}", file = arguments.output);
     sys.exit(0);
