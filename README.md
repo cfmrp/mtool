@@ -48,10 +48,10 @@ this search.
  "edges": {"g": 2432, "s": 2439, "c": 2319, "p": 0.95079950799508, "r": 0.9535361842105263, "f": 0.952165879696161},
  "all": {"g": 7781, "s": 7803, "c": 7546, "p": 0.9670639497629117, "r": 0.9697982264490426, "f": 0.9684291581108829}}
 ```
-Albeit originally defined for one specific framework (EDS, DM and PSD, AMR, and UCCA, respectively),
+Albeit originally defined for one specific framework (EDS, DM and PSD, AMR, or UCCA, respectively),
 the non-MCES metrics are to some degree applicable to other frameworks too: the unified MRP representation
 of semantic graphs enables such cross-framework application, in principle, but this functionality
-remains largely untested so far.
+remains largely untested (as of June 2019).
 
 The `Makefile` in the `data/score/` sub-directory shows some example calls for the MRP scorer.
 As appropriate (e.g. for comparison to third-party results), it is possible to score graphs in
