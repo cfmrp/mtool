@@ -722,8 +722,11 @@ def generate_amr_lines(f1, f2):
 
 
 def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattribute=False, justrelation=False,
+                  limit = None,
                   instance1 = None, attributes1 = None, relation1 = None, prefix1 = None,
                   instance2 = None, attributes2 = None, relation2 = None, prefix2 = None):
+    global iteration_num
+    if limit is not None: iteration_num = limit
     if cur_amr1 and cur_amr2:
         amr_pair = []
         for i, cur_amr in (1, cur_amr1), (2, cur_amr2):

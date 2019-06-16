@@ -187,7 +187,7 @@ def sorted_splits(i, xs, rewards):
 # (graph1) and the target graph (graph2). This implements the
 # algorithm of McGregor (1982).
 
-def correspondences(graph1, graph2, pairs, rewards, limit=0, verbose=0):
+def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
     global counter
     index = dict()
     graph1 = InternalGraph(graph1, index)
@@ -205,26 +205,22 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, verbose=0):
         try:
             j, new_untried = next(untried)
             counter += 1
-            if verbose > 1:
-                print("({}:{}) ".format(i, j), end="")
+            if trace > 2: print("({}:{}) ".format(i, j), end="")
             new_cv = dict(cv)
             new_cv[i] = j
             new_ce, new_potential = update_edge_candidates(ce, i, j)
             if new_potential > n_matched:
                 new_source_todo = source_todo[1:]
                 if new_source_todo:
-                    if verbose > 1:
-                        print("> ", end="")
+                    if trace > 2: print("> ", end="")
                     todo.append((new_cv, new_ce, new_source_todo, sorted_splits(
                         new_source_todo[0], new_untried, rewards)))
                 else:
-                    if verbose > 1:
-                        print()
+                    if trace > 2: print()
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
-            if verbose > 1:
-                print("< ")
+            if trace > 2: print("< ")
             todo.pop()
 
 
@@ -243,9 +239,9 @@ def is_injective(correspondence):
     return True
 
 
-def evaluate(gold, system, format="json", limit=500000, trace=False):
+def evaluate(gold, system, format="json", limit=500000, trace=0):
 
-    global counter
+    global counter;
 
     def update(total, counts):
         for key in ("g", "s", "c"):
@@ -255,6 +251,8 @@ def evaluate(gold, system, format="json", limit=500000, trace=False):
         p, r, f = fscore(counts["g"], counts["s"], counts["c"]);
         counts.update({"p": p, "r": r, "f": f});
 
+    if not limit: limit = 500000;
+        
     total_matches = total_steps = 0;
     total_pairs = 0;
     total_tops = {"g": 0, "s": 0, "c": 0}
@@ -262,23 +260,21 @@ def evaluate(gold, system, format="json", limit=500000, trace=False):
     total_properties = {"g": 0, "s": 0, "c": 0}
     total_anchors = {"g": 0, "s": 0, "c": 0}
     total_edges = {"g": 0, "s": 0, "c": 0}
-    verbose = 1 if trace else 0
+    scores = dict() if trace else None
     for g, s in intersect(gold, system):
         counter = 0
-#        if len(s.nodes) > 10:
-#            continue
         pairs, rewards = initial_node_correspondences(g, s)
-        if verbose:
+        if trace > 1:
             print("\n\ngraph #{}".format(g.id))
             print("Number of gold nodes: {}".format(len(g.nodes)))
             print("Number of system nodes: {}".format(len(s.nodes)))
             print("Number of edges: {}".format(len(g.edges)))
-            if verbose > 1:
-                print("Rewards and Pairs:\n{}\n{}\n{}\n".format(rewards, pairs))
+            if trace > 2:
+                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
         n_matched = 0
         i = 0
         best_cv, best_ce = None, None
-        for cv, ce in correspondences(g, s, pairs, rewards, limit, verbose):
+        for cv, ce in correspondences(g, s, pairs, rewards, limit, trace):
             assert is_valid(ce)
             assert is_injective(ce)
             n = 0
@@ -286,7 +282,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=False):
                 for edge2 in ce[edge1]:
                     n += 1
             if n > n_matched:
-                if verbose:
+                if trace > 1:
                     print("\n[{}] solution #{}; matches: {}".format(counter, i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
@@ -294,18 +290,25 @@ def evaluate(gold, system, format="json", limit=500000, trace=False):
         total_matches += n_matched;
         total_steps += counter;
         tops, labels, properties, anchors, edges = g.score(s, best_cv);
+        if trace:
+            if g.id in scores:
+                print("mces.evaluate(): duplicate graph identifier: {}"
+                      "".format(gid), file = sys.stderr);
+            scores[g.id] = {"tops": tops, "labels": labels,
+                            "properties": properties, "anchors": anchors,
+                            "edges": edges};
         update(total_tops, tops);
         update(total_labels, labels);
         update(total_properties, properties);
         update(total_anchors, anchors);
         update(total_edges, edges);
         total_pairs += 1;
-        if verbose:
+        if trace > 1:
             print("[{}] Number of edges in correspondence: {}".format(counter, n_matched))
             print("[{}] Total matches: {}".format(total_steps, total_matches));
             print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}\nedges: {}"
                   "".format(tops, labels, properties, anchors, edges));
-            if verbose > 1:
+            if trace > 2:
                 print(best_cv)
                 print(best_ce)
 
@@ -314,8 +317,10 @@ def evaluate(gold, system, format="json", limit=500000, trace=False):
         update(total_all, counts);
         finalize(counts);
     finalize(total_all);
-    return {"n": total_pairs,
-            "tops": total_tops, "labels": total_labels,
-            "properties": total_properties,
-            "anchors": total_anchors, "edges": total_edges,
-            "all": total_all};
+    result = {"n": total_pairs,
+              "tops": total_tops, "labels": total_labels,
+              "properties": total_properties,
+              "anchors": total_anchors, "edges": total_edges,
+              "all": total_all};
+    if trace: result["scores"] = scores;
+    return result;

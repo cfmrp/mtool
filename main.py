@@ -64,7 +64,7 @@ if __name__ == "__main__":
   parser.add_argument("--gold", type = argparse.FileType("r"));
   parser.add_argument("--format");
   parser.add_argument("--score");
-  parser.add_argument("--limit", type = int, default = 500000);
+  parser.add_argument("--limit", type = int, default = 0);
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -72,7 +72,7 @@ if __name__ == "__main__":
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
-  parser.add_argument("--trace", action = "store_true");
+  parser.add_argument("--trace", "-t", action = "count", default = 0);
   parser.add_argument("input", nargs = "?",
                       type = argparse.FileType("r"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
@@ -131,6 +131,7 @@ if __name__ == "__main__":
       elif metric == "smatch":
         result = score.smatch.evaluate(gold, graphs,
                                        format = arguments.write,
+                                       limit = arguments.limit,
                                        trace = arguments.trace);
       elif metric == "ucca":
         result = score.ucca.evaluate(gold, graphs,
@@ -142,8 +143,14 @@ if __name__ == "__main__":
         sys.exit(1);
       if result is not None:
         if arguments.write == "json" or True:
-          json.dump(result, arguments.output, indent = None);
-          print(file = arguments.output);
+          print("{", file = arguments.output, end = "");
+          start = True;
+          for key in result:
+            if start: start = False;
+            else: print(",\n ", file = arguments.output, end = ""     );
+            print("{}: ".format(key), file = arguments.output, end = "");
+            json.dump(result[key], arguments.output, indent = None);
+          print("}", file = arguments.output);
     sys.exit(0);
       
   for graph in graphs:

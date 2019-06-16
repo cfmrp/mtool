@@ -14,7 +14,7 @@ class Measure(object):
         self.n_updates = 0
         self.n_matches = 0
 
-    def update(self, gold, system, gidentities, sidentities):
+    def update(self, gold, system, gidentities, sidentities, trace = 0):
         g_items = set(self.get_items(gold, gidentities))
         s_items = set(self.get_items(system, sidentities))
         self.g += len(g_items)
@@ -22,6 +22,9 @@ class Measure(object):
         self.c += len(g_items & s_items)
         self.n_updates += 1
         self.n_matches += g_items == s_items
+        if trace:
+            return {"g": len(g_items), "s": len(s_items),
+                    "c": len(g_items & s_items), "m": 1 if g_items == s_items else 0};
 
     def p(self):
         return self.c / self.s if self.s != 0 else 0.0
@@ -116,20 +119,29 @@ class Scorer(object):
     #     print(g.id)
     #     report_predications(self.complete_predications(g))
 
-    def update(self, g, s):
+    def update(self, g, s, trace):
         gidentities = {node.id: tuple(anchor(node)) for node in g.nodes}
         sidentities = {node.id: tuple(anchor(node)) for node in s.nodes}
-        for _, measure in self.measures:
-            measure.update(g, s, gidentities, sidentities)
+        scores = dict();
+        for key, measure in self.measures:
+            score = measure.update(g, s, gidentities, sidentities, trace)
+            if trace: scores[key] = score;
+        return scores;
 
-    def report(self):
-        json = {}
+    def report(self, n, scores = None):
+        json = {"n": n}
         for info, measure in self.measures:
             json[info] = measure.report()
+        if scores is not None: json["scores"] = scores
         return json
 
-def evaluate(gold, system, format = "json", trace = False):
+def evaluate(gold, system, format = "json", trace = 0):
     scorer = Scorer(include_virtual=True)
+    n = 0
+    scores = dict() if trace else None
     for g, s in intersect(gold, system):
-        scorer.update(g, s)
-    return scorer.report()
+        score = scorer.update(g, s, trace)
+        n += 1
+        if trace: scores[g.id] = score
+    result = scorer.report(n, scores)
+    return result

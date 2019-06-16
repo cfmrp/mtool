@@ -19,14 +19,14 @@ def tuples(graph):
       uprimary.add((source, target));
   return lprimary, lremote, uprimary, uremote;
 
-def evaluate(golds, systems, stream, format = "json", trace = False):
+def evaluate(golds, systems, format = "json", trace = 0):
   tglp = tslp = tclp = 0;
   tgup = tsup = tcup = 0;
   tglr = tslr = tclr = 0;
   tgur = tsur = tcur = 0;
   tp = tr = 0;
-  scores = [];
-  result = {"n": 0};
+  scores = dict() if trace else None;
+  result = {"n": 0, "labeled": dict(), "unlabeled": dict()};
 
   for gold, system in intersect(golds, systems):
     glprimary, glremote, guprimary, guremote = tuples(gold);
@@ -44,9 +44,17 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
     tglr += glr; tslr += slr; tclr += clr;
     tgur += gur; tsur += sur; tcur += cur;
     result["n"] += 1;
+    if trace:
+      if gold.id in scores:
+        print("ucca.evaluate(): duplicate graph identifier: {}"
+              "".format(gold.id), file = sys.stderr);
+      score = {"labeled": dict(), "unlabeled": dict()};
+      score["labeled"]["primary"] = {"g": glp, "s": slp, "c": clp};
+      score["labeled"]["remote"] = {"g": glr, "s": slr, "c": clr};
+      score["unlabeled"]["primary"] = {"g": gup, "s": sup, "c": cup};
+      score["unlabeled"]["remote"] = {"g": gur, "s": sur, "c": cur};
+      scores[gold.id] = score;
 
-  result["labeled"] = dict();
-  result["unlabeled"] = dict();
   p, r, f = fscore(tglp, tslp, tclp);
   result["labeled"]["primary"] = \
     {"g": tglp, "s": tslp, "c": tclp, "p": p, "r": r, "f": f};
@@ -59,4 +67,5 @@ def evaluate(golds, systems, stream, format = "json", trace = False):
   p, r, f = fscore(tgur, tsur, tcur);
   result["unlabeled"]["remote"] = \
     {"g": tgur, "s": tsur, "c": tcur, "p": p, "r": r, "f": f};
-  print(result, file = stream);
+  if trace: result["scores"] = scores;
+  return result;
