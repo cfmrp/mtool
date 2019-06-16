@@ -38,19 +38,23 @@ def read_graphs(stream, format = None,
     graphs = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
     graphs = codec.eds.read(stream, reify = reify, text = text);
+  elif format == "mrp":
+    graphs = codec.mrp.read(stream)
   elif format == "ucca":
     graphs = codec.ucca.read(stream, text = text, prefix = prefix);
   elif format == "conllu" or format == "ud":
     graphs = codec.conllu.read(stream, framework = format, text = text)
-  elif format == "mrp":
-    graphs = codec.mrp.read(stream)
-
+  else:
+    print("read_graphs(): invalid input codec {}; exit."
+          "".format(format), file = sys.stderr);
+    sys.exit(1);
+    
   if id is not None:
     graphs = [graph for graph in graphs if graph.id == id];
-  elif n is not None and n >= 1:
-    graphs = list(graphs)[0:n]
   elif i is not None and i >= 0:
     graphs = list(graphs)[i:i + 1];
+  elif n is not None and n >= 1:
+    graphs = list(graphs)[0:n]
   return graphs;
 
 if __name__ == "__main__":
@@ -64,6 +68,7 @@ if __name__ == "__main__":
   parser.add_argument("--gold", type = argparse.FileType("r"));
   parser.add_argument("--format");
   parser.add_argument("--score");
+  parser.add_argument("--validate");
   parser.add_argument("--limit", type = int, default = 0);
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
