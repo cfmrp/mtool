@@ -32,11 +32,10 @@ class InternalGraph():
             src = self.node2id[src]
             tgt = graph.find_node(edge.tgt)
             tgt = self.node2id[tgt]
+            self.edges.append((src, tgt, edge.lab))
             if edge.properties:
                 for prop, val in zip(edge.properties, edge.values):
-                    self.edges.append((src, tgt, (prop, val)))
-            else:
-                self.edges.append((src, tgt, None))
+                    self.edges.append((src, tgt, ("E", prop, val)))
         #
         # Build the pseudo-edges. These have target nodes that are
         # unique for the value of the label, anchor, property.
