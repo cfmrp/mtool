@@ -3,12 +3,12 @@
 
 import itertools
 import statistics
-import sys;
+import sys
 
-from graph import Graph;
+from graph import Graph
 from treewidth import quickbb
 
-        
+
 class DepthFirstSearch(object):
 
     def __init__(self, graph, undirected=False):
@@ -18,6 +18,7 @@ class DepthFirstSearch(object):
         self._enter = dict()
         self._leave = dict()
         self.n_runs = 0
+
         def compute_timestamps(node, timestamp):
             self._enter[node] = next(timestamp)
             for edge in self._graph.find_node(node).outgoing_edges:
@@ -39,6 +40,7 @@ class DepthFirstSearch(object):
             self._enter[edge.tgt] < self._enter[edge.src] and \
             self._leave[edge.src] < self._leave[edge.tgt]
 
+
 class InspectedGraph(object):
 
     def __init__(self, graph):
@@ -52,7 +54,7 @@ class InspectedGraph(object):
 
     def n_leaf_nodes(self):
         return sum(1 for node in self.graph.nodes if node.is_leaf())
-    
+
     def n_top_nodes(self):
         return sum(1 for node in self.graph.nodes if node.is_top())
 
@@ -122,13 +124,14 @@ class InspectedGraph(object):
         return True
 
     def is_page2(self):
-        crossing_graph = {u:set() for u in self._crossing_edges()}
+        crossing_graph = {u: set() for u in self._crossing_edges()}
         for edge1, edge2 in self._crossing_pairs():
             crossing_graph[edge1].add(edge2)
             crossing_graph[edge2].add(edge1)
 
         # Tests whether the specified undirected graph is 2-colorable.
         colors = {}
+
         def inner(node, color1, color2):
             colors[node] = color1
             for neighbour in crossing_graph[node]:
@@ -138,7 +141,7 @@ class InspectedGraph(object):
                 else:
                     inner(neighbour, color2, color1)
             return True
-        
+
         for node in crossing_graph:
             if node not in colors:
                 if not inner(node, 0, 1):
@@ -156,12 +159,16 @@ class InspectedGraph(object):
                     n_edges += 1
             return n_edges / (n_nodes - 1)
 
+
 PROPERTY_COUNTER = itertools.count(1)
+
 
 def report(msg, val):
     print("(%02d)\t%s\t%s" % (next(PROPERTY_COUNTER), msg, val))
 
-def analyze(graphs, ordered=False, ids=None):
+
+def analyze(graphs, ids=None):
+    ordered = False
     n_graphs = 0
     n_graphs_noncrossing = 0
     n_graphs_has_top_node = 0
@@ -189,7 +196,7 @@ def analyze(graphs, ordered=False, ids=None):
     for graph in graphs:
         if ids and not graph.id in ids:
             continue
-        
+
         n_graphs += 1
         n_nodes += len(graph.nodes)
         n_edges += len(graph.edges)
@@ -223,8 +230,8 @@ def analyze(graphs, ordered=False, ids=None):
                 else:
                     outgoing_labels.add(edge.lab)
             if not node.is_singleton() and node.is_root() and not node.is_top:
-                n_roots_nontop += 1  
-        
+                n_roots_nontop += 1
+
         n_cyclic += inspected_graph.is_cyclic()
         n_connected += inspected_graph.n_components() == 1
         n_forests += inspected_graph.is_forest()
@@ -233,10 +240,16 @@ def analyze(graphs, ordered=False, ids=None):
         n_treewidth_one += treewidth == 1
         treewidths.append(treewidth)
 
-        if ordered:
+        if graph.flavor == 0:
+            ordered = True
             n_graphs_noncrossing += inspected_graph.is_noncrossing()
             n_graphs_page2 += inspected_graph.is_page2()
             acc_edge_length += sum(edge.length() for edge in graph.edges)
+        else:
+            if ordered:
+                print(
+                    "analyzer.py: cannot mix graphs of different flavors in one file; exit.", file=sys.stderr)
+                sys.exit(1)
 
         n_graphs_has_top_node += has_top_node
         n_graphs_multirooted += inspected_graph.n_root_nodes() > 1
@@ -248,13 +261,15 @@ def analyze(graphs, ordered=False, ids=None):
 #    report("\\percentnode\\ singleton", "%.2f" % (100 * n_singletons / n_nodes))
 #    report("\\percentnode\\ non-singleton", "%.2f" % (100 * n_nonsingletons / n_nodes))
     report("\\percentgraph\\ trees", "%.2f" % (100 * n_trees / n_graphs))
-    report("\\percentgraph\\ treewidth one", "%.2f" % (100 * n_treewidth_one / n_graphs))
+    report("\\percentgraph\\ treewidth one", "%.2f" %
+           (100 * n_treewidth_one / n_graphs))
     report("average treewidth", "%.3f" % (acc_treewidth / n_graphs))
 #    report("median treewidth", "%d" % statistics.median(treewidths))
     report("maximal treewidth", "%d" % max_treewidth)
 #    report("edge density", "%.3f" % (n_edges / n_nonsingletons))
     report("average edge density", "%.3f" % (acc_density / n_graphs))
-    report("\\percentnode\\ reentrant", "%.2f" % (100 * n_nodes_with_reentrancies / n_nonsingletons))
+    report("\\percentnode\\ reentrant", "%.2f" %
+           (100 * n_nodes_with_reentrancies / n_nonsingletons))
 #    report("labels", " ".join(sorted(labels)))
 #    report("functional labels", " ".join(sorted(labels - non_functional_labels)))
 #    report("non-functional labels", " ".join(sorted(non_functional_labels)))
@@ -262,19 +277,25 @@ def analyze(graphs, ordered=False, ids=None):
 #    report("number of top nodes", "%d" % n_top_nodes)
     report("\\percentgraph\\ cyclic", "%.2f" % (100 * n_cyclic / n_graphs))
 #    report("number of self-loops", "%d" % n_loops)
-    report("\\percentgraph\\ not connected", "%.2f" % (100 * (n_graphs - n_connected) / n_graphs))
+    report("\\percentgraph\\ not connected", "%.2f" %
+           (100 * (n_graphs - n_connected) / n_graphs))
 #    report("\\percentgraph\\ without top", "%.2f" % (100 * (n_graphs - n_graphs_has_top_node) / n_graphs))
 #    report("average top nodes per graph", "%.3f" % (n_top_nodes / n_graphs))
-    report("\\percentgraph\\ multi-rooted", "%.2f" % (100 * n_graphs_multirooted / n_graphs))
-    report("percentage of non-top roots", "%.2f" % (100 * n_roots_nontop / n_nonsingletons))
+    report("\\percentgraph\\ multi-rooted", "%.2f" %
+           (100 * n_graphs_multirooted / n_graphs))
+    report("percentage of non-top roots", "%.2f" %
+           (100 * n_roots_nontop / n_nonsingletons))
     if ordered:
         report("average edge length", "%.3f" % (acc_edge_length / n_edges))
-        report("\\percentgraph\\ noncrossing", "%.2f" % (100 * n_graphs_noncrossing / n_graphs))
-        report("\\percentgraph\\ pagenumber two", "%.2f" % (100 * n_graphs_page2 / n_graphs))
+        report("\\percentgraph\\ noncrossing", "%.2f" %
+               (100 * n_graphs_noncrossing / n_graphs))
+        report("\\percentgraph\\ pagenumber two", "%.2f" %
+               (100 * n_graphs_page2 / n_graphs))
     else:
         report("average edge length", "--")
         report("\\percentgraph\\ noncrossing", "--")
         report("\\percentgraph\\ pagenumber two", "--")
+
 
 def read_ids(file_name):
     ids = set()
@@ -283,10 +304,12 @@ def read_ids(file_name):
             ids.add(line.rstrip())
     return ids
 
+
 def read_tokens(file_name):
     with open(file_name) as fp:
         for line in fp:
             yield line.split()
+
 
 def analyze_cmd(read_function, ordered=False):
     import sys
