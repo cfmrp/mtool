@@ -189,6 +189,7 @@ def sorted_splits(i, xs, rewards):
 
 def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
     global counter
+    bilexical = graph1.flavor == 0 and graph2.flavor == 0
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -204,6 +205,10 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
+            if bilexical and cv:
+                min_j = max(_j for _i, _j in cv.items() if _i < i) + 1
+                if j < min_j:
+                    continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="")
             new_cv = dict(cv)
