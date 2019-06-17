@@ -29,8 +29,13 @@ class InternalGraph():
         for i, edge in enumerate(graph.edges):
             self.id2edge[i] = edge
             src = graph.find_node(edge.src)
+            src = self.node2id[src]
             tgt = graph.find_node(edge.tgt)
-            self.edges.append((self.node2id[src], self.node2id[tgt]))
+            tgt = self.node2id[tgt]
+            self.edges.append((src, tgt, edge.lab))
+            if edge.properties:
+                for prop, val in zip(edge.properties, edge.values):
+                    self.edges.append((src, tgt, ("E", prop, val)))
         #
         # Build the pseudo-edges. These have target nodes that are
         # unique for the value of the label, anchor, property.
@@ -40,21 +45,21 @@ class InternalGraph():
         for i, node in enumerate(graph.nodes):
             # labels
             j = get_or_update(index, ("L", node.label))
-            self.edges.append((i, reindex(j)))
+            self.edges.append((i, reindex(j), None))
             # tops
             if node.is_top:
                 j = get_or_update(index, ("T"))
-                self.edges.append((i, reindex(j)))
+                self.edges.append((i, reindex(j), None))
             # anchors
             if node.anchors is not None:
                 for anchor in node.anchors:
                     j = get_or_update(index, ("A", anchor["from"], anchor["to"]))
-                    self.edges.append((i, reindex(j)))
+                    self.edges.append((i, reindex(j), None))
             # properties
             if node.properties:
                 for prop, val in zip(node.properties, node.values):
                     j = get_or_update(index, ("P", prop, val))
-                    self.edges.append((i, reindex(j)))
+                    self.edges.append((i, reindex(j), None))
 
 
 def initial_node_correspondences(graph1, graph2):
@@ -119,20 +124,22 @@ def initial_node_correspondences(graph1, graph2):
 
 def make_edge_candidates(graph1, graph2):
     candidates = dict()
-    for edge1 in graph1.edges:
-        src1, tgt1 = edge1
+    for raw_edge1 in graph1.edges:
+        src1, tgt1, lab1 = raw_edge1
+        edge1 = src1, tgt1
         candidates[edge1] = set()
-        for edge2 in graph2.edges:
-            src2, tgt2 = edge2
+        for raw_edge2 in graph2.edges:
+            src2, tgt2, lab2 = raw_edge2
+            edge2 = src2, tgt2
             if tgt1 < 0:
                 # Edge edge1 is a pseudoedge. This can only map to
                 # another pseudoedge pointing to the same pseudonode.
-                if tgt2 == tgt1:
+                if tgt2 == tgt1 and lab1 == lab2:
                     candidates[edge1].add(edge2)
             else:
                 # Edge edge1 is a real edge. This can only map to
                 # another real edge.
-                if tgt2 >= 0:
+                if tgt2 >= 0 and lab1 == lab2:
                     candidates[edge1].add(edge2)
     return candidates
 
