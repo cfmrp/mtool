@@ -31,7 +31,7 @@ tuples representing basic structural elements) for each framework:
 4. node anchoring;
 5. directed edges;
 6. edge labels; and
-7. edge properties.
+7. edge attributes.
 
 When comparing two graphs, node-to-node correspondences need to be established (via a
 potentially approximative search) to maximize the aggregate, unweighted score of all of the tuple
