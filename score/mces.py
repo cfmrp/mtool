@@ -68,9 +68,9 @@ def initial_node_correspondences(graph1, graph2):
     # graphs correspond by position into the .nodes. list
     #
     rewards = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                       dtype=np.int8);
+                       dtype=np.int);
     edges = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                     dtype=np.int8);
+                     dtype=np.int);
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):
@@ -92,41 +92,22 @@ def initial_node_correspondences(graph1, graph2):
                             edges[i, j] += 1;
             queue.append((rewards[i, j], edges[i, j],
                           i, j if node2 is not None else None));
-    if False:
-        pairs = [];
-        sources = set();
-        targets = set();
-        for _, _, i, j in sorted(queue, key = itemgetter(0, 1), reverse = True):
-            if i not in sources and j not in targets:
-                pairs.append((i, j));
-                sources.add(i);
-                if j is not None: targets.add(j);
-        #
-        # adjust rewards to use edge potential as a secondary key; maybe
-        # we should rather pass around edges and adjust sorted_slits()?
-        #
-        for i in range(rewards.shape[0]):
-            for j in range(rewards.shape[1]):
-                rewards[i, j] = 10 * rewards[i, j] + edges[i, j];
-#        print(rewards)
-#        print(pairs)
-        return pairs, rewards;
     pairs = [];
-    used = set();
-    bottom = rewards.min() - 1;
-    top = rewards.max();
-    copy = np.array(rewards);
-    while top > bottom:
-        i, j = np.unravel_index(copy.argmax(), copy.shape);
-        copy[i] = bottom;
-        copy[:, j] = bottom;
-        pairs.append((i, j if j < len(graph2.nodes) else None));
-        used.add(i);
-        top = copy.max();
-    for i in range(len(graph1.nodes)):
-        if i not in used:
-            pairs.append((i, None));
-            used.add(i);
+    sources = set();
+    targets = set();
+    for _, _, i, j in sorted(queue, key = itemgetter(0, 1), reverse = True):
+        if i not in sources and j not in targets:
+            pairs.append((i, j));
+            sources.add(i);
+            if j is not None: targets.add(j);
+    #
+    # adjust rewards to use edge potential as a secondary key; maybe
+    # we should rather pass around edges and adjust sorted_slits()?
+    # for even better initialization, consider edge attributes too?
+    #
+    for i in range(rewards.shape[0]):
+        for j in range(rewards.shape[1]):
+            rewards[i, j] = 10 * rewards[i, j] + edges[i, j];
     return pairs, rewards;
 
 
