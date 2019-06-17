@@ -86,6 +86,10 @@ def initial_node_correspondences(graph1, graph2):
                            and edge2.src == node2.id \
                            and edge1.lab == edge2.lab:
                             edges[i, j] += 1;
+                        if edge1.tgt == node1.id \
+                           and edge2.tgt == node2.id \
+                           and edge1.lab == edge2.lab:
+                            edges[i, j] += 1;
             queue.append((rewards[i, j], edges[i, j],
                           i, j if node2 is not None else None));
     if False:
@@ -97,7 +101,15 @@ def initial_node_correspondences(graph1, graph2):
                 pairs.append((i, j));
                 sources.add(i);
                 if j is not None: targets.add(j);
-        print(pairs);
+        #
+        # adjust rewards to use edge potential as a secondary key; maybe
+        # we should rather pass around edges and adjust sorted_slits()?
+        #
+        for i in range(rewards.shape[0]):
+            for j in range(rewards.shape[1]):
+                rewards[i, j] = 10 * rewards[i, j] + edges[i, j];
+#        print(rewards)
+#        print(pairs)
         return pairs, rewards;
     pairs = [];
     used = set();
