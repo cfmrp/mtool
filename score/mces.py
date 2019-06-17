@@ -55,6 +55,11 @@ class InternalGraph():
                 for prop, val in zip(node.properties, node.values):
                     j = get_or_update(index, ("P", prop, val))
                     self.edges.append((i, reindex(j)))
+        for i, edge in enumerate(graph.edges):
+            if edge.properties:
+                for prop, val in zip(edge.properties, edge.values):
+                    j = get_or_update(index, ("E", prop, val, edge.lab))
+                    self.edges.append((i, reindex(j)))
 
 
 def initial_node_correspondences(graph1, graph2):
