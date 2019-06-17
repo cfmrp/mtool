@@ -85,6 +85,25 @@ random restarts, respectively, to attempt during the search (with defaults `5000
 Analytics
 ---------
 
+[Kuhlmann & Oepen (2016)](http://www.mitpressjournals.org/doi/pdf/10.1162/COLI_a_00268) discuss a range of structural graph statistics; `mtool` integrates their original code, e.g.
+```
+./main.py --read mrp --analyze data/sample/amr/wsj.mrp 
+(01)	number of graphs	87
+(02)	number of edge labels	52
+(03)	\percentgraph\ trees	51.72
+(04)	\percentgraph\ treewidth one	51.72
+(05)	average treewidth	1.494
+(06)	maximal treewidth	3
+(07)	average edge density	1.050
+(08)	\percentnode\ reentrant	4.24
+(09)	\percentgraph\ cyclic	13.79
+(10)	\percentgraph\ not connected	0.00
+(11)	\percentgraph\ multi-rooted	0.00
+(12)	percentage of non-top roots	0.00
+(13)	average edge length	--
+(14)	\percentgraph\ noncrossing	--
+(15)	\percentgraph\ pagenumber two	--
+```
 
 Validation
 ----------
