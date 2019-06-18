@@ -148,3 +148,26 @@ position into the sequence of graphs read from the file, or using the first _n_
 graphs.
 These options cannot be combined with each other and take precendence over each
 other in the above order.
+
+
+Installation via pip
+--------------------
+
+You can install mtool via pip with the following command.
+
+```
+pip install git+https://github.com/cfmrp/mtool.git
+```
+
+Afterward, you can use each module that mtool provide or run CLI using `mtool` command.
+
+```
+mtool --read mrp --score mces --gold data/sample/eds/wsj.mrp data/score/eds/wsj.pet.mrp
+{"n": 87,
+ "tops": {"g": 87, "s": 87, "c": 85, "p": 0.9770114942528736, "r": 0.9770114942528736, "f": 0.9770114942528736},
+ "labels": {"g": 2500, "s": 2508, "c": 2455, "p": 0.9788676236044657, "r": 0.982, "f": 0.9804313099041533},
+ "properties": {"g": 262, "s": 261, "c": 257, "p": 0.9846743295019157, "r": 0.9809160305343512, "f": 0.982791586998088},
+ "anchors": {"g": 2500, "s": 2508, "c": 2430, "p": 0.9688995215311005, "r": 0.972, "f": 0.9704472843450479},
+ "edges": {"g": 2432, "s": 2439, "c": 2319, "p": 0.95079950799508, "r": 0.9535361842105263, "f": 0.952165879696161},
+ "all": {"g": 7781, "s": 7803, "c": 7546, "p": 0.9670639497629117, "r": 0.9697982264490426, "f": 0.9684291581108829}}
+```
