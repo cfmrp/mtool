@@ -58,10 +58,13 @@ def amr2graph(id, amr, full = False, reify = False):
             graph.add_edge(node2id[src], node2id[tgt], label, normal)
     return graph
 
-def convert_wsj_id(id):
+def convert_amr_id(id):
     m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id)
     if m:
         return "2%04d%03d" % (int(m.group(1)), int(m.group(2)))
+    m = re.search(r'lpp_1943\.([0-9]+)', id)
+    if m:
+        return "1%04d0" % (int(m.group(1)))
     else:
         raise Exception('Could not convert id: %s' % id)
 
@@ -74,7 +77,7 @@ def read(fp, full = False, reify = False, text = None):
                             "".format(id, amr_line));
         try:
             if id is not None:
-                id = convert_wsj_id(id)
+                id = convert_amr_id(id)
             else:
                 id = n;
                 n += 1;
