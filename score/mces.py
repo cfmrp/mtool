@@ -206,8 +206,8 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
         try:
             j, new_untried = next(untried)
             if bilexical and cv:
-                min_j = max(_j for _i, _j in cv.items() if _i < i) + 1
-                if j < min_j:
+                js = [_j for _i, _j in cv.items() if _i < i]
+                if js and j >= 0 and j < max(js) + 1:
                     continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="")
