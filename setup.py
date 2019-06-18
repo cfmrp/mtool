@@ -4,22 +4,22 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-exec(open('_version.py').read())
+exec(open('version.py').read())
 release = __version__
 version = '.'.join(release.split('.')[:2])
 
 
 setuptools.setup(
     name="mtool",
-    version="0.1",
-    author="Stephan Oepen",
-    author_email="oe@ifi.uio.no",
-    description="Software to Manipulate Different Flavors of Semantic Graphs",
+    version="0.0.1",
+    author="Stephan Oepen <oe@ifi.uio.no>, Marco Kuhlmann <marco.kuhlmann@liu.se>, Daniel Hershcovich <daniel.hershcovich@mail.huji.ac.il >",
+    author_email="mrp-organizers@nlpl.eu",
+    description="The Swiss Army Knife of Meaning Representation",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cfmrp/mtool",
     packages=setuptools.find_packages(),
-    py_modules=["graph", "analyzer", "treewidth", 'main', '_version'],
+    py_modules=["graph", "analyzer", "treewidth", 'main', 'version'],
     license='LGPL-3.0',
     install_requires=[
         'numpy',

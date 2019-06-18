@@ -10,7 +10,6 @@ import sys;
 from analyzer import analyze;
 from graph import Graph;
 
-from _version import __version__
 import codec.amr;
 import codec.conllu;
 import codec.eds;
@@ -22,6 +21,8 @@ import score.mces;
 import score.sdp;
 import score.smatch;
 import score.ucca;
+
+from version import __version__;
 
 __author__ = "oe"
 
@@ -67,7 +68,6 @@ def read_graphs(stream, format = None,
 
   return graphs;
 
-
 def main():
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
   parser.add_argument("--analyze", action = "store_true");
@@ -211,4 +211,4 @@ def main():
 
 
 if __name__ == "__main__":
-  main()
+  main();
