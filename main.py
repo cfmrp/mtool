@@ -32,7 +32,7 @@ def read_graphs(stream, format = None,
 
   graphs = None;
   if format == "amr":
-    graphs = codec.amr.read(stream, full = full, normalize = normalize,
+    graphs = codec.amr.read(stream, full = full,
                             reify = reify, text = text);
   elif format in {"ccd", "dm", "pas", "psd"}:
     graphs = codec.sdp.read(stream, framework = format, text = text);
@@ -48,13 +48,22 @@ def read_graphs(stream, format = None,
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
     sys.exit(1);
-    
+
+  #
+  # for now, break out of the generators, for downstream simplicity
+  #
+  graphs = list(graphs);
+  
   if id is not None:
     graphs = [graph for graph in graphs if graph.id == id];
   elif i is not None and i >= 0:
-    graphs = list(graphs)[i:i + 1];
+    graphs = graphs[i:i + 1];
   elif n is not None and n >= 1:
-    graphs = list(graphs)[0:n]
+    graphs = graphs[0:n]
+
+  if normalize:
+    for graph in graphs: graph.normalize();
+
   return graphs;
 
 if __name__ == "__main__":
@@ -97,13 +106,33 @@ if __name__ == "__main__":
     elif path.is_dir():
       text = path;
 
+  if arguments.read not in {"ccd", "dm", "pas", "psd",
+                            "eds", "ucca",
+                            "amr",
+                            "conllu", "ud"}:
+    print("main.py(): invalid input format: {}; exit."
+          "".format(arguments.read), file = sys.stderr);
+    sys.exit(1);
+
+  if arguments.write is not None and \
+     arguments.write not in {"dot", "id", "json", "mrp", "txt"}:
+    print("main.py(): invalid output format: {}; exit."
+          "".format(arguments.write), file = sys.stderr);
+    sys.exit(1);
+    
+  if arguments.score is not None and \
+     arguments.score not in {"mces", "sdp", "edm", "ucca", "smatch"}:
+    print("main.py(): invalid evaluation metric: {}; exit."
+          "".format(arguments.score), file = sys.stderr);
+    sys.exit(1);
+
   graphs = read_graphs(arguments.input, format = arguments.read,
-                       full = arguments.full, normalize = arguments.normalize,
+                       full = arguments.full,
+                       normalize = arguments.normalize or arguments.score is not None,
                        reify = arguments.reify, text = text,
                        id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
-    print("main.py(): invalid input format: {}; exit."
-          "".format(arguments.read), file = sys.stderr);
+    print("main.py(): unable to read input graph; exit.", file = sys.stderr);
     sys.exit(1);
 
   if arguments.analyze:
@@ -112,11 +141,10 @@ if __name__ == "__main__":
   if arguments.gold and arguments.score:
     if arguments.format is None: arguments.format = arguments.read;
     gold = read_graphs(arguments.gold, format = arguments.format,
-                       full = arguments.full, normalize = arguments.normalize,
+                       full = arguments.full, normalize = True,
                        reify = arguments.reify, text = text);
     if not gold:
-      print("main.py(): invalid gold format: {}; exit."
-            "".format(arguments.read), file = sys.stderr);
+      print("main.py(): unable to read gold graphs: {}; exit.", file = sys.stderr);
       sys.exit(1);
     for metric in arguments.score.split(","):
       result = None;
@@ -142,10 +170,7 @@ if __name__ == "__main__":
         result = score.ucca.evaluate(gold, graphs,
                                      format = arguments.write,
                                      trace = arguments.trace);
-      else:  
-        print("main.py(): invalid evaluation metric: {}; exit."
-              "".format(arguments.score), file = sys.stderr);
-        sys.exit(1);
+
       if result is not None:
         if arguments.write == "json" or True:
           print("{", file = arguments.output, end = "");

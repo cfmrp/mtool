@@ -196,6 +196,14 @@ class Edge(object):
     def length(self):
         return self.max() - self.min()
 
+    def normalize(self):
+        if self.normal:
+            target = self.src;
+            self.src = self.tgt;
+            self.tgt = target;
+            self.lab = self.normal;
+            self.normal = None;
+            
     def encode(self):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
         if self.normal:
@@ -337,6 +345,10 @@ class Graph(object):
                         raise Exception("failed to anchor |{}| in |{}| ({})"
                                         "".format(form, self.input, i));
 
+    def normalize(self):
+        for edge in self.edges:
+            edge.normalize();
+            
     def score(self, graph, correspondences):
         def tuples(graph, identities):
             tops = set();
@@ -356,7 +368,7 @@ class Graph(object):
             for edge in graph.edges:
                 #
                 # _fix_me_
-                # still need to normalize inverted edges here
+                # still need to normalize inverted edges and treat attributes
                 #
                 edges.add((identities[edge.src], identities[edge.tgt], edge.lab));
             return tops, labels, properties, anchors, edges;

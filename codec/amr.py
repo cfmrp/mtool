@@ -21,7 +21,7 @@ def amr_lines(fp):
             else:
                 lines.append(line)
 
-def amr2graph(id, amr, full = False, normalize = False, reify = False):
+def amr2graph(id, amr, full = False, reify = False):
     graph = Graph(id, flavor = 2, framework = "amr")
     node2id = {}
     i = 0
@@ -55,10 +55,7 @@ def amr2graph(id, amr, full = False, normalize = False, reify = False):
                  or label.endswith("-of") and label not in {"consist-of" "subset-of"} \
                    and not label.startswith("prep-"):
                 normal = label[:-3];
-            if normalize and normal:
-                graph.add_edge(node2id[tgt], node2id[src], normal)
-            else:
-                graph.add_edge(node2id[src], node2id[tgt], label, normal)
+            graph.add_edge(node2id[src], node2id[tgt], label, normal)
     return graph
 
 def convert_wsj_id(id):
@@ -68,17 +65,22 @@ def convert_wsj_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp, full = False, normalize = False, reify = False, text = None):
+def read(fp, full = False, reify = False, text = None):
+    n = 0;
     for id, snt, amr_line in amr_lines(fp):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
                             "".format(id, amr_line));
         try:
-            id = convert_wsj_id(id)
+            if id is not None:
+                id = convert_wsj_id(id)
+            else:
+                id = n;
+                n += 1;
         except:
             pass
-        graph = amr2graph(id, amr, full, normalize, reify);
+        graph = amr2graph(id, amr, full, reify);
         cid = None;
         if text:
             graph.add_input(text);

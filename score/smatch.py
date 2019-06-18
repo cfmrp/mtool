@@ -32,9 +32,9 @@ def evaluate(golds, systems, format = "json", limit = 5, trace = 0):
     ginstances, gattributes, grelations = tuples(gold, gprefix);
     sinstances, sattributes, srelations = tuples(system, sprefix);
     if trace > 1:
-      print("gold instances: {}\ngold attributes {}\ngold relations: {}"
+      print("gold instances: {}\ngold attributes: {}\ngold relations: {}"
             "".format(ginstances, gattributes, grelations));
-      print("system instances: {}\nsystem attributes {}\nsystem relations: {}"
+      print("system instances: {}\nsystem attributes: {}\nsystem relations: {}"
             "".format(sinstances, sattributes, srelations));
     correct, gold, system \
       = get_amr_match(None, None, gold.id, limit = limit,
