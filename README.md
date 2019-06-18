@@ -158,3 +158,8 @@ You can install `mtool` via `pip` with a command like the following:
 ```
 pip install git+https://github.com/cfmrp/mtool.git
 ```
+
+Contributors
+------------
+
++ Yuta Korreda <yuta.koreeda.pb@hitachi.com> (@koreyou)

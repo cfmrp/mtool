@@ -12,7 +12,7 @@ version = '.'.join(release.split('.')[:2])
 setuptools.setup(
     name="mtool",
     version="0.0.1",
-    author="Stephan Oepen <oe@ifi.uio.no>, Marco Kuhlmann <marco.kuhlmann@liu.se>, Daniel Hershcovich <daniel.hershcovich@mail.huji.ac.il >",
+    author="Stephan Oepen <oe@ifi.uio.no>, Marco Kuhlmann <marco.kuhlmann@liu.se>, Daniel Hershcovich <daniel.hershcovich@mail.huji.ac.il>, Tim O'Gorman <timjogorman@gmail.com>",
     author_email="mrp-organizers@nlpl.eu",
     description="The Swiss Army Knife of Meaning Representation",
     long_description=long_description,
