@@ -79,8 +79,8 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
 (indexed by graph identifiers).
 For MCES and SMATCH, the `--limit` option controls the maximum number of node pairings or
-random restarts, respectively, to attempt during the search (with defaults `500000` and
-`5`, respectively).
+hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
+and `5`, respectively).
 
 Analytics
 ---------
@@ -118,7 +118,7 @@ Among its options for format coversion, `mtool` supports output of graphs to the
 ./main.py --id 20001001 --read mrp --write dot data/sample/eds/wsj.mrp 20001001.dot
 dot -Tpdf 20001001.dot > 20001001.pdf
 ```
-When converting from token-based file format that may lack either the underlying
+When converting from token-based file formats that may lack either the underlying
 ‘raw’ input string, character-based anchoring, or both, the `--text` command-line
 option will enable recovery of inputs and attempt to determine anchoring.
 Its argument must be a file containing pairs of identifiers and input strings, one
@@ -126,7 +126,7 @@ per line, separated by a tabulator, e.g.
 ```
 ./main.py --id 20012005 --text data/sample/wsj.txt --read dm --write dot data/sample/psd/wsj.sdp 20012005.dot
 ```
-For increased visibility, the `--strings` option can replace character-based
+For increased readability, the `--strings` option can replace character-based
 anchors with the corresponding sub-string from the `input` field of the graph
 (currently only for the DOT output format), e.g.
 ```
