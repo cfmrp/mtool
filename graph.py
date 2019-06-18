@@ -47,6 +47,20 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
+    def normalize(self, actions):
+        punctuation = {".", "?", "!", ";", ",", ":",
+                       "“", "\"", "”", "‘", "'", "’",
+                       "(", ")", "[", "]", "{", "}"};
+        def trim(string, start, end):
+            while start < end and string[start] in punctuation:
+                start += 1;
+            while end > start and string[end] in punctuation:
+                end -= 1;
+            return start, end;
+        
+#        if self.anchors and "anchors" in actions:
+#            for anchor in anchors:
+                
     def anchoring(self):
         #
         # _fix_me_
@@ -85,8 +99,10 @@ class Node(object):
             if node.properties is None:
                 count1 += len(self.properties);
             else:
-                properties1 = {(property, self.values[i]) for i, property in enumerate(self.properties)};
-                properties2 = {(property, node.values[i]) for i, property in enumerate(node.properties)};
+                properties1 = {(property, self.values[i])
+                               for i, property in enumerate(self.properties)};
+                properties2 = {(property, node.values[i])
+                               for i, property in enumerate(node.properties)};
                 n = len(properties1 & properties2);
                 count1 += len(properties1) - n;
                 both += n;
@@ -368,9 +384,10 @@ class Graph(object):
             for edge in graph.edges:
                 #
                 # _fix_me_
-                # still need to normalize inverted edges and treat attributes
+                # still need to treat attributes
                 #
-                edges.add((identities[edge.src], identities[edge.tgt], edge.lab));
+                edges.add((identities[edge.src], identities[edge.tgt],
+                           edge.lab));
             return tops, labels, properties, anchors, edges;
 
         def count(gold, system):
@@ -392,8 +409,10 @@ class Graph(object):
                 identities2[node.id] = i;
                 i += 1;
 
-        gtops, glabels, gproperties, ganchors, gedges = tuples(self, identities1);
-        stops, slabels, sproperties, sanchors, sedges = tuples(graph, identities2);
+        gtops, glabels, gproperties, ganchors, gedges \
+            = tuples(self, identities1);
+        stops, slabels, sproperties, sanchors, sedges \
+            = tuples(graph, identities2);
         return count(gtops, stops), count(glabels, slabels), \
             count(gproperties, sproperties), \
             count(ganchors, sanchors), count(gedges, sedges);
@@ -424,10 +443,12 @@ class Graph(object):
         graph.input = json.get("input", None)
         for j in json["nodes"]:
             node = Node.decode(j)
-            graph.add_node(node.id, node.label, node.properties, node.values, node.anchors, top = False)
+            graph.add_node(node.id, node.label, node.properties,
+                           node.values, node.anchors, top = False)
         for j in json["edges"]:
             edge = Edge.decode(j)
-            graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal, edge.properties, edge.values)
+            graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
+                           edge.properties, edge.values)
         tops = json.get("tops", [])
         for i in tops:
             graph.find_node(i).is_top = True
