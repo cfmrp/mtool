@@ -78,7 +78,7 @@ def main():
   parser.add_argument("--gold", type = argparse.FileType("r"));
   parser.add_argument("--format");
   parser.add_argument("--score");
-  parser.add_argument("--validate");
+  parser.add_argument("--validate", action = "append", default = []);
   parser.add_argument("--limit", type = int, default = 0);
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
@@ -157,6 +157,19 @@ def main():
   if not graphs:
     print("main.py(): unable to read input graph; exit.", file = sys.stderr);
     sys.exit(1);
+
+  validate = [];
+  for action in arguments.validate:
+    if action in {"edges"}:
+      validate.append(action);
+    else:
+      print("main.py(): invalid type of validation: {}; exit."
+            "".format(action), file = sys.stderr);
+      sys.exit(1);
+
+  if validate:
+    for graph in graphs:
+      graph.validate(validate);
 
   if arguments.analyze:
     analyze(graphs);

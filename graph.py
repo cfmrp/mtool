@@ -13,6 +13,14 @@ import sys;
 
 from treewidth import quickbb
 
+def report(graph, message, node = None, edge = None, stream = sys.stderr):
+    if node: node = "; node #{}".format(node.id);
+    if edge:
+        edge = "; edge {} --{}-> {}".format(edge.src, edge.tgt,
+                                            edge.lab if edge.lab else "");
+    print("validate(): graph ‘{}’{}{}: {}"
+          "".format(graph.id, node, edge, message), file = stream);
+
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
@@ -193,7 +201,7 @@ class Node(object):
 
     def __hash__(self):
         return hash(self.__key())
-
+
 class Edge(object):
 
     def __init__(self, src, tgt, lab, normal = None,
@@ -277,7 +285,7 @@ class Edge(object):
 
     def __hash__(self):
         return hash(self.__key())
-
+
 class Graph(object):
 
     def __init__(self, id, flavor = None, framework = None):
@@ -378,7 +386,23 @@ class Graph(object):
             node.normalize(actions, self.input);
         for edge in self.edges:
             edge.normalize(actions);
-            
+        if "edges" in actions:
+            for node in self.nodes:
+                node.outgoing_edges.clear();
+                node.incoming_edges.clear();
+            for edge in self.edges:
+                self.find_node(edge.src).outgoing_edges.add(edge);
+                self.find_node(edge.tgt).incoming_edges.add(edge);
+
+    def validate(self, actions):
+        nodes = {node.id: node for node in self.nodes};
+        if "edges" in actions:
+            for edge in self.edges:
+                if edge.src not in nodes:
+                    report(graph, node, edge, "invalid source");
+                    if edge.tgt not in nodes:
+                        report(graph, node, edge, "invalid target");
+
     def score(self, graph, correspondences):
         def tuples(graph, identities):
             tops = set();
