@@ -128,6 +128,16 @@ def main():
           "".format(arguments.score), file = sys.stderr);
     sys.exit(1);
 
+  if arguments.format and \
+     arguments.format not in {"mrp",
+                              "ccd", "dm", "pas", "psd",
+                              "eds", "ucca",
+                              "amr",
+                              "conllu", "ud"}:
+    print("main.py(): invalid gold format: {}; exit."
+          "".format(arguments.read), file = sys.stderr);
+    sys.exit(1);
+
   if arguments.score is not None:
     normalize = ["anchors", "edges"];
   else:

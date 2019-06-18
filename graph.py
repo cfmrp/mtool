@@ -47,20 +47,28 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
-    def normalize(self, actions):
+    def normalize(self, actions, input = None):
         punctuation = {".", "?", "!", ";", ",", ":",
                        "“", "\"", "”", "‘", "'", "’",
-                       "(", ")", "[", "]", "{", "}"};
-        def trim(string, start, end):
-            while start < end and string[start] in punctuation:
-                start += 1;
-            while end > start and string[end] in punctuation:
-                end -= 1;
-            return start, end;
-        
-#        if self.anchors and "anchors" in actions:
-#            for anchor in anchors:
-                
+                       "(", ")", "[", "]", "{", "}",
+                       " ", "\t", "\n", "\f"};
+        def trim(anchor, input):
+            if "from" in anchor and "to" in anchor:
+                i = anchor["from"];
+                j = anchor["to"];
+                while i < j and input[i] in punctuation: i += 1;
+                while j > i and input[j - 1] in punctuation: j -= 1;
+                if False and (i != anchor["from"] or j != anchor["to"]):
+                    print("{} ({})--> <{}:{}> ({})"
+                          "".format(anchor,
+                                    input[anchor["from"]:anchor["to"]],
+                                    i, j, input[i:j]));
+                anchor["from"] = i;
+                anchor["to"] = j;
+
+        if self.anchors and input and "anchors" in actions:
+            for anchor in self.anchors: trim(anchor, input);
+
     def anchoring(self):
         #
         # _fix_me_
@@ -362,6 +370,8 @@ class Graph(object):
                                         "".format(form, self.input, i));
 
     def normalize(self, actions):
+        for node in self.nodes:
+            node.normalize(actions, self.input);
         for edge in self.edges:
             edge.normalize(actions);
             
