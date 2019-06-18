@@ -790,6 +790,7 @@ def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattrib
     else:
         test_triple_num = len(instance1) + len(attributes1) + len(relation1)
         gold_triple_num = len(instance2) + len(attributes2) + len(relation2)
+    match_triple_dict.clear()
     return best_match_num, test_triple_num, gold_triple_num
 
 
