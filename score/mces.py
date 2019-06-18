@@ -335,7 +335,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
     result = {"n": total_pairs,
               "tops": total_tops, "labels": total_labels,
               "properties": total_properties, "anchors": total_anchors,
-              "edges": total_edges, "attributes": attributes,
+              "edges": total_edges, "attributes": total_attributes,
               "all": total_all};
     if trace: result["scores"] = scores;
     return result;
