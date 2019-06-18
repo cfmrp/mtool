@@ -10,6 +10,7 @@ import sys;
 from analyzer import analyze;
 from graph import Graph;
 
+from _version import __version__
 import codec.amr;
 import codec.conllu;
 import codec.eds;
@@ -23,8 +24,8 @@ import score.smatch;
 import score.ucca;
 
 __author__ = "oe"
-__version__ = "0.1"
-
+
+
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 prefix = None, text = None,
@@ -66,8 +67,8 @@ def read_graphs(stream, format = None,
 
   return graphs;
 
-if __name__ == "__main__":
 
+def main():
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
   parser.add_argument("--analyze", action = "store_true");
   parser.add_argument("--normalize", action = "append", default = []);
@@ -207,3 +208,7 @@ if __name__ == "__main__":
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
+
+
+if __name__ == "__main__":
+  main()
