@@ -62,7 +62,7 @@ def read_graphs(stream, format = None,
     graphs = graphs[0:n]
 
   if normalize:
-    for graph in graphs: graph.normalize();
+    for graph in graphs: graph.normalize(normalize);
 
   return graphs;
 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
   parser.add_argument("--analyze", action = "store_true");
-  parser.add_argument("--normalize", action = "store_true");
+  parser.add_argument("--normalize", action = "append", default = []);
   parser.add_argument("--full", action = "store_true");
   parser.add_argument("--reify", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
@@ -106,7 +106,8 @@ if __name__ == "__main__":
     elif path.is_dir():
       text = path;
 
-  if arguments.read not in {"ccd", "dm", "pas", "psd",
+  if arguments.read not in {"mrp",
+                            "ccd", "dm", "pas", "psd",
                             "eds", "ucca",
                             "amr",
                             "conllu", "ud"}:
@@ -126,9 +127,20 @@ if __name__ == "__main__":
           "".format(arguments.score), file = sys.stderr);
     sys.exit(1);
 
+  if arguments.score is not None:
+    normalize = ["anchors", "edges"];
+  else:
+    normalize = [];
+    for action in arguments.normalize:
+      if action in {"anchors", "edges"}:
+        normalize.append(action);
+      else:
+        print("main.py(): invalid type of normalization: {}; exit."
+              "".format(action), file = sys.stderr);
+        sys.exit(1);
+
   graphs = read_graphs(arguments.input, format = arguments.read,
-                       full = arguments.full,
-                       normalize = arguments.normalize or arguments.score is not None,
+                       full = arguments.full, normalize = normalize,
                        reify = arguments.reify, text = text,
                        id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
@@ -141,7 +153,7 @@ if __name__ == "__main__":
   if arguments.gold and arguments.score:
     if arguments.format is None: arguments.format = arguments.read;
     gold = read_graphs(arguments.gold, format = arguments.format,
-                       full = arguments.full, normalize = True,
+                       full = arguments.full, normalize = normalize,
                        reify = arguments.reify, text = text);
     if not gold:
       print("main.py(): unable to read gold graphs: {}; exit.", file = sys.stderr);

@@ -196,8 +196,8 @@ class Edge(object):
     def length(self):
         return self.max() - self.min()
 
-    def normalize(self):
-        if self.normal:
+    def normalize(self, actions):
+        if self.normal and "edges" in actions:
             target = self.src;
             self.src = self.tgt;
             self.tgt = target;
@@ -345,9 +345,9 @@ class Graph(object):
                         raise Exception("failed to anchor |{}| in |{}| ({})"
                                         "".format(form, self.input, i));
 
-    def normalize(self):
+    def normalize(self, actions):
         for edge in self.edges:
-            edge.normalize();
+            edge.normalize(actions);
             
     def score(self, graph, correspondences):
         def tuples(graph, identities):
