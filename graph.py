@@ -197,12 +197,12 @@ class Node(object):
 class Edge(object):
 
     def __init__(self, src, tgt, lab, normal = None,
-                 properties = None, values = None):
+                 attributes = None, values = None):
         self.src = src;
         self.tgt = tgt;
         self.lab = lab;
         self.normal = normal;
-        self.properties = properties;
+        self.attributes = attributes;
         self.values = values;
 
     def is_loop(self):
@@ -232,8 +232,8 @@ class Edge(object):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
         if self.normal:
             json["normal"] = self.normal;
-        if self.properties and self.values:
-            json["properties"] = self.properties;
+        if self.attributes and self.values:
+            json["attributes"] = self.attributes;
             json["values"] = self.values;
         return json;
 
@@ -243,9 +243,13 @@ class Edge(object):
         tgt = json["target"]
         lab = json["label"]
         normal = json.get("normal", None)
-        properties = json.get("properties", None)
+        attributes = json.get("attributes", None)
+        #
+        # backwards compatibility with earlier MRP serialization (version 0.9)
+        #
+        if attributes is None: attributes = json.get("properties", None)
         values = json.get("values", None)
-        return Edge(src, tgt, lab, normal, properties, values)
+        return Edge(src, tgt, lab, normal, attributes, values)
         
     def dot(self, stream, input = None, strings = False):
         label = self.lab;
@@ -255,7 +259,7 @@ class Edge(object):
             else:
                 label = label + " (" + self.normal + ")";
         style = "";
-        if self.properties and "remote" in self.properties:
+        if self.attributes and "remote" in self.attributes:
             style = ", style=dashed";
         print("  {} -> {} [ label=\"{}\"{} ];"
               "".format(self.src, self.tgt, label if label else "",
@@ -299,8 +303,8 @@ class Graph(object):
             if node.id == id: return node;
 
     def add_edge(self, src, tgt, lab, normal = None,
-                 properties = None, values = None):
-        edge = Edge(src, tgt, lab, normal, properties, values)
+                 attributes = None, values = None):
+        edge = Edge(src, tgt, lab, normal, attributes, values)
         self.edges.add(edge)
         self.find_node(src).outgoing_edges.add(edge)
         self.find_node(tgt).incoming_edges.add(edge)
@@ -382,6 +386,7 @@ class Graph(object):
             properties = set();
             anchors = set();
             edges = set();
+            attributes = set();
             for node in graph.nodes:
                 identity = identities[node.id];
                 if node.is_top: tops.add(identity);
@@ -398,7 +403,7 @@ class Graph(object):
                 #
                 edges.add((identities[edge.src], identities[edge.tgt],
                            edge.lab));
-            return tops, labels, properties, anchors, edges;
+            return tops, labels, properties, anchors, edges, attributes;
 
         def count(gold, system):
             return {"g": len(gold), "s": len(system), "c": len(gold & system)};
@@ -419,13 +424,13 @@ class Graph(object):
                 identities2[node.id] = i;
                 i += 1;
 
-        gtops, glabels, gproperties, ganchors, gedges \
+        gtops, glabels, gproperties, ganchors, gedges, gattributes \
             = tuples(self, identities1);
-        stops, slabels, sproperties, sanchors, sedges \
+        stops, slabels, sproperties, sanchors, sedges, sattributes \
             = tuples(graph, identities2);
         return count(gtops, stops), count(glabels, slabels), \
-            count(gproperties, sproperties), \
-            count(ganchors, sanchors), count(gedges, sedges);
+            count(gproperties, sproperties), count(ganchors, sanchors), \
+            count(gedges, sedges), count(gattributes, sattributes);
 
     def encode(self):
         json = {"id": self.id};
@@ -433,7 +438,7 @@ class Graph(object):
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
-        json["version"] = 0.9;
+        json["version"] = 1.0;
         json["time"] = self.time.strftime("%Y-%m-%d (%H:%M)");
         if self.input:
             json["input"] = self.input;
@@ -458,7 +463,7 @@ class Graph(object):
         for j in json["edges"]:
             edge = Edge.decode(j)
             graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
-                           edge.properties, edge.values)
+                           edge.attributes, edge.values)
         tops = json.get("tops", [])
         for i in tops:
             graph.find_node(i).is_top = True

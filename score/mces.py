@@ -33,8 +33,8 @@ class InternalGraph():
             tgt = graph.find_node(edge.tgt)
             tgt = self.node2id[tgt]
             self.edges.append((src, tgt, edge.lab))
-            if edge.properties:
-                for prop, val in zip(edge.properties, edge.values):
+            if edge.attributes:
+                for prop, val in zip(edge.attributes, edge.values):
                     self.edges.append((src, tgt, ("E", prop, val)))
         #
         # Build the pseudo-edges. These have target nodes that are
@@ -53,7 +53,8 @@ class InternalGraph():
             # anchors
             if node.anchors is not None:
                 for anchor in node.anchors:
-                    j = get_or_update(index, ("A", anchor["from"], anchor["to"]))
+                    j = get_or_update(index, ("A", anchor["from"],
+                                              anchor["to"]))
                     self.edges.append((i, reindex(j), None))
             # properties
             if node.properties:
@@ -218,8 +219,9 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
                 new_source_todo = source_todo[1:]
                 if new_source_todo:
                     if trace > 2: print("> ", end="")
-                    todo.append((new_cv, new_ce, new_source_todo, sorted_splits(
-                        new_source_todo[0], new_untried, rewards)))
+                    todo.append((new_cv, new_ce, new_source_todo,
+                                 sorted_splits(new_source_todo[0],
+                                               new_untried, rewards)))
                 else:
                     if trace > 2: print()
                     yield new_cv, new_ce
@@ -265,6 +267,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
     total_properties = {"g": 0, "s": 0, "c": 0}
     total_anchors = {"g": 0, "s": 0, "c": 0}
     total_edges = {"g": 0, "s": 0, "c": 0}
+    total_attributes = {"g": 0, "s": 0, "c": 0}
     scores = dict() if trace else None
     for g, s in intersect(gold, system):
         counter = 0
@@ -288,44 +291,51 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
                     n += 1
             if n > n_matched:
                 if trace > 1:
-                    print("\n[{}] solution #{}; matches: {}".format(counter, i, n));
+                    print("\n[{}] solution #{}; matches: {}"
+                          "".format(counter, i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
             i += 1
         total_matches += n_matched;
         total_steps += counter;
-        tops, labels, properties, anchors, edges = g.score(s, best_cv);
+        tops, labels, properties, anchors, edges, attributes \
+            = g.score(s, best_cv);
         if trace:
             if g.id in scores:
                 print("mces.evaluate(): duplicate graph identifier: {}"
                       "".format(gid), file = sys.stderr);
             scores[g.id] = {"tops": tops, "labels": labels,
                             "properties": properties, "anchors": anchors,
-                            "edges": edges};
+                            "edges": edges, "attributes": attributes};
         update(total_tops, tops);
         update(total_labels, labels);
         update(total_properties, properties);
         update(total_anchors, anchors);
         update(total_edges, edges);
+        update(total_attributes, attributes);
         total_pairs += 1;
         if trace > 1:
-            print("[{}] Number of edges in correspondence: {}".format(counter, n_matched))
+            print("[{}] Number of edges in correspondence: {}"
+                  "".format(counter, n_matched))
             print("[{}] Total matches: {}".format(total_steps, total_matches));
-            print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}\nedges: {}"
-                  "".format(tops, labels, properties, anchors, edges));
+            print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
+                  "\nedges: {}\nattributes:{}"
+                  "".format(tops, labels, properties, anchors,
+                            edges, attributes));
             if trace > 2:
                 print(best_cv)
                 print(best_ce)
 
     total_all = {"g": 0, "s": 0, "c": 0};
-    for counts in [total_tops, total_labels, total_properties, total_anchors, total_edges]:
+    for counts in [total_tops, total_labels, total_properties, total_anchors,
+                   total_edges, total_attributes]:
         update(total_all, counts);
         finalize(counts);
     finalize(total_all);
     result = {"n": total_pairs,
               "tops": total_tops, "labels": total_labels,
-              "properties": total_properties,
-              "anchors": total_anchors, "edges": total_edges,
+              "properties": total_properties, "anchors": total_anchors,
+              "edges": total_edges, "attributes": attributes,
               "all": total_all};
     if trace: result["scores"] = scores;
     return result;

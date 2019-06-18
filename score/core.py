@@ -25,7 +25,7 @@ def identify(graph, node, mapping = None, recursion = False):
     return mapping;
   mapping[node] = anchor(graph.find_node(node));
   for edge in graph.edges:
-    if edge.properties is not None and "remote" not in edge.properties:
+    if edge.attributes is not None and "remote" not in edge.attributes:
       if node == edge.src:
         identify(graph, edge.tgt, mapping, True);
         for leaf in mapping[edge.tgt]:

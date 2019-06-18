@@ -86,14 +86,14 @@ def passage2graph(passage, text = None, prefix = None):
             for tag in edge.tags:
                 if tag != "Terminal":
                     if edge.child.ID in unit_id_to_node_id:
-                        properties, values = None, None;
+                        attributes, values = None, None;
                         if edge.attrib.get("remote"):
-                            properties = ["remote"];
+                            attributes = ["remote"];
                             values = [True];
                         graph.add_edge(unit_id_to_node_id[unit.ID],
                                        unit_id_to_node_id[edge.child.ID],
                                        tag,
-                                       properties = properties,
+                                       attributes = attributes,
                                        values = values);
                     else:
                         #

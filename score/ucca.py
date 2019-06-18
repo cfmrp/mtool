@@ -11,7 +11,7 @@ def tuples(graph):
   for edge in graph.edges:
     source = identities[edge.src];
     target = identities[edge.tgt];
-    if edge.properties and "remote" in edge.properties:
+    if edge.attributes and "remote" in edge.attributes:
       lremote.add((source, target, edge.lab));
       uremote.add((source, target));
     else:
