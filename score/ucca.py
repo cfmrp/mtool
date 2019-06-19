@@ -1,6 +1,6 @@
 from operator import itemgetter;
 
-from score.core import anchor, intersect, fscore;
+from score.core import anchor, explode, intersect, fscore;
 
 def identify(graph, node, mapping = None, recursion = False):
   #
@@ -25,6 +25,12 @@ def tuples(graph):
   identities = dict();
   for node in graph.nodes:
     identities = identify(graph, node.id, identities);
+  #
+  # for robust comparison, represent each yield as a character set
+  #
+  if graph.input:
+    for id in identities:
+      identities[id] = explode(graph.input, identities[id]);
   lprimary = set();
   lremote = set();
   uprimary = set();
