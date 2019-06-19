@@ -29,13 +29,13 @@ __author__ = "oe"
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
-                prefix = None, text = None,
+                prefix = None, text = None, quiet = False,
                 id = None, n = None, i = None):
 
   graphs = None;
   if format == "amr":
-    graphs = codec.amr.read(stream, full = full,
-                            reify = reify, text = text);
+    graphs = codec.amr.read(stream, full = full, reify = reify,
+                            text = text, quiet = quiet);
   elif format in {"ccd", "dm", "pas", "psd"}:
     graphs = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
@@ -87,6 +87,7 @@ def main():
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
+  parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
   parser.add_argument("input", nargs = "?",
                       type = argparse.FileType("r"), default = sys.stdin);
@@ -122,6 +123,9 @@ def main():
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
 
+  #
+  # backwards compatibility: desirable until august 2019, say
+  #
   if arguments.score == "mces": arguments.score = "mrp";
   if arguments.score is not None and \
      arguments.score not in {"mrp", "sdp", "edm", "ucca", "smatch"}:
@@ -154,6 +158,7 @@ def main():
   graphs = read_graphs(arguments.input, format = arguments.read,
                        full = arguments.full, normalize = normalize,
                        reify = arguments.reify, text = text,
+                       quiet = arguments.quiet,
                        id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
     print("main.py(): unable to read input graph; exit.", file = sys.stderr);

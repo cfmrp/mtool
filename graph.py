@@ -318,13 +318,13 @@ class Graph(object):
         self.find_node(tgt).incoming_edges.add(edge)
         return edge
 
-    def add_input(self, text, id = None):
+    def add_input(self, text, id = None, quiet = False):
         if not id: id = self.id;
         if isinstance(text, str):
             self.input = text;
         elif isinstance(text, Path):
             file = text / (str(id) + ".txt");
-            if not file.exists():
+            if not file.exists() and not quiet:
                 print("add_input(): no text for {}.".format(file),
                       file = sys.stderr);
             else:
@@ -336,7 +336,7 @@ class Graph(object):
             input = text.get(id);
             if input:
                 self.input = input;
-            else:
+            elif not quiet:
                 print("add_input(): no text for key {}.".format(id),
                       file = sys.stderr);
 

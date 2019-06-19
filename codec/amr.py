@@ -69,7 +69,7 @@ def convert_amr_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp, full = False, reify = False, text = None):
+def read(fp, full = False, reify = False, text = None, quiet = False):
     n = 0;
     for id, snt, amr_line in amr_lines(fp):
         amr = AMR.parse_AMR_line(amr_line)
@@ -87,7 +87,7 @@ def read(fp, full = False, reify = False, text = None):
         graph = amr2graph(id, amr, full, reify);
         cid = None;
         if text:
-            graph.add_input(text);
+            graph.add_input(text, quiet = quiet);
         elif snt:
-            graph.add_input(snt);
+            graph.add_input(snt, quiet = quiet);
         yield graph;
