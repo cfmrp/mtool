@@ -16,25 +16,6 @@ def anchor(node):
         result.append((span["from"], span["to"]));
   return result;
 
-def identify(graph, node, mapping = None, recursion = False):
-  #
-  # somewhat UCCA-specific: determine anchoring yields for all nodes
-  #
-  if mapping is None: mapping = dict();
-  if node in mapping:
-    return mapping;
-  mapping[node] = anchor(graph.find_node(node));
-  for edge in graph.edges:
-    if edge.attributes is not None and "remote" not in edge.attributes:
-      if node == edge.src:
-        identify(graph, edge.tgt, mapping, True);
-        for leaf in mapping[edge.tgt]:
-          if leaf not in mapping[node]: mapping[node].append(leaf);
-  if not recursion:
-    for key in mapping:
-      mapping[key] = tuple(sorted(mapping[key], key = itemgetter(0, 1)));
-  return mapping;
-
 def fscore(gold, system, correct):
   p = correct / system if system else 0.0;
   r = correct / gold if gold else 0.0;
