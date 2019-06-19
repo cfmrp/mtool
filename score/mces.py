@@ -1,7 +1,8 @@
 import numpy as np
 from operator import itemgetter
 from graph import Graph
-from score.core import fscore, intersect
+from score.core import explode, fscore, intersect
+from score.ucca import identify
 
 counter = 0
 
@@ -72,6 +73,22 @@ def initial_node_correspondences(graph1, graph2):
                        dtype=np.int);
     edges = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
                      dtype=np.int);
+    #
+    # prepare to use overlap of UCCA yields in picking initial node pairing;
+    #
+    identities1 = dict();
+    identities2 = dict();
+    if graph1.framework == "ucca" and graph1.input \
+       and graph2.framework == "ucca" and graph2.input:
+        for node in graph1.nodes:
+            identities1 = identify(graph1, node.id, identities1);
+        for key in identities1:
+            identities1[key] = explode(graph1.input, identities1[key]);
+        for node in graph2.nodes:
+            identities2 = identify(graph2, node.id, identities2);
+        for key in identities1:
+            identities2[key] = explode(graph2.input, identities2[key]);
+
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):

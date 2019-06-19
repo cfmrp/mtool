@@ -4,7 +4,10 @@ from score.core import anchor, explode, intersect, fscore;
 
 def identify(graph, node, mapping = None, recursion = False):
   #
-  # somewhat UCCA-specific: determine anchoring yields for all nodes
+  # from how this ends up being called in various places, there is a missing
+  # higher-level interface; something like (maybe even as a Graph method):
+  #
+  # identities = identify(graph, walk = True, explode = True)
   #
   if mapping is None: mapping = dict();
   if node in mapping:
