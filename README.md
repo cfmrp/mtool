@@ -15,7 +15,7 @@ Scoring
 `mtool` implements the official MRP 2019 cross-framwork metric, as well as
 a range of framework-specific graph similarity metrics, viz.
 
-+ MCES (Maximum Common Edge Subgraph Isomorphism);
++ MRP (Maximum Common Edge Subgraph Isomorphism);
 + EDM (Elementary Dependency Match; [Dridan & Oepen, 2011](http://aclweb.org/anthology/W/W11/W11-2927.pdf));
 + SDP Labeled and Unlabeled Dependency F1 ([Oepen et al., 2015](http://aclweb.org/anthology/S/S14/S14-2008.pdf));
 + SMATCH Precision, Recall, and F1 ([Cai & Knight, 2013](http://www.aclweb.org/anthology/P13-2131));
@@ -39,7 +39,7 @@ types that apply for each specific framework.
 Directed edges and edge labels, however, are always considered in conjunction during
 this search.
 ```
-./main.py --read mrp --score mces --gold data/sample/eds/wsj.mrp data/score/eds/wsj.pet.mrp
+./main.py --read mrp --score mrp --gold data/sample/eds/wsj.mrp data/score/eds/wsj.pet.mrp
 {"n": 87,
  "tops": {"g": 87, "s": 87, "c": 85, "p": 0.9770114942528736, "r": 0.9770114942528736, "f": 0.9770114942528736},
  "labels": {"g": 2500, "s": 2508, "c": 2455, "p": 0.9788676236044657, "r": 0.982, "f": 0.9804313099041533},
@@ -50,7 +50,7 @@ this search.
  "all": {"g": 7781, "s": 7803, "c": 7546, "p": 0.9670639497629117, "r": 0.9697982264490426, "f": 0.9684291581108829}}
 ```
 Albeit originally defined for one specific framework (EDS, DM and PSD, AMR, or UCCA, respectively),
-the non-MCES metrics are to some degree applicable to other frameworks too: the unified MRP representation
+the pre-MRP metrics are to some degree applicable to other frameworks too: the unified MRP representation
 of semantic graphs enables such cross-framework application, in principle, but this functionality
 remains largely untested (as of June 2019).
 
@@ -79,7 +79,7 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
 (indexed by graph identifiers).
-For MCES and SMATCH, the `--limit` option controls the maximum number of node pairings or
+For MRP and SMATCH, the `--limit` option controls the maximum number of node pairings or
 hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
 and `5`, respectively).
 

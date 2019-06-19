@@ -121,9 +121,10 @@ def main():
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
-    
+
+  if arguments.score == "mces": arguments.score = "mrp";
   if arguments.score is not None and \
-     arguments.score not in {"mces", "sdp", "edm", "ucca", "smatch"}:
+     arguments.score not in {"mrp", "sdp", "edm", "ucca", "smatch"}:
     print("main.py(): invalid evaluation metric: {}; exit."
           "".format(arguments.score), file = sys.stderr);
     sys.exit(1);
@@ -188,7 +189,7 @@ def main():
         result = score.edm.evaluate(gold, graphs,
                                     format = arguments.write,
                                     trace = arguments.trace);
-      elif metric == "mces":
+      elif metric == "mrp":
         result = score.mces.evaluate(gold, graphs,
                                      format = arguments.write,
                                      limit = arguments.limit,
