@@ -20,7 +20,8 @@ def amr_lines(fp):
                    snt = line[8:].strip();
             else:
                 lines.append(line)
-
+    if len(lines) > 0:
+        yield id, snt, " ".join(lines)
 def amr2graph(id, amr, full = False, reify = False):
     graph = Graph(id, flavor = 2, framework = "amr")
     node2id = {}
