@@ -41,7 +41,7 @@ def test(graph, actions, stream = sys.stderr):
     n += validate.amr.test(graph, actions, stream);
   elif graph.framework == "eds" and "eds" in actions:
     n += validate.eds.test(graph, actions, stream);
-  elif graph.framework in sdp and (sdp and actions):
+  elif graph.framework in sdp and (sdp & actions):
     n += validate.sdp.test(graph, actions, stream);
   elif graph.framework == "ucca" and "ucca" in actions:
     n += validate.ucca.test(graph, actions, stream);
