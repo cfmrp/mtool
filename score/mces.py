@@ -124,9 +124,8 @@ def initial_node_correspondences(graph1, graph2):
     # we should rather pass around edges and adjust sorted_slits()?
     # for even better initialization, consider edge attributes too?
     #
-    for i in range(rewards.shape[0]):
-        for j in range(rewards.shape[1]):
-            rewards[i, j] = 10 * rewards[i, j] + edges[i, j];
+    rewards *= 10
+    rewards += edges
     return pairs, rewards;
 
 
