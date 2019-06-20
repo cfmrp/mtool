@@ -105,7 +105,7 @@ def passage2graph(passage, text = None, prefix = None):
 
 def read(fp, text = None, prefix = None):
     parent = Path(fp.name).parent;
-    paths = {parent / file.strip() for file in fp};
+    paths = [parent / file.strip() for file in fp];
     for passage in get_passages(map(str, paths)):
         try:
             graph = passage2graph(passage, text, prefix);
