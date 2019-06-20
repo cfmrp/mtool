@@ -83,12 +83,12 @@ def initial_node_correspondences(graph1, graph2):
        and graph2.framework == "ucca" and graph2.input:
         for node in graph1.nodes:
             identities1 = identify(graph1, node.id, identities1);
-        for key in identities1:
-            identities1[key] = explode(graph1.input, identities1[key]);
+        identities1 = {explode(graph1.input, value)
+                       for key, value in identities1.items()}
         for node in graph2.nodes:
             identities2 = identify(graph2, node.id, identities2);
-        for key in identities2:
-            identities2[key] = explode(graph2.input, identities2[key]);
+        identities2 = {explode(graph2.input, value)
+                       for key, value in identities2.items()}
 
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
@@ -172,7 +172,7 @@ def update_edge_candidates(edge_candidates, i, j):
             # (modulo the tentative assignment).
             src1, tgt1 = edge1
             edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
-                               if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
+                                if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
         else:
             # Edge edge1 is not affected by the tentative
             # assignment. Just include a pointer to the candidates for
