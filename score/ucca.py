@@ -1,7 +1,8 @@
 from operator import itemgetter;
 
 from score.core import anchor, explode, intersect, fscore;
-
+
+
 def identify(graph, node, mapping = None, recursion = False):
   #
   # from how this ends up being called in various places, there is a missing
@@ -9,19 +10,20 @@ def identify(graph, node, mapping = None, recursion = False):
   #
   # identities = identify(graph, walk = True, explode = True)
   #
-  if mapping is None: mapping = dict();
-  if node in mapping:
+  if mapping is None:
+    mapping = dict();
+  elif node in mapping:
     return mapping;
-  mapping[node] = anchor(graph.find_node(node));
+  mapping[node] = node_anchors = anchor(graph.find_node(node));
   for edge in graph.edges:
     if edge.attributes is None or "remote" not in edge.attributes:
       if node == edge.src:
         identify(graph, edge.tgt, mapping, True);
         for leaf in mapping[edge.tgt]:
-          if leaf not in mapping[node]: mapping[node].append(leaf);
+          if leaf not in node_anchors: node_anchors.append(leaf);
   if not recursion:
-    for key in mapping:
-      mapping[key] = tuple(sorted(mapping[key], key = itemgetter(0, 1)));
+      mapping = {key: tuple(sorted(value, key = itemgetter(0, 1)))
+                 for key, value in mapping.items()}
   return mapping;
 
 def tuples(graph):
