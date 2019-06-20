@@ -8,6 +8,7 @@ from pathlib import Path;
 import sys;
 
 from analyzer import analyze;
+
 from graph import Graph;
 
 import codec.amr;
@@ -22,11 +23,12 @@ import score.sdp;
 import score.smatch;
 import score.ucca;
 
+import validate.core;
+
 from version import __version__;
 
 __author__ = "oe"
-
-
+
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 prefix = None, text = None, quiet = False,
@@ -143,7 +145,9 @@ def main():
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
 
-  if arguments.score is not None:
+  if len(arguments.normalize) == 1 and arguments.normalize[0] == "all":
+    normalize = ["anchors", "edges"];
+  elif arguments.score is not None:
     normalize = ["anchors", "edges"];
   else:
     normalize = [];
@@ -164,18 +168,23 @@ def main():
     print("main.py(): unable to read input graph; exit.", file = sys.stderr);
     sys.exit(1);
 
-  validate = [];
-  for action in arguments.validate:
-    if action in {"edges"}:
-      validate.append(action);
-    else:
-      print("main.py(): invalid type of validation: {}; exit."
-            "".format(action), file = sys.stderr);
-      sys.exit(1);
+  validations = {"input", "anchors", "edges",
+                 "eds"}
+  actions = set();
+  if len(arguments.validate) == 1 and arguments.validate[0] == "all":
+    actions = validations;
+  else:
+    for action in arguments.validate:
+      if action in validations:
+        actions.add(action);
+      else:
+        print("main.py(): invalid type of validation: {}; exit."
+              "".format(action), file = sys.stderr);
+        sys.exit(1);
 
-  if validate:
+  if actions:
     for graph in graphs:
-      graph.validate(validate);
+      validate.core.test(graph, actions, stream = sys.stderr);
 
   if arguments.analyze:
     analyze(graphs);
