@@ -1,13 +1,10 @@
 """Input/output utility functions for UCCA scripts."""
+import os
 import sys
 import time
 from collections import defaultdict
-from itertools import filterfalse, chain
-
-import os
-from contextlib import contextmanager
 from glob import glob
-from tqdm import tqdm
+from itertools import filterfalse, chain
 from xml.etree.ElementTree import ParseError
 
 from ucca.convert import file2passage, passage2file, from_text, to_text, split2segments
@@ -60,11 +57,10 @@ class LazyLoadedPassages:
             else:  # A file
                 attempts = self.attempts
                 while not os.path.exists(file):
-                    with external_write_mode(file=sys.stderr):
-                        if attempts == 0:
-                            print("File not found: %s" % file, file=sys.stderr)
-                            return None
-                        print("Failed reading %s, trying %d more times..." % (file, attempts), file=sys.stderr)
+                    if attempts == 0:
+                        print("File not found: %s" % file, file=sys.stderr)
+                        return None
+                    print("Failed reading %s, trying %d more times..." % (file, attempts), file=sys.stderr)
                     time.sleep(self.delay)
                     attempts -= 1
                 try:
@@ -111,14 +107,6 @@ class LazyLoadedPassages:
 def resolve_patterns(filename_patterns):
     for pattern in [filename_patterns] if isinstance(filename_patterns, str) else filename_patterns:
         yield from sorted(glob(pattern)) or [pattern]
-
-
-def get_passages_with_progress_bar(filename_patterns, desc=None, **kwargs):
-    filenames = list(resolve_patterns(filename_patterns))
-    t = tqdm(read_files_and_dirs(filenames, **kwargs), desc=desc, unit=" passages", total=len(filenames))
-    for passage in t:
-        t.set_postfix(ID=passage.ID)
-        yield passage
 
 
 def get_passages(filename_patterns, **kwargs):
@@ -175,20 +163,10 @@ def write_passage(passage, output_format=None, binary=False, outdir=".", prefix=
     suffix = output_format if output_format and output_format != "ucca" else ("pickle" if binary else "xml")
     outfile = os.path.join(outdir, prefix + (basename or passage.ID) + "." + suffix)
     if verbose:
-        with external_write_mode():
-            print("%s '%s'..." % ("Appending to" if append else "Writing passage", outfile))
+        print("%s '%s'..." % ("Appending to" if append else "Writing passage", outfile))
     if output_format is None or output_format in ("ucca", "pickle", "xml"):
         passage2file(passage, outfile, binary=binary)
     else:
         with open(outfile, "a" if append else "w", encoding="utf-8") as f:
             f.writelines(map("{}\n".format, (converter or to_text)(passage)))
     return outfile
-
-
-@contextmanager
-def external_write_mode(*args, **kwargs):
-    try:
-        with tqdm.external_write_mode(*args, **kwargs):
-            yield
-    except AttributeError:
-        yield

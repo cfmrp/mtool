@@ -1,6 +1,7 @@
-import numpy as np
 from operator import itemgetter
-from graph import Graph
+
+import numpy as np
+
 from score.core import explode, fscore, intersect
 from score.ucca import identify
 
@@ -138,7 +139,7 @@ def make_edge_candidates(graph1, graph2):
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
         edge1 = src1, tgt1
-        candidates[edge1] = set()
+        edge1_candidates = set()
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
             edge2 = src2, tgt2
@@ -146,12 +147,12 @@ def make_edge_candidates(graph1, graph2):
                 # Edge edge1 is a pseudoedge. This can only map to
                 # another pseudoedge pointing to the same pseudonode.
                 if tgt2 == tgt1 and lab1 == lab2:
-                    candidates[edge1].add(edge2)
-            else:
+                    edge1_candidates.add(edge2)
+            elif tgt2 >= 0 and lab1 == lab2:
                 # Edge edge1 is a real edge. This can only map to
                 # another real edge.
-                if tgt2 >= 0 and lab1 == lab2:
-                    candidates[edge1].add(edge2)
+                edge1_candidates.add(edge2)
+        candidates[edge1] = edge1_candidates
     return candidates
 
 
@@ -162,29 +163,23 @@ def make_edge_candidates(graph1, graph2):
 def update_edge_candidates(edge_candidates, i, j):
     new_candidates = dict()
     new_potential = 0
-    for edge1 in edge_candidates:
-        src1, tgt1 = edge1
-        if src1 != i and tgt1 != i:
-            # Edge edge1 is not affected by the tentative
-            # assignment. Just include a pointer to the candidates for
-            # edge1 in the old assignment.
-            new_candidates[edge1] = edge_candidates[edge1]
-        else:
+    for edge1, edge1_candidates in edge_candidates.items():
+        if i in edge1:
             # Edge edge1 is affected by the tentative assignment. Need
             # to explicitly construct the new set of candidates for
             # edge1.
-            new_candidates[edge1] = set()
-            for edge2 in edge_candidates[edge1]:
-                src2, tgt2 = edge2
-                if src1 == i and src2 == j:
-                    # Both edges share the same source node (modulo
-                    # the tentative assignment).
-                    new_candidates[edge1].add(edge2)
-                if tgt1 == i and tgt2 == j:
-                    # Both edges share the same target node (modulo
-                    # the tentative assignment).
-                    new_candidates[edge1].add(edge2)
-        new_potential += len(new_candidates[edge1]) > 0
+            # Both edges share the same source/target node
+            # (modulo the tentative assignment).
+            src1, tgt1 = edge1
+            edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
+                               if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
+        else:
+            # Edge edge1 is not affected by the tentative
+            # assignment. Just include a pointer to the candidates for
+            # edge1 in the old assignment.
+            edge1_candidates = edge1_candidates
+        new_candidates[edge1] = edge1_candidates
+        new_potential += 1 if edge1_candidates else 0
     return new_candidates, new_potential
 
 

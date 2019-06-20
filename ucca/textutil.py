@@ -1,16 +1,13 @@
 """Utility functions for UCCA package."""
 import os
-import sys
 import time
 from collections import OrderedDict
 from collections import deque
-from contextlib import contextmanager
 from enum import Enum
 from itertools import groupby, islice
 from operator import attrgetter, itemgetter
 
 import numpy as np
-from tqdm import tqdm
 
 from ucca import layer0, layer1
 
@@ -130,9 +127,7 @@ def get_word_vectors(dim=None, size=None, filename=None, vocab=None):
     if filename:
         it = read_word_vectors(dim, size, filename)
         nr_row, nr_dim = next(it)
-        vectors = OrderedDict(islice(tqdm(((_lookup(w), v) for w, v in it if orig_keys or w in vocab),
-                                          desc="Loading '%s'" % filename, postfix=dict(dim=nr_dim),
-                                          file=sys.stdout, total=nr_row, unit=" vectors"), nr_row))
+        vectors = OrderedDict(islice(((_lookup(w), v) for w, v in it if orig_keys or w in vocab), nr_row))
     else:  # return spaCy vectors
         nr_row, nr_dim = vocab.vectors.shape
         if dim is not None and dim < nr_dim:
@@ -345,12 +340,3 @@ def indent_xml(xml_as_string):
         if not (line.endswith('/>') or line.startswith('</')):
             tabs += 1
     return s
-
-
-@contextmanager
-def external_write_mode(*args, **kwargs):
-    try:
-        with tqdm.external_write_mode(*args, **kwargs):
-            yield
-    except AttributeError:
-        yield

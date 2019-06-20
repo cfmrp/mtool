@@ -2,10 +2,9 @@ import re;
 from operator import attrgetter;
 from pathlib import Path;
 
-from ucca import layer0, layer1;
-
 from graph import Graph;
-from ucca.ioutil import get_passages_with_progress_bar;
+from ucca import layer0, layer1;
+from ucca.ioutil import get_passages;
 
 
 def convert_id(id, prefix):
@@ -106,8 +105,8 @@ def passage2graph(passage, text = None, prefix = None):
 
 def read(fp, text = None, prefix = None):
     parent = Path(fp.name).parent;
-    paths = {parent / file.strip() for file in fp};
-    for passage in get_passages_with_progress_bar(map(str, paths), desc="Analyzing"):
+    paths = [parent / file.strip() for file in fp];
+    for passage in get_passages(map(str, paths)):
         try:
             graph = passage2graph(passage, text, prefix);
         except Exception as exception:

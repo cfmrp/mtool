@@ -24,7 +24,6 @@ setuptools.setup(
     license='LGPL-3.0',
     install_requires=[
         'numpy',
-        'tqdm'
     ],
     entry_points = {
         'console_scripts': ['mtool=main:main'],
