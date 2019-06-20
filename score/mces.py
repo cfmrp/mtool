@@ -70,12 +70,12 @@ def initial_node_correspondences(graph1, graph2):
     # in the following, we assume that nodes in raw and internal
     # graphs correspond by position into the .nodes. list
     #
-    rewards = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                       dtype=np.int);
-    edges = np.zeros((len(graph1.nodes), len(graph2.nodes) + 1),
-                     dtype=np.int);
+    shape = (len(graph1.nodes), len(graph2.nodes) + 1)
+    rewards = np.zeros(shape, dtype=np.int);
+    edges = np.zeros(shape, dtype=np.int);
+    anchors = np.zeros(shape, dtype=np.int);
     #
-    # prepare to use overlap of UCCA yields in picking initial node pairing;
+    # use overlap of UCCA yields in picking initial node pairing;
     #
     identities1 = dict();
     identities2 = dict();
@@ -83,38 +83,40 @@ def initial_node_correspondences(graph1, graph2):
        and graph2.framework == "ucca" and graph2.input:
         for node in graph1.nodes:
             identities1 = identify(graph1, node.id, identities1);
-        identities1 = {explode(graph1.input, value)
+        identities1 = {key: explode(graph1.input, value)
                        for key, value in identities1.items()}
         for node in graph2.nodes:
             identities2 = identify(graph2, node.id, identities2);
-        identities2 = {explode(graph2.input, value)
+        identities2 = {key: explode(graph2.input, value)
                        for key, value in identities2.items()}
 
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):
             rewards[i, j], _, _, _ = node1.compare(node2);
-            #
-            # also determine the maximum number of edge matches we
-            # can hope to score, for each node-node correspondence
-            #
             if node2 is not None:
-                for edge1 in graph1.edges:
-                    for edge2 in graph2.edges:
-                        if edge1.src == node1.id \
-                           and edge2.src == node2.id \
-                           and edge1.lab == edge2.lab:
-                            edges[i, j] += 1;
-                        if edge1.tgt == node1.id \
-                           and edge2.tgt == node2.id \
-                           and edge1.lab == edge2.lab:
-                            edges[i, j] += 1;
-            queue.append((rewards[i, j], edges[i, j],
+                #
+                # also determine the maximum number of edge matches we
+                # can hope to score, for each node-node correspondence
+                #
+                edges[i, j] += sum(
+                    1 for edge1 in graph1.edges
+                    for edge2 in graph2.edges
+                    if edge1.lab == edge2.lab and (
+                            edge1.src == node1.id and
+                            edge2.src == node2.id or
+                            edge1.tgt == node1.id and
+                            edge2.tgt == node2.id))
+                # and the overlap of UCCA yields
+                if identities1 and identities2:
+                    anchors[i, j] += len(identities1[node1.id] &
+                                         identities2[node2.id])
+            queue.append((rewards[i, j], edges[i, j], anchors[i, j],
                           i, j if node2 is not None else None));
     pairs = [];
     sources = set();
     targets = set();
-    for _, _, i, j in sorted(queue, key = itemgetter(0, 1), reverse = True):
+    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2), reverse = True):
         if i not in sources and j not in targets:
             pairs.append((i, j));
             sources.add(i);
@@ -125,7 +127,7 @@ def initial_node_correspondences(graph1, graph2):
     # for even better initialization, consider edge attributes too?
     #
     rewards *= 10
-    rewards += edges
+    rewards += edges + anchors
     return pairs, rewards;
 
 
