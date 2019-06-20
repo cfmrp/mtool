@@ -3,20 +3,6 @@ import sys;
 import validate.eds;
 from validate.utilities import report;
 
-def report(graph, message, node = None, edge = None, stream = sys.stderr):
-  if node:
-    node = "; node #{}".format(node.id);
-  else:
-    node = "";
-  if edge:
-    edge = "; edge {} -{}-> {}".format(edge.src, edge.tgt,
-                                       edge.lab if edge.lab else "");
-  else:
-    edge = "";
-    
-  print("validate(): graph ‘{}’{}{}: {}"
-        "".format(graph.id, node, edge, message), file = stream);
-
 def test(graph, actions, stream = sys.stderr):
   if "input" in actions:
     if not isinstance(graph.input, str) or len(graph.input) == 0:
