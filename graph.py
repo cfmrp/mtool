@@ -421,12 +421,13 @@ class Graph(object):
                 if node.anchors is not None:
                     anchors.add(tuple([identity] + node.anchoring()));
             for edge in graph.edges:
-                #
-                # _fix_me_
-                # still need to treat attributes
-                #
                 edges.add((identities[edge.src], identities[edge.tgt],
                            edge.lab));
+                if edge.attributes and edge.values:
+                    identity \
+                        = [identities[edge.src], identities[edge.tgt], edge.lab];
+                    for attribute, value in zip(edge.attributes, edge.values):
+                        attributes.add(tuple(identity + [attribute, value]));
             return tops, labels, properties, anchors, edges, attributes;
 
         def count(gold, system):
