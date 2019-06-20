@@ -86,7 +86,7 @@ def initial_node_correspondences(graph1, graph2):
             identities1[key] = explode(graph1.input, identities1[key]);
         for node in graph2.nodes:
             identities2 = identify(graph2, node.id, identities2);
-        for key in identities1:
+        for key in identities2:
             identities2[key] = explode(graph2.input, identities2[key]);
 
     queue = [];
