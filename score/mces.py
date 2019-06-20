@@ -139,7 +139,7 @@ def make_edge_candidates(graph1, graph2):
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
         edge1 = src1, tgt1
-        candidates[edge1] = set()
+        edge1_candidates = set()
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
             edge2 = src2, tgt2
@@ -147,12 +147,12 @@ def make_edge_candidates(graph1, graph2):
                 # Edge edge1 is a pseudoedge. This can only map to
                 # another pseudoedge pointing to the same pseudonode.
                 if tgt2 == tgt1 and lab1 == lab2:
-                    candidates[edge1].add(edge2)
-            else:
+                    edge1_candidates.add(edge2)
+            elif tgt2 >= 0 and lab1 == lab2:
                 # Edge edge1 is a real edge. This can only map to
                 # another real edge.
-                if tgt2 >= 0 and lab1 == lab2:
-                    candidates[edge1].add(edge2)
+                edge1_candidates.add(edge2)
+        candidates[edge1] = edge1_candidates
     return candidates
 
 
@@ -171,15 +171,15 @@ def update_edge_candidates(edge_candidates, i, j):
             # Both edges share the same source/target node
             # (modulo the tentative assignment).
             src1, tgt1 = edge1
-            edge1_candidate = {(src2, tgt2) for src2, tgt2 in edge1_candidates
+            edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
                                if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
         else:
             # Edge edge1 is not affected by the tentative
             # assignment. Just include a pointer to the candidates for
             # edge1 in the old assignment.
-            edge1_candidate = edge1_candidates
-        new_candidates[edge1] = edge1_candidate
-        new_potential += 1 if edge1_candidate else 0
+            edge1_candidates = edge1_candidates
+        new_candidates[edge1] = edge1_candidates
+        new_potential += 1 if edge1_candidates else 0
     return new_candidates, new_potential
 
 
