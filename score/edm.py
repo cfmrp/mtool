@@ -1,16 +1,20 @@
 import sys;
 
 from graph import Graph;
-from score.core import anchor, fscore, intersect;
+import score.core;
 
-def tuples(graph):
+def tuples(graph, explode = False):
   identities = dict();
   names = set();
   tops = set();
   arguments = set();
   properties = set();
   for node in graph.nodes:
-    identity = tuple(anchor(node));
+    if graph.input and explode:
+      identity = score.core.explode(graph.input,
+                                    score.core.anchor(node));
+    else:
+      identity = tuple(score.core.anchor(node));
     identities[node.id] = identity;
     if node.label is not None: names.add((identity, node.label));
     if node.is_top: tops.add(identity);
@@ -28,9 +32,10 @@ def evaluate(golds, systems, format = "json", trace = 0):
   tgp = tsp = tcp = 0;
   scores = dict() if trace else None;
   result = {"n": 0};
-  for gold, system in intersect(golds, systems):
-    gnames, garguments, gproperties, gtops = tuples(gold);
-    snames, sarguments, sproperties, stops = tuples(system);
+  for gold, system in score.core.intersect(golds, systems):
+    explode = gold.input and system.input;
+    gnames, garguments, gproperties, gtops = tuples(gold, explode = explode);
+    snames, sarguments, sproperties, stops = tuples(system, explode = explode);
     if trace > 1:
       print("[{}] gold:\n{}\n{}\n{}\n{}\n\n"
             "".format(gold.id, gtops,
@@ -56,27 +61,25 @@ def evaluate(golds, systems, format = "json", trace = 0):
     tgp += gp; tsp += sp; tcp += cp;
     result["n"] += 1;
     if trace:
-      score = dict();
-      score["names"] = {"g": gn, "s": sn, "c": cn};
-      score["arguments"] = {"g": ga, "s": sa, "c": ca};
-      score["tops"] = {"g": gt, "s": st, "c": ct};
-      score["properties"] = {"g": gp, "s": sp, "c": cp};
       if gold.id in scores:
         print("edm.evaluate(): duplicate graph identifier: {}"
               "".format(gold.id), file = sys.stderr);
-      scores[gold.id] = score;
-  p, r, f = fscore(tgn, tsn, tcn);
+      scores[gold.id] = {"names": {"g": gn, "s": sn, "c": cn},
+                         "arguments":  {"g": ga, "s": sa, "c": ca},
+                         "tops": {"g": gt, "s": st, "c": ct},
+                         "properties": {"g": gp, "s": sp, "c": cp}};
+  p, r, f = score.core.fscore(tgn, tsn, tcn);
   result["names"] = {"g": tgn, "s": tsn, "c": tcn, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tga, tsa, tca);
+  p, r, f = score.core.fscore(tga, tsa, tca);
   result["arguments"] = {"g": tga, "s": tsa, "c": tca, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tgt, tst, tct);
+  p, r, f = score.core.fscore(tgt, tst, tct);
   result["tops"] = {"g": tgt, "s": tst, "c": tct, "p": p, "r": r, "f": f};
-  p, r, f = fscore(tgp, tsp, tcp);
+  p, r, f = score.core.fscore(tgp, tsp, tcp);
   result["properties"] = {"g": tgp, "s": tsp, "c": tcp, "p": p, "r": r, "f": f};
   tga = tgn + tga + tgt + tgp;
   tsa = tsn + tsa + tst + tsp;
   tca = tcn + tca + tct + tcp;
-  p, r, f = fscore(tga, tsa, tca);
+  p, r, f = score.core.fscore(tga, tsa, tca);
   result["all"] = {"g": tga, "s": tsa, "c": tca, "p": p, "r": r, "f": f};
   result["scores"] = scores;
   return result;

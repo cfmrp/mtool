@@ -55,7 +55,7 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
-    def normalize(self, actions, input = None):
+    def normalize(self, actions, input = None, trace = False):
         punctuation = {".", "?", "!", ";", ",", ":",
                        "“", "\"", "”", "‘", "'", "’",
                        "(", ")", "[", "]", "{", "}",
@@ -66,7 +66,7 @@ class Node(object):
                 j = anchor["to"];
                 while i < j and input[i] in punctuation: i += 1;
                 while j > i and input[j - 1] in punctuation: j -= 1;
-                if False and (i != anchor["from"] or j != anchor["to"]):
+                if trace and (i != anchor["from"] or j != anchor["to"]):
                     print("{} ({})--> <{}:{}> ({})"
                           "".format(anchor,
                                     input[anchor["from"]:anchor["to"]],
