@@ -4,14 +4,11 @@
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 # Stephan Oepen <oe@ifi.uio.no>
 
-from datetime import datetime;
 import html;
-import itertools
-from pathlib import Path;
-import statistics
 import sys;
+from datetime import datetime;
+from pathlib import Path;
 
-from treewidth import quickbb
 
 class Node(object):
 
@@ -115,9 +112,8 @@ class Node(object):
                 count1 += len(properties1) - n;
                 both += n;
                 count2 += len(properties2) - n;
-        else:
-            if node.properties is not None:
-                count2 += len(node.properties);
+        elif node.properties is not None:
+            count2 += len(node.properties);
         return both - count1 - count2, count1, both, count2;
                    
     def encode(self):
