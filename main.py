@@ -169,7 +169,7 @@ def main():
     sys.exit(1);
 
   validations = {"input", "anchors", "edges",
-                 "eds"}
+                 "amr", "eds", "sdp", "ucca"}
   actions = set();
   if len(arguments.validate) == 1 and arguments.validate[0] == "all":
     actions = validations;
