@@ -128,7 +128,7 @@ def initial_node_correspondences(graph1, graph2):
     # for even better initialization, consider edge attributes too?
     #
     rewards *= 10
-    rewards += edges + 100 * anchors
+    rewards += edges + anchors
     return pairs, rewards;
 
 
@@ -141,7 +141,7 @@ def make_edge_candidates(graph1, graph2):
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
         edge1 = src1, tgt1
-        edge1_candidates = set()
+        candidates[edge1] = edge1_candidates = set()
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
             edge2 = src2, tgt2
@@ -154,7 +154,6 @@ def make_edge_candidates(graph1, graph2):
                 # Edge edge1 is a real edge. This can only map to
                 # another real edge.
                 edge1_candidates.add(edge2)
-        candidates[edge1] = edge1_candidates
     return candidates
 
 
@@ -194,7 +193,7 @@ def splits(xs):
 
 
 def sorted_splits(i, xs, rewards):
-    sorted_xs = sorted(xs, key=lambda x: rewards[i][x], reverse=True)
+    sorted_xs = sorted(xs, key=rewards[i].item, reverse=True)
     yield from splits(sorted_xs)
 
 
