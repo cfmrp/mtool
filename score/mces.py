@@ -312,7 +312,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         if trace:
             if g.id in scores:
                 print("mces.evaluate(): duplicate graph identifier: {}"
-                      "".format(gid), file = sys.stderr);
+                      "".format(g.id), file = sys.stderr);
             scores[g.id] = {"tops": tops, "labels": labels,
                             "properties": properties, "anchors": anchors,
                             "edges": edges, "attributes": attributes};
