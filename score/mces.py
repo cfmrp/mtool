@@ -62,7 +62,7 @@ class InternalGraph():
                     self.edges.append((i, reindex(j), None))
 
 
-def initial_node_correspondences(graph1, graph2):
+def initial_node_correspondences(graph1, graph2, identities1=None, identities2=None):
     #
     # in the following, we assume that nodes in raw and internal
     # graphs correspond by position into the .nodes. list
@@ -71,21 +71,6 @@ def initial_node_correspondences(graph1, graph2):
     rewards = np.zeros(shape, dtype=np.int);
     edges = np.zeros(shape, dtype=np.int);
     anchors = np.zeros(shape, dtype=np.int);
-    #
-    # use overlap of UCCA yields in picking initial node pairing;
-    #
-    identities1 = dict();
-    identities2 = dict();
-    if graph1.framework == "ucca" and graph1.input \
-       and graph2.framework == "ucca" and graph2.input:
-        for node in graph1.nodes:
-            identities1 = identify(graph1, node.id, identities1);
-        identities1 = {key: explode(graph1.input, value)
-                       for key, value in identities1.items()}
-        for node in graph2.nodes:
-            identities2 = identify(graph2, node.id, identities2);
-        identities2 = {key: explode(graph2.input, value)
-                       for key, value in identities2.items()}
 
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
@@ -193,11 +178,28 @@ def sorted_splits(i, xs, rewards):
     yield from splits(sorted_xs)
 
 
+# UCCA-specific rule:
+# Do not pursue correspondences of nodes i and j in case there is
+# a node dominated by i whose correspondence is not dominated by j
+
+def domination_conflict(cv, i, j, dominated1, dominated2):
+    if not dominated1 or not dominated2 or i < 0 or j < 0:
+        return False
+    dominated_i = dominated1[i]
+    dominated_j = dominated2[j]
+    for _i, _j in cv.items():
+        if _i >= 0 and _j >= 0 and \
+                _i in dominated_i and \
+                _j not in dominated_j:
+            return True
+    return False
+
 # Find all maximum edge correspondences between the source graph
 # (graph1) and the target graph (graph2). This implements the
 # algorithm of McGregor (1982).
 
-def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
+def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0,
+                    dominated1=None, dominated2=None):
     global counter
     bilexical = graph1.flavor == 0 and graph2.flavor == 0
     index = dict()
@@ -215,10 +217,13 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
-            if bilexical and cv:  # respect node ordering in bi-lexical graphs
-                max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
-                if 0 <= j < max_j + 1:
-                    continue
+            if cv:
+                if bilexical:  # respect node ordering in bi-lexical graphs
+                    max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
+                    if 0 <= j < max_j + 1:
+                        continue
+                # elif domination_conflict(cv, i, j, dominated1, dominated2):
+                #     continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="")
             new_cv = dict(cv)
@@ -280,7 +285,11 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
     scores = dict() if trace else None
     for g, s in intersect(gold, system):
         counter = 0
-        pairs, rewards = initial_node_correspondences(g, s)
+
+        g_identities, s_identities, g_dominated, s_dominated = \
+            identities(g, s)
+        pairs, rewards = initial_node_correspondences(
+            g, s, identities1=g_identities, identities2=s_identities)
         if trace > 1:
             print("\n\ngraph #{}".format(g.id))
             print("Number of gold nodes: {}".format(len(g.nodes)))
@@ -290,7 +299,9 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
                 print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
         n_matched = 0
         best_cv, best_ce = None, None
-        for i, (cv, ce) in enumerate(correspondences(g, s, pairs, rewards, limit, trace)):
+        for i, (cv, ce) in enumerate(correspondences(
+                g, s, pairs, rewards, limit, trace,
+                dominated1=g_dominated, dominated2=s_dominated)):
             assert is_valid(ce)
             assert is_injective(ce)
             n = sum(map(len, ce.values()))
@@ -343,3 +354,28 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
               "all": total_all};
     if trace: result["scores"] = scores;
     return result;
+
+
+def identities(g, s):
+    #
+    # use overlap of UCCA yields in picking initial node pairing
+    #
+    if g.framework == "ucca" and g.input \
+            and s.framework == "ucca" and s.input:
+        g_identities = dict()
+        s_identities = dict()
+        g_dominated = dict()
+        s_dominated = dict()
+        for node in g.nodes:
+            g_identities, g_dominated = \
+                identify(g, node.id, g_identities, g_dominated)
+        g_identities = {key: explode(g.input, value)
+                        for key, value in g_identities.items()}
+        for node in s.nodes:
+            s_identities, s_dominated = \
+                identify(s, node.id, s_identities, s_dominated)
+        s_identities = {key: explode(s.input, value)
+                        for key, value in s_identities.items()}
+    else:
+        g_identities = s_identities = g_dominated = s_dominated = None
+    return g_identities, s_identities, g_dominated, s_dominated
