@@ -128,7 +128,7 @@ def initial_node_correspondences(graph1, graph2):
     # for even better initialization, consider edge attributes too?
     #
     rewards *= 10
-    rewards += edges + anchors
+    rewards += edges + 100 * anchors
     return pairs, rewards;
 
 
@@ -222,7 +222,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
             j, new_untried = next(untried)
             if bilexical and cv:
                 js = [_j for _i, _j in cv.items() if _i < i]
-                if js and j >= 0 and j < max(js) + 1:
+                if js and 0 <= j < max(js) + 1:
                     continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="")
