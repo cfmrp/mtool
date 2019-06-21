@@ -20,13 +20,11 @@ def get_or_update(index, key):
 class InternalGraph():
 
     def __init__(self, graph, index):
-        self.id2node = dict()
         self.node2id = dict()
         self.nodes = []
         self.id2edge = dict()
         self.edges = []
         for i, node in enumerate(graph.nodes):
-            self.id2node[i] = node
             self.node2id[node] = i
             self.nodes.append(i)
         for i, edge in enumerate(graph.edges):
@@ -219,7 +217,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0):
         i = source_todo[0]
         try:
             j, new_untried = next(untried)
-            if bilexical and cv:
+            if bilexical and cv:  # respect node ordering in bi-lexical graphs
                 max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
                 if 0 <= j < max_j + 1:
                     continue
