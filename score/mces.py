@@ -22,13 +22,11 @@ class InternalGraph():
     def __init__(self, graph, index):
         self.node2id = dict()
         self.nodes = []
-        self.id2edge = dict()
         self.edges = []
         for i, node in enumerate(graph.nodes):
             self.node2id[node] = i
             self.nodes.append(i)
         for i, edge in enumerate(graph.edges):
-            self.id2edge[i] = edge
             src = graph.find_node(edge.src)
             src = self.node2id[src]
             tgt = graph.find_node(edge.tgt)
