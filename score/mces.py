@@ -1,3 +1,4 @@
+import sys
 from operator import itemgetter
 
 import numpy as np
@@ -293,22 +294,17 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             if trace > 2:
                 print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
         n_matched = 0
-        i = 0
         best_cv, best_ce = None, None
-        for cv, ce in correspondences(g, s, pairs, rewards, limit, trace):
+        for i, (cv, ce) in enumerate(correspondences(g, s, pairs, rewards, limit, trace)):
             assert is_valid(ce)
             assert is_injective(ce)
-            n = 0
-            for edge1 in ce:
-                for edge2 in ce[edge1]:
-                    n += 1
+            n = sum(map(len, ce.values()))
             if n > n_matched:
                 if trace > 1:
                     print("\n[{}] solution #{}; matches: {}"
                           "".format(counter, i, n));
                 n_matched = n
                 best_cv, best_ce = cv, ce
-            i += 1
         total_matches += n_matched;
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
