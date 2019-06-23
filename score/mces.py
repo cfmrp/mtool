@@ -99,14 +99,12 @@ def initial_node_correspondences(graph1, graph2):
                 # also determine the maximum number of edge matches we
                 # can hope to score, for each node-node correspondence
                 #
-                edges[i, j] += sum(
-                    1 for edge1 in graph1.edges
-                    for edge2 in graph2.edges
-                    if edge1.lab == edge2.lab and (
-                            edge1.src == node1.id and
-                            edge2.src == node2.id or
-                            edge1.tgt == node1.id and
-                            edge2.tgt == node2.id))
+                for edge1 in graph1.edges:
+                    for edge2 in graph2.edges:
+                        if edge1.lab == edge2.lab and \
+                           (edge1.src == node1.id and edge2.src == node2.id or
+                            edge1.tgt == node1.id and edge2.tgt == node2.id):
+                            edges[i, j] += 1;
                 # and the overlap of UCCA yields
                 if identities1 and identities2:
                     anchors[i, j] += len(identities1[node1.id] &
@@ -123,7 +121,7 @@ def initial_node_correspondences(graph1, graph2):
             if j is not None: targets.add(j);
     #
     # adjust rewards to use edge potential as a secondary key; maybe
-    # we should rather pass around edges and adjust sorted_slits()?
+    # we should rather pass around edges and adjust sorted_splits()?
     # for even better initialization, consider edge attributes too?
     #
     rewards *= 10

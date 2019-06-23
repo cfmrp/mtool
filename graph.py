@@ -443,7 +443,7 @@ class Graph(object):
         if self.framework:
             json["framework"] = self.framework;
         json["version"] = 1.0;
-        json["time"] = self.time.strftime("%Y-%m-%d (%H:%M)");
+        json["time"] = self.time.strftime("%Y-%m-%d");
         if self.input:
             json["input"] = self.input;
         tops = [node.id for node in self.nodes if node.is_top];
