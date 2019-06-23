@@ -4,13 +4,16 @@ import sys
 from graph import Graph
 from smatch.amr import AMR;
 
-def amr_lines(fp):
+def amr_lines(fp, alignment):
     id, snt, lines = None, None, [];
+    alignment = read_alignment(alignment);
     for line in fp:
         line = line.strip();
         if len(line) == 0:
             if len(lines) > 0:
-                yield id, snt, " ".join(lines)
+                i, mapping = next(alignment);
+                yield id, snt, " ".join(lines), \
+                    mapping if mapping is not None and i == id else None;
             id, lines = None, []
         else:
             if line.startswith("#"):
@@ -21,19 +24,54 @@ def amr_lines(fp):
             else:
                 lines.append(line)
     if len(lines) > 0:
-        yield id, snt, " ".join(lines)
-def amr2graph(id, amr, full = False, reify = False):
+        i, mapping = next(alignment);
+        yield id, snt, " ".join(lines), \
+            mapping if mapping is not None and i == id else None;
+
+def read_alignment(stream):
+    if stream is None:
+        while True: yield None, None;
+    else: 
+        id = None;
+        alignment = dict();
+        for line in stream:
+            line = line.strip();
+            if len(line) == 0:
+                if len(alignment) > 0:
+                    yield id, alignment;
+                    id = None;
+                    alignment.clear();
+            else:
+                if line.startswith("#"):
+                    if line.startswith("# ::id"):
+                        id = line.split()[2]
+                else:
+                    fields = line.split("\t");
+                    if len(fields) == 2:
+                        start, end = fields[1].split("-");
+                        span = list(range(int(start), int(end) + 1));
+                        fields = fields[0].split();
+                        if len(fields) > 1 and fields[1].startswith(":"):
+                            fields[1] = fields[1][1:];
+                            if fields[1] == "wiki": continue;
+                        if fields[0] not in alignment:
+                            alignment[fields[0]] = set();
+                        alignment[fields[0]].add((tuple(fields[1:]), tuple(span)));
+        if len(alignment) > 0:
+            yield id, alignment;
+
+def amr2graph(id, amr, full = False, reify = False, alignment = None):
     graph = Graph(id, flavor = 2, framework = "amr")
     node2id = {}
     i = 0
     for n, v, a in zip(amr.nodes, amr.node_values, amr.attributes):
-        id = i
-        node2id[n] = id
+        j = i
+        node2id[n] = j
         top = False;
         for key, val in a:
             if key == "TOP":
                 top = True;
-        node = graph.add_node(id, label = v, top=top)
+        node = graph.add_node(j, label = v, top=top)
         i += 1
         for key, val in a:
             if key != "TOP" \
@@ -42,7 +80,7 @@ def amr2graph(id, amr, full = False, reify = False):
                     val = val[:-1];
                 if reify:
                     graph.add_node(i, label=val)
-                    graph.add_edge(id, i, key)
+                    graph.add_edge(j, i, key)
                     i += 1
                 else:
                     node.set_property(key, val);
@@ -53,12 +91,33 @@ def amr2graph(id, amr, full = False, reify = False):
             if label == "mod":
                 normal = "domain";
             elif label.endswith("-of-of") \
-                 or label.endswith("-of") and label not in {"consist-of" "subset-of"} \
+                 or label.endswith("-of") \
+                   and label not in {"consist-of" "subset-of"} \
                    and not label.startswith("prep-"):
                 normal = label[:-3];
             graph.add_edge(node2id[src], node2id[tgt], label, normal)
-    return graph
 
+    overlay = None;
+    if alignment is not None:
+        overlay = Graph(id, flavor = 2, framework = "alignment");
+        for node in alignment:
+            for path, span in alignment[node]:
+                if len(path) == 0:
+                    node = overlay.add_node(node2id[node], label = span);
+        for node in alignment:
+            i = node2id[node];
+            for path, span in alignment[node]:
+                if len(path) == 1:
+                    node = overlay.find_node(i);
+                    if node is None:
+                        node = overlay.add_node(i);
+                    node.set_property(path[0], span);
+                elif len(path) > 1:
+                    print("amr2graph(): ignoring alignment path {} on node #{} ({})"
+                          "".format(path, source, node));
+
+    return graph, overlay;
+
 def convert_amr_id(id):
     m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id)
     if m:
@@ -68,10 +127,11 @@ def convert_amr_id(id):
         return "1%04d0" % (int(m.group(1)))
     else:
         raise Exception('Could not convert id: %s' % id)
-
-def read(fp, full = False, reify = False, text = None, quiet = False):
+
+def read(fp, full = False, reify = False,
+         text = None, alignment = None, quiet = False):
     n = 0;
-    for id, snt, amr_line in amr_lines(fp):
+    for id, snt, amr_line, mapping in amr_lines(fp, alignment):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ({}); exit."
@@ -84,10 +144,10 @@ def read(fp, full = False, reify = False, text = None, quiet = False):
                 n += 1;
         except:
             pass
-        graph = amr2graph(id, amr, full, reify);
+        graph, overlay = amr2graph(id, amr, full, reify, mapping);
         cid = None;
         if text:
             graph.add_input(text, quiet = quiet);
         elif snt:
             graph.add_input(snt, quiet = quiet);
-        yield graph;
+        yield graph, overlay;

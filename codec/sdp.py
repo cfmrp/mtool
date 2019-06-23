@@ -47,4 +47,4 @@ def matrix2graph(matrix, framework = None, text = None):
 
 def read(fp, framework = None, text = None):
     for matrix in read_matrices(fp):
-        yield matrix2graph(matrix, framework, text);
+        yield matrix2graph(matrix, framework, text), None;

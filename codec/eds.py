@@ -87,4 +87,4 @@ def instance2graph(instance, reify = False, text = None):
 
 def read(fp, reify = False, text = None):
     for instance in read_instances(fp):
-        yield instance2graph(instance, reify, text)
+        yield instance2graph(instance, reify, text), None

@@ -32,43 +32,58 @@ __author__ = "oe"
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 prefix = None, text = None, quiet = False,
-                id = None, n = None, i = None):
+                alignment = None, id = None, n = None, i = None):
 
-  graphs = None;
+  generator = None;
   if format == "amr":
-    graphs = codec.amr.read(stream, full = full, reify = reify,
-                            text = text, quiet = quiet);
+    generator \
+      = codec.amr.read(stream, full = full, reify = reify,
+                       text = text,
+                       alignment = alignment, quiet = quiet);
   elif format in {"ccd", "dm", "pas", "psd"}:
-    graphs = codec.sdp.read(stream, framework = format, text = text);
+    generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
-    graphs = codec.eds.read(stream, reify = reify, text = text);
+    generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
-    graphs = codec.mrp.read(stream)
+    generator = codec.mrp.read(stream)
   elif format == "ucca":
-    graphs = codec.ucca.read(stream, text = text, prefix = prefix);
+    generator = codec.ucca.read(stream, text = text, prefix = prefix);
   elif format == "conllu" or format == "ud":
-    graphs = codec.conllu.read(stream, framework = format, text = text)
+    generator = codec.conllu.read(stream, framework = format, text = text)
   else:
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
     sys.exit(1);
 
+  if generator is None:
+    return None, None;
+
   #
-  # for now, break out of the generators, for downstream simplicity
+  # (for now) break out of the generators, for downstream simplicity
   #
-  graphs = list(graphs);
-  
-  if id is not None:
-    graphs = [graph for graph in graphs if graph.id == id];
-  elif i is not None and i >= 0:
-    graphs = graphs[i:i + 1];
-  elif n is not None and n >= 1:
-    graphs = graphs[0:n]
+  graphs = [];
+  overlays = [];
+  j = 0;
+  while n is None or n < 1 or j < n:
+    try:
+      graph, overlay = next(generator);
+      if id is not None:
+        if graph.id == id:
+          graphs.append(graph); overlays.append(overlay);
+      elif i is not None and i >= 0:
+        if j == i:
+          graphs.append(graph); overlays.append(overlay);
+          break;
+      else:
+        graphs.append(graph); overlays.append(overlay);
+      j += 1;
+    except StopIteration:
+      break;
 
   if normalize:
     for graph in graphs: graph.normalize(normalize);
 
-  return graphs;
+  return graphs, overlays;
 
 def main():
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
@@ -76,8 +91,11 @@ def main():
   parser.add_argument("--normalize", action = "append", default = []);
   parser.add_argument("--full", action = "store_true");
   parser.add_argument("--reify", action = "store_true");
+  parser.add_argument("--ids", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
   parser.add_argument("--gold", type = argparse.FileType("r"));
+  parser.add_argument("--alignment", type = argparse.FileType("r"));
+  parser.add_argument("--overlay", type = argparse.FileType("w"));
   parser.add_argument("--format");
   parser.add_argument("--score");
   parser.add_argument("--validate", action = "append", default = []);
@@ -159,13 +177,19 @@ def main():
               "".format(action), file = sys.stderr);
         sys.exit(1);
 
-  graphs = read_graphs(arguments.input, format = arguments.read,
-                       full = arguments.full, normalize = normalize,
-                       reify = arguments.reify, text = text,
-                       quiet = arguments.quiet,
-                       id = arguments.id, n = arguments.n, i = arguments.i);
+  if arguments.alignment is not None and arguments.overlay is None:
+    print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",
+          file = sys.stderr);
+    sys.exit(1);
+    
+  graphs, overlays \
+    = read_graphs(arguments.input, format = arguments.read,
+                  full = arguments.full, normalize = normalize,
+                  reify = arguments.reify, text = text,
+                  alignment = arguments.alignment, quiet = arguments.quiet,
+                  id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
-    print("main.py(): unable to read input graph; exit.", file = sys.stderr);
+    print("main.py(): unable to read input graphs; exit.", file = sys.stderr);
     sys.exit(1);
 
   validations = {"input", "anchors", "edges",
@@ -226,6 +250,10 @@ def main():
 
       if result is not None:
         if arguments.write == "json" or True:
+          #
+          # _fix_me_
+          # we should write a genuine custom JSON encoder
+          #
           print("{", file = arguments.output, end = "");
           start = True;
           for key in result:
@@ -242,13 +270,18 @@ def main():
                 indent = None, ensure_ascii = False);
       print(file = arguments.output);
     elif arguments.write == "dot":
-      graph.dot(arguments.output, arguments.strings);
+      graph.dot(arguments.output,
+                ids = arguments.ids, strings = arguments.strings);
       print(file = arguments.output);
     elif arguments.write == "txt":
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
 
-
+  if arguments.overlay:
+    for graph in overlays:
+      json.dump(graph.encode(), arguments.overlay,
+                indent = None, ensure_ascii = False);
+    
 if __name__ == "__main__":
   main();

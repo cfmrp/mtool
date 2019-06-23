@@ -112,6 +112,4 @@ def read(fp, text = None, prefix = None):
         except Exception as exception:
             print(exception);
             continue;
-        yield graph;
-
-
+        yield graph, None;

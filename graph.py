@@ -136,13 +136,17 @@ class Node(object):
         anchors = json.get("anchors", None)
         return Node(id, label, properties, values, anchors)
 
-    def dot(self, stream, input = None, strings = False):
+    def dot(self, stream, input = None, ids = False, strings = False):
         if self.label \
+           or ids \
            or self.properties and self.values \
            or self.anchors:
             print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
                   "".format(self.id),
                   end = "", file = stream);
+            if ids:
+                print("<tr><td colspan=\"2\">#{}</td></tr>"
+                      "".format(self.id), end = "", file = stream);
             if self.label:
                 print("<tr><td colspan=\"2\">{}</td></tr>"
                       "".format(html.escape(self.label, False)),
@@ -473,7 +477,7 @@ class Graph(object):
             graph.find_node(i).is_top = True
         return graph
 
-    def dot(self, stream, strings = False):
+    def dot(self, stream, ids = False, strings = False):
         print("digraph \"{}\" {{\n  top [ style=invis ];"
               "".format(self.id),
               file = stream);
@@ -481,7 +485,7 @@ class Graph(object):
             if node.is_top:
                 print("  top -> {};".format(node.id), file = stream);
         for node in self.nodes:
-            node.dot(stream, self.input, strings);
+            node.dot(stream, self.input, ids, strings);
         for edge in self.edges:
             edge.dot(stream, self.input, strings);
         print("}", file = stream);

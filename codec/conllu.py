@@ -50,6 +50,5 @@ def construct_graph(id, tuples, framework = None, text = None):
 def read(stream, framework = None, text = None):
     id, tuples = read_tuples(stream);
     while tuples:
-      yield construct_graph(id, tuples, framework, text);
+      yield construct_graph(id, tuples, framework, text), None;
       id, tuples = read_tuples(stream);
-
