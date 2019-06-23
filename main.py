@@ -280,8 +280,10 @@ def main():
 
   if arguments.overlay:
     for graph in overlays:
-      json.dump(graph.encode(), arguments.overlay,
-                indent = None, ensure_ascii = False);
+      if graph:
+        json.dump(graph.encode(), arguments.overlay,
+                  indent = None, ensure_ascii = False);
+        print(file = arguments.overlay);
     
 if __name__ == "__main__":
   main();

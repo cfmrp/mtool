@@ -11,7 +11,13 @@ def amr_lines(fp, alignment):
         line = line.strip();
         if len(line) == 0:
             if len(lines) > 0:
-                i, mapping = next(alignment);
+                i = mapping = None;
+                try:
+                    i, mapping = next(alignment);
+                except:
+                    print("amr_lines(): missing alignment for graph #{}."
+                          "".format(id), file = sys.stderr);
+                    pass;
                 yield id, snt, " ".join(lines), \
                     mapping if mapping is not None and i == id else None;
             id, lines = None, []
@@ -24,7 +30,13 @@ def amr_lines(fp, alignment):
             else:
                 lines.append(line)
     if len(lines) > 0:
-        i, mapping = next(alignment);
+        i = mapping = None;
+        try:
+            i, mapping = next(alignment);
+        except:
+            print("amr_lines(): missing alignment for graph #{}."
+                  "".format(id), file = sys.stderr);
+            pass;
         yield id, snt, " ".join(lines), \
             mapping if mapping is not None and i == id else None;
 
@@ -37,10 +49,9 @@ def read_alignment(stream):
         for line in stream:
             line = line.strip();
             if len(line) == 0:
-                if len(alignment) > 0:
-                    yield id, alignment;
-                    id = None;
-                    alignment.clear();
+                yield id, alignment;
+                id = None;
+                alignment.clear();
             else:
                 if line.startswith("#"):
                     if line.startswith("# ::id"):
@@ -57,8 +68,7 @@ def read_alignment(stream):
                         if fields[0] not in alignment:
                             alignment[fields[0]] = set();
                         alignment[fields[0]].add((tuple(fields[1:]), tuple(span)));
-        if len(alignment) > 0:
-            yield id, alignment;
+        yield id, alignment;
 
 def amr2graph(id, amr, full = False, reify = False, alignment = None):
     graph = Graph(id, flavor = 2, framework = "amr")
