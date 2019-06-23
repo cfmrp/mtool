@@ -1,35 +1,41 @@
+import sys
 from operator import itemgetter;
 
 from score.core import anchor, explode, intersect, fscore;
 
 
-def identify(graph, node, mapping = None, recursion = False):
+def identify(graph, node, anchors = None, dominated = None, recursion = False):
   #
   # from how this ends up being called in various places, there is a missing
   # higher-level interface; something like (maybe even as a Graph method):
   #
   # identities = identify(graph, walk = True, explode = True)
   #
-  if mapping is None:
-    mapping = dict();
-  elif node in mapping:
-    return mapping;
-  mapping[node] = node_anchors = anchor(graph.find_node(node));
+  if dominated is None:
+    dominated = dict()
+  dominated[node] = node_dominated = set()
+  if anchors is None:
+    anchors = dict();
+  elif node in anchors:
+    return anchors, dominated;
+  anchors[node] = node_anchors = anchor(graph.find_node(node));
   for edge in graph.edges:
     if edge.attributes is None or "remote" not in edge.attributes:
       if node == edge.src:
-        identify(graph, edge.tgt, mapping, True);
-        for leaf in mapping[edge.tgt]:
+        identify(graph, edge.tgt, anchors, dominated, True);
+        for leaf in anchors[edge.tgt]:
           if leaf not in node_anchors: node_anchors.append(leaf);
+        node_dominated.add(edge.tgt)
+        node_dominated |= dominated[edge.tgt]
   if not recursion:
-      mapping = {key: tuple(sorted(value, key = itemgetter(0, 1)))
-                 for key, value in mapping.items()}
-  return mapping;
+      anchors = {key: tuple(sorted(value, key = itemgetter(0, 1)))
+                 for key, value in anchors.items()}
+  return anchors, dominated;
 
 def tuples(graph):
   identities = dict();
   for node in graph.nodes:
-    identities = identify(graph, node.id, identities);
+    identities, _ = identify(graph, node.id, identities);
   #
   # for robust comparison, represent each yield as a character set
   #
