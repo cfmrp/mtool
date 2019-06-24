@@ -12,9 +12,10 @@ def tuples(graph, prefix):
   attributes = [];
   for node in graph.nodes:
     mapping[node.id] = name = prefix + str(node.id);
-    instances.append(("instance", name, node.label));
+    if node.label:
+      instances.append(("instance", name, node.label));
     if node.is_top:
-      attributes.append(("TOP", name, node.label));
+      attributes.append(("TOP", name, node.label if node.label else ""));
     if node.properties and node.values:
       for property, value in zip(node.properties, node.values):
         attributes.append((property, name, value));
