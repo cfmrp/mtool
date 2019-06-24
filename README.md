@@ -109,6 +109,19 @@ Analytics
 Validation
 ----------
 
+`mtool` can test high-level wellformedness and (superficial) plausiblity of MRP
+graphs through its emerging `--validate` option.
+The MRP validator continues to evolve, but the following is indicative of its
+functionality:
+```
+./main.py --read mrp --validate all data/validate/eds/wsj.mrp 
+validate(): graph ‘20001001’: missing or invalid ‘input’ property
+validate(): graph ‘20001001’; node #0: missing or invalid label
+validate(): graph ‘20001001’; node #1: missing or invalid label
+validate(): graph ‘20001001’; node #3: missing or invalid anchoring
+validate(): graph ‘20001001’; node #6: invalid ‘anchors’ value: [{'from': 15, 'to': 23}, {'from': 15, 'to': 23}]
+validate(): graph ‘20001001’; node #7: invalid ‘anchors’ value: [{'form': 15, 'to': 17}]
+```
 
 Conversion
 ----------
@@ -127,7 +140,8 @@ per line, separated by a tabulator, e.g.
 ```
 ./main.py --id 20012005 --text data/sample/wsj.txt --read dm --write dot data/sample/psd/wsj.sdp 20012005.dot
 ```
-For increased readability, the `--strings` option can replace character-based
+For increased readability, the `--ids` option will include MRP node identifiers
+in graph rendering, and the `--strings` option can replace character-based
 anchors with the corresponding sub-string from the `input` field of the graph
 (currently only for the DOT output format), e.g.
 ```
