@@ -215,11 +215,11 @@ def main():
 
   if arguments.gold and arguments.score:
     if arguments.format is None: arguments.format = arguments.read;
-    gold = read_graphs(arguments.gold, format = arguments.format,
-                       full = arguments.full, normalize = normalize,
-                       reify = arguments.reify, text = text,
-                       quiet = arguments.quiet,
-                       id = arguments.id, n = arguments.n, i = arguments.i);
+    gold, _ = read_graphs(arguments.gold, format = arguments.format,
+                          full = arguments.full, normalize = normalize,
+                          reify = arguments.reify, text = text,
+                          quiet = arguments.quiet,
+                          id = arguments.id, n = arguments.n, i = arguments.i);
     if not gold:
       print("main.py(): unable to read gold graphs: {}; exit.", file = sys.stderr);
       sys.exit(1);
