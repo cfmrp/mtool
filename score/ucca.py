@@ -13,7 +13,8 @@ def identify(graph, node, anchors = None, dominated = None, recursion = False):
   #
   if dominated is None:
     dominated = dict()
-  dominated[node] = node_dominated = set()
+  if node not in dominated: dominated[node] = node_dominated = set()
+  else: node_dominated = dominated[node]
   if anchors is None:
     anchors = dict();
   elif node in anchors:
