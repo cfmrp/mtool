@@ -220,8 +220,8 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0,
                     max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
                     if 0 <= j < max_j + 1:
                         continue
-                # elif domination_conflict(cv, i, j, dominated1, dominated2):
-                #     continue
+                elif domination_conflict(cv, i, j, dominated1, dominated2):
+                    continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="")
             new_cv = dict(cv)
