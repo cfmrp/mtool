@@ -104,6 +104,7 @@ def main():
   parser.add_argument("--write");
   parser.add_argument("--text");
   parser.add_argument("--prefix");
+  parser.add_argument("--source");
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
@@ -138,7 +139,7 @@ def main():
     sys.exit(1);
 
   if arguments.write is not None and \
-     arguments.write not in {"dot", "id", "json", "mrp", "txt"}:
+     arguments.write not in {"dot", "evaluation", "id", "json", "mrp", "txt"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -191,6 +192,9 @@ def main():
   if not graphs:
     print("main.py(): unable to read input graphs; exit.", file = sys.stderr);
     sys.exit(1);
+
+  if arguments.source:
+    for graph in graphs: graph.source(arguments.source);
 
   validations = {"input", "anchors", "edges",
                  "amr", "eds", "sdp", "ucca"}
@@ -265,7 +269,18 @@ def main():
     sys.exit(0);
       
   for graph in graphs:
-    if arguments.write == "mrp":
+    if arguments.write in {"mrp", "evaluation"}:
+      if arguments.write == "evaluation":
+        graph.flavor = graph.framework = graph.nodes = graph.edges = None;
+        if graph.source() in {"lpps", "wsj"}:
+          graph.targets(["dm", "psd", "eds", "ucca", "amr"]);
+        elif graph.source() in {"brown", "wsj"}:
+          graph.targets(["dm", "psd", "eds"]);
+        elif graph.source() in {"ewt", "wiki"}:
+          graph.targets(["ucca"]);
+        elif graph.source() in {"amr-consensus", "bold", "dfa",
+                                "lorelei", "proxy", "xinhua"}:
+          graph.targets(["amr"]);
       json.dump(graph.encode(), arguments.output,
                 indent = None, ensure_ascii = False);
       print(file = arguments.output);

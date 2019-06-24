@@ -283,11 +283,21 @@ class Graph(object):
     def __init__(self, id, flavor = None, framework = None):
         self.id = id;
         self.time = datetime.utcnow();
+        self._source = None;
+        self._targets = None;
         self.input = None;
         self.nodes = [];
         self.edges = set();
         self.flavor = flavor;
         self.framework = framework;
+
+    def source(self, value = None):
+        if value is not None: self._source = value;
+        return self._source;
+    
+    def targets(self, value = None):
+        if value is not None: self._targets = value;
+        return self._targets;
 
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
@@ -448,13 +458,17 @@ class Graph(object):
             json["framework"] = self.framework;
         json["version"] = 1.0;
         json["time"] = self.time.strftime("%Y-%m-%d");
+        if self._source is not None: json["source"] = self._source;
+        if self._targets is not None: json["targets"] = self._targets;
         if self.input:
             json["input"] = self.input;
-        tops = [node.id for node in self.nodes if node.is_top];
-        if len(tops):
-            json["tops"] = tops;
-        json["nodes"] = [node.encode() for node in self.nodes];
-        json["edges"] = [edge.encode() for edge in self.edges];
+        if self.nodes:
+            tops = [node.id for node in self.nodes if node.is_top];
+            if len(tops):
+                json["tops"] = tops;
+            json["nodes"] = [node.encode() for node in self.nodes];
+            if self.edges:
+                json["edges"] = [edge.encode() for edge in self.edges];
         return json;
 
     @staticmethod
@@ -462,7 +476,10 @@ class Graph(object):
         flavor = json.get("flavor", None)
         framework = json.get("framework", None)
         graph = Graph(json["id"], flavor, framework)
-        graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
+        try:
+            graph.time = datetime.strptime(json["time"], "%Y-%m-%d")
+        except:
+            graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input", None)
         for j in json["nodes"]:
             node = Node.decode(j)
