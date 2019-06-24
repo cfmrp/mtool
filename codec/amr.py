@@ -55,19 +55,22 @@ def read_alignment(stream):
             else:
                 if line.startswith("#"):
                     if line.startswith("# ::id"):
-                        id = line.split()[2]
+                        id = line.split()[2];
                 else:
                     fields = line.split("\t");
                     if len(fields) == 2:
                         start, end = fields[1].split("-");
-                        span = list(range(int(start), int(end) + 1));
+                        span = set(range(int(start), int(end) + 1));
                         fields = fields[0].split();
                         if len(fields) > 1 and fields[1].startswith(":"):
                             fields[1] = fields[1][1:];
                             if fields[1] == "wiki": continue;
-                        if fields[0] not in alignment:
-                            alignment[fields[0]] = set();
-                        alignment[fields[0]].add((tuple(fields[1:]), tuple(span)));
+                        if fields[0] not in alignment: alignment[fields[0]] = bucket = dict();
+                        else: bucket = alignment[fields[0]];
+                        path = tuple(fields[1:]);
+                        if path not in bucket: bucket[path] = can = set();
+                        else: can =  bucket[path];
+                        can |= span;
         yield id, alignment;
 
 def amr2graph(id, amr, full = False, reify = False, alignment = None):
@@ -111,17 +114,16 @@ def amr2graph(id, amr, full = False, reify = False, alignment = None):
     if alignment is not None:
         overlay = Graph(id, flavor = 2, framework = "alignment");
         for node in alignment:
-            for path, span in alignment[node]:
+            for path, span in alignment[node].items():
                 if len(path) == 0:
-                    node = overlay.add_node(node2id[node], label = span);
+                    node = overlay.add_node(node2id[node], label = tuple(span));
         for node in alignment:
             i = node2id[node];
-            for path, span in alignment[node]:
+            for path, span in alignment[node].items():
                 if len(path) == 1:
                     node = overlay.find_node(i);
-                    if node is None:
-                        node = overlay.add_node(i);
-                    node.set_property(path[0], span);
+                    if node is None: node = overlay.add_node(i);
+                    node.set_property(path[0], tuple(span));
                 elif len(path) > 1:
                     print("amr2graph(): ignoring alignment path {} on node #{} ({})"
                           "".format(path, source, node));
