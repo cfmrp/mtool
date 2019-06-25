@@ -178,3 +178,4 @@ Contributors
 ------------
 
 + Yuta Koreeda <koreyou@mac.com> (@koreyou)
++ Matthias Lindemann <mlinde@coli.uni-saarland.de> (@namednil)
