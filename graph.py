@@ -302,7 +302,7 @@ class Graph(object):
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
                  anchors = None, top = False):
-        node = Node(id if id else len(self.nodes),
+        node = Node(id if id is not None else len(self.nodes),
                     label = label, properties = properties, values = values,
                     anchors = anchors, top = top);
         self.nodes.append(node)
