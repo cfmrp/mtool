@@ -168,13 +168,13 @@ other in the above order.
 Installation
 ------------
 
-You can install `mtool` via `pip` with a command like the following:
+You can install `mtool` via `pip` with the following command:
 
 ```
-pip install git+https://github.com/cfmrp/mtool.git
+pip install git+https://github.com/cfmrp/mtool.git#egg=mtool
 ```
 
 Contributors
 ------------
 
-+ Yuta Korreda <yuta.koreeda.pb@hitachi.com> (@koreyou)
++ Yuta Koreeda <koreyou@mac.com> (@koreyou)
