@@ -12,10 +12,15 @@ def tuples(graph, prefix):
   instances = [];
   relations = [];
   attributes = [];
+  n = 0;
   for node in graph.nodes:
     mapping[node.id] = name = prefix + str(node.id);
-    if node.label or graph.framework == "ucca":
-      instances.append(("instance", name, node.label or ""));
+    if node.label is not None:
+      instance = node.label;
+    else:
+      instance = "__()_{}__".format(prefix, n);
+      n += 1;
+    instances.append(("instance", name, instance));
     if node.is_top:
       attributes.append(("TOP", name, node.label if node.label else ""));
     if node.properties and node.values:
@@ -23,7 +28,7 @@ def tuples(graph, prefix):
         attributes.append((property, name, value));
   for edge in graph.edges:
     relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
-  return instances, attributes, relations;
+  return instances, attributes, relations, n;
         
 def evaluate(golds, systems, format = "json", limit = 5, trace = 0):
   if not limit: limit = 5;
@@ -32,8 +37,8 @@ def evaluate(golds, systems, format = "json", limit = 5, trace = 0):
   scores = dict() if trace else None;
   for gold, system in intersect(golds, systems):
     id = gold.id;
-    ginstances, gattributes, grelations = tuples(gold, gprefix);
-    sinstances, sattributes, srelations = tuples(system, sprefix);
+    ginstances, gattributes, grelations, gn = tuples(gold, gprefix);
+    sinstances, sattributes, srelations, sn = tuples(system, sprefix);
     if trace > 1:
       print("gold instances: {}\ngold attributes: {}\ngold relations: {}"
             "".format(ginstances, gattributes, grelations));
@@ -45,6 +50,8 @@ def evaluate(golds, systems, format = "json", limit = 5, trace = 0):
                       relation1 = grelations, prefix1 = gprefix,
                       instance2 = sinstances, attributes2 = sattributes,
                       relation2 = srelations, prefix2 = sprefix);
+    gold -= gn;
+    system -= sn;
     tg += gold; ts += system; tc += correct;
     n += 1;
     if trace:
