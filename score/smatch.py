@@ -1,7 +1,9 @@
 import sys;
+
 from score.core import fscore, intersect;
 from smatch.smatch import get_amr_match;
-
+
+
 def tuples(graph, prefix):
   #
   # mimicry of get_triples() in amr.py
@@ -12,8 +14,7 @@ def tuples(graph, prefix):
   attributes = [];
   for node in graph.nodes:
     mapping[node.id] = name = prefix + str(node.id);
-    if node.label:
-      instances.append(("instance", name, node.label));
+    instances.append(("instance", name, node.label or ""));
     if node.is_top:
       attributes.append(("TOP", name, node.label if node.label else ""));
     if node.properties and node.values:
