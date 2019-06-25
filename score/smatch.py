@@ -7,14 +7,16 @@ from smatch.smatch import get_amr_match;
 def tuples(graph, prefix):
   #
   # mimicry of get_triples() in amr.py
-  #  
+  #
+  id = 0;
   mapping = dict();
   instances = [];
   relations = [];
   attributes = [];
   n = 0;
   for node in graph.nodes:
-    mapping[node.id] = name = prefix + str(node.id);
+    mapping[node.id] = name = prefix + str(id);
+    id += 1;
     if node.label is not None:
       instance = node.label;
     else:
