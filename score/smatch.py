@@ -14,7 +14,8 @@ def tuples(graph, prefix):
   attributes = [];
   for node in graph.nodes:
     mapping[node.id] = name = prefix + str(node.id);
-    instances.append(("instance", name, node.label or ""));
+    if node.label or graph.framework == "ucca":
+      instances.append(("instance", name, node.label or ""));
     if node.is_top:
       attributes.append(("TOP", name, node.label if node.label else ""));
     if node.properties and node.values:
