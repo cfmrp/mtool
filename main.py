@@ -99,6 +99,7 @@ def main():
   parser.add_argument("--limit", type = int, default = 0);
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
+  parser.add_argument("--addanchors", default=False, action="store_true",help="this flag makes SMATCH add 'from' and 'to' anchors as attributes");
   parser.add_argument("--text");
   parser.add_argument("--prefix");
   parser.add_argument("--source");
@@ -241,7 +242,7 @@ def main():
         result = score.smatch.evaluate(gold, graphs,
                                        format = arguments.write,
                                        limit = arguments.limit,
-                                       trace = arguments.trace);
+                                       trace = arguments.trace, useanchor=arguments.addanchors);
       elif metric == "ucca":
         result = score.ucca.evaluate(gold, graphs,
                                      format = arguments.write,
