@@ -4,12 +4,8 @@
 
 import argparse;
 import json;
-from pathlib import Path;
 import sys;
-
-from analyzer import analyze;
-
-from graph import Graph;
+from pathlib import Path;
 
 import codec.amr;
 import codec.conllu;
@@ -22,13 +18,14 @@ import score.mces;
 import score.sdp;
 import score.smatch;
 import score.ucca;
-
 import validate.core;
-
-from version import __version__;
+from analyzer import analyze;
 
 __author__ = "oe"
-
+
+VALIDATIONS = {"input", "anchors", "edges",
+               "amr", "eds", "sdp", "ucca"}
+
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 prefix = None, text = None, quiet = False,
@@ -196,14 +193,12 @@ def main():
   if arguments.source:
     for graph in graphs: graph.source(arguments.source);
 
-  validations = {"input", "anchors", "edges",
-                 "amr", "eds", "sdp", "ucca"}
-  actions = set();
-  if len(arguments.validate) == 1 and arguments.validate[0] == "all":
-    actions = validations;
+  if arguments.validate == ["all"]:
+    actions = VALIDATIONS;
   else:
+    actions = set();
     for action in arguments.validate:
-      if action in validations:
+      if action in VALIDATIONS:
         actions.add(action);
       else:
         print("main.py(): invalid type of validation: {}; exit."
