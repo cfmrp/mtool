@@ -5,6 +5,7 @@
 import argparse;
 import json;
 import sys;
+import time;
 from pathlib import Path;
 
 import codec.amr;
@@ -224,6 +225,7 @@ def main():
       sys.exit(1);
     for metric in arguments.score.split(","):
       result = None;
+      launch = time.process_time();
       if metric == "edm":
         result = score.edm.evaluate(gold, graphs,
                                     format = arguments.write,
@@ -251,6 +253,7 @@ def main():
                                      trace = arguments.trace);
 
       if result is not None:
+        result["time"] = time.process_time() - launch;
         if arguments.write == "json" or True:
           #
           # _fix_me_
