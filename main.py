@@ -162,13 +162,13 @@ def main():
     sys.exit(1);
 
   if len(arguments.normalize) == 1 and arguments.normalize[0] == "all":
-    normalize = ["anchors", "edges"];
+    normalize = ["anchors", "case", "edges"];
   elif arguments.score is not None:
-    normalize = ["anchors", "edges"];
+    normalize = ["anchors", "case", "edges"];
   else:
     normalize = [];
     for action in arguments.normalize:
-      if action in {"anchors", "edges"}:
+      if action in {"anchors", "case", "edges"}:
         normalize.append(action);
       else:
         print("main.py(): invalid type of normalization: {}; exit."

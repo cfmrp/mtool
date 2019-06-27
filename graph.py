@@ -65,6 +65,13 @@ class Node(object):
 
         if self.anchors and input and "anchors" in actions:
             for anchor in self.anchors: trim(anchor, input);
+        if "case" in actions:
+            if self.label is not None:
+                self.label = str(self.label).lower();
+            if self.properties and self.values:
+                for i in range(len(self.properties)):
+                    self.properties[i] = str(self.properties[i]).lower();
+                    self.values[i] = str(self.values[i]).lower();
 
     def anchoring(self):
         #
@@ -221,6 +228,14 @@ class Edge(object):
         return self.max() - self.min()
 
     def normalize(self, actions):
+        if "case" in actions:
+            if self.lab is not None:
+                self.lab = str(self.lab).lower();
+            if self.attributes and self.values:
+                for i in range(len(self.attributes)):
+                    self.attributes[i] = str(self.attributes[i]).lower();
+                    self.values[i] = str(self.values[i]).lower();
+
         if self.normal and "edges" in actions:
             target = self.src;
             self.src = self.tgt;
@@ -388,6 +403,9 @@ class Graph(object):
             node.normalize(actions, self.input);
         for edge in self.edges:
             edge.normalize(actions);
+        #
+        # recompute cached edge relations, to reflect the new state of affairs
+        #
         if "edges" in actions:
             for node in self.nodes:
                 node.outgoing_edges.clear();
