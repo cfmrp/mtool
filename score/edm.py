@@ -39,14 +39,10 @@ def evaluate(golds, systems, format = "json", trace = 0):
     if trace > 1:
       print("[{}] gold:\n{}\n{}\n{}\n{}\n\n"
             "".format(gold.id, gtops,
-                      sorted(gnames, key = lambda foo: foo[0][0]),
-                      sorted(garguments, key = lambda foo: foo[0][0]),
-                      gproperties));
+                      gnames, garguments, gproperties));
       print("[{}] system:\n{}\n{}\n{}\n{}\n\n"
             "".format(gold.id, stops,
-                      sorted(snames, key = lambda foo: foo[0][0]),
-                      sorted(sarguments, key = lambda foo: foo[0][0]),
-                      sproperties));
+                      snames, sarguments, sproperties));
     gn = len(gnames); sn = len(snames);
     cn = len(gnames & snames);
     ga = len(garguments); sa = len(sarguments);
@@ -68,6 +64,7 @@ def evaluate(golds, systems, format = "json", trace = 0):
                          "arguments":  {"g": ga, "s": sa, "c": ca},
                          "tops": {"g": gt, "s": st, "c": ct},
                          "properties": {"g": gp, "s": sp, "c": cp}};
+  if scores is not None: result["scores"] = scores;
   p, r, f = score.core.fscore(tgn, tsn, tcn);
   result["names"] = {"g": tgn, "s": tsn, "c": tcn, "p": p, "r": r, "f": f};
   p, r, f = score.core.fscore(tga, tsa, tca);
@@ -81,5 +78,4 @@ def evaluate(golds, systems, format = "json", trace = 0):
   tca = tcn + tca + tct + tcp;
   p, r, f = score.core.fscore(tga, tsa, tca);
   result["all"] = {"g": tga, "s": tsa, "c": tca, "p": p, "r": r, "f": f};
-  result["scores"] = scores;
   return result;
