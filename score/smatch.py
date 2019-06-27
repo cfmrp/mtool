@@ -3,8 +3,15 @@ import sys;
 from score.core import fscore, intersect;
 from smatch.smatch import get_amr_match;
 
+def add_anchors(node, name):
+    if node.anchors is not None:
+      ea = [("anchor-from", name, str(each_anchor['from'])+"_"+str(each_anchor['to'])) for each_anchor in node.anchors]
+      #ea += [("anchor-to", name, str(each_anchor['to'])) for each_anchor in node.anchors]
+    else:
+      ea = []
+    return ea
 
-def tuples(graph, prefix):
+def tuples(graph, prefix, useanchor=False):
   #
   # mimicry of get_triples() in amr.py
   #
@@ -16,6 +23,8 @@ def tuples(graph, prefix):
   n = 0;
   for node in graph.nodes:
     mapping[node.id] = name = prefix + str(id);
+    if useanchor:
+      attributes += add_anchors(node, name)
     id += 1;
     if node.label is not None:
       instance = node.label;
@@ -32,15 +41,15 @@ def tuples(graph, prefix):
     relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
         
-def evaluate(golds, systems, format = "json", limit = 5, trace = 0):
+def evaluate(golds, systems, format = "json", limit = 5, trace = 0, useanchor=False):
   if not limit: limit = 5;
   tg = ts = tc = n = 0;
   gprefix = "g"; sprefix = "s";
   scores = dict() if trace else None;
   for gold, system in intersect(golds, systems):
     id = gold.id;
-    ginstances, gattributes, grelations, gn = tuples(gold, gprefix);
-    sinstances, sattributes, srelations, sn = tuples(system, sprefix);
+    ginstances, gattributes, grelations, gn = tuples(gold, gprefix, useanchor);
+    sinstances, sattributes, srelations, sn = tuples(system, sprefix, useanchor);
     if trace > 1:
       print("gold instances: {}\ngold attributes: {}\ngold relations: {}"
             "".format(ginstances, gattributes, grelations));
