@@ -162,19 +162,20 @@ def main():
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
 
+  normalizations = {"anchors", "case", "edges"};
   if len(arguments.normalize) == 1 and arguments.normalize[0] == "all":
-    normalize = ["anchors", "case", "edges"];
-  elif arguments.score is not None:
-    normalize = ["anchors", "case", "edges"];
+    normalize = normalizations;
   else:
-    normalize = [];
+    normalize = set();
     for action in arguments.normalize:
-      if action in {"anchors", "case", "edges"}:
-        normalize.append(action);
+      if action in normalizations:
+        normalize.add(action);
       else:
         print("main.py(): invalid type of normalization: {}; exit."
               "".format(action), file = sys.stderr);
         sys.exit(1);
+  if arguments.score is not None and len(normalize) == 0:
+    normalize = normalizations;
 
   if arguments.alignment is not None and arguments.overlay is None:
     print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",

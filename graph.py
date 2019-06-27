@@ -9,7 +9,8 @@ import sys;
 from datetime import datetime;
 from pathlib import Path;
 
-
+import score.core;
+
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
@@ -45,16 +46,12 @@ class Node(object):
         return self.is_root() and self.is_leaf() and not self.is_top
 
     def normalize(self, actions, input = None, trace = False):
-        punctuation = {".", "?", "!", ";", ",", ":",
-                       "“", "\"", "”", "‘", "'", "’",
-                       "(", ")", "[", "]", "{", "}",
-                       " ", "\t", "\n", "\f"};
         def trim(anchor, input):
             if "from" in anchor and "to" in anchor:
                 i = anchor["from"];
                 j = anchor["to"];
-                while i < j and input[i] in punctuation: i += 1;
-                while j > i and input[j - 1] in punctuation: j -= 1;
+                while i < j and input[i] in score.core.PUNCTUATION: i += 1;
+                while j > i and input[j - 1] in score.core.PUNCTUATION: j -= 1;
                 if trace and (i != anchor["from"] or j != anchor["to"]):
                     print("{} ({})--> <{}:{}> ({})"
                           "".format(anchor,

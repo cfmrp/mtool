@@ -1,6 +1,15 @@
 from operator import itemgetter;
 
-from graph import Graph;
+
+#
+# _fix_me_
+# maybe use Unicode character classes instead, even if it likely would mean
+# many calls to match one-character regular expressions?
+#
+PUNCTUATION = \
+  {".", "?", "!", ";", ",", ":", "“", "\"", "”", "‘", "'", "’",
+   "(", ")", "[", "]", "{", "}", " ", "\t", "\n", "\f"};
+SPACE = {" ", "\t", "\n", "\f"};
 
 def intersect(golds, systems):
   gold = {graph.id: graph for graph in golds};
@@ -16,13 +25,7 @@ def anchor(node):
         result.append((span["from"], span["to"]));
   return result;
 
-def explode(string, anchors):
-  #
-  # _fix_me_
-  # maybe use Unicode character classes instead, even if it likely would mean
-  # many calls to match one-character regular expressions?
-  #
-  space = {" ", "\t", "\n", "\f"};
+def explode(string, anchors, trim = PUNCTUATION):
   result = set();
 
   for anchor in anchors:
@@ -33,8 +36,12 @@ def explode(string, anchors):
       start = anchor["from"]; end = anchor["to"];
 
     if start is not None and end is not None:
+      while start < end and string[start] in trim:
+        start += 1;
+      while end > start and string[end] in trim:
+        end -= 1;
       for i in range(start, end):
-        if string[i] not in space:
+        if string[i] not in SPACE:
           result.add(i);
 
   return frozenset(result);
