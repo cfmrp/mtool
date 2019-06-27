@@ -66,7 +66,7 @@ test.smatch.json:
 test.mrp.json:
 	time python3 -u ../../main.py --trace --trace --score mrp --limit 50 \
 	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr $@ 2>&1 | tee test.smatch.log
+	  amr/test2.amr $@ 2>&1 | tee test.mrp.log
 
 coli.smatch.json:
 	time python3 -u ../../main.py --trace --trace --score smatch \
