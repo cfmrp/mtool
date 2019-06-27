@@ -36,7 +36,8 @@ def tuples(graph, prefix, values):
       relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
         
-def evaluate(golds, systems, format = "json", limit = 5, values = {}, trace = 0):
+def evaluate(golds, systems, format = "json", limit = 50,
+             values = {}, trace = 0):
   if not limit: limit = 5;
   tg = ts = tc = n = 0;
   gprefix = "g"; sprefix = "s";
