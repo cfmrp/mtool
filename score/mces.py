@@ -277,6 +277,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         
     total_matches = total_steps = 0;
     total_pairs = 0;
+    total_inexact = 0;
     total_tops = {"g": 0, "s": 0, "c": 0}
     total_labels = {"g": 0, "s": 0, "c": 0}
     total_properties = {"g": 0, "s": 0, "c": 0}
@@ -330,6 +331,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         update(total_edges, edges);
         update(total_attributes, attributes);
         total_pairs += 1;
+        if counter > limit: total_inexact += 1;
         if trace > 1:
             print("[{}] Number of edges in correspondence: {}"
                   "".format(counter, n_matched))
@@ -348,7 +350,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         update(total_all, counts);
         finalize(counts);
     finalize(total_all);
-    result = {"n": total_pairs,
+    result = {"n": total_pairs, "exact": total_pairs - total_inexact,
               "tops": total_tops, "labels": total_labels,
               "properties": total_properties, "anchors": total_anchors,
               "edges": total_edges, "attributes": total_attributes,
