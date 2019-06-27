@@ -63,15 +63,20 @@ test.smatch.json:
 	  --read amr --gold amr/test1.amr \
 	  amr/test2.amr $@ 2>&1 | tee test.smatch.log
 
+test.mrp.json:
+	time python3 -u ../../main.py --trace --trace --score mrp --limit 50 \
+	  --read amr --gold amr/test1.amr \
+	  amr/test2.amr $@ 2>&1 | tee test.smatch.log
+
 coli.smatch.json:
 	time python3 -u ../../main.py --trace --trace --score smatch \
-	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr $@ 2>&1 | tee coli.smatch.log
+	  --read amr --gold amr/coli.gold.amr \
+	  amr/coli.system.amr $@ 2>&1 | tee coli.smatch.log
 
 coli.mrp.json:
 	time python3 -u ../../main.py --trace --trace --score mrp \
-	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr $@ 2>&1 | tee coli.smatch.log
+	  --read amr --gold amr/coli.gold.amr \
+	  amr/coli.system.amr $@ 2>&1 | tee coli.mrp.log
 
 all:
 	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | grep -v all: | sed 's/://');
