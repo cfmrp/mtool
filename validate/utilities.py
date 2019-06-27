@@ -10,5 +10,5 @@ def report(graph, message, node = None, edge = None, stream = sys.stderr):
                                        edge.lab if edge.lab else "");
   else:
     edge = "";
-  print("validate(): graph ‘{}’{}{}: {}"
+  print("validate(): graph '{}'{}{}: {}"
         "".format(graph.id, node, edge, message), file = stream);

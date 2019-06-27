@@ -5,25 +5,26 @@ import validate.eds;
 import validate.sdp;
 import validate.ucca;
 from validate.utilities import report;
-
+
+
 def test(graph, actions, stream = sys.stderr):
   n = 0;
   if not isinstance(graph.id, str) or len(graph.id) == 0:
     n += 1;
     report(graph,
-           "missing or invalid ‘id’ property",
+           "missing or invalid 'id' property",
            stream = stream);
   if not isinstance(graph.flavor, int) or graph.flavor not in {0, 1, 2}:
     n += 1;
     report(graph,
-           "missing or invalid ‘flavor’ property",
+           "missing or invalid 'flavor' property",
            stream = stream);
   if not isinstance(graph.framework, str) or \
      graph.framework not in {"ccd", "dm", "pas", "psd", "ud",
                              "eds", "ucca", "amr"}:
     n += 1;
     report(graph,
-           "missing or invalid ‘framework’ property",
+           "missing or invalid 'framework' property",
            stream = stream);
   elif graph.flavor == 0 and \
        graph.framework not in {"ccd", "dm", "pas", "psd", "ud"} or \
@@ -38,7 +39,7 @@ def test(graph, actions, stream = sys.stderr):
     if not isinstance(graph.input, str) or len(graph.input) == 0:
       n += 1;
       report(graph,
-             "missing or invalid ‘input’ property",
+             "missing or invalid 'input' property",
              stream = stream);
 
   if "edges" in actions:

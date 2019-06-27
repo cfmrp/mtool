@@ -178,7 +178,7 @@ def main():
     normalize = normalizations;
 
   if arguments.alignment is not None and arguments.overlay is None:
-    print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",
+    print("main.py(): option '--alignment' requires '--overlay'; exit.",
           file = sys.stderr);
     sys.exit(1);
     
