@@ -3,70 +3,70 @@
 	eds/mrp eds/smatch
 
 dm/edm:
-	time ../../main.py --score edm \
+	time ../../main.py --trace --trace --score edm \
 	  --read mrp --gold ../sample/eds/wsj.mrp \
-	  ../sample/dm/wsj.mrp 2>&1 | tee -adm.edm.log
+	  ../sample/dm/wsj.mrp 2>&1 | tee -a dm.edm.log
 
 eds/edm:
-	time ../../main.py --score edm \
-	  --format mrp --gold ../sample/eds/wsj.mrp \
-	  --read eds eds/wsj.pet.eds 2>&1 | tee -aeds.edm.log
+	time ../../main.py --trace --trace --score edm \
+	  --read mrp --gold ../sample/eds/wsj.mrp \
+	  eds/wsj.pet.mrp 2>&1 | tee -a eds.edm.log
 
 eds/smatch:
-	time ../../main.py --score smatch \
-	  --format mrp --gold ../sample/eds/wsj.mrp \
-	  --read eds eds/wsj.pet.eds 2>&1 | tee -aeds.smatch.log
+	time ../../main.py --trace --trace --score smatch \
+	  --read mrp --gold ../sample/eds/wsj.mrp \
+	  eds/wsj.pet.mrp 2>&1 | tee -a eds.smatch.log
 
 eds/mrp:
-	time ../../main.py --score mrp \
-	  --format mrp --gold ../sample/eds/wsj.mrp \
-	  --read eds eds/wsj.pet.eds 2>&1 | tee -aeds.mrp.log
+	time ../../main.py --trace --trace --score mrp \
+	  --read mrp --gold ../sample/eds/wsj.mrp \
+	  eds/wsj.pet.mrp 2>&1 | tee -a eds.mrp.log
 
 dm/sdp:
-	time ../../main.py --score sdp \
+	time ../../main.py --trace --trace --score sdp \
 	  --read mrp --gold ../sample/psd/wsj.mrp \
-	  ../sample/dm/wsj.mrp 2>&1 | tee -adm.sdp.log
+	  ../sample/dm/wsj.mrp 2>&1 | tee -a dm.sdp.log
 
 peking/sdp:
-	time ../../main.py --score sdp --text ../wsj.txt \
+	time ../../main.py --trace --trace --score sdp --text ../wsj.txt \
 	  --format dm --gold ../../../evaluation/dm/wsj.sdp \
-	  --read dm dm/peking.wsj.sdp 2>&1 | tee -apeking.sdp.log
+	  --read dm dm/peking.wsj.sdp 2>&1 | tee -a peking.sdp.log
 
 peking/smatch:
-	time ../../main.py --score smatch --text ../wsj.txt \
+	time ../../main.py --trace --trace --score smatch --text ../wsj.txt \
 	  --format dm --gold ../../../evaluation/dm/wsj.sdp \
-	  --read dm dm/peking.wsj.sdp 2>&1 | tee -apeking.smatch.log
+	  --read dm dm/peking.wsj.sdp 2>&1 | tee -a peking.smatch.log
 
 peking/mrp:
-	time ../../main.py --score mrp --text ../wsj.txt \
+	time ../../main.py --trace --trace --score mrp --text ../wsj.txt \
 	  --format dm --gold ../../../evaluation/dm/wsj.sdp \
-	  --read dm dm/peking.wsj.sdp 2>&1 | tee -apeking.mrp.log
+	  --read dm dm/peking.wsj.sdp 2>&1 | tee -a peking.mrp.log
 
 ucca/ucca:
-	time ../../main.py --score ucca \
+	time ../../main.py --trace --trace --score ucca \
 	  --read mrp --gold ucca/ewt.gold.mrp \
-	  ucca/ewt.tupa.mrp 2>&1 | tee -aucca.ucca.log
+	  ucca/ewt.tupa.mrp 2>&1 | tee -a ucca.ucca.log
 
 ucca/smatch:
-	time ../../main.py --score smatch \
+	time ../../main.py --trace --trace --score smatch \
 	  --read mrp --gold ucca/ewt.gold.mrp \
-	  ucca/ewt.tupa.mrp 2>&1 | tee -aucca.smatch.log
+	  ucca/ewt.tupa.mrp 2>&1 | tee -a ucca.smatch.log
 ucca/mrp:
-	time ../../main.py --score mrp \
+	time ../../main.py --trace --trace --score mrp \
 	  --read mrp --gold ucca/ewt.gold.mrp \
-	  ucca/ewt.tupa.mrp 2>&1 | tee -aucca.mrp.log
+	  ucca/ewt.tupa.mrp 2>&1 | tee -a ucca.mrp.log
 
 test/smatch:
-	time ../../main.py --score smatch --limit 50 \
+	time ../../main.py --trace --trace --score smatch --limit 50 \
 	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr 2>&1 | tee -atest.smatch.log
+	  amr/test2.amr 2>&1 | tee -a test.smatch.log
 
 coli/smatch:
-	time ../../main.py --score smatch \
+	time ../../main.py --trace --trace --score smatch \
 	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr 2>&1 | tee -acoli.smatch.log
+	  amr/test2.amr 2>&1 | tee -a coli.smatch.log
 
 coli/mrp:
-	time ../../main.py --score mrp \
+	time ../../main.py --trace --trace --score mrp \
 	  --read amr --gold amr/test1.amr \
-	  amr/test2.amr 2>&1 | tee -acoli.smatch.log
+	  amr/test2.amr 2>&1 | tee -a coli.smatch.log
