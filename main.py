@@ -274,13 +274,13 @@ def main():
     if arguments.write in {"mrp", "evaluation"}:
       if arguments.write == "evaluation":
         graph.flavor = graph.framework = graph.nodes = graph.edges = None;
-        if graph.source() in {"lpps", "wsj"}:
+        if graph.source() in {"lpps"}:
           graph.targets(["dm", "psd", "eds", "ucca", "amr"]);
         elif graph.source() in {"brown", "wsj"}:
           graph.targets(["dm", "psd", "eds"]);
         elif graph.source() in {"ewt", "wiki"}:
           graph.targets(["ucca"]);
-        elif graph.source() in {"amr-consensus", "bold", "dfa",
+        elif graph.source() in {"amr-consensus", "bolt", "dfa",
                                 "lorelei", "proxy", "xinhua"}:
           graph.targets(["amr"]);
       json.dump(graph.encode(), arguments.output,
