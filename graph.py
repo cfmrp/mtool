@@ -496,14 +496,16 @@ class Graph(object):
         except:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input", None)
-        for j in json["nodes"]:
-            node = Node.decode(j)
-            graph.add_node(node.id, node.label, node.properties,
-                           node.values, node.anchors, top = False)
-        for j in json["edges"]:
-            edge = Edge.decode(j)
-            graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
-                           edge.attributes, edge.values)
+        if "nodes" in json:
+            for j in json["nodes"]:
+                node = Node.decode(j)
+                graph.add_node(node.id, node.label, node.properties,
+                               node.values, node.anchors, top = False)
+        if "edges" in json:
+            for j in json["edges"]:
+                edge = Edge.decode(j)
+                graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
+                               edge.attributes, edge.values)
         tops = json.get("tops", [])
         for i in tops:
             graph.find_node(i).is_top = True
