@@ -34,11 +34,10 @@ def explode(string, anchors, trim = PUNCTUATION):
       start, end = anchor;
     elif "from" in anchor and "to" in anchor:
       start = anchor["from"]; end = anchor["to"];
-
     if start is not None and end is not None:
       while start < end and string[start] in trim:
         start += 1;
-      while end > start and string[end] in trim:
+      while end > start and string[end - 1] in trim:
         end -= 1;
       for i in range(start, end):
         if string[i] not in SPACE:

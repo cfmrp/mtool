@@ -93,7 +93,7 @@ def evaluate(golds, systems, format = "json", trace = 0):
       score["unlabeled"]["primary"] = {"g": gup, "s": sup, "c": cup};
       score["unlabeled"]["remote"] = {"g": gur, "s": sur, "c": cur};
       scores[gold.id] = score;
-
+      if trace > 1: print("{}: {}".format(gold.id, score));
   p, r, f = fscore(tglp, tslp, tclp);
   result["labeled"]["primary"] = \
     {"g": tglp, "s": tslp, "c": tclp, "p": p, "r": r, "f": f};
