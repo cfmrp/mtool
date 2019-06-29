@@ -257,6 +257,7 @@ def analyze(graphs, ids=None):
     n_nonsingletons = n_nodes - n_singletons
 
     report("number of graphs", "%d" % n_graphs)
+    report("number of nodes", "%d" % n_nodes)
     report("number of edge labels", "%d" % len(labels))
 #    report("\\percentnode\\ singleton", "%.2f" % (100 * n_singletons / n_nodes))
 #    report("\\percentnode\\ non-singleton", "%.2f" % (100 * n_nonsingletons / n_nodes))
