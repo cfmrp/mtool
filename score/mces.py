@@ -100,7 +100,7 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     pairs = [];
     sources = set();
     targets = set();
-    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2),
+    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 2, 1),
                                 reverse = True):
         if i not in sources and j not in targets:
             pairs.append((i, j));
@@ -108,11 +108,12 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
             if j is not None: targets.add(j);
 
     #
-    # adjust rewards to use edge potential as a secondary key; maybe
-    # we should rather pass around edges and adjust sorted_splits()?
-    # for even better initialization, consider edge attributes too?
+    # adjust rewards to use anchor overlap and edge potential as a secondary
+    # and tertiary key, respectively.  for even better initialization, maybe
+    # consider edge attributes too?
     #
-    rewards *= 10;
+    rewards *= 1000;
+    anchors *= 10;
     rewards += edges + anchors;
 
     return pairs, rewards;
