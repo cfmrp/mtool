@@ -4,6 +4,7 @@ from operator import itemgetter
 import numpy as np
 
 from score.core import explode, fscore, intersect
+from score.smatch import smatch
 from score.ucca import identify
 
 counter = 0
@@ -71,6 +72,19 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     rewards = np.zeros(shape, dtype=np.int);
     edges = np.zeros(shape, dtype=np.int);
     anchors = np.zeros(shape, dtype=np.int);
+    pairs = [];
+
+    #
+    # experimental: see whether initializing via random-restart hill-climbing
+    # (as implemented in SMATCH) gives us a better start into the search ...
+    #
+    if False:
+        correct, gold, gn, system, sn, mapping \
+            = smatch(graph1, graph2, 50,
+                     {"tops", "labels", "properties", "anchors",
+                      "edges", "attributes"},
+                     0);
+        pairs = [(i, j if j >= 0 else None) for i, j in enumerate(mapping)];
 
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
@@ -93,14 +107,6 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
                                          identities2[node2.id])
             queue.append((rewards[i, j], edges[i, j], anchors[i, j],
                           i, j if node2 is not None else None));
-    pairs = [];
-    sources = set();
-    targets = set();
-    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2), reverse = True):
-        if i not in sources and j not in targets:
-            pairs.append((i, j));
-            sources.add(i);
-            if j is not None: targets.add(j);
     #
     # adjust rewards to use edge potential as a secondary key; maybe
     # we should rather pass around edges and adjust sorted_splits()?
@@ -108,6 +114,17 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     #
     rewards *= 10
     rewards += edges + anchors
+
+    if len(pairs) == 0:
+        sources = set();
+        targets = set();
+        for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2),
+                                    reverse = True):
+            if i not in sources and j not in targets:
+                pairs.append((i, j));
+                sources.add(i);
+                if j is not None: targets.add(j);
+
     return pairs, rewards;
 
 
@@ -226,23 +243,23 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0,
                 elif domination_conflict(cv, i, j, dominated1, dominated2):
                     continue
             counter += 1
-            if trace > 2: print("({}:{}) ".format(i, j), end="")
+            if trace > 2: print("({}:{}) ".format(i, j), end="", file = sys.stderr)
             new_cv = dict(cv)
             new_cv[i] = j
             new_ce, new_potential = update_edge_candidates(ce, i, j)
             if new_potential > n_matched:
                 new_source_todo = source_todo[1:]
                 if new_source_todo:
-                    if trace > 2: print("> ", end="")
+                    if trace > 2: print("> ", end="", file = sys.stderr)
                     todo.append((new_cv, new_ce, new_source_todo,
                                  sorted_splits(new_source_todo[0],
                                                new_untried, rewards)))
                 else:
-                    if trace > 2: print()
+                    if trace > 2: print(file = sys.stderr)
                     yield new_cv, new_ce
                     n_matched = new_potential
         except StopIteration:
-            if trace > 2: print("< ")
+            if trace > 2: print("< ", file = sys.stderr)
             todo.pop()
 
 
@@ -293,12 +310,12 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         pairs, rewards = initial_node_correspondences(
             g, s, identities1=g_identities, identities2=s_identities)
         if trace > 1:
-            print("\n\ngraph #{}".format(g.id))
-            print("Number of gold nodes: {}".format(len(g.nodes)))
-            print("Number of system nodes: {}".format(len(s.nodes)))
-            print("Number of edges: {}".format(len(g.edges)))
+            print("\n\ngraph #{}".format(g.id), file = sys.stderr)
+            print("Number of gold nodes: {}".format(len(g.nodes)), file = sys.stderr)
+            print("Number of system nodes: {}".format(len(s.nodes)), file = sys.stderr)
+            print("Number of edges: {}".format(len(g.edges)), file = sys.stderr)
             if trace > 2:
-                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs))
+                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs), file = sys.stderr)
         n_matched = 0
         best_cv, best_ce = None, None
         for i, (cv, ce) in enumerate(correspondences(
@@ -310,7 +327,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             if n > n_matched:
                 if trace > 1:
                     print("\n[{}] solution #{}; matches: {}"
-                          "".format(counter, i, n));
+                          "".format(counter, i, n), file = sys.stderr);
                 n_matched = n
                 best_cv, best_ce = cv, ce
         total_matches += n_matched;
@@ -334,15 +351,15 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         if counter > limit: total_inexact += 1;
         if trace > 1:
             print("[{}] Number of edges in correspondence: {}"
-                  "".format(counter, n_matched))
+                  "".format(counter, n_matched), file = sys.stderr)
             print("[{}] Total matches: {}".format(total_steps, total_matches));
             print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
-                  "\nedges: {}\nattributes:{}"
+                  "\nedges: {}\nattributes: {}"
                   "".format(tops, labels, properties, anchors,
-                            edges, attributes));
+                            edges, attributes), file = sys.stderr);
             if trace > 2:
-                print(best_cv)
-                print(best_ce)
+                print(best_cv, file = sys.stderr)
+                print(best_ce, file = sys.stderr)
 
     total_all = {"g": 0, "s": 0, "c": 0};
     for counts in [total_tops, total_labels, total_properties, total_anchors,
