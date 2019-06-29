@@ -72,19 +72,6 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     rewards = np.zeros(shape, dtype=np.int);
     edges = np.zeros(shape, dtype=np.int);
     anchors = np.zeros(shape, dtype=np.int);
-    pairs = [];
-
-    #
-    # experimental: see whether initializing via random-restart hill-climbing
-    # (as implemented in SMATCH) gives us a better start into the search ...
-    #
-    if False:
-        correct, gold, gn, system, sn, mapping \
-            = smatch(graph1, graph2, 50,
-                     {"tops", "labels", "properties", "anchors",
-                      "edges", "attributes"},
-                     0);
-        pairs = [(i, j if j >= 0 else None) for i, j in enumerate(mapping)];
 
     queue = [];
     for i, node1 in enumerate(graph1.nodes):
@@ -101,29 +88,32 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
                            (edge1.src == node1.id and edge2.src == node2.id or
                             edge1.tgt == node1.id and edge2.tgt == node2.id):
                             edges[i, j] += 1;
-                # and the overlap of UCCA yields
+                #
+                # and the overlap of UCCA yields (sets of character position)
+                #
                 if identities1 and identities2:
                     anchors[i, j] += len(identities1[node1.id] &
                                          identities2[node2.id])
             queue.append((rewards[i, j], edges[i, j], anchors[i, j],
                           i, j if node2 is not None else None));
+
+    pairs = [];
+    sources = set();
+    targets = set();
+    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2),
+                                reverse = True):
+        if i not in sources and j not in targets:
+            pairs.append((i, j));
+            sources.add(i);
+            if j is not None: targets.add(j);
+
     #
     # adjust rewards to use edge potential as a secondary key; maybe
     # we should rather pass around edges and adjust sorted_splits()?
     # for even better initialization, consider edge attributes too?
     #
-    rewards *= 10
-    rewards += edges + anchors
-
-    if len(pairs) == 0:
-        sources = set();
-        targets = set();
-        for _, _, _, i, j in sorted(queue, key = itemgetter(0, 1, 2),
-                                    reverse = True):
-            if i not in sources and j not in targets:
-                pairs.append((i, j));
-                sources.add(i);
-                if j is not None: targets.add(j);
+    rewards *= 10;
+    rewards += edges + anchors;
 
     return pairs, rewards;
 
@@ -188,8 +178,13 @@ def splits(xs):
     yield -1, xs
 
 
-def sorted_splits(i, xs, rewards):
+def sorted_splits(i, xs, rewards, pairs):
+    for _i, _j in pairs:
+        if i == _i: j = _j if _j is not None else -1
     sorted_xs = sorted(xs, key=rewards[i].item, reverse=True)
+    if j in sorted_xs or j < 0:
+        if j >= 0: sorted_xs.remove(j)
+        sorted_xs = [j] + sorted_xs
     yield from splits(sorted_xs)
 
 
@@ -228,7 +223,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0,
     # Visit the source graph nodes in descending order of rewards.
     source_todo = [pair[0] for pair in pairs]
     todo = [(cv, ce, source_todo, sorted_splits(
-        source_todo[0], graph2.nodes, rewards))]
+        source_todo[0], graph2.nodes, rewards, pairs))]
     n_matched = 0
     while todo and (limit == 0 or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
@@ -253,7 +248,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=0, trace=0,
                     if trace > 2: print("> ", end="", file = sys.stderr)
                     todo.append((new_cv, new_ce, new_source_todo,
                                  sorted_splits(new_source_todo[0],
-                                               new_untried, rewards)))
+                                               new_untried, rewards, pairs)))
                 else:
                     if trace > 2: print(file = sys.stderr)
                     yield new_cv, new_ce
@@ -311,11 +306,32 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             g, s, identities1=g_identities, identities2=s_identities)
         if trace > 1:
             print("\n\ngraph #{}".format(g.id), file = sys.stderr)
-            print("Number of gold nodes: {}".format(len(g.nodes)), file = sys.stderr)
-            print("Number of system nodes: {}".format(len(s.nodes)), file = sys.stderr)
-            print("Number of edges: {}".format(len(g.edges)), file = sys.stderr)
+            print("number of gold nodes: {}".format(len(g.nodes)),
+                  file = sys.stderr)
+            print("number of system nodes: {}".format(len(s.nodes)),
+                  file = sys.stderr)
+            print("number of edges: {}".format(len(g.edges)),
+                  file = sys.stderr)
             if trace > 2:
-                print("Rewards and Pairs:\n{}\n{}\n".format(rewards, pairs), file = sys.stderr)
+                print("rewards and pairs:\n{}\n{}\n"
+                      "".format(rewards, sorted(pairs)), file = sys.stderr)
+        #
+        # experimental: see whether random-restart hill-climbing (from SMATCH)
+        # yields a better start into the search ...
+        #
+        n_smatched = 0;
+        if False and g.framework in {"eds", "ucca", "amr"}:
+            n_smatched, _, _, mapping \
+                = smatch(g, s, 50,
+                         {"tops", "labels", "properties", "anchors",
+                          "edges", "attributes"},
+                         0, False);
+            mapping = [(i, j if j >= 0 else None)
+                       for i, j in enumerate(mapping)];
+            if set(pairs) != set(mapping):
+                print("pairs from smatch: {}".format(sorted(mapping)),
+                      file = sys.stderr);
+                pairs = mapping;
         n_matched = 0
         best_cv, best_ce = None, None
         for i, (cv, ce) in enumerate(correspondences(
@@ -334,7 +350,11 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
             = g.score(s, best_cv);
+        assert n_matched >= n_smatched;
         if trace:
+            if n_smatched and n_matched > n_smatched:
+                print("improvement over smatch: {}"
+                      "".format(n_matched - n_smatched), file = sys.stderr)
             if g.id in scores:
                 print("mces.evaluate(): duplicate graph identifier: {}"
                       "".format(g.id), file = sys.stderr);

@@ -47,10 +47,12 @@ def tuples(graph, prefix, values, faith = True):
                             mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
 
-def smatch(gold, system, limit = 50, values = {}, trace = 0):
+def smatch(gold, system, limit = 50, values = {}, trace = 0, faith = True):
   gprefix = "g"; sprefix = "s";
-  ginstances, gattributes, grelations, gn = tuples(gold, gprefix, values);
-  sinstances, sattributes, srelations, sn = tuples(system, sprefix, values);
+  ginstances, gattributes, grelations, gn \
+    = tuples(gold, gprefix, values, faith);
+  sinstances, sattributes, srelations, sn \
+    = tuples(system, sprefix, values, faith);
   if trace > 1:
     print("gold instances [{}]: {}\ngold attributes [{}]: {}\n"
           "gold relations [{}]: {}"
@@ -70,7 +72,7 @@ def smatch(gold, system, limit = 50, values = {}, trace = 0):
                     relation1 = grelations, prefix1 = gprefix,
                     instance2 = sinstances, attributes2 = sattributes,
                     relation2 = srelations, prefix2 = sprefix);
-  return correct, gold, gn, system, sn, mapping;
+  return correct, gold - gn, system - sn, mapping;
 
 def evaluate(golds, systems, format = "json", limit = 50,
              values = {}, trace = 0):
@@ -79,10 +81,8 @@ def evaluate(golds, systems, format = "json", limit = 50,
   scores = dict() if trace else None;
   for gold, system in score.core.intersect(golds, systems):
     id = gold.id;
-    correct, gold, gn, system, sn, mapping \
+    correct, gold, system, mapping \
       = smatch(gold, system, limit, values, trace);
-    gold -= gn;
-    system -= sn;
     tg += gold; ts += system; tc += correct;
     n += 1;
     if trace:
