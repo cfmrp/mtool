@@ -3,7 +3,7 @@ import sys;
 import score.core;
 from smatch.smatch import get_amr_match;
 
-def tuples(graph, prefix, values):
+def tuples(graph, prefix, values, faith = True):
   #
   # mimicry of get_triples() in amr.py
   #
@@ -27,13 +27,24 @@ def tuples(graph, prefix, values):
       n += 1;
     instances.append(("instance", name, instance));
     if "tops" in values and node.is_top:
-      attributes.append(("TOP", name, node.label if node.label else ""));
+      #
+      # the native SMATCH code (wrongly, i believe) ties the top property to
+      # the node label (see https://github.com/cfmrp/mtool/issues/12).  we get
+      # to choose whether to faithfully replicate those scores or not.
+      #
+      attributes.append(("TOP", name,
+                         node.label if node.label and faith else ""));
     if "properties" in values and node.properties and node.values:
       for property, value in zip(node.properties, node.values):
         attributes.append((property, name, value));
-  if "edges" in values:
-    for edge in graph.edges:
+  for edge in graph.edges:
+    if "edges" in values:
       relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
+    if "attributes" in values:
+      if edge.attributes and edge.values:
+        for attribute, value in zip(edge.attributes, edge.values):
+          relations.append((str((attribute, value)),
+                            mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
 
 def smatch(gold, system, limit = 50, values = {}, trace = 0):
@@ -41,14 +52,18 @@ def smatch(gold, system, limit = 50, values = {}, trace = 0):
   ginstances, gattributes, grelations, gn = tuples(gold, gprefix, values);
   sinstances, sattributes, srelations, sn = tuples(system, sprefix, values);
   if trace > 1:
-    print("gold instances [{}]: {}\ngold attributes [{}]: {}\ngold relations [{}]: {}"
+    print("gold instances [{}]: {}\ngold attributes [{}]: {}\n"
+          "gold relations [{}]: {}"
           "".format(len(ginstances), ginstances,
                     len(gattributes), gattributes,
-                    len(grelations), grelations));
-    print("system instances [{}]: {}\nsystem attributes [{}]: {}\nsystem relations [{}]: {}"
+                    len(grelations), grelations),
+          file = sys.stderr);
+    print("system instances [{}]: {}\nsystem attributes [{}]: {}\n"
+          "system relations [{}]: {}"
           "".format(len(sinstances), sinstances,
                     len(sattributes), sattributes,
-                    len(srelations), srelations));
+                    len(srelations), srelations),
+          file = sys.stderr);
   correct, gold, system, mapping \
     = get_amr_match(None, None, gold.id, limit = limit,
                     instance1 = ginstances, attributes1 = gattributes,
@@ -64,7 +79,8 @@ def evaluate(golds, systems, format = "json", limit = 50,
   scores = dict() if trace else None;
   for gold, system in score.core.intersect(golds, systems):
     id = gold.id;
-    correct, gold, gn, system, sn, mapping = smatch(gold, system, limit, values);
+    correct, gold, gn, system, sn, mapping \
+      = smatch(gold, system, limit, values, trace);
     gold -= gn;
     system -= sn;
     tg += gold; ts += system; tc += correct;
