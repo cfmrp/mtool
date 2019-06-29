@@ -441,6 +441,16 @@ class Graph(object):
         def count(gold, system):
             return {"g": len(gold), "s": len(system), "c": len(gold & system)};
 
+        #
+        # accommodate the various conventions for node correspondence matrices
+        #
+        if isinstance(correspondences, list):
+            if isinstance(correspondences[0], tuple):
+                correspondences = {i: j if j is not None else -1
+                                   for i, j in correspondences};
+            elif isinstance(correspondences[0], int):
+                correspondences = {i: j if j is not None else -1
+                                   for i, j in enumerate(correspondences)};
         identities1 = dict();
         identities2 = dict();
         for i, pair in enumerate(correspondences.items()):
