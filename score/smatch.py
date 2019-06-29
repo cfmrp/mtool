@@ -35,32 +35,36 @@ def tuples(graph, prefix, values):
     for edge in graph.edges:
       relations.append((edge.lab, mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
-        
+
+def smatch(gold, system, limit = 50, values = {}, trace = 0):
+  gprefix = "g"; sprefix = "s";
+  ginstances, gattributes, grelations, gn = tuples(gold, gprefix, values);
+  sinstances, sattributes, srelations, sn = tuples(system, sprefix, values);
+  if trace > 1:
+    print("gold instances [{}]: {}\ngold attributes [{}]: {}\ngold relations [{}]: {}"
+          "".format(len(ginstances), ginstances,
+                    len(gattributes), gattributes,
+                    len(grelations), grelations));
+    print("system instances [{}]: {}\nsystem attributes [{}]: {}\nsystem relations [{}]: {}"
+          "".format(len(sinstances), sinstances,
+                    len(sattributes), sattributes,
+                    len(srelations), srelations));
+  correct, gold, system, mapping \
+    = get_amr_match(None, None, gold.id, limit = limit,
+                    instance1 = ginstances, attributes1 = gattributes,
+                    relation1 = grelations, prefix1 = gprefix,
+                    instance2 = sinstances, attributes2 = sattributes,
+                    relation2 = srelations, prefix2 = sprefix);
+  return correct, gold, gn, system, sn, mapping;
+
 def evaluate(golds, systems, format = "json", limit = 50,
              values = {}, trace = 0):
   if not limit: limit = 5;
   tg = ts = tc = n = 0;
-  gprefix = "g"; sprefix = "s";
   scores = dict() if trace else None;
   for gold, system in score.core.intersect(golds, systems):
     id = gold.id;
-    ginstances, gattributes, grelations, gn = tuples(gold, gprefix, values);
-    sinstances, sattributes, srelations, sn = tuples(system, sprefix, values);
-    if trace > 1:
-      print("gold instances [{}]: {}\ngold attributes [{}]: {}\ngold relations [{}]: {}"
-            "".format(len(ginstances), ginstances,
-                      len(gattributes), gattributes,
-                      len(grelations), grelations));
-      print("system instances [{}]: {}\nsystem attributes [{}]: {}\nsystem relations [{}]: {}"
-            "".format(len(sinstances), sinstances,
-                      len(sattributes), sattributes,
-                      len(srelations), srelations));
-    correct, gold, system \
-      = get_amr_match(None, None, gold.id, limit = limit,
-                      instance1 = ginstances, attributes1 = gattributes,
-                      relation1 = grelations, prefix1 = gprefix,
-                      instance2 = sinstances, attributes2 = sattributes,
-                      relation2 = srelations, prefix2 = sprefix);
+    correct, gold, gn, system, sn, mapping = smatch(gold, system, limit, values);
     gold -= gn;
     system -= sn;
     tg += gold; ts += system; tc += correct;

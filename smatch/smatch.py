@@ -791,7 +791,10 @@ def get_amr_match(cur_amr1, cur_amr2, sent_num=1, justinstance=False, justattrib
         test_triple_num = len(instance1) + len(attributes1) + len(relation1)
         gold_triple_num = len(instance2) + len(attributes2) + len(relation2)
     match_triple_dict.clear()
-    return best_match_num, test_triple_num, gold_triple_num
+    if cur_amr1 and cur_amr2:
+        return best_match_num, test_triple_num, gold_triple_num
+    else:
+        return best_match_num, test_triple_num, gold_triple_num, best_mapping
 
 
 def score_amr_pairs(f1, f2, justinstance=False, justattribute=False, justrelation=False):
