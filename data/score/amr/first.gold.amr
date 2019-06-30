@@ -1,0 +1,2 @@
+(c / claim-01 :ARG0 (p / partisan :poss (p2 / person :name (n / name :op1 "Ronald" :op2 "Reagan"))) :ARG1 (w / win-01 :ARG0 p2 :ARG2 (w2 / war :name (n2 / name :op1 "Cold" :op2 "War"))) :time (c2 / collapse-01 :ARG1 (c3 / country :name (n3 / name :op1 "Soviet" :op2 "Union")) :time (d / date-entity :year 1991)))
+

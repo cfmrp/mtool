@@ -1,0 +1,2 @@
+(f / claim-01  :ARG0 (u_2 / person  :ARG0-of (o / partisan  :ARG1 (p / person  :name (n / name  :op1 (explicitanon3 / Ronald  :year-of (d / date-entity  :time-of (s3 / collapse-01  :ARG1 (c4 / country  :name (n2 / name  :op1 "Soviet"  :op2 "Union"))  :time-of f)))  :op2 "Reagan"))  :ARG0-of (a2 / win-01  :ARG2 (e / war-01  :mod (u_1 / cold))  :ARG1-of f)))
+
