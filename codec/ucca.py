@@ -64,8 +64,9 @@ def passage2graph(passage, text = None, prefix = None):
             raise Exception("{}: failed to anchor |{}| in |{}| ({})"
                             "".format(graph.id, form, graph.input, i));
 
+    non_terminals = [unit for unit in l1.all if unit.tag in (layer1.NodeTags.Foundational, layer1.NodeTags.Punctuation)]
     for token in sorted(l0.all, key=attrgetter("position")):
-        for unit in l1.all:
+        for unit in non_terminals:
             if not unit.attrib.get("implicit"):
                 for edge in unit:
                     if "Terminal" in edge.tags and token.ID == edge.child.ID:
@@ -76,11 +77,11 @@ def passage2graph(passage, text = None, prefix = None):
                         else:
                             node = graph.add_node(anchors = [anchor(token.text)] if graph.input else None);
                             unit_id_to_node_id[unit.ID] = node.id;
-    for unit in sorted(l1.all, key=attrgetter("start_position", "end_position")):
+    for unit in sorted(non_terminals, key=attrgetter("start_position", "end_position")):
         if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
             node = graph.add_node();
             unit_id_to_node_id[unit.ID] = node.id;
-    for unit in l1.all:
+    for unit in non_terminals:
         for edge in unit:
             for tag in edge.tags:
                 if tag != "Terminal":
@@ -100,7 +101,9 @@ def passage2graph(passage, text = None, prefix = None):
                         #
                         pass;
     for unit in l1.heads:
-        graph.nodes[unit_id_to_node_id[unit.ID]].is_top = True;
+        node_id = unit_id_to_node_id.get(unit.ID)
+        if node_id is not None:
+            graph.nodes[node_id].is_top = True;
     return graph
 
 def read(fp, text = None, prefix = None):
