@@ -162,7 +162,7 @@ def main():
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
 
-  normalizations = {"anchors", "case", "edges"};
+  normalizations = {"anchors", "case", "edges", "attributes"};
   if len(arguments.normalize) == 1 and arguments.normalize[0] == "all":
     normalize = normalizations;
   else:
