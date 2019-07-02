@@ -159,8 +159,9 @@ def update_edge_candidates(edge_candidates, i, j):
             # edge1.
             # Both edges share the same source/target node
             # (modulo the tentative assignment).
+            src1, tgt1 = edge1
             edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
-                                    if src2 == j or tgt2 == j}
+                                    if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
             if  edge1_candidates:
                 new_candidates[edge1] = edge1_candidates
             else:
