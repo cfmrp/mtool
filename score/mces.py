@@ -366,8 +366,8 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             = g.score(s, best_cv);
 #        assert n_matched >= n_smatched;
         if trace:
-            if n_smatched and n_matched > n_smatched:
-                print("improvement over smatch: {}"
+            if n_smatched and n_matched != n_smatched:
+                print("delta to smatch: {}"
                       "".format(n_matched - n_smatched), file = sys.stderr)
             if g.id in scores:
                 print("mces.evaluate(): duplicate graph identifier: {}"
