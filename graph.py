@@ -10,7 +10,9 @@ from datetime import datetime;
 from pathlib import Path;
 
 import score.core;
-
+
+ATTRIBUTE_DEFAULT_VALUES = {"remote": "false"}
+
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
@@ -232,6 +234,15 @@ class Edge(object):
                 for i in range(len(self.attributes)):
                     self.attributes[i] = str(self.attributes[i]).lower();
                     self.values[i] = str(self.values[i]).lower();
+
+        if "attributes" in actions and self.attributes and self.values:
+            # Drop (attribute, value) pairs whose value is the default value
+            attribute_value_pairs = [
+                (attribute, value) for attribute, value
+                in zip(self.attributes, self.values)
+                if attribute not in ATTRIBUTE_DEFAULT_VALUES
+                   or ATTRIBUTE_DEFAULT_VALUES[attribute] != value]
+            self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
         if self.normal and "edges" in actions:
             target = self.src;

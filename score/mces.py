@@ -344,19 +344,20 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
                           file = sys.stderr);
                 pairs = mapping;
         n_matched = 0
-        best_cv, best_ce = None, None
-        for i, (cv, ce) in enumerate(correspondences(
-                g, s, pairs, rewards, limit, trace,
-                dominated1=g_dominated, dominated2=s_dominated)):
-            assert is_valid(ce)
-            assert is_injective(ce)
-            n = sum(map(len, ce.values()))
-            if n > n_matched:
-                if trace > 1:
-                    print("\n[{}] solution #{}; matches: {}"
-                          "".format(counter, i, n), file = sys.stderr);
-                n_matched = n
-                best_cv, best_ce = cv, ce
+        best_cv, best_ce = {}, {}
+        if g.nodes:
+            for i, (cv, ce) in enumerate(correspondences(
+                    g, s, pairs, rewards, limit, trace,
+                    dominated1=g_dominated, dominated2=s_dominated)):
+                assert is_valid(ce)
+                assert is_injective(ce)
+                n = sum(map(len, ce.values()))
+                if n > n_matched:
+                    if trace > 1:
+                        print("\n[{}] solution #{}; matches: {}"
+                              "".format(counter, i, n), file = sys.stderr);
+                    n_matched = n
+                    best_cv, best_ce = cv, ce
         total_matches += n_matched;
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
