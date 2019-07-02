@@ -82,12 +82,14 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
                 # also determine the maximum number of edge matches we
                 # can hope to score, for each node-node correspondence
                 #
-                for edge1 in graph1.edges:
-                    for edge2 in graph2.edges:
-                        if edge1.lab == edge2.lab and \
-                           (edge1.src == node1.id and edge2.src == node2.id or
-                            edge1.tgt == node1.id and edge2.tgt == node2.id):
-                            edges[i, j] += 1;
+                src_edges1 = [ e for e in graph1.edges if e.src == node1.id ]
+                src_edges2 = [ e for e in graph2.edges if e.src == node2.id ]
+                tgt_edges1 = [ e for e in graph1.edges if e.tgt == node1.id ]
+                tgt_edges2 = [ e for e in graph2.edges if e.tgt == node2.id ]
+                src_edges_x = [ len([ 1 for e2 in src_edges2 if e1.lab == e2.lab]) for e1 in src_edges1]
+                tgt_edges_x = [ len([ 1 for e2 in tgt_edges2 if e1.lab == e2.lab]) for e1 in tgt_edges1]
+                edges[i, j] += sum(src_edges_x) + sum(tgt_edges_x)
+
                 #
                 # and the overlap of UCCA yields (sets of character position)
                 #
@@ -149,8 +151,7 @@ def make_edge_candidates(graph1, graph2):
 # node `j`.
 
 def update_edge_candidates(edge_candidates, i, j):
-    new_candidates = dict()
-    new_potential = 0
+    new_candidates = edge_candidates.copy()
     for edge1, edge1_candidates in edge_candidates.items():
         if i in edge1:
             # Edge edge1 is affected by the tentative assignment. Need
@@ -158,17 +159,13 @@ def update_edge_candidates(edge_candidates, i, j):
             # edge1.
             # Both edges share the same source/target node
             # (modulo the tentative assignment).
-            src1, tgt1 = edge1
             edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
-                                if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
-        else:
-            # Edge edge1 is not affected by the tentative
-            # assignment. Just include a pointer to the candidates for
-            # edge1 in the old assignment.
-            edge1_candidates = edge1_candidates
-        new_candidates[edge1] = edge1_candidates
-        new_potential += 1 if edge1_candidates else 0
-    return new_candidates, new_potential
+                                    if src2 == j or tgt2 == j}
+            if  edge1_candidates:
+                new_candidates[edge1] = edge1_candidates
+            else:
+                new_candidates.pop(edge1)
+    return new_candidates, len(new_candidates)
 
 
 def splits(xs):
