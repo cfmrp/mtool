@@ -1,0 +1,16 @@
+digraph "233" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">join-up-02</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">country</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">U.S.</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">person</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">observe-01</td></tr></table>> ];
+  5 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">project</td></tr></table>> ];
+  0 -> 1 [ label="ARG0" ];
+  3 -> 4 [ label="(ARG0)-of" ];
+  1 -> 2 [ label="name" ];
+  1 -> 3 [ label="mod (domain)" ];
+  0 -> 5 [ label="ARG1" ];
+}
+
