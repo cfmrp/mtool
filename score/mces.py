@@ -27,7 +27,7 @@ class InternalGraph():
         for i, node in enumerate(graph.nodes):
             self.node2id[node] = i
             self.nodes.append(i)
-        for i, edge in enumerate(graph.edges):
+        for edge in graph.edges:
             src = graph.find_node(edge.src)
             src = self.node2id[src]
             tgt = graph.find_node(edge.tgt)
@@ -127,11 +127,13 @@ def make_edge_candidates(graph1, graph2):
     candidates = dict()
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
-        edge1 = src1, tgt1
-        candidates[edge1] = edge1_candidates = set()
+        if raw_edge1 not in candidates:
+            candidates[raw_edge1] = edge1_candidates = set()
+        else:
+            edge1_candidates = candidates[raw_edge1]
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
-            edge2 = src2, tgt2
+            edge2 = (src2, tgt2)
             if tgt1 < 0:
                 # Edge edge1 is a pseudoedge. This can only map to
                 # another pseudoedge pointing to the same pseudonode.
@@ -152,13 +154,13 @@ def update_edge_candidates(edge_candidates, i, j):
     new_candidates = dict()
     new_potential = 0
     for edge1, edge1_candidates in edge_candidates.items():
-        if i in edge1:
+        if i == edge1[0] or i == edge1[1]:
             # Edge edge1 is affected by the tentative assignment. Need
             # to explicitly construct the new set of candidates for
             # edge1.
             # Both edges share the same source/target node
             # (modulo the tentative assignment).
-            src1, tgt1 = edge1
+            src1, tgt1, _ = edge1
             edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
                                 if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
         else:
