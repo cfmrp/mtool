@@ -362,7 +362,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
             = g.score(s, best_cv);
-        assert n_matched >= n_smatched;
+#        assert n_matched >= n_smatched;
         if trace:
             if n_smatched and n_matched > n_smatched:
                 print("improvement over smatch: {}"
