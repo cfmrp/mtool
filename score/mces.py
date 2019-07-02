@@ -351,8 +351,8 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             for i, (cv, ce) in enumerate(correspondences(
                     g, s, pairs, rewards, limit, trace,
                     dominated1=g_dominated, dominated2=s_dominated)):
-                assert is_valid(ce)
-                assert is_injective(ce)
+#                assert is_valid(ce)
+#                assert is_injective(ce)
                 n = sum(map(len, ce.values()))
                 if n > n_matched:
                     if trace > 1:
