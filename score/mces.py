@@ -321,7 +321,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         # yields a better start into the search ...
         #
         n_smatched = 0;
-        if False and g.framework in {"eds", "ucca", "amr"}:
+        if g.framework in {"eds", "ucca", "amr"}:
             n_smatched, _, _, mapping \
                 = smatch(g, s, 50,
                          {"tops", "labels", "properties", "anchors",
@@ -330,8 +330,18 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
             mapping = [(i, j if j >= 0 else None)
                        for i, j in enumerate(mapping)];
             if set(pairs) != set(mapping):
-                print("pairs from smatch: {}".format(sorted(mapping)),
-                      file = sys.stderr);
+                tops, labels, properties, anchors, edges, attributes \
+                    = g.score(s, mapping);
+                all = tops["c"] + labels["c"] + properties["c"] \
+                      + anchors["c"] + edges["c"] + attributes["c"];
+                status = "{}".format(n_smatched);
+                if n_smatched > all:
+                    status = "{} vs. {}".format(n_smatched, all);
+                    n_smatched = all;
+                if trace > 1:
+                    print("pairs from smatch [{}]: {}"
+                          "".format(status, sorted(mapping)),
+                          file = sys.stderr);
                 pairs = mapping;
         n_matched = 0
         best_cv, best_ce = None, None
