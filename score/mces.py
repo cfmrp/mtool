@@ -82,12 +82,10 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
                 # also determine the maximum number of edge matches we
                 # can hope to score, for each node-node correspondence
                 #
-                src_edges1 = [ e for e in graph1.edges if e.src == node1.id ]
-                src_edges2 = [ e for e in graph2.edges if e.src == node2.id ]
-                tgt_edges1 = [ e for e in graph1.edges if e.tgt == node1.id ]
-                tgt_edges2 = [ e for e in graph2.edges if e.tgt == node2.id ]
-                src_edges_x = [ len([ 1 for e2 in src_edges2 if e1.lab == e2.lab]) for e1 in src_edges1]
-                tgt_edges_x = [ len([ 1 for e2 in tgt_edges2 if e1.lab == e2.lab]) for e1 in tgt_edges1]
+                src_edges_x = [ len([ 1 for e1 in graph1.edges if e1.src == node1.id and e1.lab == e2.lab ])
+                                for e2 in graph2.edges if e2.src == node2.id ]
+                tgt_edges_x = [ len([ 1 for e1 in graph1.edges if e1.tgt == node1.id and e1.lab == e2.lab ])
+                                for e2 in graph2.edges if e2.tgt == node2.id ]
                 edges[i, j] += sum(src_edges_x) + sum(tgt_edges_x)
 
                 #
