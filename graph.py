@@ -230,6 +230,8 @@ class Edge(object):
         if "case" in actions:
             if self.lab is not None:
                 self.lab = str(self.lab).lower();
+            if self.normal is not None:
+                self.normal = str(self.normal).lower();
             if self.attributes and self.values:
                 for i in range(len(self.attributes)):
                     self.attributes[i] = str(self.attributes[i]).lower();
