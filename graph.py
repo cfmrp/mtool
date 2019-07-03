@@ -11,6 +11,11 @@ from pathlib import Path;
 
 import score.core;
 
+#
+# default values on edge attributes, which will be removed in normalization.
+# because all constants are normalized to lowercase strings prior to testing
+# for default values, we need to deal in the normalized values here.
+#
 ATTRIBUTE_DEFAULTS = {"remote": "false"}
 
 class Node(object):
