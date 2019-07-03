@@ -179,3 +179,4 @@ Contributors
 
 + Yuta Koreeda <koreyou@mac.com> (@koreyou)
 + Matthias Lindemann <mlinde@coli.uni-saarland.de> (@namednil)
++ Milan Straka <straka@ufal.mff.cuni.cz> (@foxik)

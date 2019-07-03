@@ -27,7 +27,7 @@ class InternalGraph():
         for i, node in enumerate(graph.nodes):
             self.node2id[node] = i
             self.nodes.append(i)
-        for i, edge in enumerate(graph.edges):
+        for edge in graph.edges:
             src = graph.find_node(edge.src)
             src = self.node2id[src]
             tgt = graph.find_node(edge.tgt)
@@ -127,11 +127,13 @@ def make_edge_candidates(graph1, graph2):
     candidates = dict()
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
-        edge1 = src1, tgt1
-        edge1_candidates = set()
+        if raw_edge1 not in candidates:
+            edge1_candidates = set()
+        else:
+            edge1_candidates = candidates[raw_edge1]
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
-            edge2 = src2, tgt2
+            edge2 = (src2, tgt2)
             if tgt1 < 0:
                 # Edge edge1 is a pseudoedge. This can only map to
                 # another pseudoedge pointing to the same pseudonode.
@@ -142,7 +144,7 @@ def make_edge_candidates(graph1, graph2):
                 # another real edge.
                 edge1_candidates.add(edge2)
         if edge1_candidates:
-            candidates[edge1] = edge1_candidates
+            candidates[raw_edge1] = edge1_candidates
     return candidates
 
 
@@ -153,13 +155,13 @@ def make_edge_candidates(graph1, graph2):
 def update_edge_candidates(edge_candidates, i, j):
     new_candidates = edge_candidates.copy()
     for edge1, edge1_candidates in edge_candidates.items():
-        if i in edge1:
+        if i == edge1[0] or i == edge1[1]:
             # Edge edge1 is affected by the tentative assignment. Need
             # to explicitly construct the new set of candidates for
             # edge1.
             # Both edges share the same source/target node
             # (modulo the tentative assignment).
-            src1, tgt1 = edge1
+            src1, tgt1, _ = edge1
             edge1_candidates = {(src2, tgt2) for src2, tgt2 in edge1_candidates
                                     if src1 == i and src2 == j or tgt1 == i and tgt2 == j}
             if  edge1_candidates:
@@ -319,7 +321,7 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
         # yields a better start into the search ...
         #
         n_smatched = 0;
-        if False and g.framework in {"eds", "ucca", "amr"}:
+        if g.framework in {"eds", "ucca", "amr"}:
             n_smatched, _, _, mapping \
                 = smatch(g, s, 50,
                          {"tops", "labels", "properties", "anchors",
@@ -327,32 +329,43 @@ def evaluate(gold, system, format="json", limit=500000, trace=0):
                          0, False);
             mapping = [(i, j if j >= 0 else None)
                        for i, j in enumerate(mapping)];
-            if set(pairs) != set(mapping):
-                print("pairs from smatch: {}".format(sorted(mapping)),
+            tops, labels, properties, anchors, edges, attributes \
+                = g.score(s, mapping);
+            all = tops["c"] + labels["c"] + properties["c"] \
+                  + anchors["c"] + edges["c"] + attributes["c"];
+            status = "{}".format(n_smatched);
+            if n_smatched > all:
+                status = "{} vs. {}".format(n_smatched, all);
+                n_smatched = all;
+            if trace > 1:
+                print("pairs {} smatch [{}]: {}"
+                      "".format("from" if set(pairs) != set(mapping) else "by",
+                                status, sorted(mapping)),
                       file = sys.stderr);
-                pairs = mapping;
+            if set(pairs) != set(mapping): pairs = mapping;
         n_matched = 0
-        best_cv, best_ce = None, None
-        for i, (cv, ce) in enumerate(correspondences(
-                g, s, pairs, rewards, limit, trace,
-                dominated1=g_dominated, dominated2=s_dominated)):
-            assert is_valid(ce)
-            assert is_injective(ce)
-            n = sum(map(len, ce.values()))
-            if n > n_matched:
-                if trace > 1:
-                    print("\n[{}] solution #{}; matches: {}"
-                          "".format(counter, i, n), file = sys.stderr);
-                n_matched = n
-                best_cv, best_ce = cv, ce
+        best_cv, best_ce = {}, {}
+        if g.nodes:
+            for i, (cv, ce) in enumerate(correspondences(
+                    g, s, pairs, rewards, limit, trace,
+                    dominated1=g_dominated, dominated2=s_dominated)):
+#                assert is_valid(ce)
+#                assert is_injective(ce)
+                n = sum(map(len, ce.values()))
+                if n > n_matched:
+                    if trace > 1:
+                        print("\n[{}] solution #{}; matches: {}"
+                              "".format(counter, i, n), file = sys.stderr);
+                    n_matched = n
+                    best_cv, best_ce = cv, ce
         total_matches += n_matched;
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
             = g.score(s, best_cv);
-        assert n_matched >= n_smatched;
+#        assert n_matched >= n_smatched;
         if trace:
-            if n_smatched and n_matched > n_smatched:
-                print("improvement over smatch: {}"
+            if n_smatched and n_matched != n_smatched:
+                print("delta to smatch: {}"
                       "".format(n_matched - n_smatched), file = sys.stderr)
             if g.id in scores:
                 print("mces.evaluate(): duplicate graph identifier: {}"

@@ -11,7 +11,12 @@ from pathlib import Path;
 
 import score.core;
 
-ATTRIBUTE_DEFAULT_VALUES = {"remote": "false"}
+#
+# default values on edge attributes, which will be removed in normalization.
+# because all constants are normalized to lowercase strings prior to testing
+# for default values, we need to deal in the normalized values here.
+#
+ATTRIBUTE_DEFAULTS = {"remote": "false"}
 
 class Node(object):
 
@@ -227,9 +232,18 @@ class Edge(object):
         return self.max() - self.min()
 
     def normalize(self, actions):
+        if self.normal and "edges" in actions:
+            target = self.src;
+            self.src = self.tgt;
+            self.tgt = target;
+            self.lab = self.normal;
+            self.normal = None;
+
         if "case" in actions:
             if self.lab is not None:
                 self.lab = str(self.lab).lower();
+            if self.normal is not None:
+                self.normal = str(self.normal).lower();
             if self.attributes and self.values:
                 for i in range(len(self.attributes)):
                     self.attributes[i] = str(self.attributes[i]).lower();
@@ -240,17 +254,10 @@ class Edge(object):
             attribute_value_pairs = [
                 (attribute, value) for attribute, value
                 in zip(self.attributes, self.values)
-                if attribute not in ATTRIBUTE_DEFAULT_VALUES
-                   or ATTRIBUTE_DEFAULT_VALUES[attribute] != value]
+                if attribute not in ATTRIBUTE_DEFAULTS
+                   or ATTRIBUTE_DEFAULTS[attribute] != value]
             self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
-        if self.normal and "edges" in actions:
-            target = self.src;
-            self.src = self.tgt;
-            self.tgt = target;
-            self.lab = self.normal;
-            self.normal = None;
-            
     def encode(self):
         json = {"source": self.src, "target": self.tgt, "label": self.lab};
         if self.normal:

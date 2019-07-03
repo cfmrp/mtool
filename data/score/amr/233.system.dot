@@ -1,0 +1,15 @@
+digraph "233" {
+  top [ style=invis ];
+  top -> 0;
+  0 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">join-up-02</td></tr></table>> ];
+  1 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">project</td></tr></table>> ];
+  2 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">observe-01</td></tr></table>> ];
+  3 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">country</td></tr></table>> ];
+  4 [ label=<<table align="center" border="0" cellspacing="0"><tr><td colspan="2">name</td></tr><tr><td sides="l" border="1" align="left">op1</td><td sides="r" border="1" align="left">U.S.</td></tr></table>> ];
+  0 -> 1 [ label="ARG1" ];
+  3 -> 4 [ label="name" ];
+  0 -> 2 [ label="prep-as" ];
+  2 -> 3 [ label="ARG0" ];
+  3 -> 0 [ label="(ARG0)-of" ];
+}
+
