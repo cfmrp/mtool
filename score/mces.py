@@ -128,7 +128,7 @@ def make_edge_candidates(graph1, graph2):
     for raw_edge1 in graph1.edges:
         src1, tgt1, lab1 = raw_edge1
         edge1 = src1, tgt1
-        candidates[edge1] = edge1_candidates = set()
+        edge1_candidates = set()
         for raw_edge2 in graph2.edges:
             src2, tgt2, lab2 = raw_edge2
             edge2 = src2, tgt2
@@ -141,6 +141,8 @@ def make_edge_candidates(graph1, graph2):
                 # Edge edge1 is a real edge. This can only map to
                 # another real edge.
                 edge1_candidates.add(edge2)
+        if edge1_candidates:
+            candidates[edge1] = edge1_candidates
     return candidates
 
 
