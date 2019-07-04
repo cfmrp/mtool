@@ -164,7 +164,6 @@ graphs.
 These options cannot be combined with each other and take precendence over each
 other in the above order.
 
-
 Installation
 ------------
 
@@ -174,9 +173,18 @@ You can install `mtool` via `pip` with the following command:
 pip install git+https://github.com/cfmrp/mtool.git#egg=mtool
 ```
 
+Authors
+-------
+
++ Daniel Hershcovich <daniel.hershcovich@gmail.com> (@danielhers)
++ Marco Kuhlmann <marco.kuhlmann@liu.se> (@khlmnn)
++ Stephan Oepen <oe@ifi.uio.no> (@oepen)
++ Tim O'Gorman <timjogorman@gmail.com> (@timjogorman)
+
 Contributors
 ------------
 
 + Yuta Koreeda <koreyou@mac.com> (@koreyou)
 + Matthias Lindemann <mlinde@coli.uni-saarland.de> (@namednil)
 + Milan Straka <straka@ufal.mff.cuni.cz> (@foxik)
++ Hiroaki Ozaki <taryou.ozk@gmail.com> (@taryou)
