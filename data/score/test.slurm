@@ -10,6 +10,7 @@
 
 echo "directory: $(pwd)";
 echo "git status: $(git status | head -1)";
+echo "git commit: $(git log --pretty=format:\%H -n 1)";
 echo;
 
 source /cluster/bin/jobsetup;
