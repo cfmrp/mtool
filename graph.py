@@ -232,12 +232,23 @@ class Edge(object):
         return self.max() - self.min()
 
     def normalize(self, actions):
-        if self.normal and "edges" in actions:
-            target = self.src;
-            self.src = self.tgt;
-            self.tgt = target;
-            self.lab = self.normal;
-            self.normal = None;
+
+        if "edges" in actions:
+            if self.normal is None:
+                label = self.lab;
+                if label == "mod":
+                    self.normal = "domain";
+                elif label.endswith("-of-of") \
+                     or label.endswith("-of") \
+                     and label not in {"consist-of" "subset-of"} \
+                     and not label.startswith("prep-"):
+                    self.normal = label[:-3];
+            if self.normal:
+                target = self.src;
+                self.src = self.tgt;
+                self.tgt = target;
+                self.lab = self.normal;
+                self.normal = None;
 
         if "case" in actions:
             if self.lab is not None:
