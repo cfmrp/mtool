@@ -8,7 +8,9 @@
 #SBATCH --mem-per-cpu=4G
 #SBATCH --ntasks-per-node=8
 
-echo $(pwd);
+echo "directory: $(pwd)";
+echo "git status: $(git status | head -1)";
+echo;
 
 source /cluster/bin/jobsetup;
 
