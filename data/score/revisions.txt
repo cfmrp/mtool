@@ -1,0 +1,6 @@
+af6d8641670e5dccb2a30f3d66fd296e35e43818        normalization: un-invert edges prior to downcasing
+1e2fa352c1384ea6a1005c193ebf1d449a0de1dd        disable more assertions: is_injective() actually fails on the UCCA test (when initializing from SMATCH)
+f7ab15802a54eb1cb3638879d8c4fdea33706ec9        bug fix: gold CoLi graph #216 contains two edges (ARG0 and ARG1) between the same nodes
+65b0f99285b3bc91398527fafb0f3e08a2d609ef        temporarily disable (suprisingly) problematic assertion
+6c863c9e6233b8d3e81f39e0015333c4c75d5264        Merge pull request #46 from cfmrp/default.  Normalization: drop (attribute, value) pairs whose value is the default value
+
