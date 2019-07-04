@@ -4,6 +4,7 @@
 
 import argparse;
 import json;
+import re;
 import sys;
 import time;
 from pathlib import Path;
@@ -97,7 +98,7 @@ def main():
   parser.add_argument("--format");
   parser.add_argument("--score");
   parser.add_argument("--validate", action = "append", default = []);
-  parser.add_argument("--limit", type = int, default = 0);
+  parser.add_argument("--limit");
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
@@ -224,7 +225,23 @@ def main():
     if not gold:
       print("main.py(): unable to read gold graphs: {}; exit.", file = sys.stderr);
       sys.exit(1);
+    limits = {"rrhc": None, "mces": None};
     for metric in arguments.score.split(","):
+      if arguments.limit is not None:
+        try:
+          match = re.search(r"([0-9]+):([0-9]+)", arguments.limit)
+          if match:
+            limits["rrhc"] = int(match.group(1));
+            limits["mces"] = int(match.group(2));
+          else:
+            if metric == "smatch":
+              limits["rrhc"] = int(arguments.limit);
+            else:
+              limits["mces"] = int(arguments.limit);
+        except:
+          print("main.py(): invalid ‘--limit’ {}; exit.".format(arguments.limit),
+                file = sys.stderr);
+          sys.exit(1);
       result = None;
       launch = time.process_time();
       if metric == "edm":
@@ -234,7 +251,7 @@ def main():
       elif metric == "mrp":
         result = score.mces.evaluate(gold, graphs,
                                      format = arguments.write,
-                                     limit = arguments.limit,
+                                     limits = limits,
                                      trace = arguments.trace);
       elif metric == "sdp":
         result = score.sdp.evaluate(gold, graphs,
@@ -243,7 +260,7 @@ def main():
       elif metric == "smatch":
         result = score.smatch.evaluate(gold, graphs,
                                        format = arguments.write,
-                                       limit = arguments.limit,
+                                       limit = limits["rrhc"],
                                        values = {"tops", "labels",
                                                  "properties", "anchors",
                                                  "edges", "attributes"},

@@ -79,9 +79,20 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
 (indexed by graph identifiers).
-For MRP and SMATCH, the `--limit` option controls the maximum number of node pairings or
+For MRP and SMATCH, the `--limit` option controls the maximum node pairing steps or
 hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
-and `5`, respectively).
+and `20`, respectively).
+As of early July, 2019, the search for none-to-node correspondences in the MRP metric can be
+initialized from the result of the random-restart hill-climbing (RRHC) search from SMATCH.
+This initialization is on by default; it increases running time of the MRP scorer but yields
+a guarantee that the `"all"` counts of matching tuples in MRP will always be at least as
+high as the number of `"c"`(orrect) tuples identified by SMATCH.
+To control the two search steps in MRP computation separately, the `--limit` option can
+take a colon-separated pair of integers, for example `5:100000` for five hill-climbing
+iterations and up to 100,000 node pairing steps.
+Note that multi-valued use of the `--limit` option is only meaningful in conjunction
+with the MRP metric, and that setting either of the two values to `0` will disable the
+corresponding search component.
 
 Analytics
 ---------
