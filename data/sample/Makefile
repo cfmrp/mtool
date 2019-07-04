@@ -8,6 +8,8 @@ amr/wsj.mrp: wsj.ids ../wsj.txt amr/wsj.amr
 	done > $@;
 
 amr/pdf:
+	[ ! -d amr/dot ] && mkdir amr/dot;
+	[ ! -d amr/pdf ] && mkdir amr/pdf;
 	for i in $$(cat wsj.ids); do \
 	../../main.py --text ../wsj.txt --read amr \
 	  --id $$i --write dot \
@@ -26,6 +28,8 @@ dm/wsj.mrp: wsj.ids ../wsj.txt dm/wsj.sdp
 	done > $@;
 
 dm/pdf:
+	[ ! -d dm/dot ] && mkdir dm/dot;
+	[ ! -d dm/pdf ] && mkdir dm/pdf;
 	for i in $$(cat wsj.ids); do \
 	../../main.py --text ../wsj.txt --read dm \
 	  --id $$i --write dot \
@@ -43,6 +47,8 @@ eds/wsj.mrp: wsj.ids ../wsj.txt eds/wsj.eds
 	done > $@;
 
 eds/pdf:
+	[ ! -d eds/dot ] && mkdir eds/dot;
+	[ ! -d eds/pdf ] && mkdir eds/pdf;
 	for i in $$(cat wsj.ids); do \
 	../../main.py --text ../wsj.txt --read eds \
 	  --id $$i --write dot \
@@ -60,6 +66,8 @@ psd/wsj.mrp: wsj.ids ../wsj.txt psd/wsj.sdp
 	done > $@;
 
 psd/pdf:
+	[ ! -d psd/dot ] && mkdir psd/dot;
+	[ ! -d psd/pdf ] && mkdir psd/pdf;
 	for i in $$(cat wsj.ids); do \
 	../../main.py --text ../wsj.txt --read dm \
 	  --id $$i --write dot \
@@ -77,6 +85,8 @@ ucca/wsj.mrp: wsj.ids ../wsj.txt ucca/xml/files.txt ucca/xml/*.xml
 	done > $@;
 
 ucca/pdf:
+	[ ! -d ucca/dot ] && mkdir ucca/dot;
+	[ ! -d ucca/pdf ] && mkdir ucca/pdf;
 	for i in $$(cat wsj.ids); do \
 	../../main.py --text ../wsj.txt --read ucca \
 	  --id $$i --write dot --strings \
