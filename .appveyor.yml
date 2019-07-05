@@ -1,4 +1,5 @@
 environment:
+  PYTHON=C:\Python37-x64
   matrix:
   - TEST: score
   - TEST: sample
@@ -6,7 +7,8 @@ environment:
 
 init:
 - cmd: choco install make
-- set PATH=C:\Python37-x64;%PATH%
+- set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
+- cmd: copy %PYTHON%\python.exe %PYTHON%\python3.exe
 
 install:
 - pip install .
