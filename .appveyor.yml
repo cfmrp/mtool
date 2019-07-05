@@ -1,5 +1,3 @@
-stack: python 3.6
-
 environment:
   matrix:
   - TEST: score
@@ -8,6 +6,7 @@ environment:
 
 init:
 - cmd: choco install make
+- set PATH=C:\Python37-x64;%PATH%
 
 install:
 - pip install .
