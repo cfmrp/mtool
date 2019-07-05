@@ -60,6 +60,11 @@ ucca.mrp.json:
 	  --read mrp --gold ucca/ewt.gold.mrp \
 	  ucca/ewt.tupa.mrp $@ 2>&1 | tee ucca.mrp.log
 
+empty.mrp.json:
+	time python3 -u ../../main.py $(TRACE) --score mrp \
+	  --read mrp --gold dm/empty.gold.mrp \
+	  dm/empty.peking.mrp $@ 2>&1 | tee empty.mrp.log
+
 test.smatch.json:
 	time python3 -u ../../main.py $(TRACE) --score smatch --limit 50 \
 	  --read amr --gold amr/test1.amr \
