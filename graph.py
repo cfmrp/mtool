@@ -470,10 +470,15 @@ class Graph(object):
         def count(gold, system):
             return {"g": len(gold), "s": len(system), "c": len(gold & system)};
 
+        if correspondences is None or len(correspondences) == 0:
+            return count(set(), set()), count(set(), set()), \
+                   count(set(), set()), count(set(), set()), \
+                   count(set(), set()), count(set(), set());
+            
         #
         # accommodate the various conventions for node correspondence matrices
         #
-        if isinstance(correspondences, list):
+        if isinstance(correspondences, list) and len(correspondences) > 0:
             if isinstance(correspondences[0], tuple):
                 correspondences = {i: j if j is not None else -1
                                    for i, j in correspondences};
@@ -535,19 +540,19 @@ class Graph(object):
         except:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input", None)
-        if "nodes" in json:
+        if "nodes" in json and json["nodes"] is not None:
             for j in json["nodes"]:
                 node = Node.decode(j)
                 graph.add_node(node.id, node.label, node.properties,
                                node.values, node.anchors, top = False)
-        if "edges" in json:
+        if "edges" in json and json["edges"] is not None:
             for j in json["edges"]:
                 edge = Edge.decode(j)
                 graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
                                edge.attributes, edge.values)
-        tops = json.get("tops", [])
-        for i in tops:
-            graph.find_node(i).is_top = True
+        if "tops" in json and json["tops"] is not None:
+            for i in json["tops"]:
+                graph.find_node(i).is_top = True
         return graph
 
     def dot(self, stream, ids = False, strings = False):
