@@ -6,6 +6,7 @@ environment:
 
 init:
 - cmd: choco install make
+- cmd: copy %PYTHON%\python.exe %PYTHON%\python3.exe
 
 install:
 - pip install .
