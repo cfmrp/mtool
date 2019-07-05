@@ -404,7 +404,7 @@ def evaluate(gold, system, format = "json",
                 if trace > 2:
                     print(best_cv, file = sys.stderr)
                     print(best_ce, file = sys.stderr)
-        except KeyError as e:
+        except (KeyError, AttributeError) as e:
             raise ValueError("mces.evaluate(): failed evaluating graph: {}".format(g.id)) from e
 
     total_all = {"g": 0, "s": 0, "c": 0};
