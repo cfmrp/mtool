@@ -354,7 +354,7 @@ def evaluate(gold, system, format = "json",
                       file = sys.stderr);
             if set(pairs) != set(mapping): pairs = mapping;
         n_matched = 0
-        best_cv, best_ce = {}, {}
+        best_cv, best_ce = None, None
         if g.nodes and mces_limit > 0:
             for i, (cv, ce) in enumerate(correspondences(
                     g, s, pairs, rewards, mces_limit, trace,
@@ -371,7 +371,7 @@ def evaluate(gold, system, format = "json",
         total_matches += n_matched;
         total_steps += counter;
         tops, labels, properties, anchors, edges, attributes \
-            = g.score(s, best_cv or pairs);
+            = g.score(s, best_cv or pairs or {});
 #        assert n_matched >= n_smatched;
         if trace:
             if n_smatched and n_matched != n_smatched:
