@@ -15,6 +15,7 @@ configuration: Release
 init:
   - cmd: cmake --version
   - cmd: msbuild /version
+  - cmd: choco install make
 
 install:
   - cmd: git submodule update --init --recursive
