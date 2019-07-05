@@ -5,6 +5,7 @@ environment:
   - TEST: validate
 
 init:
+- cmd: choco install make
 
 install:
 - pip install .
