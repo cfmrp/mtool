@@ -1,5 +1,6 @@
+stack: python 3.6
+
 environment:
-  PYTHON: "C:\\Python36-x64"
   matrix:
   - TEST: score
   - TEST: sample
@@ -7,7 +8,6 @@ environment:
 
 init:
 - cmd: choco install make
-- cmd: copy %PYTHON%\python.exe %PYTHON%\python3.exe
 
 install:
 - pip install .
