@@ -22,10 +22,12 @@ class InternalGraph():
 
     def __init__(self, graph, index):
         self.node2id = dict()
+        self.id2node = dict()
         self.nodes = []
         self.edges = []
         for i, node in enumerate(graph.nodes):
             self.node2id[node] = i
+            self.id2node[i] = node
             self.nodes.append(i)
         for edge in graph.edges:
             src = graph.find_node(edge.src)
@@ -195,18 +197,18 @@ def sorted_splits(i, xs, rewards, pairs):
 # Do not pursue correspondences of nodes i and j in case there is
 # a node dominated by i whose correspondence is not dominated by j
 
-def domination_conflict(cv, i, j, dominated1, dominated2):
+def domination_conflict(graph1, graph2, cv, i, j, dominated1, dominated2):
     if not dominated1 or not dominated2 or i < 0 or j < 0:
         return False
-    dominated_i = dominated1[i]
-    dominated_j = dominated2[j]
+    dominated_i = dominated1[graph1.id2node[i].id]
+    dominated_j = dominated2[graph2.id2node[j].id]
     # Both must be leaves or both must be non-leaves
     if bool(dominated_i) != bool(dominated_j):
         return True
     for _i, _j in cv.items():
         if _i >= 0 and _j >= 0 and \
-                _i in dominated_i and \
-                _j not in dominated_j:
+                graph1.id2node[_i].id in dominated_i and \
+                graph2.id2node[_j].id not in dominated_j:
             return True
     return False
 
@@ -238,7 +240,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=None, trace=0,
                     max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
                     if 0 <= j < max_j + 1:
                         continue
-                elif domination_conflict(cv, i, j, dominated1, dominated2):
+                elif domination_conflict(graph1, graph2, cv, i, j, dominated1, dominated2):
                     continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="", file = sys.stderr)
@@ -309,100 +311,103 @@ def evaluate(gold, system, format = "json",
     total_attributes = {"g": 0, "s": 0, "c": 0}
     scores = dict() if trace else None
     for g, s in intersect(gold, system):
-        counter = 0
+        try:
+            counter = 0
 
-        g_identities, s_identities, g_dominated, s_dominated = \
-            identities(g, s)
-        pairs, rewards = initial_node_correspondences(
-            g, s, identities1=g_identities, identities2=s_identities)
-        if trace > 1:
-            print("\n\ngraph #{}".format(g.id), file = sys.stderr)
-            print("number of gold nodes: {}".format(len(g.nodes)),
-                  file = sys.stderr)
-            print("number of system nodes: {}".format(len(s.nodes)),
-                  file = sys.stderr)
-            print("number of edges: {}".format(len(g.edges)),
-                  file = sys.stderr)
-            if trace > 2:
-                print("rewards and pairs:\n{}\n{}\n"
-                      "".format(rewards, sorted(pairs)), file = sys.stderr)
-        #
-        # experimental: see whether random-restart hill-climbing (from SMATCH)
-        # yields a better start into the search ...
-        #
-        n_smatched = 0;
-        if g.framework in {"eds", "amr"} and rrhc_limit > 0:
-            n_smatched, _, _, mapping \
-                = smatch(g, s, rrhc_limit,
-                         {"tops", "labels", "properties", "anchors",
-                          "edges", "attributes"},
-                         0, False);
-            mapping = [(i, j if j >= 0 else None)
-                       for i, j in enumerate(mapping)];
-            tops, labels, properties, anchors, edges, attributes \
-                = g.score(s, mapping);
-            all = tops["c"] + labels["c"] + properties["c"] \
-                  + anchors["c"] + edges["c"] + attributes["c"];
-            status = "{}".format(n_smatched);
-            if n_smatched > all:
-                status = "{} vs. {}".format(n_smatched, all);
-                n_smatched = all;
+            g_identities, s_identities, g_dominated, s_dominated = \
+                identities(g, s)
+            pairs, rewards = initial_node_correspondences(
+                g, s, identities1=g_identities, identities2=s_identities)
             if trace > 1:
-                print("pairs {} smatch [{}]: {}"
-                      "".format("from" if set(pairs) != set(mapping) else "by",
-                                status, sorted(mapping)),
+                print("\n\ngraph #{}".format(g.id), file = sys.stderr)
+                print("number of gold nodes: {}".format(len(g.nodes)),
+                      file = sys.stderr)
+                print("number of system nodes: {}".format(len(s.nodes)),
+                      file = sys.stderr)
+                print("number of edges: {}".format(len(g.edges)),
+                      file = sys.stderr)
+                if trace > 2:
+                    print("rewards and pairs:\n{}\n{}\n"
+                          "".format(rewards, sorted(pairs)), file = sys.stderr)
+            #
+            # experimental: see whether random-restart hill-climbing (from SMATCH)
+            # yields a better start into the search ...
+            #
+            n_smatched = 0;
+            if g.framework in {"eds", "amr"} and rrhc_limit > 0:
+                n_smatched, _, _, mapping \
+                    = smatch(g, s, rrhc_limit,
+                             {"tops", "labels", "properties", "anchors",
+                              "edges", "attributes"},
+                             0, False);
+                mapping = [(i, j if j >= 0 else None)
+                           for i, j in enumerate(mapping)];
+                tops, labels, properties, anchors, edges, attributes \
+                    = g.score(s, mapping);
+                all = tops["c"] + labels["c"] + properties["c"] \
+                      + anchors["c"] + edges["c"] + attributes["c"];
+                status = "{}".format(n_smatched);
+                if n_smatched > all:
+                    status = "{} vs. {}".format(n_smatched, all);
+                    n_smatched = all;
+                if trace > 1:
+                    print("pairs {} smatch [{}]: {}"
+                          "".format("from" if set(pairs) != set(mapping) else "by",
+                                    status, sorted(mapping)),
+                          file = sys.stderr);
+                if set(pairs) != set(mapping): pairs = mapping;
+            n_matched = 0
+            best_cv, best_ce = None, None
+            if g.nodes and mces_limit > 0:
+                for i, (cv, ce) in enumerate(correspondences(
+                        g, s, pairs, rewards, mces_limit, trace,
+                        dominated1=g_dominated, dominated2=s_dominated)):
+    #                assert is_valid(ce)
+    #                assert is_injective(ce)
+                    n = sum(map(len, ce.values()))
+                    if n > n_matched:
+                        if trace > 1:
+                            print("\n[{}] solution #{}; matches: {}"
+                                  "".format(counter, i, n), file = sys.stderr);
+                        n_matched = n
+                        best_cv, best_ce = cv, ce
+            total_matches += n_matched;
+            total_steps += counter;
+            tops, labels, properties, anchors, edges, attributes \
+                = g.score(s, best_cv or pairs or {});
+    #        assert n_matched >= n_smatched;
+            if trace:
+                if n_smatched and n_matched != n_smatched:
+                    print("delta to smatch: {}"
+                          "".format(n_matched - n_smatched), file = sys.stderr)
+                if g.id in scores:
+                    print("mces.evaluate(): duplicate graph identifier: {}"
+                          "".format(g.id), file = sys.stderr);
+                scores[g.id] = {"tops": tops, "labels": labels,
+                                "properties": properties, "anchors": anchors,
+                                "edges": edges, "attributes": attributes};
+            update(total_tops, tops);
+            update(total_labels, labels);
+            update(total_properties, properties);
+            update(total_anchors, anchors);
+            update(total_edges, edges);
+            update(total_attributes, attributes);
+            total_pairs += 1;
+            if mces_limit == 0 or counter > mces_limit: total_inexact += 1;
+            if trace > 1:
+                print("[{}] Number of edges in correspondence: {}"
+                      "".format(counter, n_matched), file = sys.stderr)
+                print("[{}] Total matches: {}".format(total_steps, total_matches),
                       file = sys.stderr);
-            if set(pairs) != set(mapping): pairs = mapping;
-        n_matched = 0
-        best_cv, best_ce = {}, {}
-        if g.nodes and mces_limit > 0:
-            for i, (cv, ce) in enumerate(correspondences(
-                    g, s, pairs, rewards, mces_limit, trace,
-                    dominated1=g_dominated, dominated2=s_dominated)):
-#                assert is_valid(ce)
-#                assert is_injective(ce)
-                n = sum(map(len, ce.values()))
-                if n > n_matched:
-                    if trace > 1:
-                        print("\n[{}] solution #{}; matches: {}"
-                              "".format(counter, i, n), file = sys.stderr);
-                    n_matched = n
-                    best_cv, best_ce = cv, ce
-        total_matches += n_matched;
-        total_steps += counter;
-        tops, labels, properties, anchors, edges, attributes \
-            = g.score(s, best_cv or pairs);
-#        assert n_matched >= n_smatched;
-        if trace:
-            if n_smatched and n_matched != n_smatched:
-                print("delta to smatch: {}"
-                      "".format(n_matched - n_smatched), file = sys.stderr)
-            if g.id in scores:
-                print("mces.evaluate(): duplicate graph identifier: {}"
-                      "".format(g.id), file = sys.stderr);
-            scores[g.id] = {"tops": tops, "labels": labels,
-                            "properties": properties, "anchors": anchors,
-                            "edges": edges, "attributes": attributes};
-        update(total_tops, tops);
-        update(total_labels, labels);
-        update(total_properties, properties);
-        update(total_anchors, anchors);
-        update(total_edges, edges);
-        update(total_attributes, attributes);
-        total_pairs += 1;
-        if mces_limit == 0 or counter > mces_limit: total_inexact += 1;
-        if trace > 1:
-            print("[{}] Number of edges in correspondence: {}"
-                  "".format(counter, n_matched), file = sys.stderr)
-            print("[{}] Total matches: {}".format(total_steps, total_matches),
-                  file = sys.stderr);
-            print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
-                  "\nedges: {}\nattributes: {}"
-                  "".format(tops, labels, properties, anchors,
-                            edges, attributes), file = sys.stderr);
-            if trace > 2:
-                print(best_cv, file = sys.stderr)
-                print(best_ce, file = sys.stderr)
+                print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
+                      "\nedges: {}\nattributes: {}"
+                      "".format(tops, labels, properties, anchors,
+                                edges, attributes), file = sys.stderr);
+                if trace > 2:
+                    print(best_cv, file = sys.stderr)
+                    print(best_ce, file = sys.stderr)
+        except (KeyError, AttributeError) as e:
+            raise ValueError("mces.evaluate(): failed evaluating graph: {}".format(g.id)) from e
 
     total_all = {"g": 0, "s": 0, "c": 0};
     for counts in [total_tops, total_labels, total_properties, total_anchors,

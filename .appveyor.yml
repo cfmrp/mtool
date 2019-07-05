@@ -1,0 +1,19 @@
+environment:
+  PYTHON: C:\Python37-x64
+  matrix:
+  - TEST: score
+  - TEST: sample
+  - TEST: validate
+
+init:
+- cmd: choco install make
+- set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
+- cmd: copy %PYTHON%\python.exe %PYTHON%\python3.exe
+
+install:
+- pip install .
+
+build: off
+
+test_script:
+- make -C data/%TEST% all TRACE=

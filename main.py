@@ -190,7 +190,8 @@ def main():
                   alignment = arguments.alignment, quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
-    print("main.py(): unable to read input graphs; exit.", file = sys.stderr);
+    print("main.py(): unable to read input graphs: {}, id={}; exit.".format(
+      arguments.input.name, arguments.id), file = sys.stderr);
     sys.exit(1);
 
   if arguments.source:
@@ -223,7 +224,8 @@ def main():
                           quiet = arguments.quiet,
                           id = arguments.id, n = arguments.n, i = arguments.i);
     if not gold:
-      print("main.py(): unable to read gold graphs: {}; exit.", file = sys.stderr);
+      print("main.py(): unable to read gold graphs: {}, id={}; exit.".format(
+        arguments.gold.name, arguments.id), file = sys.stderr);
       sys.exit(1);
     limits = {"rrhc": None, "mces": None};
     for metric in arguments.score.split(","):
