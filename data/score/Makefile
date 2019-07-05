@@ -2,7 +2,7 @@
 	dm.sdp.json peking.sdp.json peking.smatch.json peking.mrp.json \
 	ucca.ucca.json ucca.smatch.json ucca.mrp.json \
 	test.smatch.json coli.smatch.json coli.mrp.json \
-	all
+	clean all
 
 TRACE ?= --trace --trace
 
@@ -84,6 +84,9 @@ coli.mrp.json:
 	time python3 -u ../../main.py $(TRACE) --score mrp \
 	  --read amr --gold amr/coli.gold.amr \
 	  amr/coli.system.amr $@ 2>&1 | tee coli.mrp.log
+
+clean:
+	/bin/rm *.json *.log
 
 all:
 	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | grep -v all: | sed 's/://');

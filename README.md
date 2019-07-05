@@ -4,7 +4,7 @@ mtool
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/240px-Flag_of_Switzerland.svg.png" width=20>&nbsp;**The Swiss Army Knife of Meaning Representation**
 
 This repository provides software to support participants in the
-shared task on [_Meaning Representation Parsing_ (MRP)](http://mrp.nlpl.eu)
+shared task on [Meaning Representation Parsing (MRP)](http://mrp.nlpl.eu)
 at the
 [2019 Conference on Computational Natural Language Learning](http://www.conll.org/2019) (CoNLL).
 Please see the above task web site for additional background.
