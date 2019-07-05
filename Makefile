@@ -1,4 +1,7 @@
-.PHONY: regression
+.PHONY: history regression
+
+history:
+	git log --pretty=tformat:"%H	%ae	%ai	%s" -- score/mces.py
 
 regression:
 	for i in $$(awk '{print $$1}' data/score/revisions.txt); do \
