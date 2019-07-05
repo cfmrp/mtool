@@ -108,5 +108,5 @@ release:
 	  amr/dot amr/pdf dm/dot dm/pdf eds/dot eds/pdf \
 	  psd/dot psd/pdf ucca/dot ucca/pdf
 
-
+all: release
 
