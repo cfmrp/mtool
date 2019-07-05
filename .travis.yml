@@ -21,4 +21,4 @@ jobs:
         - conda create -q -n env python=3.6 numpy
         - source activate env
 script:
-  - make -C data/$TEST
+  - make -C data/$TEST all
