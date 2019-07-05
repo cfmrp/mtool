@@ -1,32 +1,15 @@
-os: Visual Studio 2015
-
-platform: x64
-
 environment:
-  MSVC_DEFAULT_OPTIONS: ON
-  MINICONDA: "C:\\Miniconda36-x64"
   matrix:
-    - TEST: score
-    - TEST: sample
-    - TEST: validate
-
-configuration: Release
+  - TEST: score
+  - TEST: sample
+  - TEST: validate
 
 init:
-  - cmd: choco install make
 
 install:
-  - cmd: git submodule update --init --recursive
-  - cmd: copy %MINICONDA%\python.exe %MINICONDA%\python3.exe
-  - set PATH=%MINICONDA%;%MINICONDA%\Scripts;%PATH%
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-  - conda create -q -n test-env python=3.6 numpy
-  - activate test-env
-  - pip install .
+- pip install .
 
 build: off
 
 test_script:
-  - make -C data/%TEST%
+- make -C data/%TEST%
