@@ -22,10 +22,12 @@ class InternalGraph():
 
     def __init__(self, graph, index):
         self.node2id = dict()
+        self.id2node = dict()
         self.nodes = []
         self.edges = []
         for i, node in enumerate(graph.nodes):
             self.node2id[node] = i
+            self.id2node[i] = node
             self.nodes.append(i)
         for edge in graph.edges:
             src = graph.find_node(edge.src)
@@ -195,18 +197,18 @@ def sorted_splits(i, xs, rewards, pairs):
 # Do not pursue correspondences of nodes i and j in case there is
 # a node dominated by i whose correspondence is not dominated by j
 
-def domination_conflict(cv, i, j, dominated1, dominated2):
+def domination_conflict(graph1, graph2, cv, i, j, dominated1, dominated2):
     if not dominated1 or not dominated2 or i < 0 or j < 0:
         return False
-    dominated_i = dominated1[i]
-    dominated_j = dominated2[j]
+    dominated_i = dominated1[graph1.id2node[i].id]
+    dominated_j = dominated2[graph2.id2node[j].id]
     # Both must be leaves or both must be non-leaves
     if bool(dominated_i) != bool(dominated_j):
         return True
     for _i, _j in cv.items():
         if _i >= 0 and _j >= 0 and \
-                _i in dominated_i and \
-                _j not in dominated_j:
+                graph1.id2node[_i].id in dominated_i and \
+                graph2.id2node[_j].id not in dominated_j:
             return True
     return False
 
@@ -238,7 +240,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=None, trace=0,
                     max_j = max((_j for _i, _j in cv.items() if _i < i), default=-1)
                     if 0 <= j < max_j + 1:
                         continue
-                elif domination_conflict(cv, i, j, dominated1, dominated2):
+                elif domination_conflict(graph1, graph2, cv, i, j, dominated1, dominated2):
                     continue
             counter += 1
             if trace > 2: print("({}:{}) ".format(i, j), end="", file = sys.stderr)
