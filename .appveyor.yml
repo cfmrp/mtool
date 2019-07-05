@@ -1,5 +1,5 @@
 environment:
-  PYTHON=C:\Python37-x64
+  PYTHON: C:\Python37-x64
   matrix:
   - TEST: score
   - TEST: sample
