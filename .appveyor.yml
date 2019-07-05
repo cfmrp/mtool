@@ -13,13 +13,12 @@ environment:
 configuration: Release
 
 init:
-  - cmd: cmake --version
-  - cmd: msbuild /version
   - cmd: choco install make
 
 install:
   - cmd: git submodule update --init --recursive
-  - set PATH=%MINICONDA%;%MINICONDA%\Scripts;C:\Program Files (x86)\Pandoc;%PATH%
+  - cmd: copy %MINICONDA%\python.exe %MINICONDA%\python3.exe
+  - set PATH=%MINICONDA%;%MINICONDA%\Scripts;%PATH%
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
