@@ -2,7 +2,7 @@
 	dm.sdp.json peking.sdp.json peking.smatch.json peking.mrp.json \
 	ucca.ucca.json ucca.smatch.json ucca.mrp.json \
 	test.smatch.json coli.smatch.json coli.mrp.json \
-	clean all
+	clean oe all
 
 TRACE ?= --trace --trace
 
@@ -47,12 +47,12 @@ peking.mrp.json:
 	  --read dm dm/peking.wsj.sdp $@ 2>&1 | tee peking.mrp.log
 
 ucca.ucca.json:
-	time python3 -u ../../main.py $(TRACE) --score ucca \
+	time python3 -u ../../main.py --n 500 $(TRACE) --score ucca \
 	  --read mrp --gold ucca/ewt.gold.mrp \
 	  ucca/ewt.tupa.mrp $@ 2>&1 | tee ucca.ucca.log
 
 ucca.smatch.json:
-	time python3 -u ../../main.py $(TRACE) --score smatch \
+	time python3 -u ../../main.py --n 500 $(TRACE) --score smatch \
 	  --read mrp --gold ucca/ewt.gold.mrp \
 	  ucca/ewt.tupa.mrp $@ 2>&1 | tee ucca.smatch.log
 ucca.mrp.json:
@@ -76,17 +76,24 @@ test.mrp.json:
 	  amr/test2.amr $@ 2>&1 | tee test.mrp.log
 
 coli.smatch.json:
-	time python3 -u ../../main.py $(TRACE) --score smatch \
+	time python3 -u ../../main.py --n 500 $(TRACE) --score smatch \
 	  --read amr --gold amr/coli.gold.amr \
 	  amr/coli.system.amr $@ 2>&1 | tee coli.smatch.log
 
 coli.mrp.json:
-	time python3 -u ../../main.py $(TRACE) --score mrp \
+	time python3 -u ../../main.py --n 500 $(TRACE) --score mrp \
 	  --read amr --gold amr/coli.gold.amr \
 	  amr/coli.system.amr $@ 2>&1 | tee coli.mrp.log
 
 clean:
 	/bin/rm *.json *.log
 
+oe:
+	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | sed 's/://');
+
 all:
-	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | grep -v all: | sed 's/://');
+	dm.edm.json eds.edm.json eds.smatch.json eds.mrp.json \
+	dm.sdp.json peking.sdp.json peking.smatch.json peking.mrp.json \
+	ucca.ucca.json ucca.smatch.json ucca.mrp.json \
+	empty.mrp.json test.smatch.json test.mrp.json \
+	coli.smatch.json coli.mrp.json
