@@ -198,15 +198,15 @@ def sorted_splits(i, xs, rewards, pairs):
 def domination_conflict(cv, i, j, dominated1, dominated2):
     if not dominated1 or not dominated2 or i < 0 or j < 0:
         return False
-    dominated_i = dominated1[str(i)]
-    dominated_j = dominated2[str(j)]
+    dominated_i = dominated1[i]
+    dominated_j = dominated2[j]
     # Both must be leaves or both must be non-leaves
     if bool(dominated_i) != bool(dominated_j):
         return True
     for _i, _j in cv.items():
         if _i >= 0 and _j >= 0 and \
-                str(_i) in dominated_i and \
-                str(_j) not in dominated_j:
+                _i in dominated_i and \
+                _j not in dominated_j:
             return True
     return False
 
