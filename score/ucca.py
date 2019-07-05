@@ -26,8 +26,9 @@ def identify(graph, node, anchors = None, dominated = None, recursion = False):
         identify(graph, edge.tgt, anchors, dominated, True);
         for leaf in anchors[edge.tgt]:
           if leaf not in node_anchors: node_anchors.append(leaf);
-        node_dominated.add(edge.tgt)
-        node_dominated |= dominated[edge.tgt]
+        target_id = str(edge.tgt)
+        node_dominated.add(target_id)
+        node_dominated |= dominated[target_id]
   if not recursion:
       anchors = {key: tuple(sorted(value, key = itemgetter(0, 1)))
                  for key, value in anchors.items()}
