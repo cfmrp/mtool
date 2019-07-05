@@ -1,4 +1,5 @@
 environment:
+  PYTHON: "C:\\Python36-x64"
   matrix:
   - TEST: score
   - TEST: sample
