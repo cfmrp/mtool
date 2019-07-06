@@ -92,9 +92,9 @@ def main():
   parser.add_argument("--reify", action = "store_true");
   parser.add_argument("--ids", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
-  parser.add_argument("--gold", type = argparse.FileType("r"));
-  parser.add_argument("--alignment", type = argparse.FileType("r"));
-  parser.add_argument("--overlay", type = argparse.FileType("w"));
+  parser.add_argument("--gold", type = argparse.FileType("r", encoding="utf-8"));
+  parser.add_argument("--alignment", type = argparse.FileType("r", encoding="utf-8"));
+  parser.add_argument("--overlay", type = argparse.FileType("w", encoding="utf-8"));
   parser.add_argument("--format");
   parser.add_argument("--score");
   parser.add_argument("--validate", action = "append", default = []);
@@ -110,9 +110,9 @@ def main():
   parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
   parser.add_argument("input", nargs = "?",
-                      type = argparse.FileType("r"), default = sys.stdin);
+                      type = argparse.FileType("r", encoding="utf-8"), default = sys.stdin);
   parser.add_argument("output", nargs = "?",
-                      type = argparse.FileType("w"), default = sys.stdout);
+                      type = argparse.FileType("w", encoding="utf-8"), default = sys.stdout);
   arguments = parser.parse_args();
 
   text = None;

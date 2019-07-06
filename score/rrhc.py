@@ -8,8 +8,8 @@ For detailed description of smatch, see http://www.isi.edu/natural-language/amr/
 
 """
 
-from __future__ import print_function
 from __future__ import division
+from __future__ import print_function
 
 try:
     import smatch.amr
@@ -53,7 +53,7 @@ def build_arg_parser():
 
     """
     parser = argparse.ArgumentParser(description="Smatch calculator -- arguments")
-    parser.add_argument('-f', nargs=2, required=True, type=argparse.FileType('r'),
+    parser.add_argument('-f', nargs=2, required=True, type=argparse.FileType('r', encoding="utf-8"),
                         help='Two files containing AMR pairs. AMRs in each file are separated by a single blank line')
     parser.add_argument('-r', type=int, default=4, help='Restart number (Default:4)')
     parser.add_argument('--significant', type=int, default=2, help='significant digits to output (default: 2)')
