@@ -19,4 +19,4 @@ env:
   - TEST="sample all"
   - TEST="validate all"
 script:
-  - make -C data/$TEST TRACE=
+  - make -C data/$TEST

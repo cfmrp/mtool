@@ -26,4 +26,4 @@ install:
 build: off
 
 test_script:
-- make -C data/%TEST% TRACE=
+- make -C data/%TEST%
