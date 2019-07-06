@@ -47,7 +47,7 @@ def tuples(graph, prefix, values, faith = True):
                             mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
 
-def smatch(gold, system, limit = 50, values = {}, trace = 0, faith = True):
+def smatch(gold, system, limit = 20, values = {}, trace = 0, faith = True):
   gprefix = "g"; sprefix = "s";
   ginstances, gattributes, grelations, gn \
     = tuples(gold, gprefix, values, faith);
@@ -74,9 +74,10 @@ def smatch(gold, system, limit = 50, values = {}, trace = 0, faith = True):
                     relation2 = srelations, prefix2 = sprefix);
   return correct, gold - gn, system - sn, mapping;
 
-def evaluate(golds, systems, format = "json", limit = 50,
+def evaluate(golds, systems, format = "json", limit = 20,
              values = {}, trace = 0):
-  if not limit: limit = 5;
+  if limit is None or not limit > 0: limit = 20;
+  if trace > 1: print("RRHC limit: {}".format(limit), file = sys.stderr);
   tg = ts = tc = n = 0;
   scores = dict() if trace else None;
   for gold, system in score.core.intersect(golds, systems):

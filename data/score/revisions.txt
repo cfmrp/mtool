@@ -1,0 +1,20 @@
+54c0499f55874555c22827a7e61d79aeb8d29906	oe@ifi.uio.no	2019-07-05 23:49:38 +0200	cosmetics; so much for tonight ...
+f9ceb0a2090742a67ca89ed26b293fbdcfc292cb	daniel.hershcovich@gmail.com	2019-07-05 21:57:08 +0200	Fix dominated dict lookup to be by node id rather than index
+8df18be265c92c11a7fac788d727a2c879e142c4	milan@strakovi.com	2019-07-05 10:13:02 +0200	Another fix for evaluation of empty graphs.
+15187440752dec7819093fa79849ff4b48d7a3d4	oe@ifi.uio.no	2019-07-05 00:55:58 +0200	fine-tuning default limits for MRP and SMATCH scorers; disable RRHC-based initialization for UCCA graphs; allow better control of RRHC and MCES limits from the command line
+0d20656f47ad86352d6de86ce5b193295a3442bd	oe@ifi.uio.no	2019-07-03 12:57:38 +0200	cosmetics
+1e2fa352c1384ea6a1005c193ebf1d449a0de1dd	oe@ifi.uio.no	2019-07-03 01:41:40 +0200	disable more assertions: is_injective() actually fails on the UCCA test (when initializing from SMATCH)
+8aaa494d5794abc849965dda6fd70208a530c3db	oe@ifi.uio.no	2019-07-02 21:33:43 +0200	bug fix: over-counting can apply on the same set of correspondences too
+3cccda87794669573018f08a3717461b6deedfab	oe@ifi.uio.no	2019-07-02 17:46:36 +0200	allow initialization from SMATCH hill-climbing; guard against over-counting (see my email to tim of june 30, 2019)
+6c863c9e6233b8d3e81f39e0015333c4c75d5264	daniel.hershcovich@gmail.com	2019-07-01 14:22:24 +0200	Normalization: drop (attribute, value) pairs whose value is the default value
+b2145c4fc9ec79624fc84955f373b3387ca02d75	oe@ifi.uio.no	2019-06-30 01:33:24 +0200	give more weight to anchor overlap in UCCA initialization and rewards
+c31601c31b0e17639aa9557559d5655bfd55c371	oe@ifi.uio.no	2019-06-30 01:15:07 +0200	bug fix in sorted_splits(); streamlined smatch() interface; cosmetics
+210da9b2e9eff2be7adf988d2865ab77c5ec3447	oe@ifi.uio.no	2019-06-27 22:38:06 +0200	close #20 (prior to scoring, normalize graphs according to the description on the web page)
+1a61ea4484e77a458030a62a62e751e0668e7f11	oe@ifi.uio.no	2019-06-27 13:15:25 +0200	generalize anchor treatment in SMATCH wrapper
+b4db1996a894ad70dcb8bc83ba46ddfa354db44e	daniel.hershcovich@gmail.com	2019-06-25 11:04:54 +0200	#26 Require leaf status of matched nodes to be the same in UCCA MCES
+8696ffe1fa154acd03a4adbb1813354f198dfeb9	oe@ifi.uio.no	2019-06-20 10:34:00 +0200	fix copy-paste error (owing to a missing generalization)
+274890bdccf3e3e502b755386b7af7fecf39284d	oe@ifi.uio.no	2019-06-18 23:59:10 +0200	bug fix: edge attributes
+09c48bd4a8ab8b72d05cea9571000a2e3524bb1b	oe@ifi.uio.no	2019-06-18 00:59:52 +0200	activate improved estimate of edge potential
+1c68aa39675291dc998a508e818e63723b0804c0	marco.kuhlmann@liu.se	2019-06-17 23:30:13 +0200	Treat edge attributes properly (closes: #13)
+08e0d8a839b98a395c868cc1bd2e6ca859ef3e05	marco.kuhlmann@liu.se	2019-06-17 22:30:42 +0200	Respect node ordering in bi-lexical graphs (closes: #15)
+7718d1ca50b250e154365e5846981564d7b635d5	oe@ifi.uio.no	2019-06-16 17:10:33 +0200	expose per-item result; rationalize --limit and --trace

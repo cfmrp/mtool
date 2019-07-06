@@ -1,5 +1,5 @@
 .PHONY: amr/pdf dm/pdf eds/pdf psd/pdf ucca/pdf \
-	clean release
+	clean release all
 
 amr/wsj.mrp: wsj.ids ../wsj.txt amr/wsj.amr
 	for i in $$(cat wsj.ids); do \
@@ -108,5 +108,5 @@ release:
 	  amr/dot amr/pdf dm/dot dm/pdf eds/dot eds/pdf \
 	  psd/dot psd/pdf ucca/dot ucca/pdf
 
-
+all: amr/wsj.mrp dm/wsj.mrp eds/wsj.mrp psd/wsj.mrp ucca/wsj.mrp
 

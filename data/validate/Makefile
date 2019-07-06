@@ -2,4 +2,4 @@
 
 all:
 	time python3 -u ../../main.py --trace --trace --validate all \
-	  --read mrp */*.mrp $@ 2>&1
+	  --read mrp eds/wsj.mrp $@ 2>&1 | tee eds.wsj.log

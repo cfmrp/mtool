@@ -4,7 +4,7 @@ mtool
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/240px-Flag_of_Switzerland.svg.png" width=20>&nbsp;**The Swiss Army Knife of Meaning Representation**
 
 This repository provides software to support participants in the
-shared task on [_Meaning Representation Parsing_ (MRP)](http://mrp.nlpl.eu)
+shared task on [Meaning Representation Parsing (MRP)](http://mrp.nlpl.eu)
 at the
 [2019 Conference on Computational Natural Language Learning](http://www.conll.org/2019) (CoNLL).
 Please see the above task web site for additional background.
@@ -79,9 +79,20 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
 (indexed by graph identifiers).
-For MRP and SMATCH, the `--limit` option controls the maximum number of node pairings or
+For MRP and SMATCH, the `--limit` option controls the maximum node pairing steps or
 hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
-and `5`, respectively).
+and `20`, respectively).
+As of early July, 2019, the search for none-to-node correspondences in the MRP metric can be
+initialized from the result of the random-restart hill-climbing (RRHC) search from SMATCH.
+This initialization is on by default; it increases running time of the MRP scorer but yields
+a guarantee that the `"all"` counts of matching tuples in MRP will always be at least as
+high as the number of `"c"`(orrect) tuples identified by SMATCH.
+To control the two search steps in MRP computation separately, the `--limit` option can
+take a colon-separated pair of integers, for example `5:100000` for five hill-climbing
+iterations and up to 100,000 node pairing steps.
+Note that multi-valued use of the `--limit` option is only meaningful in conjunction
+with the MRP metric, and that setting either of the two values to `0` will disable the
+corresponding search component.
 
 Analytics
 ---------
@@ -164,7 +175,6 @@ graphs.
 These options cannot be combined with each other and take precendence over each
 other in the above order.
 
-
 Installation
 ------------
 
@@ -174,9 +184,21 @@ You can install `mtool` via `pip` with the following command:
 pip install git+https://github.com/cfmrp/mtool.git#egg=mtool
 ```
 
+Authors
+-------
+
++ Daniel Hershcovich <daniel.hershcovich@gmail.com> (@danielhers)
++ Marco Kuhlmann <marco.kuhlmann@liu.se> (@khlmnn)
++ Stephan Oepen <oe@ifi.uio.no> (@oepen)
++ Tim O'Gorman <timjogorman@gmail.com> (@timjogorman)
+
 Contributors
 ------------
 
 + Yuta Koreeda <koreyou@mac.com> (@koreyou)
 + Matthias Lindemann <mlinde@coli.uni-saarland.de> (@namednil)
 + Milan Straka <straka@ufal.mff.cuni.cz> (@foxik)
++ Hiroaki Ozaki <taryou.ozk@gmail.com> (@taryou)
+
+[![Build Status (Travis CI)](https://travis-ci.org/cfmrp/mtool.svg?branch=master)](https://travis-ci.org/cfmrp/mtool)
+[![Build Status (AppVeyor)](https://ci.appveyor.com/api/projects/status/github/cfmrp/mtool?svg=true)](https://ci.appveyor.com/project/danielh/mtool)
