@@ -1,9 +1,19 @@
 environment:
   PYTHON: C:\Python37-x64
   matrix:
-  - TEST: score
-  - TEST: sample
-  - TEST: validate
+  - TEST: score dm.edm.json
+  - TEST: score eds.edm.json
+  - TEST: score eds.smatch.json
+  - TEST: score eds.mrp.json
+  - TEST: score dm.sdp.json
+  - TEST: score ucca.ucca.json
+  - TEST: score ucca.smatch.json
+  - TEST: score ucca.mrp.json
+  - TEST: score test.smatch.json
+  - TEST: score coli.smatch.json
+  - TEST: score coli.mrp.json
+  - TEST: sample all
+  - TEST: validate all
 
 init:
 - cmd: choco install make
@@ -16,4 +26,4 @@ install:
 build: off
 
 test_script:
-- make -C data/%TEST% all TRACE=
+- make -C data/%TEST% TRACE=

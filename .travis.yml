@@ -5,9 +5,19 @@ language: python
 python: 3.6
 install: pip install .
 env:
-  - TEST=score
-  - TEST=sample
-  - TEST=validate
+  - TEST=score dm.edm.json
+  - TEST=score eds.edm.json
+  - TEST=score eds.smatch.json
+  - TEST=score eds.mrp.json
+  - TEST=score dm.sdp.json
+  - TEST=score ucca.ucca.json
+  - TEST=score ucca.smatch.json
+  - TEST=score ucca.mrp.json
+  - TEST=score test.smatch.json
+  - TEST=score coli.smatch.json
+  - TEST=score coli.mrp.json
+  - TEST=sample all
+  - TEST=validate all
 jobs:
   include:
     - os: osx
@@ -21,4 +31,4 @@ jobs:
         - conda create -q -n env python=3.6 numpy
         - source activate env
 script:
-  - make -C data/$TEST all TRACE=
+  - make -C data/$TEST TRACE=
