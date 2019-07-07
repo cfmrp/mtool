@@ -4,10 +4,11 @@
 
 import argparse;
 import json;
+import multiprocessing as mp;
+from pathlib import Path;
 import re;
 import sys;
 import time;
-from pathlib import Path;
 
 import codec.amr;
 import codec.conllu;
@@ -104,7 +105,7 @@ def main():
   parser.add_argument("--text");
   parser.add_argument("--prefix");
   parser.add_argument("--source");
-  parser.add_argument("--cores", type = int, default = 0);
+  parser.add_argument("--cores", type = int, default = 1);
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
@@ -183,6 +184,8 @@ def main():
     print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",
           file = sys.stderr);
     sys.exit(1);
+
+  if arguments.cores == 0: arguments.cores = mp.cpu_count();
     
   graphs, overlays \
     = read_graphs(arguments.input, format = arguments.read,

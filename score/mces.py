@@ -410,14 +410,17 @@ def evaluate(gold, system, format = "json",
     total_attributes = {"g": 0, "s": 0, "c": 0}
     scores = dict() if trace else None
     if cores > 1:
+        if trace > 1:
+            print("mces.evaluate(): using {} cores".format(cores),
+                  file = sys.stderr);
         with mp.Pool(cores) as pool:
             results = pool.starmap(schedule,
                                    ((g, s, rrhc_limit, mces_limit,
                                      scores, trace)
                                     for g, s in intersect(gold, system)));
     else:
-        results = [schedule(g, s, rrhc_limit, mces_limit, scores, trace)
-                   for g, s in intersect(gold, system)];
+        results = (schedule(g, s, rrhc_limit, mces_limit, scores, trace)
+                   for g, s in intersect(gold, system));
 
     for tops, labels, properties, anchors, edges, attributes, \
         matches, steps in results:
