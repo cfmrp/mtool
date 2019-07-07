@@ -431,10 +431,10 @@ def evaluate(gold, system, format = "json",
                 if id in scores:
                     print("mces.evaluate(): duplicate graph identifier: {}"
                           "".format(id), file = sys.stderr);
-                    scores[id] \
-                        = {"tops": tops, "labels": labels,
-                           "properties": properties, "anchors": anchors,
-                           "edges": edges, "attributes": attributes};
+                scores[id] \
+                    = {"tops": tops, "labels": labels,
+                       "properties": properties, "anchors": anchors,
+                       "edges": edges, "attributes": attributes};
         else:
             print("mces.evaluate(): exception in graph #{}:\n{}"
                   "".format(id, error));
