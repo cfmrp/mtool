@@ -55,6 +55,7 @@ ucca.smatch.json:
 	time python3 -u ../../main.py --n 500 $(TRACE) --score smatch \
 	  --read mrp --gold ucca/ewt.gold.mrp \
 	  ucca/ewt.tupa.mrp $@ 2>&1 | tee ucca.smatch.log
+
 ucca.mrp.json:
 	time python3 -u ../../main.py --n 500 $(TRACE) --score mrp \
 	  --read mrp --gold ucca/ewt.gold.mrp \
