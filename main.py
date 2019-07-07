@@ -249,7 +249,7 @@ def main():
                 file = sys.stderr);
           sys.exit(1);
       result = None;
-      launch = time.process_time();
+      launch = time.time(), time.process_time();
       if metric == "edm":
         result = score.edm.evaluate(gold, graphs,
                                     format = arguments.write,
@@ -278,7 +278,8 @@ def main():
                                      trace = arguments.trace);
 
       if result is not None:
-        result["time"] = time.process_time() - launch;
+        result["time"] = time.time() - launch[0];
+        result["cpu"] = time.process_time() - launch[1];
         if arguments.write == "json" or True:
           #
           # _fix_me_

@@ -284,7 +284,7 @@ def is_injective(correspondence):
                 seen.add(x)
     return True
 
-def schedule(g, s, rrhc_limit, mces_limit, scores, trace):
+def schedule(g, s, rrhc_limit, mces_limit, trace):
     global counter;
     try:
         counter = 0;
@@ -347,36 +347,27 @@ def schedule(g, s, rrhc_limit, mces_limit, scores, trace):
         tops, labels, properties, anchors, edges, attributes \
             = g.score(s, best_cv or pairs);
 #       assert matches >= smatches;
-        if trace:
+        if trace > 1:
             if smatches and matches != smatches:
                 print("delta to smatch: {}"
                       "".format(matches - smatches), file = sys.stderr);
-            if g.id in scores:
-                print("mces.evaluate(): duplicate graph identifier: {}"
-                      "".format(g.id), file = sys.stderr);
-            scores[g.id] = {"tops": tops, "labels": labels,
-                            "properties": properties, "anchors": anchors,
-                            "edges": edges, "attributes": attributes};
-            if trace > 1:
-                print("[{}] edges in correspondence: {}"
-                      "".format(counter, matches), file = sys.stderr)
-                print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
-                      "\nedges: {}\nattributes: {}"
-                      "".format(tops, labels, properties, anchors,
-                                edges, attributes), file = sys.stderr);
-                if trace > 2:
-                    print(best_cv, file = sys.stderr)
-                    print(best_ce, file = sys.stderr)
-        return tops, labels, properties, anchors, edges, attributes, \
-                matches, counter;
+            print("[{}] edges in correspondence: {}"
+                  "".format(counter, matches), file = sys.stderr)
+            print("tops: {}\nlabels: {}\nproperties: {}\nanchors: {}"
+                  "\nedges: {}\nattributes: {}"
+                  "".format(tops, labels, properties, anchors,
+                            edges, attributes), file = sys.stderr);
+            if trace > 2:
+                print(best_cv, file = sys.stderr)
+                print(best_ce, file = sys.stderr)
+        return g.id, tops, labels, properties, anchors, \
+            edges, attributes, matches, counter, None;
                 
     except Exception as e:
         #
         # _fix_me_
         #
-        if scores: scores[g.id] = repr(e);
-        raise ValueError("mces.evaluate(): failed evaluating graph #{}"
-                         "".format(g.id)) from e;
+        return g.id, None, None, None, None, None, None, None, None, e;
 
 def evaluate(gold, system, format = "json",
              limits = {"rrhc": 20, "mces": 500000},
@@ -415,26 +406,40 @@ def evaluate(gold, system, format = "json",
                   file = sys.stderr);
         with mp.Pool(cores) as pool:
             results = pool.starmap(schedule,
-                                   ((g, s, rrhc_limit, mces_limit,
-                                     scores, trace)
+                                   ((g, s, rrhc_limit, mces_limit, trace)
                                     for g, s in intersect(gold, system)));
     else:
-        results = (schedule(g, s, rrhc_limit, mces_limit, scores, trace)
+        results = (schedule(g, s, rrhc_limit, mces_limit, trace)
                    for g, s in intersect(gold, system));
 
-    for tops, labels, properties, anchors, edges, attributes, \
-        matches, steps in results:
-        total_matches += matches;
-        total_steps += steps;
-        update(total_tops, tops);
-        update(total_labels, labels);
-        update(total_properties, properties);
-        update(total_anchors, anchors);
-        update(total_edges, edges);
-        update(total_attributes, attributes);
-        total_pairs += 1;
-        if mces_limit == 0 or steps > mces_limit: total_inexact += 1;
-        
+    for id, tops, labels, properties, anchors, \
+        edges, attributes, matches, steps, error \
+        in results:
+        if error is None:
+            total_matches += matches;
+            total_steps += steps;
+            update(total_tops, tops);
+            update(total_labels, labels);
+            update(total_properties, properties);
+            update(total_anchors, anchors);
+            update(total_edges, edges);
+            update(total_attributes, attributes);
+            total_pairs += 1;
+            if mces_limit == 0 or steps > mces_limit: total_inexact += 1;
+
+            if trace:
+                if id in scores:
+                    print("mces.evaluate(): duplicate graph identifier: {}"
+                          "".format(id), file = sys.stderr);
+                    scores[id] \
+                        = {"tops": tops, "labels": labels,
+                           "properties": properties, "anchors": anchors,
+                           "edges": edges, "attributes": attributes};
+        else:
+            print("mces.evaluate(): exception in graph #{}:\n{}"
+                  "".format(id, error));
+            scores[id] = {"error": repr(error)};
+
     total_all = {"g": 0, "s": 0, "c": 0};
     for counts in [total_tops, total_labels, total_properties, total_anchors,
                    total_edges, total_attributes]:
