@@ -104,6 +104,7 @@ def main():
   parser.add_argument("--text");
   parser.add_argument("--prefix");
   parser.add_argument("--source");
+  parser.add_argument("--cores", type = int, default = 0);
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
@@ -254,6 +255,7 @@ def main():
         result = score.mces.evaluate(gold, graphs,
                                      format = arguments.write,
                                      limits = limits,
+                                     cores = arguments.cores,
                                      trace = arguments.trace);
       elif metric == "sdp":
         result = score.sdp.evaluate(gold, graphs,
