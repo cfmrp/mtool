@@ -1,7 +1,8 @@
 import multiprocessing as mp
-import numpy as np
-from operator import itemgetter
 import sys
+from operator import itemgetter
+
+import numpy as np
 
 from score.core import explode, fscore, intersect
 from score.smatch import smatch
@@ -370,7 +371,7 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
         return g.id, None, None, None, None, None, None, None, None, e;
 
 def evaluate(gold, system, format = "json",
-             limits = {"rrhc": 20, "mces": 500000},
+             limits = None,
              cores = 0, trace = 0):
     
     def update(total, counts):
@@ -381,6 +382,8 @@ def evaluate(gold, system, format = "json",
         p, r, f = fscore(counts["g"], counts["s"], counts["c"]);
         counts.update({"p": p, "r": r, "f": f});
 
+    if limits is None:
+        limits = {"rrhc": 20, "mces": 500000}
     rrhc_limit = mces_limit = None;
     if isinstance(limits, dict):
         if "rrhc" in limits: rrhc_limit = limits["rrhc"];
