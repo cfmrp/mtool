@@ -1,15 +1,10 @@
-from operator import itemgetter;
-
-
 #
 # _fix_me_
 # maybe use Unicode character classes instead, even if it likely would mean
 # many calls to match one-character regular expressions?
 #
-PUNCTUATION = \
-  {".", "?", "!", ";", ",", ":", "“", "\"", "”", "‘", "'", "’",
-   "(", ")", "[", "]", "{", "}", " ", "\t", "\n", "\f"};
-SPACE = {" ", "\t", "\n", "\f"};
+PUNCTUATION = frozenset(".?!;,:“\"”‘'’()[]{} \t\n\f")
+SPACE = frozenset(" \t\n\f")
 
 def intersect(golds, systems):
   gold = {graph.id: graph for graph in golds};
