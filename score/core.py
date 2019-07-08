@@ -7,10 +7,11 @@ PUNCTUATION = frozenset(".?!;,:“\"”‘'’()[]{} \t\n\f")
 SPACE = frozenset(" \t\n\f")
 
 def intersect(golds, systems):
-  gold = {graph.id: graph for graph in golds};
-  system = {graph.id: graph for graph in systems};
-  for key in sorted(gold.keys() & system.keys()):
-    yield gold[key], system[key];
+  gold = {graph.id: graph for graph in golds}
+  for graph in systems:
+      gold_graph = gold.get(graph.id)
+      if gold_graph is not None:
+          yield gold_graph, graph
 
 def anchor(node):
   result = list();
