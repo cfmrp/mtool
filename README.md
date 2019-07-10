@@ -93,6 +93,9 @@ iterations and up to 100,000 node pairing steps.
 Note that multi-valued use of the `--limit` option is only meaningful in conjunction
 with the MRP metric, and that setting either of the two values to `0` will disable the
 corresponding search component.
+Finally, the MRP scorer can parallelize evaluation: an option like `--cores 8` (on
+suitable hardware) will run eight `mtool` processes in parallel, which should reduce
+scoring time substantially.
 
 Analytics
 ---------
