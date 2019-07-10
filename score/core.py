@@ -27,7 +27,6 @@ def anchor(node):
 
 def explode(string, anchors, trim = PUNCTUATION):
   result = set();
-
   for anchor in anchors:
     start = end = None;
     if isinstance(anchor, tuple):
@@ -42,7 +41,6 @@ def explode(string, anchors, trim = PUNCTUATION):
       for i in range(start, end):
         if string[i] not in SPACE:
           result.add(i);
-
   return frozenset(result);
 
 def fscore(gold, system, correct):

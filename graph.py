@@ -67,8 +67,11 @@ class Node(object):
                 anchor["from"] = i;
                 anchor["to"] = j;
 
-        if self.anchors and input and "anchors" in actions:
-            for anchor in self.anchors: trim(anchor, input);
+        if self.anchors is not None and "anchors" in actions:
+            if len(self.anchors) > 0 and input:
+                for anchor in self.anchors: trim(anchor, input);
+            elif len(self.anchors) == 0:
+                self.anchors = None;    
         if "case" in actions:
             if self.label is not None:
                 self.label = str(self.label).lower();
