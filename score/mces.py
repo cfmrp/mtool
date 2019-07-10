@@ -198,12 +198,12 @@ def identities(g, s):
         for node in g.nodes:
             g_identities, g_dominated = \
                 identify(g, node.id, g_identities, g_dominated)
-        g_identities = {key: explode(g.input, value)
+        g_identities = {key: score.core.explode(g.input, value)
                         for key, value in g_identities.items()}
         for node in s.nodes:
             s_identities, s_dominated = \
                 identify(s, node.id, s_identities, s_dominated)
-        s_identities = {key: explode(s.input, value)
+        s_identities = {key: score.core.explode(s.input, value)
                         for key, value in s_identities.items()}
     else:
         g_identities = s_identities = g_dominated = s_dominated = None
