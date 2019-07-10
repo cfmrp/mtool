@@ -10,5 +10,5 @@ def test(graph, actions, stream=sys.stderr):
             n += 1
             report(graph,
                    "missing or invalid label",
-                   edge=edge, stream=stream)
+                   edge=edge, framework = "UCCA", stream=stream)
     return n

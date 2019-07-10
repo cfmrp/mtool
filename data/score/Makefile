@@ -66,6 +66,11 @@ empty.mrp.json:
 	  --read mrp --gold dm/empty.gold.mrp \
 	  dm/empty.peking.mrp $@ 2>&1 | tee empty.mrp.log
 
+partial.mrp.json:
+	time python3 -u ../../main.py $(TRACE) --score mrp \
+	  --read mrp --gold amr/partial.gold.mrp \
+	  amr/partial.system.mrp $@ 2>&1 | tee partial.mrp.log
+
 test.smatch.json:
 	time python3 -u ../../main.py $(TRACE) --score smatch --limit 50 \
 	  --read amr --gold amr/test1.amr \
@@ -91,6 +96,8 @@ clean:
 
 oe:
 	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | sed 's/://');
+
+unit: empty.mrp.json partial.mrp.json
 
 all: dm.edm.json eds.edm.json eds.smatch.json eds.mrp.json \
      dm.sdp.json peking.sdp.json peking.smatch.json peking.mrp.json \

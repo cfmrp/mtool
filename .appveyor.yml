@@ -12,6 +12,7 @@ environment:
   - TEST: "score test.smatch.json"
   - TEST: "score coli.smatch.json"
   - TEST: "score coli.mrp.json"
+  - TEST: "score unit"
   - TEST: "sample all"
   - TEST: "validate all"
 
