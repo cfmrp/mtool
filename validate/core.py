@@ -31,7 +31,7 @@ def test(graph, actions, stream = sys.stderr):
        graph.flavor == 2 and graph.framework not in {"amr"}:
     n += 1;
     report(graph,
-           "invalid Flavor ({}) framework: {}"
+           "invalid Flavor ({}) framework: ‘{}’"
            "".format(graph.flavor, graph.framework), stream = stream);
 
   if "input" in actions:
