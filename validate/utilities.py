@@ -1,6 +1,7 @@
 import sys;
 
-def report(graph, message, node = None, edge = None, stream = sys.stderr):
+def report(graph, message, node = None, edge = None,
+           framework = None, level = "E", stream = sys.stderr):
   if node is not None:
     node = "; node #{}".format(node.id);
   else:
@@ -10,5 +11,10 @@ def report(graph, message, node = None, edge = None, stream = sys.stderr):
                                        edge.lab if edge.lab else "");
   else:
     edge = "";
-  print("validate(): graph ‘{}’{}{}: {}"
-        "".format(graph.id, node, edge, message), file = stream);
+  if framework is not None:
+    framework = "{{{}}} ".format(framework);
+  else:
+    framework = "";
+  print("validate(): [{}] {}graph #{}{}{}: {}"
+        "".format(level, framework, graph.id, node, edge, message),
+        file = stream);

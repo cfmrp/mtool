@@ -10,7 +10,7 @@ def test(graph, actions, stream = sys.stderr):
       n += 1;
       report(graph,
              "missing or invalid label",
-             node = node, stream = stream);
+             node = node, framework = "EDS", stream = stream);
     message = None;
     if not isinstance(node.anchors, list):
       message = "missing or invalid anchoring";
@@ -20,6 +20,6 @@ def test(graph, actions, stream = sys.stderr):
     if message is not None:
       n += 1;
       report(graph, message,
-             node = node, stream = stream);
+             node = node, framework = "EDS", stream = stream);
   return n;
 

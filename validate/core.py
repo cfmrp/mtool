@@ -49,16 +49,24 @@ def test(graph, actions, stream = sys.stderr):
     #
     nodes = {node.id: node for node in graph.nodes};
     for edge in graph.edges:
-      if edge.src not in nodes:
+      if not isinstance(edge.src, int) or edge.src not in nodes:
         n += 1;
         report(graph,
                "invalid source",
                node = node, edge = edge,
                stream = stream);
-      if edge.tgt not in nodes:
+      if not isinstance(edge.tgt, int) or edge.tgt not in nodes:
         n += 1;
         report(graph,
                "invalid target",
+               node = node, edge = edge,
+               stream = stream);
+      m = len(edge.attributes) if edge.attributes else 0;
+      n = len(edge.values) if edge.values else 0;
+      if m != n:
+        n += 1;
+        report(graph,
+               "unaligned ‘attributes’ vs. ‘values’",
                node = node, edge = edge,
                stream = stream);
 
