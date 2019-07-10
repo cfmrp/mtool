@@ -4,7 +4,7 @@ from operator import itemgetter
 
 import numpy as np
 
-from score.core import explode, fscore, intersect
+import score.core
 from score.smatch import smatch
 from score.ucca import identify
 
@@ -52,10 +52,11 @@ class InternalGraph():
                 self.edges.append((i, reindex(j), None))
             # anchors
             if node.anchors is not None:
-                for anchor in node.anchors:
-                    j = get_or_update(index, ("A", anchor["from"],
-                                              anchor["to"]))
-                    self.edges.append((i, reindex(j), None))
+                anchor = score.core.anchor(node);
+                if graph.input:
+                    anchor = score.core.explode(graph.input, anchor)
+                j = get_or_update(index, ("A", anchor))
+                self.edges.append((i, reindex(j), None))
             # properties
             if node.properties:
                 for prop, val in zip(node.properties, node.values):
@@ -379,7 +380,7 @@ def evaluate(gold, system, format = "json",
             total[key] += counts[key];
 
     def finalize(counts):
-        p, r, f = fscore(counts["g"], counts["s"], counts["c"]);
+        p, r, f = score.core.fscore(counts["g"], counts["s"], counts["c"]);
         counts.update({"p": p, "r": r, "f": f});
 
     if limits is None:
@@ -456,4 +457,3 @@ def evaluate(gold, system, format = "json",
               "all": total_all};
     if trace: result["scores"] = scores;
     return result;
-

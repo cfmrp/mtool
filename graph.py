@@ -80,18 +80,6 @@ class Node(object):
                     self.properties[i] = str(self.properties[i]).lower();
                     self.values[i] = str(self.values[i]).lower();
 
-    def anchoring(self):
-        #
-        # _fix_me_
-        # we should normalize further; see mtool issue #4
-        #
-        result = list();
-        if self.anchors is not None:
-            for span in self.anchors:
-                if "from" in span and "to" in span:
-                    result.append((span["from"], span["to"]));
-        return result;
-
     def compare(self, node):
         count1 = both = count2 = 0;
         if node is None:
@@ -419,7 +407,8 @@ class Graph(object):
                     if self.input.startswith(form, i):
                         m = len(form);
                     else:
-                        for old, new in {("‘", "`"), ("’", "'")}:
+                        for old, new in {("‘", "`"), ("’", "'"), ("`", "'"),
+                                         ("“", "\""), ("”", "\"")}:
                             form = form.replace(old, new);
                             if self.input.startswith(form, i):
                                 m = len(form);
@@ -469,7 +458,10 @@ class Graph(object):
                     for property, value in zip(node.properties, node.values):
                         properties.add((identity, property, value.lower()));
                 if node.anchors is not None:
-                    anchors.add(tuple([identity] + node.anchoring()));
+                    anchor = score.core.anchor(node);
+                    if graph.input:
+                        anchor = score.core.explode(graph.input, anchor);
+                    anchors.add((identity, anchor));
             for edge in graph.edges:
                 edges.add((identities[edge.src], identities[edge.tgt],
                            edge.lab));
