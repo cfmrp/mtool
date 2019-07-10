@@ -3,7 +3,7 @@ from operator import itemgetter
 
 import numpy as np
 
-from score.core import explode, fscore, intersect
+import score.core
 from score.smatch import smatch
 from score.ucca import identify
 
@@ -54,10 +54,11 @@ class InternalGraph():
                 self.edges.append((i, reindex(j), None))
             # anchors
             if node.anchors is not None:
-                for anchor in node.anchors:
-                    j = get_or_update(index, ("A", anchor["from"],
-                                              anchor["to"]))
-                    self.edges.append((i, reindex(j), None))
+                anchor = score.core.anchor(node);
+                if graph.input:
+                    anchor = score.core.explode(graph.input, anchor)
+                j = get_or_update(index, ("A", anchor))
+                self.edges.append((i, reindex(j), None))
             # properties
             if node.properties:
                 for prop, val in zip(node.properties, node.values):
@@ -288,7 +289,7 @@ def evaluate(gold, system, format = "json",
             total[key] += counts[key];
 
     def finalize(counts):
-        p, r, f = fscore(counts["g"], counts["s"], counts["c"]);
+        p, r, f = score.core.fscore(counts["g"], counts["s"], counts["c"]);
         counts.update({"p": p, "r": r, "f": f});
 
     rrhc_limit = mces_limit = None;
@@ -310,7 +311,7 @@ def evaluate(gold, system, format = "json",
     total_edges = {"g": 0, "s": 0, "c": 0}
     total_attributes = {"g": 0, "s": 0, "c": 0}
     scores = dict() if trace else None
-    for g, s in intersect(gold, system):
+    for g, s in score.core.intersect(gold, system):
         try:
             counter = 0
 
@@ -437,12 +438,12 @@ def identities(g, s):
         for node in g.nodes:
             g_identities, g_dominated = \
                 identify(g, node.id, g_identities, g_dominated)
-        g_identities = {key: explode(g.input, value)
+        g_identities = {key: score.core.explode(g.input, value)
                         for key, value in g_identities.items()}
         for node in s.nodes:
             s_identities, s_dominated = \
                 identify(s, node.id, s_identities, s_dominated)
-        s_identities = {key: explode(s.input, value)
+        s_identities = {key: score.core.explode(s.input, value)
                         for key, value in s_identities.items()}
     else:
         g_identities = s_identities = g_dominated = s_dominated = None
