@@ -97,6 +97,8 @@ clean:
 oe:
 	make -j 4 $$(egrep '^[a-z/.]*.json:' Makefile | sed 's/://');
 
+unit: empty.mrp.json partial.mrp.json
+
 all: dm.edm.json eds.edm.json eds.smatch.json eds.mrp.json \
      dm.sdp.json peking.sdp.json peking.smatch.json peking.mrp.json \
      ucca.ucca.json ucca.smatch.json ucca.mrp.json \
