@@ -411,10 +411,10 @@ def evaluate(gold, system, format = "json",
         with mp.Pool(cores) as pool:
             results = pool.starmap(schedule,
                                    ((g, s, rrhc_limit, mces_limit, trace)
-                                    for g, s in intersect(gold, system)));
+                                    for g, s in score.core.intersect(gold, system)));
     else:
         results = (schedule(g, s, rrhc_limit, mces_limit, trace)
-                   for g, s in intersect(gold, system));
+                   for g, s in score.core.intersect(gold, system));
 
     for id, tops, labels, properties, anchors, \
         edges, attributes, matches, steps, error \
