@@ -17,6 +17,8 @@ import score.core;
 # for default values, we need to deal in the normalized values here.
 #
 ATTRIBUTE_DEFAULTS = {"remote": "false"}
+FLAVORS = {"dm": 0, "psd": 0, "eds": 1, "ucca": 1, "amr": 2}
+
 
 class Node(object):
 
@@ -320,7 +322,7 @@ class Graph(object):
         self.input = None;
         self.nodes = [];
         self.edges = set();
-        self.flavor = flavor;
+        self.flavor = FLAVORS.get(framework) if flavor is None else flavor;
         self.framework = framework;
 
     def source(self, value = None):
