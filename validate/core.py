@@ -5,7 +5,8 @@ import validate.eds;
 import validate.sdp;
 import validate.ucca;
 from validate.utilities import report;
-
+
+
 def test(graph, actions, stream = sys.stderr):
   n = 0;
   if not isinstance(graph.id, str) or len(graph.id) == 0:
@@ -53,13 +54,13 @@ def test(graph, actions, stream = sys.stderr):
         n += 1;
         report(graph,
                "invalid source",
-               node = node, edge = edge,
+               edge = edge,
                stream = stream);
       if not isinstance(edge.tgt, int) or edge.tgt not in nodes:
         n += 1;
         report(graph,
                "invalid target",
-               node = node, edge = edge,
+               edge = edge,
                stream = stream);
       m = len(edge.attributes) if edge.attributes else 0;
       n = len(edge.values) if edge.values else 0;
@@ -67,7 +68,7 @@ def test(graph, actions, stream = sys.stderr):
         n += 1;
         report(graph,
                "unaligned ‘attributes’ vs. ‘values’",
-               node = node, edge = edge,
+               edge = edge,
                stream = stream);
 
   sdp = {"ccd", "dm", "pas", "psd"};
