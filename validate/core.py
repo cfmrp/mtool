@@ -62,9 +62,9 @@ def test(graph, actions, stream = sys.stderr):
                "invalid target",
                edge = edge,
                stream = stream);
-      m = len(edge.attributes) if edge.attributes else 0;
-      n = len(edge.values) if edge.values else 0;
-      if m != n:
+      num_attrib = len(edge.attributes) if edge.attributes else 0;
+      num_values = len(edge.values) if edge.values else 0;
+      if num_attrib != num_values:
         n += 1;
         report(graph,
                "unaligned ‘attributes’ vs. ‘values’",
