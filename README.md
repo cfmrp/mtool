@@ -200,8 +200,8 @@ Contributors
 
 + Yuta Koreeda <koreyou@mac.com> (@koreyou)
 + Matthias Lindemann <mlinde@coli.uni-saarland.de> (@namednil)
-+ Milan Straka <straka@ufal.mff.cuni.cz> (@foxik)
 + Hiroaki Ozaki <taryou.ozk@gmail.com> (@taryou)
++ Milan Straka <straka@ufal.mff.cuni.cz> (@foxik)
 
 [![Build Status (Travis CI)](https://travis-ci.org/cfmrp/mtool.svg?branch=master)](https://travis-ci.org/cfmrp/mtool)
 [![Build Status (AppVeyor)](https://ci.appveyor.com/api/projects/status/github/cfmrp/mtool?svg=true)](https://ci.appveyor.com/project/danielh/mtool)

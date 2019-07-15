@@ -26,6 +26,7 @@ from analyzer import analyze;
 
 __author__ = "oe"
 
+ENCODING = "utf-8";
 NORMALIZATIONS = {"anchors", "case", "edges", "attributes"};
 VALIDATIONS = {"input", "anchors", "edges",
                "amr", "eds", "sdp", "ucca"}
@@ -33,7 +34,8 @@ VALIDATIONS = {"input", "anchors", "edges",
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 prefix = None, text = None, quiet = False,
-                alignment = None, id = None, n = None, i = None):
+                alignment = None, anchors = None,
+                id = None, n = None, i = None):
 
   generator = None;
   if format == "amr":
@@ -50,7 +52,8 @@ def read_graphs(stream, format = None,
   elif format == "ucca":
     generator = codec.ucca.read(stream, text = text, prefix = prefix);
   elif format == "conllu" or format == "ud":
-    generator = codec.conllu.read(stream, framework = format, text = text)
+    generator = codec.conllu.read(stream, framework = format, text = text,
+                                  anchors = anchors);
   else:
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
@@ -94,9 +97,12 @@ def main():
   parser.add_argument("--reify", action = "store_true");
   parser.add_argument("--ids", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
-  parser.add_argument("--gold", type = argparse.FileType("r", encoding="utf-8"));
-  parser.add_argument("--alignment", type = argparse.FileType("r", encoding="utf-8"));
-  parser.add_argument("--overlay", type = argparse.FileType("w", encoding="utf-8"));
+  parser.add_argument("--gold",
+                      type = argparse.FileType("r", encoding = ENCODING));
+  parser.add_argument("--alignment",
+                      type = argparse.FileType("r", encoding = ENCODING));
+  parser.add_argument("--overlay",
+                      type = argparse.FileType("w", encoding = ENCODING));
   parser.add_argument("--format");
   parser.add_argument("--score");
   parser.add_argument("--validate", action = "append", default = []);
@@ -104,6 +110,8 @@ def main():
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
+  parser.add_argument("--anchors",
+                      type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
   parser.add_argument("--source");
   parser.add_argument("--cores", type = int, default = 1);
@@ -113,9 +121,11 @@ def main():
   parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
   parser.add_argument("input", nargs = "?",
-                      type = argparse.FileType("r", encoding="utf-8"), default = sys.stdin);
+                      type = argparse.FileType("r", encoding = ENCODING),
+                      default = sys.stdin);
   parser.add_argument("output", nargs = "?",
-                      type = argparse.FileType("w", encoding="utf-8"), default = sys.stdout);
+                      type = argparse.FileType("w", encoding = ENCODING),
+                      default = sys.stdout);
   arguments = parser.parse_args();
 
   text = None;
@@ -191,7 +201,8 @@ def main():
     = read_graphs(arguments.input, format = arguments.read,
                   full = arguments.full, normalize = normalize,
                   reify = arguments.reify, text = text,
-                  alignment = arguments.alignment, quiet = arguments.quiet,
+                  alignment = arguments.alignment, anchors = arguments.anchors,
+                  quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
     print("main.py(): unable to read input graphs: {}; exit."
