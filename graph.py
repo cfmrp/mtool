@@ -54,11 +54,11 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
-    def normalize(self, actions, input = None, trace = False):
+    def normalize(self, actions, input = None, trace = 0):
         def trim(anchor, input):
             if "from" in anchor and "to" in anchor:
-                i = anchor["from"];
-                j = anchor["to"];
+                i = max(anchor["from"], 0);
+                j = min(anchor["to"], len(input));
                 while i < j and input[i] in score.core.PUNCTUATION: i += 1;
                 while j > i and input[j - 1] in score.core.PUNCTUATION: j -= 1;
                 if trace and (i != anchor["from"] or j != anchor["to"]):
@@ -224,7 +224,7 @@ class Edge(object):
     def length(self):
         return self.max() - self.min()
 
-    def normalize(self, actions):
+    def normalize(self, actions, trace = 0):
 
         if "edges" in actions:
             if self.normal is None:
@@ -428,11 +428,11 @@ class Graph(object):
                         raise Exception("failed to anchor |{}| in |{}| ({})"
                                         "".format(form, self.input, i));
 
-    def normalize(self, actions):
+    def normalize(self, actions, trace = 0):
         for node in self.nodes:
-            node.normalize(actions, self.input);
+            node.normalize(actions, self.input, trace);
         for edge in self.edges:
-            edge.normalize(actions);
+            edge.normalize(actions, trace);
         #
         # recompute cached edge relations, to reflect the new state of affairs
         #

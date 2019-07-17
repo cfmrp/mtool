@@ -33,7 +33,8 @@ VALIDATIONS = {"input", "anchors", "edges",
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
-                prefix = None, text = None, quiet = False,
+                prefix = None, text = None,
+                trace = 0, quiet = False,
                 alignment = None, anchors = None,
                 id = None, n = None, i = None):
 
@@ -85,7 +86,7 @@ def read_graphs(stream, format = None,
       break;
 
   if normalize:
-    for graph in graphs: graph.normalize(normalize);
+    for graph in graphs: graph.normalize(normalize, trace);
 
   return graphs, overlays;
 
@@ -202,7 +203,7 @@ def main():
                   full = arguments.full, normalize = normalize,
                   reify = arguments.reify, text = text,
                   alignment = arguments.alignment, anchors = arguments.anchors,
-                  quiet = arguments.quiet,
+                  trace = arguments.trace, quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
     print("main.py(): unable to read input graphs: {}; exit."
@@ -236,7 +237,7 @@ def main():
     gold, _ = read_graphs(arguments.gold, format = arguments.format,
                           full = arguments.full, normalize = normalize,
                           reify = arguments.reify, text = text,
-                          quiet = arguments.quiet,
+                          trace = arguments.trace, quiet = arguments.quiet,
                           id = arguments.id, n = arguments.n, i = arguments.i);
     if not gold:
       print("main.py(): unable to read gold graphs: {}; exit."
