@@ -442,7 +442,8 @@ def evaluate(gold, system, format = "json",
         else:
             print("mces.evaluate(): exception in graph #{}:\n{}"
                   "".format(id, error));
-            scores[id] = {"error": repr(error)};
+            if trace:
+                scores[id] = {"error": repr(error)};
 
     total_all = {"g": 0, "s": 0, "c": 0};
     for counts in [total_tops, total_labels, total_properties, total_anchors,
