@@ -12,11 +12,12 @@ def test(graph, actions, stream = sys.stderr):
              "missing or invalid label",
              node = node, framework = "EDS", stream = stream);
     message = None;
-    if not isinstance(node.anchors, list):
-      message = "missing or invalid anchoring";
-    elif len(node.anchors) != 1 \
-      or ("from" not in node.anchors[0] or "to" not in node.anchors[0]):
-      message = "invalid ‘anchors’ value: {}".format(node.anchors);
+    if "anchors" in actions:
+      if not isinstance(node.anchors, list):
+        message = "missing or invalid anchoring";
+      elif len(node.anchors) != 1 \
+        or ("from" not in node.anchors[0] or "to" not in node.anchors[0]):
+        message = "invalid ‘anchors’ value: {}".format(node.anchors);
     if message is not None:
       n += 1;
       report(graph, message,

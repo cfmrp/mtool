@@ -42,6 +42,23 @@ def test(graph, actions, stream = sys.stderr):
              "missing or invalid ‘input’ property",
              stream = stream);
 
+  l = len(graph.input) if graph.input else 0;
+  for node in graph.nodes:
+    if not isinstance(node.id, int):
+      n += 1;
+      report(graph,
+             "invalid identifier",
+             node = node, stream = stream);
+    if "anchors" in actions and node.anchors and l:
+      for anchor in node.anchors:
+        if anchor["from"] < 0 or anchor["from"] > l \
+           or anchor["to"] < 0 or anchor["to"] > l \
+           or anchor["from"] > anchor["to"]:
+          n += 1;
+          report(graph,
+                 "invalid anchor: {}".format(anchor),
+                 node = node, stream = stream);
+          
   if "edges" in actions:
     #
     # the following is most likely redundant: the MRP input codec already has
@@ -54,22 +71,19 @@ def test(graph, actions, stream = sys.stderr):
         n += 1;
         report(graph,
                "invalid source",
-               edge = edge,
-               stream = stream);
+               edge = edge, stream = stream);
       if not isinstance(edge.tgt, int) or edge.tgt not in nodes:
         n += 1;
         report(graph,
                "invalid target",
-               edge = edge,
-               stream = stream);
+               edge = edge, stream = stream);
       num_attrib = len(edge.attributes) if edge.attributes else 0;
       num_values = len(edge.values) if edge.values else 0;
       if num_attrib != num_values:
         n += 1;
         report(graph,
                "unaligned ‘attributes’ vs. ‘values’",
-               edge = edge,
-               stream = stream);
+               edge = edge, stream = stream);
 
   sdp = {"ccd", "dm", "pas", "psd"};
   if graph.framework == "amr" and "amr" in actions:
