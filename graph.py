@@ -539,26 +539,29 @@ class Graph(object):
 
     @staticmethod
     def decode(json):
-        flavor = json.get("flavor", None)
-        framework = json.get("framework", None)
-        graph = Graph(json["id"], flavor, framework)
+        graph = Graph(json["id"], json.get("flavor"), json.get("framework"))
         try:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d")
         except:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
-        graph.input = json.get("input", None)
-        if "nodes" in json and json["nodes"] is not None:
-            for j in json["nodes"]:
+        graph.input = json.get("input")
+        graph.source(json.get("source"))
+        graph.targets(json.get("targets"))
+        nodes = json.get("nodes")
+        if nodes is not None:
+            for j in nodes:
                 node = Node.decode(j)
                 graph.add_node(node.id, node.label, node.properties,
                                node.values, node.anchors, top = False)
-        if "edges" in json and json["edges"] is not None:
-            for j in json["edges"]:
+        edges = json.get("edges")
+        if edges is not None:
+            for j in edges:
                 edge = Edge.decode(j)
                 graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
                                edge.attributes, edge.values)
-        if "tops" in json and json["tops"] is not None:
-            for i in json["tops"]:
+        tops = json.get("tops")
+        if tops is not None:
+            for i in tops:
                 node = graph.find_node(i)
                 if node is not None:
                     node.is_top = True
