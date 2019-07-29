@@ -25,7 +25,7 @@ def read_anchors(stream):
     id = None;
     tokens = list();
     for line in stream:
-      line = line.strip();
+      line = line.rstrip("\n");
       if len(line) == 0:
         yield id, tokens;
         id = None;
