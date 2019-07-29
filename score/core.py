@@ -1,3 +1,5 @@
+import sys;
+
 #
 # _fix_me_
 # maybe use Unicode character classes instead, even if it likely would mean
@@ -6,12 +8,32 @@
 PUNCTUATION = frozenset(".?!;,:“\"”‘'’()[]{} \t\n\f")
 SPACE = frozenset(" \t\n\f")
 
-def intersect(golds, systems):
-  gold = {graph.id: graph for graph in golds}
+def intersect(golds, systems, quiet = False):
+  index = dict();
   for graph in systems:
-      gold_graph = gold.get(graph.id)
-      if gold_graph is not None:
-          yield gold_graph, graph
+    framework = graph.framework;
+    id = graph.id;
+    if framework in index:
+      bucket = index[framework];
+      if id in bucket:
+        if not quiet:
+          print("score.intersect(): ignoring duplicate graph #{}"
+                "".format(id), file = sys.stderr);
+      else:
+        bucket[id] = graph;
+    else:
+      index[framework] = {id: graph};
+
+  for graph in golds:
+    framework = graph.framework;
+    id = graph.id;
+    if framework in index and id in index[framework]:
+      yield graph, index[framework][id];
+    else:
+      if not quiet:
+        print("score.intersect(): missing system graph #{}"
+              "".format(id), file = sys.stderr);
+      yield graph, Graph(id, flavor = graph.flavor, framework = framework);
 
 def anchor(node):
   result = list();

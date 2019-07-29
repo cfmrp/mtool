@@ -244,6 +244,8 @@ def main():
               "".format(action), file = sys.stderr);
         sys.exit(1);
 
+  if arguments.quiet: arguments.trace = 0;
+
   if actions:
     for graph in graphs:
       validate.core.test(graph, actions, stream = sys.stderr);
@@ -300,7 +302,8 @@ def main():
                                      format = arguments.write,
                                      limits = limits,
                                      cores = arguments.cores,
-                                     trace = arguments.trace);
+                                     trace = arguments.trace,
+                                     quiet = arguments.quiet);
       elif metric == "sdp":
         result = score.sdp.evaluate(gold, graphs,
                                     format = arguments.write,

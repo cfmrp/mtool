@@ -373,7 +373,7 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
 
 def evaluate(gold, system, format = "json",
              limits = None,
-             cores = 0, trace = 0):
+             cores = 0, trace = 0, quiet = False):
     
     def update(total, counts):
         for key in ("g", "s", "c"):
@@ -411,7 +411,10 @@ def evaluate(gold, system, format = "json",
         with mp.Pool(cores) as pool:
             results = pool.starmap(schedule,
                                    ((g, s, rrhc_limit, mces_limit, trace)
-                                    for g, s in score.core.intersect(gold, system)));
+                                    for g, s
+                                    in score.core.intersect(gold,
+                                                            system,
+                                                            quiet = quiet)));
     else:
         results = (schedule(g, s, rrhc_limit, mces_limit, trace)
                    for g, s in score.core.intersect(gold, system));
