@@ -15,6 +15,6 @@ def report(graph, message, node = None, edge = None,
     framework = "{{{}}} ".format(framework);
   else:
     framework = "";
-  print("validate(): [{}] {}graph #{}{}{}: {}"
+  print("validate(): [{}] {}graph #{}{}{}: {}."
         "".format(level, framework, graph.id, node, edge, message),
         file = stream);
