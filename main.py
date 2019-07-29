@@ -9,6 +9,7 @@ from pathlib import Path;
 import re;
 import sys;
 import time;
+from zipfile import ZipFile;
 
 import codec.amr;
 import codec.conllu;
@@ -23,6 +24,7 @@ import score.smatch;
 import score.ucca;
 import validate.core;
 from analyzer import analyze;
+import inspect;
 
 __author__ = "oe"
 
@@ -37,6 +39,22 @@ def read_graphs(stream, format = None,
                 trace = 0, quiet = False,
                 alignment = None, anchors = None,
                 id = None, n = None, i = None):
+
+  name = stream.name;
+  if name.endswith(".zip"):
+    with ZipFile(name) as zip:
+      stream = None;
+      for entry in zip.namelist():
+        if entry.endswith(".mrp"):
+          if stream is not None:
+            print("read_graphs(): multiple MRP entries in ‘{}’; exit."
+                  "".format(name), file = sys.stderr);
+            sys.exit(1);
+          stream = zip.open(entry);
+      if stream is None:
+        print("read_graphs(): missing MRP entry in ‘{}’; exit."
+              "".format(name), file = sys.stderr);
+        sys.exit(1);
 
   generator = None;
   if format == "amr":
@@ -92,6 +110,7 @@ def read_graphs(stream, format = None,
 
 def main():
   parser = argparse.ArgumentParser(description = "MRP Graph Toolkit");
+  parser.add_argument("--inspect", action = "store_true");
   parser.add_argument("--analyze", action = "store_true");
   parser.add_argument("--normalize", action = "append", default = []);
   parser.add_argument("--full", action = "store_true");
@@ -232,7 +251,8 @@ def main():
   if arguments.analyze:
     analyze(graphs);
 
-  if arguments.gold and arguments.score:
+  gold = None;
+  if arguments.gold and arguments.score or arguments.inspect:
     if arguments.format is None: arguments.format = arguments.read;
     gold, _ = read_graphs(arguments.gold, format = arguments.format,
                           full = arguments.full, normalize = normalize,
@@ -243,6 +263,15 @@ def main():
       print("main.py(): unable to read gold graphs: {}; exit."
             "".format(arguments.gold.name), file = sys.stderr);
       sys.exit(1);
+
+  if arguments.inspect:
+    result = inspect.summarize(graphs, gold);
+    if arguments.write == "json" or True:
+      json.dump(result, arguments.output, indent = None);
+      print(file = arguments.output);
+    sys.exit(0);
+
+  if arguments.score:
     limits = {"rrhc": None, "mces": None};
     for metric in arguments.score.split(","):
       if arguments.limit is not None:
@@ -301,7 +330,7 @@ def main():
           start = True;
           for key in result:
             if start: start = False;
-            else: print(",\n ", file = arguments.output, end = ""     );
+            else: print(",\n ", file = arguments.output, end = "");
             print("\"{}\": ".format(key), file = arguments.output, end = "");
             json.dump(result[key], arguments.output, indent = None);
           print("}", file = arguments.output);
