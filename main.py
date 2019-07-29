@@ -35,7 +35,7 @@ VALIDATIONS = {"input", "anchors", "edges",
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
-                prefix = None, text = None,
+                frameworks = None, prefix = None, text = None,
                 trace = 0, quiet = False,
                 alignment = None, anchors = None,
                 id = None, n = None, i = None):
@@ -90,6 +90,7 @@ def read_graphs(stream, format = None,
   while n is None or n < 1 or j < n:
     try:
       graph, overlay = next(generator);
+      if frameworks is not None and graph.framework not in frameworks: continue;
       if id is not None:
         if graph.id == id:
           graphs.append(graph); overlays.append(overlay);
@@ -117,6 +118,7 @@ def main():
   parser.add_argument("--reify", action = "store_true");
   parser.add_argument("--ids", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
+  parser.add_argument("--framework", action = "append", default = []);
   parser.add_argument("--gold",
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--alignment",
@@ -215,13 +217,16 @@ def main():
           file = sys.stderr);
     sys.exit(1);
 
+  if len(arguments.framework) == 0: arguments.framework = None;
+
   if arguments.cores == 0: arguments.cores = mp.cpu_count();
     
   graphs, overlays \
     = read_graphs(arguments.input, format = arguments.read,
                   full = arguments.full, normalize = normalize,
-                  reify = arguments.reify, text = text,
-                  alignment = arguments.alignment, anchors = arguments.anchors,
+                  reify = arguments.reify, frameworks = arguments.framework,
+                  text = text, alignment = arguments.alignment,
+                  anchors = arguments.anchors,
                   trace = arguments.trace, quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if not graphs:
@@ -258,7 +263,8 @@ def main():
     if arguments.format is None: arguments.format = arguments.read;
     gold, _ = read_graphs(arguments.gold, format = arguments.format,
                           full = arguments.full, normalize = normalize,
-                          reify = arguments.reify, text = text,
+                          reify = arguments.reify, frameworks = arguments.framework,
+                          text = text,
                           trace = arguments.trace, quiet = arguments.quiet,
                           id = arguments.id, n = arguments.n, i = arguments.i);
     if not gold:

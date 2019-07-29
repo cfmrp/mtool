@@ -9,7 +9,9 @@ def summarize(graphs, golds):
            "eds": set(), "ucca": set(),
            "amr": set()};
     for gold in golds:
-      for target in gold.targets():
+      targets = gold.targets();
+      if targets is None: targets = [gold.framework];
+      for target in targets:
         ids[target].add(gold.id);
   counts = {"dm": 0, "psd": 0, "eds": 0, "ucca": 0, "amr": 0};
   for graph in graphs:
