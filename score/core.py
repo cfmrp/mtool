@@ -1,5 +1,7 @@
 import sys;
 
+from graph import Graph;
+
 #
 # _fix_me_
 # maybe use Unicode character classes instead, even if it likely would mean
