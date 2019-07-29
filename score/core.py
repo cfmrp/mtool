@@ -1,7 +1,5 @@
 import sys;
 
-from graph import Graph;
-
 #
 # _fix_me_
 # maybe use Unicode character classes instead, even if it likely would mean
@@ -35,6 +33,7 @@ def intersect(golds, systems, quiet = False):
       if not quiet:
         print("score.intersect(): missing system graph #{}"
               "".format(id), file = sys.stderr);
+      from graph import Graph;
       yield graph, Graph(id, flavor = graph.flavor, framework = framework);
 
 def anchor(node):
