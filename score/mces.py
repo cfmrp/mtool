@@ -437,7 +437,7 @@ def evaluate(gold, system, format = "json",
             total_pairs += 1;
             if mces_limit == 0 or steps > mces_limit: total_inexact += 1;
 
-            if trace:
+            if trace and s.nodes is not None and len(s.nodes) != 0:
                 if id in scores:
                     print("mces.evaluate(): duplicate graph identifier: {}"
                           "".format(id), file = sys.stderr);
