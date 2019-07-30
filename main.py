@@ -229,7 +229,7 @@ def main():
                   anchors = arguments.anchors,
                   trace = arguments.trace, quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
-  if not graphs:
+  if graphs is None:
     print("main.py(): unable to read input graphs: {}; exit."
           "".format(arguments.input.name), file = sys.stderr);
     sys.exit(1);
@@ -267,7 +267,7 @@ def main():
                           text = text,
                           trace = arguments.trace, quiet = arguments.quiet,
                           id = arguments.id, n = arguments.n, i = arguments.i);
-    if not gold:
+    if gold is None:
       print("main.py(): unable to read gold graphs: {}; exit."
             "".format(arguments.gold.name), file = sys.stderr);
       sys.exit(1);

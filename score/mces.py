@@ -362,14 +362,14 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
             if trace > 2:
                 print(best_cv, file = sys.stderr)
                 print(best_ce, file = sys.stderr)
-        return g.id, tops, labels, properties, anchors, \
+        return g.id, g, s, tops, labels, properties, anchors, \
             edges, attributes, matches, counter, None;
                 
     except Exception as e:
         #
         # _fix_me_
         #
-        return g.id, None, None, None, None, None, None, None, None, e;
+        return g.id, g, s, None, None, None, None, None, None, None, None, e;
 
 def evaluate(gold, system, format = "json",
              limits = None,
@@ -396,6 +396,7 @@ def evaluate(gold, system, format = "json",
               file = sys.stderr);
     total_matches = total_steps = 0;
     total_pairs = 0;
+    total_empty = 0;
     total_inexact = 0;
     total_tops = {"g": 0, "s": 0, "c": 0}
     total_labels = {"g": 0, "s": 0, "c": 0}
@@ -419,9 +420,11 @@ def evaluate(gold, system, format = "json",
         results = (schedule(g, s, rrhc_limit, mces_limit, trace)
                    for g, s in score.core.intersect(gold, system));
 
-    for id, tops, labels, properties, anchors, \
+    for id, g, s, tops, labels, properties, anchors, \
         edges, attributes, matches, steps, error \
         in results:
+        if s.nodes is None or len(s.nodes) == 0:
+            total_empty += 1;
         if error is None:
             total_matches += matches;
             total_steps += steps;
@@ -454,7 +457,8 @@ def evaluate(gold, system, format = "json",
         update(total_all, counts);
         finalize(counts);
     finalize(total_all);
-    result = {"n": total_pairs, "exact": total_pairs - total_inexact,
+    result = {"n": total_pairs, "null": total_empty,
+              "exact": total_pairs - total_inexact,
               "tops": total_tops, "labels": total_labels,
               "properties": total_properties, "anchors": total_anchors,
               "edges": total_edges, "attributes": total_attributes,
