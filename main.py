@@ -3,12 +3,13 @@
 # -*- coding: utf-8; -*-
 
 import argparse;
+import inspect;
 import json;
 import multiprocessing as mp;
-from pathlib import Path;
 import re;
 import sys;
 import time;
+from pathlib import Path;
 from zipfile import ZipFile;
 
 import codec.amr;
@@ -24,7 +25,6 @@ import score.smatch;
 import score.ucca;
 import validate.core;
 from analyzer import analyze;
-import inspect;
 
 __author__ = "oe"
 
@@ -40,7 +40,7 @@ def read_graphs(stream, format = None,
                 alignment = None, anchors = None,
                 id = None, n = None, i = None):
 
-  name = stream.name;
+  name = getattr(stream, "name", "");
   if name.endswith(".zip"):
     with ZipFile(name) as zip:
       stream = None;
