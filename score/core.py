@@ -1,4 +1,5 @@
 import sys;
+from collections import defaultdict
 
 #
 # _fix_me_
@@ -9,31 +10,28 @@ PUNCTUATION = frozenset(".?!;,:“\"”‘'’()[]{} \t\n\f")
 SPACE = frozenset(" \t\n\f")
 
 def intersect(golds, systems, quiet = False):
-  index = dict();
+  index = defaultdict(dict);
   for graph in systems:
-    framework = graph.framework;
-    if framework in index:
-      bucket = index[framework];
-      if graph.id in bucket:
-        if not quiet:
-          print("score.intersect(): ignoring duplicate graph #{}"
-                "".format(graph.id), file=sys.stderr);
-      else:
-        bucket[graph.id] = graph;
+    bucket = index[graph.framework];
+    if graph.id in bucket:
+      if not quiet:
+        print("score.intersect(): ignoring duplicate graph #{}"
+              .format(graph.id), file=sys.stderr);
     else:
-      index[framework] = {graph.id: graph};
+      bucket[graph.id] = graph;
 
   for graph in golds:
-    framework = graph.framework;
-    if framework in index and graph.id in index[framework]:
-      yield graph, index[framework][graph.id];
-    else:
+    system_graph = index[graph.framework].get(graph.id)
+    if system_graph is None:
       if not quiet:
         print("score.intersect(): missing system graph #{}"
-              "".format(graph.id), file=sys.stderr);
+              .format(graph.id), file=sys.stderr);
       from graph import Graph;
-      yield graph, Graph(graph.id, flavor=graph.flavor, framework=framework);
-
+      # Use empty graph as the system graph
+      yield graph, Graph(graph.id, flavor=graph.flavor, framework=graph.framework);
+    else:
+      yield graph, system_graph;
+
 def anchor(node):
   result = list();
   if node.anchors is not None:
