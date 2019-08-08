@@ -12,29 +12,27 @@ def intersect(golds, systems, quiet = False):
   index = dict();
   for graph in systems:
     framework = graph.framework;
-    id = graph.id;
     if framework in index:
       bucket = index[framework];
-      if id in bucket:
+      if graph.id in bucket:
         if not quiet:
           print("score.intersect(): ignoring duplicate graph #{}"
-                "".format(id), file = sys.stderr);
+                "".format(graph.id), file=sys.stderr);
       else:
-        bucket[id] = graph;
+        bucket[graph.id] = graph;
     else:
-      index[framework] = {id: graph};
+      index[framework] = {graph.id: graph};
 
   for graph in golds:
     framework = graph.framework;
-    id = graph.id;
-    if framework in index and id in index[framework]:
-      yield graph, index[framework][id];
+    if framework in index and graph.id in index[framework]:
+      yield graph, index[framework][graph.id];
     else:
       if not quiet:
         print("score.intersect(): missing system graph #{}"
-              "".format(id), file = sys.stderr);
+              "".format(graph.id), file=sys.stderr);
       from graph import Graph;
-      yield graph, Graph(id, flavor = graph.flavor, framework = framework);
+      yield graph, Graph(graph.id, flavor=graph.flavor, framework=framework);
 
 def anchor(node):
   result = list();
