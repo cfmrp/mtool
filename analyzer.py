@@ -17,28 +17,69 @@ class DepthFirstSearch(object):
 
         self._enter = dict()
         self._leave = dict()
+        self._depth = dict()
         self.n_runs = 0
 
-        def compute_timestamps(node, timestamp):
+        self._dfs_parent = dict()
+
+        def compute_timestamps(node, timestamp, depth, parent):
+            self._depth[node] = depth
             self._enter[node] = next(timestamp)
+            self._dfs_parent[node] = parent
             for edge in self._graph.find_node(node).outgoing_edges:
                 if not edge.tgt in self._enter:
-                    compute_timestamps(edge.tgt, timestamp)
+                    compute_timestamps(edge.tgt, timestamp, depth+1, node)
             if self._undirected:
                 for edge in self._graph.find_node(node).incoming_edges:
                     if not edge.src in self._enter:
-                        compute_timestamps(edge.src, timestamp)
+                        compute_timestamps(edge.src, timestamp, depth+1, node)
             self._leave[node] = next(timestamp)
         timestamp = itertools.count()
         for node in self._graph.nodes:
             if not node.id in self._enter:
-                compute_timestamps(node.id, timestamp)
+                compute_timestamps(node.id, timestamp, 0, None)
                 self.n_runs += 1
+
+        # Compute the lowpoints
+        self._lowpoint = dict()
+        for node in self._graph.nodes:
+            self._lowpoint[node.id] = self._depth[node.id]
+        for node in self._graph.nodes:
+            for edge in node.outgoing_edges:
+                if edge.tgt != self._dfs_parent[node.id]:
+                    self._lowpoint[node.id] = min(self._lowpoint[node.id], self._depth[edge.tgt])
+            if self._undirected:
+                for edge in node.incoming_edges:
+                    if edge.tgt != self._dfs_parent[node.id]:
+                        self._lowpoint[node.id] = min(self._lowpoint[node.id], self._depth[edge.tgt])
+            for child, parent in self._dfs_parent.items():
+                if parent == node.id:
+                    self._lowpoint[node.id] = min(self._lowpoint[node.id], self._lowpoint[child])
 
     def is_back_edge(self, edge):
         return \
             self._enter[edge.tgt] < self._enter[edge.src] and \
             self._leave[edge.src] < self._leave[edge.tgt]
+
+    def biconnected_components(self):
+        articulation_points = []
+        for node in self._graph.nodes:
+            if node.is_root():
+                tmp = []
+                for edge in node.outgoing_edges:
+                    articulation_points.append((node.id, edge.tgt))
+                if len(tmp) > 1:
+                    articulation_points.extend(tmp)
+            else:
+                for edge in node.outgoing_edges:
+                    articulation_points.append((node.id, edge.tgt))
+        for point, child in articulation_points:
+            component = set()
+            component.add(point)
+            for node in self._graph.nodes:
+                if self._enter[node.id] >= self._enter[child] and self._leave[node.id] <= self._leave[child]:
+                    component.add(node.id)
+            yield component
 
 
 class InspectedGraph(object):
@@ -159,6 +200,19 @@ class InspectedGraph(object):
                     n_edges += 1
             return n_edges / (n_nodes - 1)
 
+    def almost_tree(self, k):
+        for component in self.undirected_dfs.biconnected_components():
+            n_nodes = len(component)
+            edges_in_component = set()
+            for node in component:
+                for edge in self.graph.find_node(node).outgoing_edges:
+                    if edge.tgt in component:
+                        edges_in_component.add(edge)
+            n_edges = len(edges_in_component)
+            if n_edges > n_nodes + k:
+                return False
+        return True
+
 
 PROPERTY_COUNTER = itertools.count(1)
 
@@ -193,6 +247,7 @@ def analyze(graphs, ids=None):
     acc_edge_length = 0
     n_treewidth_one = 0
     treewidths = []
+    n_almost_trees = dict()
     for graph in graphs:
         if ids and not graph.id in ids:
             continue
@@ -254,6 +309,12 @@ def analyze(graphs, ids=None):
         n_graphs_has_top_node += has_top_node
         n_graphs_multirooted += inspected_graph.n_root_nodes() > 1
 
+        for i in range(7):
+            if i in n_almost_trees:
+                n_almost_trees[i] += int(inspected_graph.almost_tree(i))
+            else:
+                n_almost_trees[i] = int(inspected_graph.almost_tree(i))
+
     n_nonsingletons = n_nodes - n_singletons
 
     report("number of graphs", "%d" % n_graphs)
@@ -261,7 +322,7 @@ def analyze(graphs, ids=None):
     report("number of edge labels", "%d" % len(labels))
 #    report("\\percentnode\\ singleton", "%.2f" % (100 * n_singletons / n_nodes))
 #    report("\\percentnode\\ non-singleton", "%.2f" % (100 * n_nonsingletons / n_nodes))
-    report("\\percentgraph\\ trees", "%.2f" % (100 * n_trees / n_graphs))
+    report("\\percentgraph\\ trees", "%.2f" % (100 * (n_trees / n_graphs)))
     report("\\percentgraph\\ treewidth one", "%.2f" %
            (100 * n_treewidth_one / n_graphs))
     report("average treewidth", "%.3f" % (acc_treewidth / n_graphs))
@@ -296,6 +357,8 @@ def analyze(graphs, ids=None):
         report("average edge length", "--")
         report("\\percentgraph\\ noncrossing", "--")
         report("\\percentgraph\\ pagenumber two", "--")
+    for i in n_almost_trees:
+        report("percentage of almost trees (%d)" % i, "%.2f" % (100 * n_almost_trees[i] / n_graphs))
 
 
 def read_ids(file_name):
