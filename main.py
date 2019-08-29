@@ -3,7 +3,7 @@
 # -*- coding: utf-8; -*-
 
 import argparse;
-import inspect;
+import inspector;
 import json;
 import multiprocessing as mp;
 import re;
@@ -273,7 +273,7 @@ def main():
       sys.exit(1);
 
   if arguments.inspect:
-    result = inspect.summarize(graphs, gold);
+    result = inspector.summarize(graphs, gold);
     if arguments.write == "json" or True:
       json.dump(result, arguments.output, indent = None);
       print(file = arguments.output);
