@@ -20,7 +20,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cfmrp/mtool",
     packages=setuptools.find_packages(),
-    py_modules=["graph", "analyzer", "treewidth", 'main', 'version'],
+    py_modules=["graph", "analyzer", "inspector", "treewidth", 'main', 'version'],
     license='LGPL-3.0',
     install_requires=[
         'numpy',
