@@ -83,6 +83,15 @@ class Node(object):
                     self.values[i] = str(self.values[i]).lower();
 
     def compare(self, node):
+        #
+        # keep track of node-local pieces of information that either occur in
+        # both nodes (i.e. match), or only in the first or second of them.  in
+        # guiding the MCES search, we (apparently) use the net gain of matching
+        # pieces /minus/ those not matching on either side.  that does not lead
+        # to monotonicity, in the sense of cumulative scores moving either up
+        # or down as more node correspondences are fixed, but for guiding the
+        # MCES search monotonicity fortunately is not a requirement either.
+        #
         count1 = both = count2 = 0;
         if node is None:
             if self.is_top:

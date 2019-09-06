@@ -63,7 +63,8 @@ class InternalGraph():
                     j = get_or_update(index, ("P", prop, val))
                     self.edges.append((i, reindex(j), None))
 
-def initial_node_correspondences(graph1, graph2, identities1=None, identities2=None):
+def initial_node_correspondences(graph1, graph2,
+                                 identities1=None, identities2=None):
     #
     # in the following, we assume that nodes in raw and internal
     # graphs correspond by position into the .nodes. list
@@ -73,7 +74,15 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     edges = np.zeros(shape, dtype=np.int);
     anchors = np.zeros(shape, dtype=np.int);
 
-    queue = [];
+    #
+    # initialization needs to be sensitive to whether or not we are looking at
+    # ordered graphs (aka Flavor 0, or the SDP family)
+    #
+    if graph1.flavor == 0 or graph1.framework in {"dm", "psd", "pas", "ccd"}:
+        queue = None;
+    else:
+        queue = [];
+        
     for i, node1 in enumerate(graph1.nodes):
         for j, node2 in enumerate(graph2.nodes + [None]):
             rewards[i, j], _, _, _ = node1.compare(node2);
@@ -94,18 +103,9 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
                 if identities1 and identities2:
                     anchors[i, j] += len(identities1[node1.id] &
                                          identities2[node2.id])
-            queue.append((rewards[i, j], edges[i, j], anchors[i, j],
-                          i, j if node2 is not None else None));
-
-    pairs = [];
-    sources = set();
-    targets = set();
-    for _, _, _, i, j in sorted(queue, key = itemgetter(0, 2, 1),
-                                reverse = True):
-        if i not in sources and j not in targets:
-            pairs.append((i, j));
-            sources.add(i);
-            if j is not None: targets.add(j);
+            if queue is not None:
+                queue.append((rewards[i, j], edges[i, j], anchors[i, j],
+                              i, j if node2 is not None else None));
 
     #
     # adjust rewards to use anchor overlap and edge potential as a secondary
@@ -116,7 +116,66 @@ def initial_node_correspondences(graph1, graph2, identities1=None, identities2=N
     anchors *= 10;
     rewards += edges + anchors;
 
+    if queue is None:        
+        pairs = levenshtein(graph1, graph2);
+    else:
+        pairs = [];
+        sources = set();
+        targets = set();
+        for _, _, _, i, j in sorted(queue, key = itemgetter(0, 2, 1),
+                                    reverse = True):
+            if i not in sources and j not in targets:
+                pairs.append((i, j));
+                sources.add(i);
+                if j is not None: targets.add(j);
+
     return pairs, rewards;
+
+def levenshtein(graph1, graph2):
+    m = len(graph1.nodes)
+    n = len(graph2.nodes)
+    d = {(i,j): float('-inf') for i in range(m+1) for j in range(n+1)}
+    p = {(i,j): None for i in range(m+1) for j in range(n+1)}
+    d[(0,0)] = 0
+    for i in range(1, m+1):
+        d[(i,0)] = 0
+        p[(i,0)] = ((i-1,0), None)
+    for j in range(1, n+1):
+        d[(0,j)] = 0
+        p[(0,j)] = ((0,j-1), None)
+    for j, node2 in enumerate(graph2.nodes, 1):
+        for i, node1 in enumerate(graph1.nodes, 1):
+            best_d = float('-inf')
+            # "deletion"
+            cand_d = d[(i-1,j-0)]
+            if cand_d > best_d:
+                best_d = cand_d
+                best_p = ((i-1,j-0), None)
+            # "insertion"
+            cand_d = d[(i-0,j-1)]
+            if cand_d > best_d:
+                best_d = cand_d
+                best_p = ((i-0,j-1), None)
+            # "alignment"
+            cand_d = d[(i-1,j-1)] + node1.compare(node2)[2]
+            if cand_d > best_d:
+                best_d = cand_d
+                best_p = ((i-1,j-1), (i-1, j-1))
+            d[(i,j)] = best_d
+            p[(i,j)] = best_p
+
+    pairs = []
+    def backtrace(idx):
+        ptr = p[idx]
+        if ptr is None:
+            pass
+        else:
+            next_idx, pair = ptr
+            if pair is not None:
+                pairs.append(pair)
+            backtrace(next_idx)
+    backtrace((m, n))
+    return pairs
 
 # The next function constructs the initial table with the candidates
 # for the edge-to-edge correspondence. Each edge in the source graph
