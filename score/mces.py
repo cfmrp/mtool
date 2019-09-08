@@ -164,7 +164,7 @@ def levenshtein(graph1, graph2):
             d[(i,j)] = best_d
             p[(i,j)] = best_p
 
-    pairs = []
+    pairs = {i: None for i in range(len(graph1.nodes))}
     def backtrace(idx):
         ptr = p[idx]
         if ptr is None:
@@ -172,10 +172,11 @@ def levenshtein(graph1, graph2):
         else:
             next_idx, pair = ptr
             if pair is not None:
-                pairs.append(pair)
+                i, j = pair
+                pairs[i] = j
             backtrace(next_idx)
     backtrace((m, n))
-    return pairs
+    return sorted(pairs.items())
 
 # The next function constructs the initial table with the candidates
 # for the edge-to-edge correspondence. Each edge in the source graph
