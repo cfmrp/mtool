@@ -484,6 +484,8 @@ def evaluate(gold, system, format = "json",
     for id, g, s, tops, labels, properties, anchors, \
         edges, attributes, matches, steps, error \
         in results:
+        framework = g.framework if g.framework else "none";
+        if framework not in scores: scores[framework] = dict();
         if s.nodes is None or len(s.nodes) == 0:
             total_empty += 1;
         if error is None:
@@ -499,18 +501,20 @@ def evaluate(gold, system, format = "json",
             if mces_limit == 0 or steps > mces_limit: total_inexact += 1;
 
             if trace and s.nodes is not None and len(s.nodes) != 0:
-                if id in scores:
-                    print("mces.evaluate(): duplicate graph identifier: {}"
-                          "".format(id), file = sys.stderr);
-                scores[id] \
+                if id in scores[framework]:
+                    print("mces.evaluate(): duplicate {} graph identifier: {}"
+                          "".format(framework, id), file = sys.stderr);
+                scores[framework][id] \
                     = {"tops": tops, "labels": labels,
                        "properties": properties, "anchors": anchors,
-                       "edges": edges, "attributes": attributes};
+                       "edges": edges, "attributes": attributes,
+                       "exact": not (mces_limit == 0 or steps > mces_limit),
+                       "steps": steps};
         else:
-            print("mces.evaluate(): exception in graph #{}:\n{}"
-                  "".format(id, error));
+            print("mces.evaluate(): exception in {} graph #{}:\n{}"
+                  "".format(framework, id, error));
             if trace:
-                scores[id] = {"error": repr(error)};
+                scores[framework][id] = {"error": repr(error)};
 
     total_all = {"g": 0, "s": 0, "c": 0};
     for counts in [total_tops, total_labels, total_properties, total_anchors,
