@@ -356,7 +356,8 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
                                            identities1 = g_identities,
                                            identities2 = s_identities);
         if trace > 1:
-            print("\n\ngraph #{}".format(g.id), file = sys.stderr);
+            print("\n\ngraph #{} ({})".format(g.id, g.framework),
+                  file = sys.stderr);
             print("number of gold nodes: {}".format(len(g.nodes)),
                   file = sys.stderr);
             print("number of system nodes: {}".format(len(s.nodes)),
