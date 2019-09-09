@@ -233,10 +233,13 @@ def splits(xs):
     # The source graph node is not mapped to any target graph node.
     yield -1, xs
 
-def sorted_splits(i, xs, rewards, pairs):
+def sorted_splits(i, xs, rewards, pairs, bilexical):
     for _i, _j in pairs:
         if i == _i: j = _j if _j is not None else -1
-    sorted_xs = sorted(xs, key=rewards[i].item, reverse=True)
+    if bilexical:
+        sorted_xs = sorted(xs, key=lambda x: (-abs(x-i), rewards[i].item(x), -x), reverse=True)
+    else:
+        sorted_xs = sorted(xs, key=lambda x: (rewards[i].item, -x), reverse=True)
     if j in sorted_xs or j < 0:
         if j >= 0: sorted_xs.remove(j)
         sorted_xs = [j] + sorted_xs
@@ -299,7 +302,7 @@ def correspondences(graph1, graph2, pairs, rewards, limit=None, trace=0,
     # Visit the source graph nodes in descending order of rewards.
     source_todo = [pair[0] for pair in pairs]
     todo = [(cv, ce, source_todo, sorted_splits(
-        source_todo[0], graph2.nodes, rewards, pairs))]
+        source_todo[0], graph2.nodes, rewards, pairs, bilexical))]
     n_matched = 0
     while todo and (limit is None or counter <= limit):
         cv, ce, source_todo, untried = todo[-1]
@@ -324,7 +327,8 @@ def correspondences(graph1, graph2, pairs, rewards, limit=None, trace=0,
                     if trace > 2: print("> ", end="", file = sys.stderr)
                     todo.append((new_cv, new_ce, new_source_todo,
                                  sorted_splits(new_source_todo[0],
-                                               new_untried, rewards, pairs)))
+                                               new_untried, rewards,
+                                               pairs, bilexical)))
                 else:
                     if trace > 2: print(file = sys.stderr)
                     yield new_cv, new_ce
@@ -465,7 +469,7 @@ def evaluate(gold, system, format = "json",
     total_anchors = {"g": 0, "s": 0, "c": 0}
     total_edges = {"g": 0, "s": 0, "c": 0}
     total_attributes = {"g": 0, "s": 0, "c": 0}
-    scores = dict() if trace else None
+    scores = dict()
     if cores > 1:
         if trace > 1:
             print("mces.evaluate(): using {} cores".format(cores),
