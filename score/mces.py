@@ -469,7 +469,7 @@ def evaluate(gold, system, format = "json",
     total_anchors = {"g": 0, "s": 0, "c": 0}
     total_edges = {"g": 0, "s": 0, "c": 0}
     total_attributes = {"g": 0, "s": 0, "c": 0}
-    scores = dict()
+    scores = dict() if trace else None;
     if cores > 1:
         if trace > 1:
             print("mces.evaluate(): using {} cores".format(cores),
@@ -489,7 +489,7 @@ def evaluate(gold, system, format = "json",
         edges, attributes, matches, steps, error \
         in results:
         framework = g.framework if g.framework else "none";
-        if framework not in scores: scores[framework] = dict();
+        if scores is not None and framework not in scores: scores[framework] = dict();
         if s.nodes is None or len(s.nodes) == 0:
             total_empty += 1;
         if error is None:
