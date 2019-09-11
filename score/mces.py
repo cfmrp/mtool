@@ -64,7 +64,8 @@ class InternalGraph():
                     self.edges.append((i, reindex(j), None))
 
 def initial_node_correspondences(graph1, graph2,
-                                 identities1=None, identities2=None):
+                                 identities1, identities2,
+                                 bilexical):
     #
     # in the following, we assume that nodes in raw and internal
     # graphs correspond by position into the .nodes. list
@@ -78,7 +79,7 @@ def initial_node_correspondences(graph1, graph2,
     # initialization needs to be sensitive to whether or not we are looking at
     # ordered graphs (aka Flavor 0, or the SDP family)
     #
-    if graph1.flavor == 0 or graph1.framework in {"dm", "psd", "pas", "ccd"}:
+    if bilexical:
         queue = None;
     else:
         queue = [];
@@ -291,9 +292,8 @@ def domination_conflict(graph1, graph2, cv, i, j, dominated1, dominated2):
 # (graph1) and the target graph (graph2). This implements the
 # algorithm of McGregor (1982).
 def correspondences(graph1, graph2, pairs, rewards, limit=None, trace=0,
-                    dominated1=None, dominated2=None):
+                    dominated1=None, dominated2=None, bilexical = False):
     global counter
-    bilexical = graph1.flavor == 0 and graph2.flavor == 0
     index = dict()
     graph1 = InternalGraph(graph1, index)
     graph2 = InternalGraph(graph2, index)
@@ -356,12 +356,13 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
         counter = 0;
         g_identities, s_identities, g_dominated, s_dominated \
             = identities(g, s);
+        bilexical = g.flavor == 0 or g.framework in {"dm", "psd", "pas", "ccd"};
         pairs, rewards \
             = initial_node_correspondences(g, s,
-                                           identities1 = g_identities,
-                                           identities2 = s_identities);
+                                           g_identities, s_identities,
+                                           bilexical);
         if trace > 1:
-            print("\n\ngraph #{} ({})".format(g.id, g.framework),
+            print("\n\ngraph #{} ({}; {})".format(g.id, g.flavor, g.framework),
                   file = sys.stderr);
             print("number of gold nodes: {}".format(len(g.nodes)),
                   file = sys.stderr);
@@ -402,7 +403,8 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
                 enumerate(correspondences(g, s, pairs, rewards,
                                           mces_limit, trace,
                                           dominated1 = g_dominated,
-                                          dominated2 = s_dominated)):
+                                          dominated2 = s_dominated,
+                                          bilexical = bilexical)):
 #               assert is_valid(ce)
 #               assert is_injective(ce)
                 n = sum(map(len, ce.values()));
