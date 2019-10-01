@@ -238,9 +238,9 @@ def sorted_splits(i, xs, rewards, pairs, bilexical):
     for _i, _j in pairs:
         if i == _i: j = _j if _j is not None else -1
     if bilexical:
-        sorted_xs = sorted(xs, key=lambda x: (-abs(x-i), rewards[i].item(x), -x), reverse=True)
+        sorted_xs = sorted(xs, key=lambda x: (-abs(x-i), rewards.item((i, x)), -x), reverse=True)
     else:
-        sorted_xs = sorted(xs, key=lambda x: (rewards[i].item, -x), reverse=True)
+        sorted_xs = sorted(xs, key=lambda x: (rewards.item((i, x)), -x), reverse=True)
     if j in sorted_xs or j < 0:
         if j >= 0: sorted_xs.remove(j)
         sorted_xs = [j] + sorted_xs
