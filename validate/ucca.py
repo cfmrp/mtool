@@ -2,6 +2,8 @@ import sys
 
 from validate.utilities import report
 
+CATEGORIES = {'H', 'A', 'P', 'S', 'D', 'G', 'C', 'E', 'F', 'N', 'R', 'T', 'Q', 'L', 'U'}
+
 
 def is_primary(edge):
     for attribute, value in zip(edge.attributes or (), edge.values or ()):
@@ -17,7 +19,12 @@ def test(graph, actions, stream=sys.stderr):
             n += 1
             report(graph,
                    "missing or invalid label",
-                   edge=edge, framework = "UCCA", stream=stream)
+                   edge=edge, framework="UCCA", stream=stream)
+        elif edge.lab not in CATEGORIES:
+            n += 1
+            report(graph,
+                   "edge label is not a UCCA category",
+                   edge=edge, framework="UCCA", stream=stream)
     roots = []
     for node in graph.nodes:
         primary = [edge for edge in node.incoming_edges if is_primary(edge)]
