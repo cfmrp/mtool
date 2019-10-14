@@ -3,7 +3,6 @@
 # -*- coding: utf-8; -*-
 
 import argparse;
-import inspector;
 import json;
 import multiprocessing as mp;
 import re;
@@ -18,6 +17,7 @@ import codec.eds;
 import codec.mrp;
 import codec.sdp;
 import codec.ucca;
+import inspector;
 import score.edm;
 import score.mces;
 import score.sdp;
@@ -173,7 +173,7 @@ def main():
     sys.exit(1);
 
   if arguments.write is not None and \
-     arguments.write not in {"dot", "evaluation", "id", "json", "mrp", "txt"}:
+     arguments.write not in {"dot", "evaluation", "id", "json", "mrp", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -369,7 +369,10 @@ def main():
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
-
+    elif arguments.write == "ucca":
+      # Prints everything to one long file. To split to separate XML files, use, e.g.,
+      # csplit -zk output.xml '/^<root/' -f '' -b '%02d.xml' {99}
+      codec.ucca.write(graph, graph.input, file = arguments.output)
   if arguments.overlay:
     for graph in overlays:
       if graph:
