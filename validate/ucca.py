@@ -39,4 +39,12 @@ def test(graph, actions, stream=sys.stderr):
         report(graph,
                "multiple roots in graph",
                node=roots[0], framework="UCCA", stream=stream)
+    else:
+        for node in roots:
+            remotes = [edge for edge in node.incoming_edges if not is_primary(edge)]
+            if remotes:
+                n += 1
+                report(graph,
+                       "root has remote parents",
+                       node=node, edge=remotes[0], framework="UCCA", stream=stream)
     return n
