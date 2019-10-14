@@ -28,7 +28,7 @@ def test(graph, actions, stream=sys.stderr):
     roots = []
     for node in graph.nodes:
         primary = [edge for edge in node.incoming_edges if is_primary(edge)]
-        primary_parents = [edge.src for edge in primary]
+        primary_parents = {edge.src for edge in primary}
         if not primary:
             roots.append(node)
         elif len(primary_parents) > 1:
