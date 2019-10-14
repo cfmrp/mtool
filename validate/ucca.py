@@ -32,6 +32,11 @@ def test(graph, actions, stream=sys.stderr):
             report(graph,
                    "edge label is not a UCCA category",
                    edge=edge, framework="UCCA", stream=stream)
+        if edge.is_loop():
+            n += 1
+            report(graph,
+                   "loop edge",
+                   edge=edge, framework="UCCA", stream=stream)
     roots = []
     for node in graph.nodes:
         primary = [edge for edge in node.incoming_edges if is_primary(edge)]
@@ -62,7 +67,7 @@ def test(graph, actions, stream=sys.stderr):
                        "root has remote parents",
                        node=node, edge=remotes[0], framework="UCCA", stream=stream)
     for node in graph.nodes:
-        if not node.outgoing_edges and not node.anchors and not is_implicit(node):
+        if node.is_leaf() and not node.anchors and not is_implicit(node):
             n += 1
             report(graph,
                    "unanchored non-implicit node",
