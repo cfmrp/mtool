@@ -123,7 +123,7 @@ def read(fp, text = None, prefix = None):
 
 def is_punct(node):
     for edge in node.incoming_edges or ():
-        if edge.lab.upper == "U":
+        if edge.lab.upper() == "U":
             return True
     return False
 
