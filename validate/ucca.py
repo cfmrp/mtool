@@ -12,6 +12,13 @@ def is_primary(edge):
     return True
 
 
+def is_implicit(node):
+    for prop, value in zip(node.properties or (), node.values or ()):
+        if prop == "implicit" and value != "false":
+            return True
+    return False
+
+
 def test(graph, actions, stream=sys.stderr):
     n = 0
     for edge in graph.edges:
@@ -54,4 +61,10 @@ def test(graph, actions, stream=sys.stderr):
                 report(graph,
                        "root has remote parents",
                        node=node, edge=remotes[0], framework="UCCA", stream=stream)
+    for node in graph.nodes:
+        if not node.outgoing_edges and not node.anchors and not is_implicit(node):
+            n += 1
+            report(graph,
+                   "unanchored non-implicit node",
+                   node=node, framework="UCCA", stream=stream)
     return n
