@@ -1,9 +1,12 @@
 import re;
+import xml.etree.ElementTree as ET
+from itertools import groupby
 from operator import attrgetter;
 from pathlib import Path;
 
 from graph import Graph;
-from ucca import layer0, layer1;
+from ucca import core, layer0, layer1, textutil;
+from ucca.convert import to_standard
 from ucca.ioutil import get_passages;
 
 
@@ -116,3 +119,59 @@ def read(fp, text = None, prefix = None):
             print(exception);
             continue;
         yield graph, None;
+
+
+def is_punct(node):
+    for edge in node.incoming_edges or ():
+        if edge.lab.upper == "U":
+            return True
+    return False
+
+
+def is_remote(edge):
+    for attribute, value in zip(edge.attributes or (), edge.values or ()):
+        if attribute == "remote" and value != "false":
+            return True
+    return False
+
+
+def is_implicit(node):
+    for prop, value in zip(node.properties or (), node.values or ()):
+        if prop == "implicit" and value != "false":
+            return True
+    return False
+
+
+def graph2passage(graph, input):
+    passage = core.Passage(graph.id)
+    l0 = layer0.Layer0(passage)
+    anchors = {(anchor["from"], anchor["to"], is_punct(node)) for node in graph.nodes for anchor in node.anchors or ()}
+    terminals = {(i, j): l0.add_terminal(text=input[i:j], punct=punct) for i, j, punct in sorted(anchors)}
+    l1 = layer1.Layer1(passage)
+    queue = [(node, None) for node in graph.nodes if node.is_root()]
+    id_to_unit = {}
+    remotes = []
+    while queue:
+        parent, parent_unit = queue.pop(0)
+        for tgt, edges in groupby(sorted(parent.outgoing_edges, key=attrgetter("tgt")), key=attrgetter("tgt")):
+            edges = list(edges)
+            labels = [edge.lab for edge in edges]
+            if is_remote(edges[0]):
+                remotes.append((parent_unit, labels, tgt))
+            else:
+                child = graph.find_node(tgt)
+                child_unit = id_to_unit[tgt] = l1.add_fnode_multiple(parent_unit, labels, implicit=is_implicit(child))
+                queue.append((child, child_unit))
+        for anchor in parent.anchors or ():
+            parent_unit.add(layer1.EdgeTags.Terminal, terminals[anchor["from"], anchor["to"]])
+    for parent, labels, tgt in remotes:
+        l1.add_remote_multiple(parent, labels, id_to_unit[tgt])
+    return passage
+
+
+def write(graph, input, file):
+    passage = graph2passage(graph, input)
+    root = to_standard(passage)
+    xml_string = ET.tostring(root).decode()
+    output = textutil.indent_xml(xml_string)
+    file.write(output)
