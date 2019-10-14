@@ -4,10 +4,10 @@ from validate.utilities import report
 
 
 def is_primary(edge):
-    for attribute, value in zip(edge.attributes, edge.values):
+    for attribute, value in zip(edge.attributes or (), edge.values or ()):
         if attribute == "remote" and value != "false":
-            return True
-    return False
+            return False
+    return True
 
 
 def test(graph, actions, stream=sys.stderr):
