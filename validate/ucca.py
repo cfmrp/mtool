@@ -27,7 +27,7 @@ def test(graph, actions, stream=sys.stderr):
             report(graph,
                    "missing or invalid label",
                    edge=edge, framework="UCCA", stream=stream)
-        elif edge.lab not in CATEGORIES:
+        elif edge.lab.upper() not in CATEGORIES:
             n += 1
             report(graph,
                    "edge label is not a UCCA category",
