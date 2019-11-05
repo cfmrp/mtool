@@ -350,7 +350,7 @@ def is_injective(correspondence):
                 seen.add(x)
     return True
 
-def schedule(g, s, rrhc_limit, mces_limit, trace):
+def schedule(g, s, rrhc_limit, mces_limit, trace, errors):
     global counter;
     try:
         counter = 0;
@@ -361,6 +361,7 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
             = initial_node_correspondences(g, s,
                                            g_identities, s_identities,
                                            bilexical);
+        if errors is not None and g.framework not in errors: errors[g.framework] = dict();
         if trace > 1:
             print("\n\ngraph #{} ({}; {})".format(g.id, g.flavor, g.framework),
                   file = sys.stderr);
@@ -414,7 +415,8 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
                               "".format(counter, i, n), file = sys.stderr);
                     matches, best_cv, best_ce = n, cv, ce;
         tops, labels, properties, anchors, edges, attributes \
-            = g.score(s, best_cv or pairs);
+            = g.score(s, best_cv or pairs, errors);
+        print(errors);
 #       assert matches >= smatches;
         if trace > 1:
             if smatches and matches != smatches:
@@ -436,12 +438,12 @@ def schedule(g, s, rrhc_limit, mces_limit, trace):
         #
         # _fix_me_
         #
+        raise e;
         return g.id, g, s, None, None, None, None, None, None, None, None, e;
 
 def evaluate(gold, system, format = "json",
              limits = None,
-             cores = 0, trace = 0, quiet = False):
-    
+             cores = 0, trace = 0, errors = None, quiet = False):
     def update(total, counts):
         for key in ("g", "s", "c"):
             total[key] += counts[key];
@@ -478,13 +480,14 @@ def evaluate(gold, system, format = "json",
                   file = sys.stderr);
         with mp.Pool(cores) as pool:
             results = pool.starmap(schedule,
-                                   ((g, s, rrhc_limit, mces_limit, trace)
+                                   ((g, s, rrhc_limit, mces_limit,
+                                     trace, errors)
                                     for g, s
                                     in score.core.intersect(gold,
                                                             system,
                                                             quiet = quiet)));
     else:
-        results = (schedule(g, s, rrhc_limit, mces_limit, trace)
+        results = (schedule(g, s, rrhc_limit, mces_limit, trace, errors)
                    for g, s in score.core.intersect(gold, system));
 
     for id, g, s, tops, labels, properties, anchors, \

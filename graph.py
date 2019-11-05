@@ -453,7 +453,7 @@ class Graph(object):
                 self.find_node(edge.src).outgoing_edges.add(edge);
                 self.find_node(edge.tgt).incoming_edges.add(edge);
 
-    def score(self, graph, correspondences):
+    def score(self, graph, correspondences, errors = None):
         def tuples(graph, identities):
             tops = set();
             labels = set();
@@ -483,7 +483,16 @@ class Graph(object):
                         attributes.add(tuple(identity + [attribute, value]));
             return tops, labels, properties, anchors, edges, attributes;
 
-        def count(gold, system):
+        def count(gold, system, key):
+            if errors is not None:
+                missing = gold - system;
+                surplus = system - gold;
+                if key == "anchors":
+                    if missing: errors[key] = {"missing": {id: list(set) for id, set in missing}};
+                    if surplus: errors[key] = {"surplus": {id: list(set) for id, set in surplus}};
+                else:
+                    if missing: errors[key] = {"missing": list(missing)};
+                    if surplus: errors[key] = {"surplus": list(surplus)};
             return {"g": len(gold), "s": len(system), "c": len(gold & system)};
 
         if correspondences is None or len(correspondences) == 0:
@@ -501,6 +510,7 @@ class Graph(object):
             elif isinstance(correspondences[0], int):
                 correspondences = {i: j if j is not None else -1
                                    for i, j in enumerate(correspondences)};
+
         identities1 = dict();
         identities2 = dict();
         for i, pair in enumerate(correspondences.items()):
@@ -521,9 +531,13 @@ class Graph(object):
             = tuples(self, identities1);
         stops, slabels, sproperties, sanchors, sedges, sattributes \
             = tuples(graph, identities2);
-        return count(gtops, stops), count(glabels, slabels), \
-            count(gproperties, sproperties), count(ganchors, sanchors), \
-            count(gedges, sedges), count(gattributes, sattributes);
+        if errors is not None:
+            errors[self.framework][self.id] = errors = {"correspondences": correspondences};
+        return count(gtops, stops, "tops"), count(glabels, slabels, "labels"), \
+            count(gproperties, sproperties, "properties"), \
+            count(ganchors, sanchors, "anchors"), \
+            count(gedges, sedges, "edges"), \
+            count(gattributes, sattributes, "attributes");
 
     def encode(self):
         json = {"id": self.id};

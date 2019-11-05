@@ -142,6 +142,8 @@ def main():
   parser.add_argument("--id");
   parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
+  parser.add_argument("--errors",
+                      type = argparse.FileType("w", encoding = ENCODING));
   parser.add_argument("input", nargs = "?",
                       type = argparse.FileType("r", encoding = ENCODING),
                       default = sys.stdin);
@@ -297,6 +299,7 @@ def main():
           print("main.py(): invalid ‘--limit’ {}; exit.".format(arguments.limit),
                 file = sys.stderr);
           sys.exit(1);
+      errors = dict() if arguments.errors else None;
       result = None;
       launch = time.time(), time.process_time();
       if metric == "edm":
@@ -309,6 +312,7 @@ def main():
                                      limits = limits,
                                      cores = arguments.cores,
                                      trace = arguments.trace,
+                                     errors = errors,
                                      quiet = arguments.quiet);
       elif metric == "sdp":
         result = score.sdp.evaluate(gold, graphs,
@@ -343,6 +347,10 @@ def main():
             print("\"{}\": ".format(key), file = arguments.output, end = "");
             json.dump(result[key], arguments.output, indent = None);
           print("}", file = arguments.output);
+      if errors is not None:
+        print(errors);
+        if arguments.write == "json" or True:
+          json.dump(errors, arguments.errors, indent = None);
     sys.exit(0);
       
   for graph in graphs:
