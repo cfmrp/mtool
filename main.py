@@ -348,8 +348,12 @@ def main():
             json.dump(result[key], arguments.output, indent = None);
           print("}", file = arguments.output);
       if errors is not None:
-        print(errors);
-        if arguments.write == "json" or True:
+        if arguments.write == "dot":
+          for graph in gold:
+            graph.dot(arguments.errors,
+                      ids = arguments.ids, strings = arguments.strings,
+                      errors = errors[graph.framework][graph.id]);
+        elif arguments.write == "json" or True:
           json.dump(errors, arguments.errors, indent = None);
     sys.exit(0);
       

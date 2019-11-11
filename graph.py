@@ -149,7 +149,8 @@ class Node(object):
         anchors = json.get("anchors", None)
         return Node(id, label, properties, values, anchors)
 
-    def dot(self, stream, input = None, ids = False, strings = False):
+    def dot(self, stream, input = None, ids = False, strings = False,
+            errors = None):
         if self.label \
            or ids \
            or self.properties and self.values \
@@ -294,7 +295,7 @@ class Edge(object):
         values = json.get("values", None)
         return Edge(src, tgt, lab, normal, attributes, values)
         
-    def dot(self, stream, input = None, strings = False):
+    def dot(self, stream, input = None, strings = False, errors = None):
         label = self.lab;
         if label and self.normal:
             if label[:-3] == self.normal:
@@ -454,7 +455,45 @@ class Graph(object):
                 self.find_node(edge.tgt).incoming_edges.add(edge);
 
     def score(self, graph, correspondences, errors = None):
+
+        #
+        # accommodate the various conventions for node correspondence matrices
+        #
+        if isinstance(correspondences, list) and len(correspondences) > 0:
+            if isinstance(correspondences[0], tuple):
+                correspondences = {i: j if j is not None else -1
+                                   for i, j in correspondences};
+            elif isinstance(correspondences[0], int):
+                correspondences = {i: j if j is not None else -1
+                                   for i, j in enumerate(correspondences)};
+
+        #
+        # all tuples use node identifiers from the gold graph, where there is
+        # a correspondence; otherwise (we appear to) synthesize new unique
+        # identifiers for remaining nodes from both graphs.
+        #
+        identities1 = dict();
+        identities2 = dict();
+        for i, pair in enumerate(correspondences.items()):
+            identities1[self.nodes[pair[0]].id] = i;
+            if pair[1] >= 0:
+                identities2[graph.nodes[pair[1]].id] = i;
+        i = len(correspondences);
+        for node in self.nodes:
+            if node.id not in identities1:
+                identities1[node.id] = i;
+                i += 1;
+        for node in graph.nodes:
+            if node.id not in identities2:
+                identities2[node.id] = i;
+                i += 1;
+
         def tuples(graph, identities):
+            #
+            # .identities. is a hash table mapping node identifiers into the
+            # 'corresponding' identifier space, such that paired nodes (and
+            # only these) share the same identifier.
+            #
             tops = set();
             labels = set();
             properties = set();
@@ -474,25 +513,88 @@ class Graph(object):
                         anchor = score.core.explode(graph.input, anchor);
                     anchors.add((identity, anchor));
             for edge in graph.edges:
-                edges.add((identities[edge.src], identities[edge.tgt],
-                           edge.lab));
+                identity \
+                    = (identities[edge.src], identities[edge.tgt], edge.lab);
+                edges.add(identity);
                 if edge.attributes and edge.values:
-                    identity \
-                        = [identities[edge.src], identities[edge.tgt], edge.lab];
                     for attribute, value in zip(edge.attributes, edge.values):
-                        attributes.add(tuple(identity + [attribute, value]));
+                        attributes.add(tuple(list(identity) + [attribute, value]));
             return tops, labels, properties, anchors, edges, attributes;
 
         def count(gold, system, key):
+
+            #
+            # map 'corresponding' identifiers back to the original graphs
+            #
+            def native(id, identities):
+                for key, value in identities.items():
+                    if id == value: return key;
+                    
             if errors is not None:
                 missing = gold - system;
                 surplus = system - gold;
-                if key == "anchors":
-                    if missing: errors[key] = {"missing": {id: list(set) for id, set in missing}};
-                    if surplus: errors[key] = {"surplus": {id: list(set) for id, set in surplus}};
-                else:
-                    if missing: errors[key] = {"missing": list(missing)};
-                    if surplus: errors[key] = {"surplus": list(surplus)};
+                if len(missing) > 0 or len(surplus) > 0 and key not in errors:
+                    errors[key] = dict();
+                if key == "tops":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [native(id, identities1) for id in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                            = [native(id, identities2) for id in surplus];
+                elif key == "labels":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [(native(id, identities1), label)
+                               for id, label in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                            = [(native(id, identities2), label)
+                               for id, label in surplus];
+                elif key == "properties":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [(native(id, identities1), property, value)
+                               for id, property,value in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                            = [(native(id, identities2), property, value)
+                               for id, property, value in surplus];
+                elif key == "anchors":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [(native(id, identities1), list(anchor))
+                               for id, anchor in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                            = [(native(id, identities2), list(anchor))
+                               for id, anchor in surplus];
+                elif key == "edges":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [(native(source, identities1),
+                                native(target, identities1), label)
+                               for source, target, label in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                               = [(native(source, identities2),
+                                   native(target, identities2), label)
+                                  for source, target, label in surplus];
+                elif key == "attributes":
+                    if missing:
+                        errors[key]["missing"] \
+                            = [(native(source, identities1),
+                                native(target, identities1), label,
+                                attribute, value)
+                               for source, target, label, attribute, value
+                               in missing];
+                    if surplus:
+                        errors[key]["surplus"] \
+                            = [(native(source, identities2),
+                                native(target, identities2), label,
+                                attribute, value)
+                               for source, target, label, attribute, value
+                               in surplus];
             return {"g": len(gold), "s": len(system), "c": len(gold & system)};
 
         if correspondences is None or len(correspondences) == 0:
@@ -500,39 +602,14 @@ class Graph(object):
                    count(set(), set()), count(set(), set()), \
                    count(set(), set()), count(set(), set());
             
-        #
-        # accommodate the various conventions for node correspondence matrices
-        #
-        if isinstance(correspondences, list) and len(correspondences) > 0:
-            if isinstance(correspondences[0], tuple):
-                correspondences = {i: j if j is not None else -1
-                                   for i, j in correspondences};
-            elif isinstance(correspondences[0], int):
-                correspondences = {i: j if j is not None else -1
-                                   for i, j in enumerate(correspondences)};
-
-        identities1 = dict();
-        identities2 = dict();
-        for i, pair in enumerate(correspondences.items()):
-            identities1[self.nodes[pair[0]].id] = i;
-            if pair[1] >= 0:
-                identities2[graph.nodes[pair[1]].id] = i;
-        i = len(correspondences);
-        for node in self.nodes:
-            if node.id not in identities1:
-                identities1[node.id] = i;
-                i += 1;
-        for node in graph.nodes:
-            if node.id not in identities2:
-                identities2[node.id] = i;
-                i += 1;
 
         gtops, glabels, gproperties, ganchors, gedges, gattributes \
             = tuples(self, identities1);
         stops, slabels, sproperties, sanchors, sedges, sattributes \
             = tuples(graph, identities2);
         if errors is not None:
-            errors[self.framework][self.id] = errors = {"correspondences": correspondences};
+            errors[self.framework][self.id] = errors \
+                = {"correspondences": [correspondences[i] for i in range(len(correspondences))]};
         return count(gtops, stops, "tops"), count(glabels, slabels, "labels"), \
             count(gproperties, sproperties, "properties"), \
             count(ganchors, sanchors, "anchors"), \
@@ -594,7 +671,7 @@ class Graph(object):
                                      "".format(graph.id, i))
         return graph
 
-    def dot(self, stream, ids = False, strings = False):
+    def dot(self, stream, ids = False, strings = False, errors = None):
         print("digraph \"{}\" {{\n  top [ style=invis ];"
               "".format(self.id),
               file = stream);
@@ -602,7 +679,7 @@ class Graph(object):
             if node.is_top:
                 print("  top -> {};".format(node.id), file = stream);
         for node in self.nodes:
-            node.dot(stream, self.input, ids, strings);
+            node.dot(stream, self.input, ids, strings, errors);
         for edge in self.edges:
-            edge.dot(stream, self.input, strings);
+            edge.dot(stream, self.input, strings, errors);
         print("}", file = stream);

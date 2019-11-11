@@ -416,7 +416,6 @@ def schedule(g, s, rrhc_limit, mces_limit, trace, errors):
                     matches, best_cv, best_ce = n, cv, ce;
         tops, labels, properties, anchors, edges, attributes \
             = g.score(s, best_cv or pairs, errors);
-        print(errors);
 #       assert matches >= smatches;
         if trace > 1:
             if smatches and matches != smatches:
