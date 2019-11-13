@@ -347,6 +347,7 @@ def main():
             print("\"{}\": ".format(key), file = arguments.output, end = "");
             json.dump(result[key], arguments.output, indent = None);
           print("}", file = arguments.output);
+
       if errors is not None:
         if arguments.write == "dot":
           for graph in gold:

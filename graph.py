@@ -151,40 +151,82 @@ class Node(object):
 
     def dot(self, stream, input = None, ids = False, strings = False,
             errors = None):
+
+        missing = [None, [], [], None];
+        surplus = [None, [], [], None];
+        if errors is not None:
+            if "labels" in errors and "missing" in errors["labels"]:
+                for id, label in errors["labels"]["missing"]:
+                    if id == self.id: missing[0] = label;
+            if "properties" in errors and "missing" in errors["properties"]:
+                for id, property, value in errors["properties"]["missing"]:
+                    if id == self.id: missing[1].append(property); missing[2].append(value);
+            if "anchors" in errors and "missing" in errors["anchors"]:
+                for id, anchor in errors["anchors"]["missing"]:
+                    if id == self.id: missing[3] = anchor;
+            match = errors["correspondences"][self.id];
+            if "labels" in errors and "surplus" in errors["labels"]:
+                for id, label in errors["labels"]["surplus"]:
+                    if id == match: surplus[0] = label;
+            if "properties" in errors and "surplus" in errors["properties"]:
+                for id, property, value in errors["properties"]["surplus"]:
+                    if id == match: surplus[1].append(property); surplus[2].append(value);
+            if "anchors" in errors and "surplus" in errors["anchors"]:
+                for id, anchor in errors["anchors"]["surplus"]:
+                    if id == match: surplus[3] = anchor;
+            print("node #{}:\n  missing: {}\n  surplus: {}\n\n".format(self.id, missing, surplus));
+
         if self.label \
            or ids \
            or self.properties and self.values \
-           or self.anchors:
+           or self.anchors \
+           or missing[0] is not None or len(missing[1]) > 0 or missing[3] is not None \
+           or surplus[0] is not None or len(surplus[1]) > 0 or surplus[3] is not None:
             print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
                   "".format(self.id),
                   end = "", file = stream);
             if ids:
                 print("<tr><td colspan=\"2\">#{}</td></tr>"
                       "".format(self.id), end = "", file = stream);
+
             if self.label:
-                print("<tr><td colspan=\"2\">{}</td></tr>"
-                      "".format(html.escape(self.label, False)),
+                font = "<font color=\"red\">" if missing[0] else "<font>";
+                print("<tr><td colspan=\"2\">{}{}</font></td></tr>"
+                      "".format(font, html.escape(self.label, False)),
                       end = "", file = stream);
+            if surplus[0]:
+                font = "<font color=\"blue\">" if missing[0] else "<font>";
+                print("<tr><td colspan=\"2\">{}{}</font></td></tr>"
+                      "".format(font, html.escape(surplus[0], False)),
+                      end = "", file = stream);
+
             if self.anchors:
                 print("<tr><td colspan=\"2\">", end = "", file = stream);
                 for anchor in self.anchors:
-                    if "from" in anchor and "to" in anchor:
-                        if strings and input:
-                            print("{}<font face=\"Courier\">{}</font>"
-                                  "".format(",&nbsp;" if anchor != self.anchors[0] else "",
-                                            html.escape(input[anchor["from"]:anchor["to"]])),
-                                  end = "", file = stream);
-                        else:
-                            print("{}〈{}:{}〉"
-                                  "".format("&thinsp;" if anchor != self.anchors[0] else "",
-                                            anchor["from"], anchor["to"]),
-                                  end = "", file = stream);
-                    elif False and isinstance(anchor, str):
+                    if strings and input:
                         print("{}<font face=\"Courier\">{}</font>"
                               "".format(",&nbsp;" if anchor != self.anchors[0] else "",
-                                        html.escape(anchor)),
+                                        html.escape(input[anchor["from"]:anchor["to"]])),
+                              end = "", file = stream);
+                    else:
+                        print("{}〈{}:{}〉"
+                              "".format("&thinsp;" if anchor != self.anchors[0] else "",
+                                        anchor["from"], anchor["to"]),
                               end = "", file = stream);
                 print("</td></tr>", end = "", file = stream);
+            if missing[3]:
+                print("<tr><td colspan=\"2\"><font color=\"red\">{", end = "", file = stream);
+                for index in missing[3]:
+                    print("{}{}".format("&thinsp;" if index != missing[3][0] else "", index),
+                          end = "", file = stream);
+                print("}</font></td></tr>", end = "", file = stream);
+            if surplus[3]:
+                print("<tr><td colspan=\"2\"><font color=\"blue\">{", end = "", file = stream);
+                for index in surplus[3]:
+                    print("{}{}".format("&thinsp;" if index != surplus[3][0] else "", index),
+                          end = "", file = stream);
+                print("}</font></td></tr>", end = "", file = stream);
+
             if self.properties and self.values:
                 for name, value in zip(self.properties, self.values):
                     print("<tr><td sides=\"l\" border=\"1\" align=\"left\">{}</td><td sides=\"r\" border=\"1\" align=\"left\">{}</td></tr>"
@@ -563,11 +605,11 @@ class Graph(object):
                 elif key == "anchors":
                     if missing:
                         errors[key]["missing"] \
-                            = [(native(id, identities1), list(anchor))
+                            = [(native(id, identities1), list(sorted(anchor)))
                                for id, anchor in missing];
                     if surplus:
                         errors[key]["surplus"] \
-                            = [(native(id, identities2), list(anchor))
+                            = [(native(id, identities2), list(sorted(anchor)))
                                for id, anchor in surplus];
                 elif key == "edges":
                     if missing:
@@ -601,7 +643,6 @@ class Graph(object):
             return count(set(), set()), count(set(), set()), \
                    count(set(), set()), count(set(), set()), \
                    count(set(), set()), count(set(), set());
-            
 
         gtops, glabels, gproperties, ganchors, gedges, gattributes \
             = tuples(self, identities1);
@@ -609,7 +650,8 @@ class Graph(object):
             = tuples(graph, identities2);
         if errors is not None:
             errors[self.framework][self.id] = errors \
-                = {"correspondences": [correspondences[i] for i in range(len(correspondences))]};
+                = {"correspondences": [correspondences[i]
+                                       for i in range(len(correspondences))]};
         return count(gtops, stops, "tops"), count(glabels, slabels, "labels"), \
             count(gproperties, sproperties, "properties"), \
             count(ganchors, sanchors, "anchors"), \
