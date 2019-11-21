@@ -182,9 +182,11 @@ class Node(object):
            or self.anchors \
            or missing[0] is not None or len(missing[1]) > 0 or missing[3] is not None \
            or surplus[0] is not None or len(surplus[1]) > 0 or surplus[3] is not None:
+
             print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
                   "".format(self.id),
                   end = "", file = stream);
+
             if ids:
                 print("<tr><td colspan=\"2\">#{}</td></tr>"
                       "".format(self.id), end = "", file = stream);
@@ -214,18 +216,15 @@ class Node(object):
                                         anchor["from"], anchor["to"]),
                               end = "", file = stream);
                 print("</td></tr>", end = "", file = stream);
-            if missing[3]:
-                print("<tr><td colspan=\"2\"><font color=\"red\">{", end = "", file = stream);
-                for index in missing[3]:
+            def __anchors__(anchors, color):
+                print("<tr><td colspan=\"2\"><font color=\"{}\">{{"
+                      "".format(color), end = "", file = stream);
+                for index in anchors:
                     print("{}{}".format("&thinsp;" if index != missing[3][0] else "", index),
                           end = "", file = stream);
                 print("}</font></td></tr>", end = "", file = stream);
-            if surplus[3]:
-                print("<tr><td colspan=\"2\"><font color=\"blue\">{", end = "", file = stream);
-                for index in surplus[3]:
-                    print("{}{}".format("&thinsp;" if index != surplus[3][0] else "", index),
-                          end = "", file = stream);
-                print("}</font></td></tr>", end = "", file = stream);
+            if missing[3]: __anchors__(missing[3], "red");
+            if surplus[3]: __anchors__(surplus[3], "blue");
 
             if self.properties and self.values:
                 for name, value in zip(self.properties, self.values):
@@ -233,6 +232,18 @@ class Node(object):
                           "".format(html.escape(name, False),
                                     html.escape(value), False),
                           end = "", file = stream);
+            def __properties__(names, values, color):
+                font = "<font color=\"{}\">".format(color);
+                for name, value in zip(names, values):
+                    print("<tr><td sides=\"l\" border=\"1\" align=\"left\">{}{}</font>"
+                          "</td><td sides=\"r\" border=\"1\" align=\"left\">{}{}</font></td></tr>"
+                          "".format(font, html.escape(name, False),
+                                    font, html.escape(value), False),
+                          end = "", file = stream);
+                
+            if len(missing[1]) > 0: __properties__(missing[1], missing[2], "red");
+            if len(surplus[1]) > 0: __properties__(surplus[1], surplus[2], "blue");
+                
             print("</table>> ];", file = stream);
         else:
             print("  {} [ shape=point, width=0.2 ];"
