@@ -32,6 +32,7 @@ ENCODING = "utf-8";
 NORMALIZATIONS = {"anchors", "case", "edges", "attributes"};
 VALIDATIONS = {"input", "anchors", "edges",
                "amr", "eds", "sdp", "ucca"}
+SDP_FORMATS = {"ccd", "dm", "pas", "psd"}
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
@@ -62,7 +63,7 @@ def read_graphs(stream, format = None,
       = codec.amr.read(stream, full = full, reify = reify,
                        text = text,
                        alignment = alignment, quiet = quiet);
-  elif format in {"ccd", "dm", "pas", "psd"}:
+  elif format in SDP_FORMATS:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
     generator = codec.eds.read(stream, reify = reify, text = text);
@@ -241,6 +242,8 @@ def main():
 
   if arguments.validate == ["all"]:
     actions = VALIDATIONS;
+    if arguments.read in SDP_FORMATS:
+        actions.remove("input")
   else:
     actions = set();
     for action in arguments.validate:
