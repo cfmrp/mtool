@@ -8,7 +8,7 @@ def read_matrix(file):
             return rows;
         else:
             rows.append(line.split("\t"));
-    return None
+    return rows or None
 
 def read_matrices(file):
     file.readline().rstrip();
