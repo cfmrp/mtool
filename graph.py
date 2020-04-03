@@ -388,6 +388,9 @@ class Graph(object):
         self.flavor = FLAVORS.get(framework) if flavor is None else flavor;
         self.framework = framework;
 
+    def size(self):
+        return len(self.nodes);
+
     def source(self, value = None):
         if value is not None: self._source = value;
         return self._source;
