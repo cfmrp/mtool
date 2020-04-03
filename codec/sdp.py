@@ -8,7 +8,7 @@ def read_matrix(file):
             return rows;
         else:
             rows.append(line.split("\t"));
-    return None
+    return rows or None
 
 def read_matrices(file):
     file.readline().rstrip();
@@ -28,7 +28,7 @@ def matrix2graph(matrix, framework = None, text = None):
         node = graph.add_node(id, label = lemma,
                               properties = list(properties.keys()),
                               values = list(properties.values()),
-                              top = top, anchors = [row[1]]);
+                              top = top, anchors = [row[1]] if text else None);
         if row[5] == '+':
             predicates.append(id);
     for tgt, row in enumerate(matrix[1:]):
