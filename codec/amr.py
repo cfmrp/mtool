@@ -96,6 +96,10 @@ def amr2graph(id, amr, full = False, reify = False, alignment = None):
                     graph.add_edge(j, i, key)
                     i += 1
                 else:
+                    #
+                    # _fix_me_
+                    # this assumes that properties are unique.  (1-apr-20; oe)
+                    #
                     node.set_property(key, val);
 
     for src, r in zip(amr.nodes, amr.relations):
