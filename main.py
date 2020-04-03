@@ -16,6 +16,7 @@ import codec.conllu;
 import codec.eds;
 import codec.mrp;
 import codec.sdp;
+import codec.treex;
 import codec.ucca;
 import inspector;
 import score.edm;
@@ -68,6 +69,8 @@ def read_graphs(stream, format = None,
     generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
     generator = codec.mrp.read(stream)
+  elif format == "treex":
+    generator = codec.treex.read(stream)
   elif format == "ucca":
     generator = codec.ucca.read(stream, text = text, prefix = prefix);
   elif format == "conllu" or format == "ud":
@@ -166,7 +169,7 @@ def main():
       text = path;
 
   if arguments.read not in {"mrp",
-                            "ccd", "dm", "pas", "psd",
+                            "ccd", "dm", "pas", "psd", "treex",
                             "eds", "ucca",
                             "amr",
                             "conllu", "ud"}:
