@@ -30,7 +30,7 @@ def read(fp, text = None):
   ns = "{http://ufal.mff.cuni.cz/pdt/pml/}";
   #
   # _fix_me_
-  # factor out the anchor()ing code into a reusable form.        (oe, 4-apr-20)
+  # factor out the anchor()ing code into a reusable form.        (oe; 4-apr-20)
   #
   n = None;
   i = 0;
@@ -110,10 +110,10 @@ def read(fp, text = None):
     # from corresponding analytical nodes; and create actual (new) graph nodes.
     #
     mapping = {};
+    to = 0;
     for node in sorted(nodes, key = itemgetter(1)):
       mapping[node[0]] = i = len(mapping);
-      lemma = node[2].findtext(ns + "t_lemma");
-      anchors = None;
+      properties = dict();
       a = node[2].find(ns + "a");
       if a is not None:
         anchors = list();
@@ -123,7 +123,44 @@ def read(fp, text = None):
           else:
             for lm in lex.findall(ns + "LM"):
               anchors.append(anchoring[lm.text]);
+        anchors = sorted(anchors, key = itemgetter("to"));
+        to = anchors[-1]["to"];
+      else:
+        #
+        # _fix_me_
+        # discuss anchoring of generated nodes: currently, for uniformity, we
+        # anchor them to an empty string immediately after the final character
+        # of the preceding non-generated node.  but this arguably introduces a
+        # vacuous piece of information, unless one were to argue that it rather
+        # is an encoding of the node status for generated nodes? (oe; 4-apr-20)
+        #
+        anchors = [{"from": to, "to": to}];
+      lemma = node[2].findtext(ns + "t_lemma");
+      frame = node[2].findtext(ns + "val_frame.rf");
+      #
+      # where present (mostly on verbs), extract the valency frame identifier
+      # _fix_me_
+      # for compatibility with earlier PSD releases, strip prefix that seems to
+      # identify the valency dictionary.                         (oe; 4-apr-20) 
+      #
+      if frame is not None:
+        if "#" in frame:
+          properties["frame"] = frame[frame.index("#") + 1:];
+        else:
+          properties["frame"] = frame;
+      #
+      # selectively expose grammatemes as node-local properties, but ignore
+      # (vanilla but very high-frequent) default values
+      #
+      grammatemes = node[2].find(ns + "gram");
+      if grammatemes is not None:
+        for property, default in [("tense", {"nil"}), ("negation", {"neg0"})]:
+          match = grammatemes.findtext(ns + property);
+          if match is not None and match not in default:
+            properties[property] = match;
       graph.add_node(id = i, label = lemma, anchors = anchors,
+                     properties = properties.keys(),
+                     values = properties.values(),
                      top = node[0] == top.get("id"));
     #
     # similarly, record all edges, now using mapped identifiers
