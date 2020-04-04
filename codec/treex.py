@@ -14,10 +14,12 @@ def walk(id, node, parent, nodes, edges, ns):
                     "".format(id));
 #  print(i, o, node.findtext(ns + "t_lemma"));
   nodes.append((i, int(o) if o is not None else 0, node));
+
   if edges is not None:
     functor = node.findtext(ns + "functor");
     if parent is not None and functor is not None:
       edges.append((parent, i, functor));
+
   children = node.find(ns + "children");
   if children is not None:
     for child in children:
@@ -28,6 +30,7 @@ def walk(id, node, parent, nodes, edges, ns):
 
 def read(fp, text = None):
   ns = "{http://ufal.mff.cuni.cz/pdt/pml/}";
+
   #
   # _fix_me_
   # factor out the anchor()ing code into a reusable form.        (oe; 4-apr-20)
@@ -114,6 +117,7 @@ def read(fp, text = None):
     for node in sorted(nodes, key = itemgetter(1)):
       mapping[node[0]] = i = len(mapping);
       properties = dict();
+
       a = node[2].find(ns + "a");
       if a is not None:
         anchors = list();
@@ -135,7 +139,12 @@ def read(fp, text = None):
         # is an encoding of the node status for generated nodes? (oe; 4-apr-20)
         #
         anchors = [{"from": to, "to": to}];
+
+      #
+      # the node label comes from the tectogrammatical lemma
+      #
       lemma = node[2].findtext(ns + "t_lemma");
+
       frame = node[2].findtext(ns + "val_frame.rf");
       #
       # where present (mostly on verbs), extract the valency frame identifier
@@ -148,6 +157,7 @@ def read(fp, text = None):
           properties["frame"] = frame[frame.index("#") + 1:];
         else:
           properties["frame"] = frame;
+
       #
       # selectively expose grammatemes as node-local properties, but ignore
       # (vanilla but very high-frequent) default values
@@ -158,15 +168,18 @@ def read(fp, text = None):
           match = grammatemes.findtext(ns + property);
           if match is not None and match not in default:
             properties[property] = match;
+
       graph.add_node(id = i, label = lemma, anchors = anchors,
                      properties = properties.keys(),
                      values = properties.values(),
                      top = node[0] == top.get("id"));
+
     #
     # similarly, record all edges, now using mapped identifiers
     #
     for source, target, label in edges:
       graph.add_edge(mapping[source], mapping[target], label);
+
     #
     # in a second pass (so that all internal identifiers are mapped already),
     # create edges reflecting coreference annotations.
@@ -175,4 +188,5 @@ def read(fp, text = None):
       coref = node[2].findtext(ns + "coref_gram.rf");
       if coref is not None:
         graph.add_edge(mapping[node[0]], mapping[coref], "coref_gram");
+
     yield graph, None;
