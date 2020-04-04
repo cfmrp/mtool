@@ -11,7 +11,7 @@ def walk(id, node, parent, nodes, edges, ns):
   if i is None or o is None and parent is not None:
     raise Exception("missing ‘id’ or ‘ord’ values while decoding tree #{}; exit."
                     "".format(id));
-#  print(o, node.findtext(ns + "t_lemma"));
+  print(o, node.findtext(ns + "t_lemma"));
   nodes.append((i, int(o) if o is not None else 0, node));
   functor = node.findtext(ns + "functor");
   if parent is not None and functor is not None:
@@ -49,7 +49,10 @@ def read(fp, text = None):
       mapping[node[0]] = i = len(mapping);
       lemma = node[2].findtext(ns + "t_lemma");
       graph.add_node(id = i, label = lemma, top = node[0] == top);
-#      print(len(nodes), nodes, edges);        
+    for node in nodes:
+      coref = node[2].findtext(ns + "coref_gram.rf");
+      if coref is not None:
+        graph.add_edge(mapping[node[0]], mapping[coref], "coref_gram");
     for source, target, label in edges:
       graph.add_edge(mapping[source], mapping[target], label);
     yield graph, None;
