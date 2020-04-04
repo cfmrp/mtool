@@ -5,7 +5,6 @@ import xml.etree.ElementTree as ET;
 
 from graph import Graph;
 
-
 def walk(id, node, parent, nodes, edges, ns):
   i = node.get("id");
   o = node.findtext(ns + "ord");
@@ -29,6 +28,10 @@ def walk(id, node, parent, nodes, edges, ns):
 
 def read(fp, text = None):
   ns = "{http://ufal.mff.cuni.cz/pdt/pml/}";
+  #
+  # _fix_me_
+  # factor out the anchor()ing code into a reusable form.        (oe, 4-apr-20)
+  #
   n = None;
   i = 0;
 
@@ -91,10 +94,7 @@ def read(fp, text = None):
           walk(id, root, None, surface, None, ns);
           walk(id, top, None, nodes, edges, ns);
     #
-    # determine character-based anchors for all surface tokens (from the
-    # analytical layer), i.e. the .surface.
-    #
-    #
+    # determine character-based anchors for all .surface. (analytical) tokens
     #
     anchoring = dict();
     if sentence is not None:
@@ -103,6 +103,12 @@ def read(fp, text = None):
       i = 0;
       for node in sorted(surface, key = itemgetter(1)):
         anchoring[node[0]] = anchor(node[2].findtext(ns + "form"));
+
+    #
+    # now process tectogrammatical nodes in surface order (as indicated in the
+    # annotations): map to consecutive numerical identifiers; retrieve anchors
+    # from corresponding analytical nodes; and create actual (new) graph nodes.
+    #
     mapping = {};
     for node in sorted(nodes, key = itemgetter(1)):
       mapping[node[0]] = i = len(mapping);
@@ -119,10 +125,17 @@ def read(fp, text = None):
               anchors.append(anchoring[lm.text]);
       graph.add_node(id = i, label = lemma, anchors = anchors,
                      top = node[0] == top.get("id"));
+    #
+    # similarly, record all edges, now using mapped identifiers
+    #
+    for source, target, label in edges:
+      graph.add_edge(mapping[source], mapping[target], label);
+    #
+    # in a second pass (so that all internal identifiers are mapped already),
+    # create edges reflecting coreference annotations.
+    #
     for node in nodes:
       coref = node[2].findtext(ns + "coref_gram.rf");
       if coref is not None:
         graph.add_edge(mapping[node[0]], mapping[coref], "coref_gram");
-    for source, target, label in edges:
-      graph.add_edge(mapping[source], mapping[target], label);
     yield graph, None;

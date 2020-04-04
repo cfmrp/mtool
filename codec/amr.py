@@ -97,7 +97,7 @@ def amr2graph(id, amr, full = False, reify = False, alignment = None):
                     i += 1
                 else:
                     #
-                    # _fix_me_
+                    # _fix_me_ 
                     # this assumes that properties are unique.  (1-apr-20; oe)
                     #
                     node.set_property(key, val);
