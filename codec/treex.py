@@ -5,22 +5,6 @@ import xml.etree.ElementTree as ET;
 
 from graph import Graph;
 
-def index(id, node, nodes, ns):
-  i = node.get("id");
-  o = node.findtext(ns + "ord");
-  if i is None or o is None and parent is not None:
-    raise Exception("treex.index(): "
-                    "missing ‘id’ or ‘ord’ values while decoding tree #{}; exit."
-                    "".format(id));
-#  print(i, o, node.findtext(ns + "form"));
-  nodes.append((i, int(o) if o is not None else 0, node));
-  children = node.find(ns + "children");
-  if children is not None:
-    for child in children:
-      if child.tag == ns + "LM":
-        index(id, child, nodes, ns);
-    if children.find(ns + "LM") is None:
-      index(id, children, nodes, ns);
 
 def walk(id, node, parent, nodes, edges, ns):
   i = node.get("id");
@@ -31,9 +15,10 @@ def walk(id, node, parent, nodes, edges, ns):
                     "".format(id));
 #  print(i, o, node.findtext(ns + "t_lemma"));
   nodes.append((i, int(o) if o is not None else 0, node));
-  functor = node.findtext(ns + "functor");
-  if parent is not None and functor is not None:
-    edges.append((parent, i, functor));
+  if edges is not None:
+    functor = node.findtext(ns + "functor");
+    if parent is not None and functor is not None:
+      edges.append((parent, i, functor));
   children = node.find(ns + "children");
   if children is not None:
     for child in children:
@@ -103,8 +88,14 @@ def read(fp, text = None):
             raise Exception("treex.read(): "
                             "missing ‘a_tree’ or ‘t_tree’ values while decoding tree #{}; exit."
                             "".format(id));
-          index(id, root, surface, ns);
+          walk(id, root, None, surface, None, ns);
           walk(id, top, None, nodes, edges, ns);
+    #
+    # determine character-based anchors for all surface tokens (from the
+    # analytical layer), i.e. the .surface.
+    #
+    #
+    #
     anchoring = dict();
     if sentence is not None:
       graph.add_input(sentence);
