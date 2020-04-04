@@ -16,8 +16,8 @@ import score.core;
 # because all constants are normalized to lowercase strings prior to testing
 # for default values, we need to deal in the normalized values here.
 #
-ATTRIBUTE_DEFAULTS = {"remote": "false"}
-FLAVORS = {"dm": 0, "psd": 0, "eds": 1, "ucca": 1, "amr": 2}
+ATTRIBUTE_DEFAULTS = {"remote": "false"};
+FLAVORS = {"dm": 0, "psd": 0, "ptt": 0, "eds": 1, "ucca": 1, "amr": 2};
 
 
 class Node(object):
