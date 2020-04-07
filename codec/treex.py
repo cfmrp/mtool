@@ -78,7 +78,7 @@ def read(fp, text = None):
   bundles = tree.find(ns + "bundles");
   for item in bundles.findall(ns + "LM"):
     id = item.get("id");
-    graph = Graph(id, flavor = 0, framework = "ptt");
+    graph = Graph(id, flavor = 0, framework = "ptg");
     surface = list(); nodes = list(); edges = list();
     for zone in item.iter(ns + "zone"):
       if zone.get("language") == "en":

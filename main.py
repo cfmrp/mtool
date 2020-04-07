@@ -15,6 +15,7 @@ import codec.amr;
 import codec.conllu;
 import codec.eds;
 import codec.mrp;
+import codec.pmb;
 import codec.sdp;
 import codec.treex;
 import codec.ucca;
@@ -63,6 +64,8 @@ def read_graphs(stream, format = None,
       = codec.amr.read(stream, full = full, reify = reify,
                        text = text,
                        alignment = alignment, quiet = quiet);
+  if format == "pmb":
+    generator = codec.pmb.read(stream, reify = reify, text = text);
   elif format in {"ccd", "dm", "pas", "psd"}:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
@@ -171,7 +174,7 @@ def main():
   if arguments.read not in {"mrp",
                             "ccd", "dm", "pas", "psd", "treex",
                             "eds", "ucca",
-                            "amr",
+                            "amr", "pmb",
                             "conllu", "ud"}:
     print("main.py(): invalid input format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
@@ -197,7 +200,7 @@ def main():
      arguments.format not in {"mrp",
                               "ccd", "dm", "pas", "psd",
                               "eds", "ucca",
-                              "amr",
+                              "amr", "pmb",
                               "conllu", "ud"}:
     print("main.py(): invalid gold format: {}; exit."
           "".format(arguments.read), file = sys.stderr);

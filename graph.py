@@ -17,14 +17,15 @@ import score.core;
 # for default values, we need to deal in the normalized values here.
 #
 ATTRIBUTE_DEFAULTS = {"remote": "false"};
-FLAVORS = {"dm": 0, "psd": 0, "ptt": 0, "eds": 1, "ucca": 1, "amr": 2};
+FLAVORS = {"dm": 0, "psd": 0, "ptg": 0, "eds": 1, "ucca": 1, "amr": 2};
 
 
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
-                 anchors = None, top = False):
+                 anchors = None, top = False, type = 1):
         self.id = id
+        self.type = type;
         self.label = label;
         self.properties = properties;
         self.values = values;
@@ -45,6 +46,10 @@ class Node(object):
             self.properties = [name];
             self.values = [value];
 
+    def add_anchor(self, anchor):
+        if self.anchors is None: self.anchors = [anchor];
+        elif anchor not in self.anchors: self.anchors.append(anchor);
+    
     def is_root(self):
         return len(self.incoming_edges) == 0
 
@@ -401,10 +406,10 @@ class Graph(object):
 
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
-                 anchors = None, top = False):
+                 anchors = None, top = False, type = 1):
         node = Node(id if id is not None else len(self.nodes),
                     label = label, properties = properties, values = values,
-                    anchors = anchors, top = top);
+                    anchors = anchors, top = top, type = type);
         self.nodes.append(node)
         return node
 
