@@ -47,8 +47,9 @@ class Node(object):
             self.values = [value];
 
     def add_anchor(self, anchor):
-        if self.anchors is None: self.anchors = [anchor];
-        elif anchor not in self.anchors: self.anchors.append(anchor);
+        if anchor is not None:
+            if self.anchors is None: self.anchors = [anchor];
+            elif anchor not in self.anchors: self.anchors.append(anchor);
     
     def is_root(self):
         return len(self.incoming_edges) == 0
