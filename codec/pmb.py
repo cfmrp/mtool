@@ -16,7 +16,8 @@ def read(fp, text = None, reify = False):
   fp.readline().rstrip();
   fp.readline().rstrip();
   sentence = fp.readline()[5:-1];
-  graph = Graph(42, flavor = 2, framework = "drg");
+  graph = Graph("42", flavor = 2, framework = "drg");
+  graph.add_input(sentence);
   mapping = dict();
   scopes = dict();
   i = 3;
