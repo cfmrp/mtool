@@ -5,27 +5,56 @@ import xml.etree.ElementTree as ET;
 
 from graph import Graph;
 
+id_matcher = re.compile(r'^%%% bin/boxer --input (?:[^/]+/)?p([0-9]+)/d([0-9]+)/');
 referent_matcher = re.compile(r'^(b[0-9]+) REF ([enpstx][0-9]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
 concept_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ("[^ ]+") ([^ ]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
 role_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ([enpstx][0-9]+) ([^ ]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
 discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+) +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 empty_matcher = re.compile(r'^ +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 
-def read(fp, text = None, reify = False):
-#  print(os.path.split(os.path.realpath(os.path.dirname(fp.name))));
-  fp.readline().rstrip();
-  fp.readline().rstrip();
-  sentence = fp.readline()[5:-1];
-  graph = Graph("42", flavor = 2, framework = "drg");
-  graph.add_input(sentence);
-  mapping = dict();
-  scopes = dict();
-  finis = list();
-  i = 3;
+def read(fp, text = None, full = False, reify = False):
+  graph = None; id = None;
+  mapping = dict(); scopes = dict(); finis = list();
+  i = 0;
+  header = 3;
   for line in fp:
-    i += 1;
+    line = line.rstrip(); i += 1;
+    #
+    # to support newline-separated concatenations of clause files (a format not
+    # used in the native PMB 3.0 release), 
+    #
+    if len(line) == 0:
+      for box, referent, node in finis:
+        if scopes[referent] != box or full:
+          graph.add_edge(mapping[box].id, node.id, "in");
+      yield graph, None;
+      graph = None; id = None;
+      mapping = dict(); scopes = dict(); finis = list();
+      header = 3;
+      continue;
+    #
+    # each block of clauses is preceded by three comment lines, which we use to
+    # extract the sentence identifier and underlying string.
+    #
+    if header:
+      if header == 3: pass;
+      elif header == 2:
+        match = id_matcher.match(line);
+        if match is None:
+          raise Exception("pbm.read(): missing identifier in ‘{}’ [{}]; exit."
+                          "".format(line, i));
+        part, document = match.groups();
+        id = int(part) * 10000 + int(document);
+      elif header == 1:
+        sentence = line[5:-1];
+        graph = Graph(id, flavor = 2, framework = "drg");
+        graph.add_input(sentence);
+      header -= 1;
+      continue;
+    #
+    # from here onwards, we are looking at genuine, contentful clauses
+    #
     anchor = None;
-    line = line.rstrip();
     match = referent_matcher.match(line);
     if match is not None:
       box, referent, start, end = match.groups();
@@ -102,7 +131,13 @@ def read(fp, text = None, reify = False):
           elif empty_matcher.search(line) is None:
             raise Exception("pmb.read(): invalid clause ‘{}’ [{}]."
                             "".format(line, i));
+
+  #
+  # finally, as we reach an end of file (without an empty line terminating the
+  # preceding block of clauses, as is the standard format in PMB), finalize the
+  # graph and return it.
+  #
   for box, referent, node in finis:
-    if scopes[referent] != box or False:
+    if scopes[referent] != box or full:
       graph.add_edge(mapping[box].id, node.id, "in");
-  yield graph, None;
+  if graph is not None: yield graph, None;

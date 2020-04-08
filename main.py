@@ -65,7 +65,8 @@ def read_graphs(stream, format = None,
                        text = text,
                        alignment = alignment, quiet = quiet);
   if format == "pmb":
-    generator = codec.pmb.read(stream, reify = reify, text = text);
+    generator = codec.pmb.read(stream, full = full,
+                               reify = reify, text = text);
   elif format in {"ccd", "dm", "pas", "psd"}:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
