@@ -79,7 +79,7 @@ def read(fp, text = None, reify = False):
           elif target not in mapping: mapping[target] = graph.add_node();
           if reify:
             if box not in mapping: mapping[box] = graph.add_node(type = 0);
-            node = graph.add_node(label = role);
+            node = graph.add_node(label = role, type = 2);
             graph.add_edge(mapping[box].id, node.id, "in");
             graph.add_edge(mapping[source].id, node.id, None);
             graph.add_edge(node.id, mapping[target].id, None);

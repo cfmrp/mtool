@@ -189,8 +189,8 @@ class Node(object):
            or missing[0] is not None or len(missing[1]) > 0 or missing[3] is not None \
            or surplus[0] is not None or len(surplus[1]) > 0 or surplus[3] is not None:
 
-            print("  {} [ label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
-                  "".format(self.id),
+            print("  {} [ {}label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
+                  "".format(self.id, "shape=diamond, " if self.type == 2 else ""),
                   end = "", file = stream);
 
             if ids:
@@ -252,8 +252,8 @@ class Node(object):
                 
             print("</table>> ];", file = stream);
         else:
-            print("  {} [ shape=point, width=0.2 ];"
-                  "".format(self.id), file = stream);
+            print("  {} [ shape={}, width=0.2 ];"
+                  "".format(self.id, "square, label=\" \"" if self.type == 0 else "circle"), file = stream);
 
     def __key(self):
         return self.id
