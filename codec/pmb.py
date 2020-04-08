@@ -26,7 +26,7 @@ def read(fp, text = None, full = False, reify = False):
     if len(line) == 0:
       for box, referent, node in finis:
         if scopes[referent] != box or full:
-          graph.add_edge(mapping[box].id, node.id, "in");
+          graph.add_edge(mapping[box].id, node.id, "∈");
       yield graph, None;
       graph = None; id = None;
       mapping = dict(); scopes = dict(); finis = list();
@@ -73,7 +73,7 @@ def read(fp, text = None, full = False, reify = False):
       else:
         node = mapping[referent];
         node.add_anchor(anchor);
-      graph.add_edge(mapping[box].id, mapping[referent].id, "in");
+      graph.add_edge(mapping[box].id, mapping[referent].id, "∈");
     else:
       match = concept_matcher.match(line);
       if match is not None:
@@ -99,7 +99,7 @@ def read(fp, text = None, full = False, reify = False):
         if match is not None:
           box, role, source, target, start, end = match.groups();
           if source not in mapping: mapping[source] = graph.add_node();
-          if target[0] == "\"" and target[-1] == "\"":
+          if target[0] == "\"" and target[-1] == "\"" and target not in mapping:
             if start is not None and end is not None:
               anchor = {"from": int(start), "to": int(end)};
             mapping[target] \
@@ -125,8 +125,8 @@ def read(fp, text = None, full = False, reify = False):
           match = discourse_matcher.match(line);
           if match is not None:
             top, relation, bottom = match.groups();
-            if top not in mapping: mapping[top] = graph.add_node();
-            if bottom not in mapping: mapping[bottom] = graph.add_node();
+            if top not in mapping: mapping[top] = graph.add_node(type = 0);
+            if bottom not in mapping: mapping[bottom] = graph.add_node(type = 0);
             graph.add_edge(mapping[top].id, mapping[bottom].id, relation);
           elif empty_matcher.search(line) is None:
             raise Exception("pmb.read(): invalid clause ‘{}’ [{}]."
@@ -139,5 +139,5 @@ def read(fp, text = None, full = False, reify = False):
   #
   for box, referent, node in finis:
     if scopes[referent] != box or full:
-      graph.add_edge(mapping[box].id, node.id, "in");
+      graph.add_edge(mapping[box].id, node.id, "∈");
   if graph is not None: yield graph, None;
