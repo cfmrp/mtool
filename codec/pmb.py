@@ -31,14 +31,16 @@ def read(fp, text = None, reify = False):
       box, referent, start, end = match.groups();
       if referent in scopes:
         if scopes[referent] != box:
-          raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ (instead of ‘{}’); exit."
+          raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
+                          "(instead of ‘{}’); exit."
                           "".format(referent, box, scopes[referent]));
       else: scopes[referent] = box;
       if box not in mapping: mapping[box] = graph.add_node(type = 0);
       if start is not None and end is not None:
         anchor = {"from": int(start), "to": int(end)};
       if referent not in mapping:
-        mapping[referent] = graph.add_node(anchors = [anchor] if anchor is not None else None);
+        mapping[referent] \
+          = graph.add_node(anchors = [anchor] if anchor else None);
       else:
         node = mapping[referent];
         node.add_anchor(anchor);
@@ -49,13 +51,15 @@ def read(fp, text = None, reify = False):
         box, lemma, sense, referent, start, end = match.groups();
         if referent in scopes:
           if scopes[referent] != box:
-            raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ (instead of ‘{}’); exit."
+            raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
+                            "(instead of ‘{}’); exit."
                             "".format(referent, box, scopes[referent]));
         else: scopes[referent] = box;
         if start is not None and end is not None:
           anchor = {"from": int(start), "to": int(end)};
         if referent not in mapping:
-          mapping[referent] = node = graph.add_node(anchors = [anchor] if anchor is not None else None);
+          mapping[referent] = node \
+            = graph.add_node(anchors = [anchor] if anchor else None);
         else:
           node = mapping[referent];
           node.add_anchor(anchor);
@@ -65,20 +69,29 @@ def read(fp, text = None, reify = False):
         match = role_matcher.match(line);
         if match is not None:
           box, role, source, target, start, end = match.groups();
-          if source in scopes:
-            if scopes[source] != box and not reify:
-              raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ (instead of ‘{}’); exit."
-                              "".format(source, box, scopes[source]));
-          else:
-            scopes[source] = box;
           if source not in mapping: mapping[source] = graph.add_node();
           if target[0] == "\"" and target[-1] == "\"":
             if start is not None and end is not None:
               anchor = {"from": int(start), "to": int(end)};
-            mapping[target] = graph.add_node(label = target,
-                                             anchors = [anchor] if anchor is not None else None);
+            mapping[target] \
+              = graph.add_node(label = target,
+                               anchors = [anchor] if anchor else None);
           elif target not in mapping: mapping[target] = graph.add_node();
-          graph.add_edge(mapping[source].id, mapping[target].id, role);
+          if reify:
+            if box not in mapping: mapping[box] = graph.add_node(type = 0);
+            node = graph.add_node(label = role);
+            graph.add_edge(mapping[box].id, node.id, "in");
+            graph.add_edge(mapping[source].id, node.id, None);
+            graph.add_edge(node.id, mapping[target].id, None);
+          else:
+            if source in scopes:
+              if scopes[source] != box:
+                raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
+                                "(instead of ‘{}’); exit."
+                                "".format(source, box, scopes[source]));
+            else:
+              scopes[source] = box;
+            graph.add_edge(mapping[source].id, mapping[target].id, role);
         else:
           match = discourse_matcher.match(line);
           if match is not None:
