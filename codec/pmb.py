@@ -1,6 +1,7 @@
 from operator import itemgetter;
 import os.path;
 import re;
+import sys;
 import xml.etree.ElementTree as ET;
 
 from graph import Graph;
@@ -13,6 +14,18 @@ discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+) +%(?: .* \[[0-9]+\
 empty_matcher = re.compile(r'^ +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 
 def read(fp, text = None, full = False, reify = False):
+
+  def finish(graph, mapping, finis, scopes):
+    if reify:
+      for box, referent, node in finis:
+        if full or box not in scopes[referent]:
+          graph.add_edge(mapping[box].id, node.id, "∈");
+    else:
+      for referent in scopes:
+        if len(scopes[referent]) > 1:
+          print("pbm.read(): stray referent ‘{}’ in boxes {}."
+                "".format(referent, scopes[referent]), file=sys.stderr);
+ 
   graph = None; id = None;
   mapping = dict(); scopes = dict(); finis = list();
   i = 0;
@@ -24,9 +37,7 @@ def read(fp, text = None, full = False, reify = False):
     # used in the native PMB 3.0 release), 
     #
     if len(line) == 0:
-      for box, referent, node in finis:
-        if scopes[referent] != box or full:
-          graph.add_edge(mapping[box].id, node.id, "∈");
+      finish(graph, mapping, finis, scopes);
       yield graph, None;
       graph = None; id = None;
       mapping = dict(); scopes = dict(); finis = list();
@@ -52,18 +63,22 @@ def read(fp, text = None, full = False, reify = False):
       header -= 1;
       continue;
     #
-    # from here onwards, we are looking at genuine, contentful clauses
+    # from here onwards, we are looking at genuine, contentful clauses.  from
+    # inspecting some of the files, it appears they are organized according to
+    # surface (reading) order, and we cannot assume that discourse referents
+    # are 'introduced' (in some box) prior to their first occurance in e.g. a
+    # role or concept clause.
     #
     anchor = None;
     match = referent_matcher.match(line);
     if match is not None:
       box, referent, start, end = match.groups();
       if referent in scopes:
-        if scopes[referent] != box:
+        if box not in scopes[referent]:
           raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
                           "(instead of ‘{}’); exit."
                           "".format(referent, box, scopes[referent]));
-      else: scopes[referent] = box;
+      else: scopes[referent] = {box};
       if box not in mapping: mapping[box] = graph.add_node(type = 0);
       if start is not None and end is not None:
         anchor = {"from": int(start), "to": int(end)};
@@ -79,11 +94,11 @@ def read(fp, text = None, full = False, reify = False):
       if match is not None:
         box, lemma, sense, referent, start, end = match.groups();
         if referent in scopes:
-          if scopes[referent] != box:
+          if box not in scopes[referent]:
             raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
                             "(instead of ‘{}’); exit."
                             "".format(referent, box, scopes[referent]));
-        else: scopes[referent] = box;
+        else: scopes[referent] = {box};
         if start is not None and end is not None:
           anchor = {"from": int(start), "to": int(end)};
         if referent not in mapping:
@@ -113,13 +128,8 @@ def read(fp, text = None, full = False, reify = False):
             graph.add_edge(mapping[source].id, node.id, None);
             graph.add_edge(node.id, mapping[target].id, None);
           else:
-            if source in scopes:
-              if scopes[source] != box:
-                raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
-                                "(instead of ‘{}’); exit."
-                                "".format(source, box, scopes[source]));
-            else:
-              scopes[source] = box;
+            if source in scopes: scopes[source].add(box);
+            else: scopes[source] = {box};
             graph.add_edge(mapping[source].id, mapping[target].id, role);
         else:
           match = discourse_matcher.match(line);
@@ -131,13 +141,12 @@ def read(fp, text = None, full = False, reify = False):
           elif empty_matcher.search(line) is None:
             raise Exception("pmb.read(): invalid clause ‘{}’ [{}]."
                             "".format(line, i));
-
   #
   # finally, as we reach an end of file (without an empty line terminating the
   # preceding block of clauses, as is the standard format in PMB), finalize the
   # graph and return it.
   #
-  for box, referent, node in finis:
-    if scopes[referent] != box or full:
-      graph.add_edge(mapping[box].id, node.id, "∈");
-  if graph is not None: yield graph, None;
+  if graph is not None:
+    finish(graph, mapping, finis, scopes);
+    yield graph, None;
+    
