@@ -20,12 +20,12 @@ def read(fp, text = None, reify = False):
   graph.add_input(sentence);
   mapping = dict();
   scopes = dict();
+  finis = list();
   i = 3;
   for line in fp:
     i += 1;
     anchor = None;
     line = line.rstrip();
-#    print(line);
     match = referent_matcher.match(line);
     if match is not None:
       box, referent, start, end = match.groups();
@@ -80,7 +80,7 @@ def read(fp, text = None, reify = False):
           if reify:
             if box not in mapping: mapping[box] = graph.add_node(type = 0);
             node = graph.add_node(label = role, type = 2);
-            graph.add_edge(mapping[box].id, node.id, "in");
+            finis.append((box, source, node));
             graph.add_edge(mapping[source].id, node.id, None);
             graph.add_edge(node.id, mapping[target].id, None);
           else:
@@ -102,4 +102,7 @@ def read(fp, text = None, reify = False):
           elif empty_matcher.search(line) is None:
             raise Exception("pmb.read(): invalid clause ‘{}’ [{}]."
                             "".format(line, i));
+  for box, referent, node in finis:
+    if scopes[referent] != box or False:
+      graph.add_edge(mapping[box].id, node.id, "in");
   yield graph, None;
