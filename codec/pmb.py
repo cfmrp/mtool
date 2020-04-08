@@ -23,8 +23,9 @@ def read(fp, text = None, full = False, reify = False):
     else:
       for referent in scopes:
         if len(scopes[referent]) > 1:
-          print("pbm.read(): stray referent ‘{}’ in boxes {}."
-                "".format(referent, scopes[referent]), file=sys.stderr);
+          print("pbm.read(): [graph #{}] stray referent ‘{}’ in boxes {}."
+                "".format(graph.id, referent, scopes[referent]),
+                file=sys.stderr);
  
   graph = None; id = None;
   mapping = dict(); scopes = dict(); finis = list();
@@ -52,8 +53,8 @@ def read(fp, text = None, full = False, reify = False):
       elif header == 2:
         match = id_matcher.match(line);
         if match is None:
-          raise Exception("pbm.read(): missing identifier in ‘{}’ [{}]; exit."
-                          "".format(line, i));
+          raise Exception("pbm.read(): [line {}] missing identifier in ‘{}’; exit."
+                          "".format(i, line));
         part, document = match.groups();
         id = int(part) * 10000 + int(document);
       elif header == 1:
@@ -74,10 +75,10 @@ def read(fp, text = None, full = False, reify = False):
     if match is not None:
       box, referent, start, end = match.groups();
       if referent in scopes:
-        if box not in scopes[referent]:
-          raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
+        if box not in scopes[referent] and reify:
+          raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
                           "(instead of ‘{}’); exit."
-                          "".format(referent, box, scopes[referent]));
+                          "".format(i, referent, box, scopes[referent]));
       else: scopes[referent] = {box};
       if box not in mapping: mapping[box] = graph.add_node(type = 0);
       if start is not None and end is not None:
@@ -94,10 +95,10 @@ def read(fp, text = None, full = False, reify = False):
       if match is not None:
         box, lemma, sense, referent, start, end = match.groups();
         if referent in scopes:
-          if box not in scopes[referent]:
-            raise Exception("pbm.read(): stray referent ‘{}’ in box ‘{}’ "
+          if box not in scopes[referent] and reify:
+            raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
                             "(instead of ‘{}’); exit."
-                            "".format(referent, box, scopes[referent]));
+                            "".format(i, referent, box, scopes[referent]));
         else: scopes[referent] = {box};
         if start is not None and end is not None:
           anchor = {"from": int(start), "to": int(end)};
@@ -139,8 +140,8 @@ def read(fp, text = None, full = False, reify = False):
             if bottom not in mapping: mapping[bottom] = graph.add_node(type = 0);
             graph.add_edge(mapping[top].id, mapping[bottom].id, relation);
           elif empty_matcher.search(line) is None:
-            raise Exception("pmb.read(): invalid clause ‘{}’ [{}]."
-                            "".format(line, i));
+            raise Exception("pmb.read(): [line {}] invalid clause ‘{}’."
+                            "".format(i, line));
   #
   # finally, as we reach an end of file (without an empty line terminating the
   # preceding block of clauses, as is the standard format in PMB), finalize the
