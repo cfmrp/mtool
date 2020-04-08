@@ -178,6 +178,10 @@ def analyze(graphs, ids=None):
     n_singletons = 0
     n_top_nodes = 0
     n_edges = 0
+    n_labels = 0;
+    n_properties = 0;
+    n_anchors = 0;
+    n_attributes = 0;
     n_loops = 0
     labels = set()
     non_functional_labels = set()
@@ -200,6 +204,15 @@ def analyze(graphs, ids=None):
         n_graphs += 1
         n_nodes += len(graph.nodes)
         n_edges += len(graph.edges)
+
+        for node in graph.nodes:
+            if node.label is not None: n_labels += 1;
+            if node.properties is not None and node.values is not None:
+                n_properties += len(node.properties);
+            if node.anchors is not None: n_anchors += 1;
+        for edge in graph.edges:
+            if edge.attributes is not None and edge.values is not None:
+                n_attributes += len(edge.attributes);
 
         inspected_graph = InspectedGraph(graph)
 
@@ -258,6 +271,20 @@ def analyze(graphs, ids=None):
 
     report("number of graphs", "%d" % n_graphs)
     report("number of nodes", "%d" % n_nodes)
+    n_tuples = n_top_nodes + n_labels + n_properties + n_anchors + n_edges + n_attributes;
+    if n_tuples > 0:
+      report("number of tops (percentage)",
+             "{:d} ({:.2f})".format(n_top_nodes, 100 * n_top_nodes / n_tuples));
+      report("number of node labels (percentage)",
+             "{:d} ({:.2f})".format(n_labels, 100 * n_labels / n_tuples));
+      report("number of node properties (percentage)",
+             "{:d} ({:.2f})".format(n_properties, 100 * n_properties / n_tuples));
+      report("number of node anchors (percentage)",
+             "{:d} ({:.2f})".format(n_anchors, 100 * n_anchors / n_tuples));
+      report("number of edges (percentage)",
+             "{:d} ({:.2f})".format(n_edges, 100 * n_edges / n_tuples));
+      report("number of edge attributes (percentage)",
+             "{:d} ({:.2f})".format(n_attributes, 100 * n_attributes / n_tuples));
     report("number of edge labels", "%d" % len(labels))
 #    report("\\percentnode\\ singleton", "%.2f" % (100 * n_singletons / n_nodes))
 #    report("\\percentnode\\ non-singleton", "%.2f" % (100 * n_nonsingletons / n_nodes))
