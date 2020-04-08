@@ -556,6 +556,8 @@ class Graph(object):
             # 'corresponding' identifier space, such that paired nodes (and
             # only these) share the same identifier.
             #
+            def identify(id):
+                return identities[id] if identities is not None else id;
             tops = set();
             labels = set();
             properties = set();
@@ -563,7 +565,7 @@ class Graph(object):
             edges = set();
             attributes = set();
             for node in graph.nodes:
-                identity = identities[node.id];
+                identity = identify(node.id);
                 if node.is_top: tops.add(identity);
                 if node.label is not None: labels.add((identity, node.label));
                 if node.properties is not None:
@@ -576,7 +578,7 @@ class Graph(object):
                     anchors.add((identity, anchor));
             for edge in graph.edges:
                 identity \
-                    = (identities[edge.src], identities[edge.tgt], edge.lab);
+                    = (identify(edge.src), identify(edge.tgt), edge.lab);
                 edges.add(identity);
                 if edge.attributes and edge.values:
                     for attribute, value in zip(edge.attributes, edge.values):
