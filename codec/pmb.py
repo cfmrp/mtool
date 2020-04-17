@@ -22,7 +22,7 @@ concept_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ("[^ ]+") ([enpstx][0-9]+) +%(
 discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+)(?: (b[0-9]+))? +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 empty_matcher = re.compile(r'^ *%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 
-def read(fp, text = None, full = False, reify = False, trace = 0):
+def read(fp, text = None, full = False, reify = False, trace = 0, strict = 0):
 
   def finish(graph, mapping, finis, scopes):
     if reify:
@@ -44,7 +44,7 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
                 "".format(graph.id, referent, scopes[referent]),
                 file=sys.stderr);
  
-  graph = None; id = None;
+  graph = None; id = None; sentence = None;
   mapping = dict(); scopes = dict(); finis = list();
   i = 0;
   header = 3;
@@ -75,9 +75,10 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
                           "[line {}] missing identifier in ‘{}’; exit."
                           "".format(i, line));
         part, document = match.groups();
-        id = "{:02d}{:05d}".format(int(part), int(document));
+        id = "{:02d}{:04d}".format(int(part), int(document));
       elif header == 1:
-        sentence = line[5:-1];
+        if text is not None and id in text: sentence = text[id];
+        else: sentence = line[5:-1];
         graph = Graph(id, flavor = 2, framework = "drg");
         graph.add_input(sentence);
       header -= 1;
@@ -94,7 +95,7 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
     if match is not None:
       box, referent, start, end = match.groups();
       if referent in scopes:
-        if box not in scopes[referent] and reify:
+        if strict and box not in scopes[referent] and reify:
           raise Exception("pbm.read(): "
                           "[line {}] stray referent ‘{}’ in box ‘{}’ "
                           "(instead of ‘{}’); exit."
@@ -166,7 +167,7 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
           if match is not None:
             box, lemma, sense, referent, start, end = match.groups();
             if referent in scopes:
-              if box not in scopes[referent] and reify:
+              if strict and box not in scopes[referent] and reify:
                 raise Exception("pbm.read(): "
                                 "[line {}] stray referent ‘{}’ in box ‘{}’ "
                                 "(instead of ‘{}’); exit."
@@ -186,13 +187,13 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
             match = discourse_matcher.match(line);
             if match is not None:
               top, relation, one, two = match.groups();
-              if top not in mapping: mapping[top] = graph.add_node(type = 0);
+              if one not in mapping: mapping[one] = graph.add_node(type = 0);
               if two is not None:
                 if trace > 1: print("ternary discourse relation");
                 if two not in mapping: mapping[two] = graph.add_node(type = 0);
                 graph.add_edge(mapping[one].id, mapping[two].id, relation);
               else:
-                if one not in mapping: mapping[one] = graph.add_node(type = 0);
+                if top not in mapping: mapping[top] = graph.add_node(type = 0);
                 graph.add_edge(mapping[top].id, mapping[one].id, relation);
             elif empty_matcher.search(line) is None:
               raise Exception("pmb.read(): [line {}] invalid clause ‘{}’."

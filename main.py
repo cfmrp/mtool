@@ -38,7 +38,7 @@ VALIDATIONS = {"input", "anchors", "edges",
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 frameworks = None, prefix = None, text = None,
-                trace = 0, quiet = False,
+                trace = 0, strict = 0, quiet = False,
                 alignment = None, anchors = None,
                 id = None, n = None, i = None):
 
@@ -73,7 +73,7 @@ def read_graphs(stream, format = None,
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
                                reify = reify, text = text,
-                               trace = trace);
+                               trace = trace, strict = strict);
   elif format == "treex":
     generator = codec.treex.read(stream)
   elif format == "ucca":
@@ -150,6 +150,7 @@ def main():
   parser.add_argument("--id");
   parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
+  parser.add_argument("--strict", action = "count", default = 0);
   parser.add_argument("--errors",
                       type = argparse.FileType("w", encoding = ENCODING));
   parser.add_argument("input", nargs = "?",
@@ -237,7 +238,8 @@ def main():
                   reify = arguments.reify, frameworks = arguments.framework,
                   text = text, alignment = arguments.alignment,
                   anchors = arguments.anchors,
-                  trace = arguments.trace, quiet = arguments.quiet,
+                  trace = arguments.trace, strict = arguments.strict,
+                  quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if graphs is None:
     print("main.py(): unable to read input graphs: {}; exit."
