@@ -182,6 +182,7 @@ def read(fp, text = None, full = False, reify = False, trace = 0, strict = 0):
               node = mapping[referent];
               node.add_anchor(anchor);
             node.label = lemma;
+            if sense[0] == sense[-1] == "\"": sense = sense[1:-1];
             node.set_property("sense", sense);
           else:
             match = discourse_matcher.match(line);
