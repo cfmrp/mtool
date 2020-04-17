@@ -22,12 +22,20 @@ concept_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ("[^ ]+") ([enpstx][0-9]+) +%(
 discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+)(?: (b[0-9]+))? +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 empty_matcher = re.compile(r'^ *%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 
-def read(fp, text = None, full = False, reify = False):
+def read(fp, text = None, full = False, reify = False, trace = 0):
 
   def finish(graph, mapping, finis, scopes):
     if reify:
       for box, referent, node in finis:
-        if full or box not in scopes[referent]:
+        #
+        # in full reification mode, or when the corresponding box cannot be
+        # easily inferred for a reified role (including when the source node is
+        # a constant, as e.g. in a 'future' temporal discourse conditions),
+        # add an explicit box membership edge.
+        #
+        if full \
+           or referent[0] == referent[-1] == "\"" \
+           or box not in scopes[referent]:
           graph.add_edge(mapping[box].id, node.id, "∈");
     else:
       for referent in scopes:
@@ -42,6 +50,7 @@ def read(fp, text = None, full = False, reify = False):
   header = 3;
   for line in fp:
     line = line.rstrip(); i += 1;
+    if trace: print("{}: {}".format(i, line));
     #
     # to support newline-separated concatenations of clause files (a format not
     # used in the native PMB 3.0 release), 
@@ -62,7 +71,8 @@ def read(fp, text = None, full = False, reify = False):
       elif header == 2:
         match = id_matcher.match(line);
         if match is None:
-          raise Exception("pbm.read(): [line {}] missing identifier in ‘{}’; exit."
+          raise Exception("pbm.read(): "
+                          "[line {}] missing identifier in ‘{}’; exit."
                           "".format(i, line));
         part, document = match.groups();
         id = "{:02d}{:05d}".format(int(part), int(document));
@@ -85,7 +95,8 @@ def read(fp, text = None, full = False, reify = False):
       box, referent, start, end = match.groups();
       if referent in scopes:
         if box not in scopes[referent] and reify:
-          raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
+          raise Exception("pbm.read(): "
+                          "[line {}] stray referent ‘{}’ in box ‘{}’ "
                           "(instead of ‘{}’); exit."
                           "".format(i, referent, box, scopes[referent]));
       else: scopes[referent] = {box};
@@ -156,7 +167,8 @@ def read(fp, text = None, full = False, reify = False):
             box, lemma, sense, referent, start, end = match.groups();
             if referent in scopes:
               if box not in scopes[referent] and reify:
-                raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
+                raise Exception("pbm.read(): "
+                                "[line {}] stray referent ‘{}’ in box ‘{}’ "
                                 "(instead of ‘{}’); exit."
                                 "".format(i, referent, box, scopes[referent]));
             else: scopes[referent] = {box};

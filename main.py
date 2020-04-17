@@ -72,7 +72,8 @@ def read_graphs(stream, format = None,
     generator = codec.mrp.read(stream)
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
-                               reify = reify, text = text);
+                               reify = reify, text = text,
+                               trace = trace);
   elif format == "treex":
     generator = codec.treex.read(stream)
   elif format == "ucca":
