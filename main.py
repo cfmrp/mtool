@@ -64,15 +64,15 @@ def read_graphs(stream, format = None,
       = codec.amr.read(stream, full = full, reify = reify,
                        text = text,
                        alignment = alignment, quiet = quiet);
-  if format == "pmb":
-    generator = codec.pmb.read(stream, full = full,
-                               reify = reify, text = text);
   elif format in {"ccd", "dm", "pas", "psd"}:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
     generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
     generator = codec.mrp.read(stream)
+  elif format == "pmb":
+    generator = codec.pmb.read(stream, full = full,
+                               reify = reify, text = text);
   elif format == "treex":
     generator = codec.treex.read(stream)
   elif format == "ucca":
