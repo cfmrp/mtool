@@ -32,10 +32,12 @@ def intersect(golds, systems, quiet = False):
     if not quiet:
       print("score.intersect(): missing system {} graph #{}"
             .format(gold.framework, gold.id), file=sys.stderr);
+    #
+    # manufacture an empty graph as the system graph
+    #
     from graph import Graph;
-    # Use empty graph as the system graph
-    yield gold, Graph(gold.id, flavor=gold.flavor, framework=gold.framework);
-
+    yield gold, Graph(gold.id, flavor = gold.flavor, framework = gold.framework);
+
 def anchor(node):
   result = list();
   if node.anchors is not None:

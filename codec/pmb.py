@@ -6,12 +6,21 @@ import xml.etree.ElementTree as ET;
 
 from graph import Graph;
 
+conditions = {"APX": "≈", "EQU": "=", "LEQ": "≤", "LES": "<", "NEQ": "≠",
+              "SXN": "«", "SXP": "»", "SXY": "≖", "SZN": "\\", "SZP": "/",
+              "STI": "⊍", "STO": "⊍", "SY1": "∥", "SY2": "⚮",
+              "TAB": "⋈", "TPR": "≺"};
+
+#
+# in parsing the clauses, patterns are ordered by specificity
+#
 id_matcher = re.compile(r'^%%% bin/boxer --input (?:[^/]+/)?p([0-9]+)/d([0-9]+)/');
 referent_matcher = re.compile(r'^(b[0-9]+) REF ([enpstx][0-9]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
-concept_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ("[^ ]+") ([^ ]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
-role_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ([enpstx][0-9]+) ([^ ]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
-discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+) +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
-empty_matcher = re.compile(r'^ +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
+condition_matcher = re.compile(r'^(b[0-9]+) (EQU|NEQ|APX|LE[SQ]|TPR|TAB|S[ZX][PN]|ST[IO]|SY[12]|SXY) ([enpstx][0-9]+|"[^"]+") ([enpstx][0-9]+|"[^"]+") +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
+role_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ([enpstx][0-9]+) ([enpstx][0-9]+|"[^"]+") +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
+concept_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) ("[^ ]+") ([enpstx][0-9]+) +%(?: .* \[([0-9]+)\.\.\.([0-9]+)\])?$');
+discourse_matcher = re.compile(r'^(b[0-9]+) ([^ ]+) (b[0-9]+)(?: (b[0-9]+))? +%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
+empty_matcher = re.compile(r'^ *%(?: .* \[[0-9]+\.\.\.[0-9]+\])?$');
 
 def read(fp, text = None, full = False, reify = False):
 
@@ -56,7 +65,7 @@ def read(fp, text = None, full = False, reify = False):
           raise Exception("pbm.read(): [line {}] missing identifier in ‘{}’; exit."
                           "".format(i, line));
         part, document = match.groups();
-        id = int(part) * 10000 + int(document);
+        id = "{:02d}{:05d}".format(int(part), int(document));
       elif header == 1:
         sentence = line[5:-1];
         graph = Graph(id, flavor = 2, framework = "drg");
@@ -91,25 +100,34 @@ def read(fp, text = None, full = False, reify = False):
         node.add_anchor(anchor);
       graph.add_edge(mapping[box].id, mapping[referent].id, "∈");
     else:
-      match = concept_matcher.match(line);
+      match = condition_matcher.match(line);
       if match is not None:
-        box, lemma, sense, referent, start, end = match.groups();
-        if referent in scopes:
-          if box not in scopes[referent] and reify:
-            raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
-                            "(instead of ‘{}’); exit."
-                            "".format(i, referent, box, scopes[referent]));
-        else: scopes[referent] = {box};
-        if start is not None and end is not None:
-          anchor = {"from": int(start), "to": int(end)};
-        if referent not in mapping:
-          mapping[referent] = node \
-            = graph.add_node(anchors = [anchor] if anchor else None);
+        box, condition, source, target, start, end = match.groups();
+        condition = conditions[condition];
+        if source[0] == "\"" and source[-1] == "\"" and source not in mapping:
+          if start is not None and end is not None:
+            anchor = {"from": int(start), "to": int(end)};
+          mapping[source] \
+            = graph.add_node(label = source,
+                             anchors = [anchor] if anchor else None);
+        elif source not in mapping: mapping[source] = graph.add_node();
+        if target[0] == "\"" and target[-1] == "\"" and target not in mapping:
+          if start is not None and end is not None:
+            anchor = {"from": int(start), "to": int(end)};
+          mapping[target] \
+            = graph.add_node(label = target,
+                             anchors = [anchor] if anchor else None);
+        elif target not in mapping: mapping[target] = graph.add_node();
+        if reify:
+          if box not in mapping: mapping[box] = graph.add_node(type = 0);
+          node = graph.add_node(label = condition, type = 2);
+          finis.append((box, source, node));
+          graph.add_edge(mapping[source].id, node.id, None);
+          graph.add_edge(node.id, mapping[target].id, None);
         else:
-          node = mapping[referent];
-          node.add_anchor(anchor);
-        node.label = lemma;
-        node.set_property("sense", sense);
+          if source in scopes: scopes[source].add(box);
+          else: scopes[source] = {box};
+          graph.add_edge(mapping[source].id, mapping[target].id, condition);
       else:
         match = role_matcher.match(line);
         if match is not None:
@@ -133,15 +151,39 @@ def read(fp, text = None, full = False, reify = False):
             else: scopes[source] = {box};
             graph.add_edge(mapping[source].id, mapping[target].id, role);
         else:
-          match = discourse_matcher.match(line);
+          match = concept_matcher.match(line);
           if match is not None:
-            top, relation, bottom = match.groups();
-            if top not in mapping: mapping[top] = graph.add_node(type = 0);
-            if bottom not in mapping: mapping[bottom] = graph.add_node(type = 0);
-            graph.add_edge(mapping[top].id, mapping[bottom].id, relation);
-          elif empty_matcher.search(line) is None:
-            raise Exception("pmb.read(): [line {}] invalid clause ‘{}’."
-                            "".format(i, line));
+            box, lemma, sense, referent, start, end = match.groups();
+            if referent in scopes:
+              if box not in scopes[referent] and reify:
+                raise Exception("pbm.read(): [line {}] stray referent ‘{}’ in box ‘{}’ "
+                                "(instead of ‘{}’); exit."
+                                "".format(i, referent, box, scopes[referent]));
+            else: scopes[referent] = {box};
+            if start is not None and end is not None:
+              anchor = {"from": int(start), "to": int(end)};
+            if referent not in mapping:
+              mapping[referent] = node \
+                = graph.add_node(anchors = [anchor] if anchor else None);
+            else:
+              node = mapping[referent];
+              node.add_anchor(anchor);
+            node.label = lemma;
+            node.set_property("sense", sense);
+          else:
+            match = discourse_matcher.match(line);
+            if match is not None:
+              top, relation, one, two = match.groups();
+              if top not in mapping: mapping[top] = graph.add_node(type = 0);
+              if one not in mapping: mapping[one] = graph.add_node(type = 0);
+              graph.add_edge(mapping[top].id, mapping[one].id, relation);
+              if two is not None:
+                if two not in mapping: mapping[two] = graph.add_node(type = 0);
+                graph.add_edge(mapping[top].id, mapping[two].id, relation);
+                graph.add_edge(mapping[one].id, mapping[two].id, relation);
+            elif empty_matcher.search(line) is None:
+              raise Exception("pmb.read(): [line {}] invalid clause ‘{}’."
+                              "".format(i, line));
   #
   # finally, as we reach an end of file (without an empty line terminating the
   # preceding block of clauses, as is the standard format in PMB), finalize the
