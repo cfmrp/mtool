@@ -43,6 +43,11 @@ def read(fp, text = None, full = False, reify = False, trace = 0, strict = 0):
           print("pbm.read(): [graph #{}] stray referent ‘{}’ in boxes {}."
                 "".format(graph.id, referent, scopes[referent]),
                 file=sys.stderr);
+    #
+    # after the fact, mark all boxes that structurally are roots as top nodes.
+    #
+    for node in graph.nodes:
+      if node.type == 0 and node.is_root(): node.is_top = True;
  
   graph = None; id = None; sentence = None;
   mapping = dict(); scopes = dict(); finis = list();
