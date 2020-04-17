@@ -187,12 +187,13 @@ def read(fp, text = None, full = False, reify = False, trace = 0):
             if match is not None:
               top, relation, one, two = match.groups();
               if top not in mapping: mapping[top] = graph.add_node(type = 0);
-              if one not in mapping: mapping[one] = graph.add_node(type = 0);
-              graph.add_edge(mapping[top].id, mapping[one].id, relation);
               if two is not None:
+                if trace > 1: print("ternary discourse relation");
                 if two not in mapping: mapping[two] = graph.add_node(type = 0);
-                graph.add_edge(mapping[top].id, mapping[two].id, relation);
                 graph.add_edge(mapping[one].id, mapping[two].id, relation);
+              else:
+                if one not in mapping: mapping[one] = graph.add_node(type = 0);
+                graph.add_edge(mapping[top].id, mapping[one].id, relation);
             elif empty_matcher.search(line) is None:
               raise Exception("pmb.read(): [line {}] invalid clause ‘{}’."
                               "".format(i, line));
