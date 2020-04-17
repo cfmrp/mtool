@@ -158,6 +158,7 @@ class Node(object):
     def dot(self, stream, input = None, ids = False, strings = False,
             errors = None):
 
+        shapes = ["square", "circle", "diamond", "triangle"];
         missing = [None, [], [], None];
         surplus = [None, [], [], None];
         if errors is not None:
@@ -189,9 +190,9 @@ class Node(object):
            or missing[0] is not None or len(missing[1]) > 0 or missing[3] is not None \
            or surplus[0] is not None or len(surplus[1]) > 0 or surplus[3] is not None:
 
+            shape = "shape={}, ".format(shapes[self.type]) if self.type in {0, 1, 2, 3} else "";
             print("  {} [ {}label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
-                  "".format(self.id, "shape=diamond, " if self.type == 2 else ""),
-                  end = "", file = stream);
+                  "".format(self.id, shape), end = "", file = stream);
 
             if ids:
                 print("<tr><td colspan=\"2\">#{}</td></tr>"

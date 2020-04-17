@@ -132,7 +132,7 @@ def read(fp, text = None, full = False, reify = False, trace = 0, strict = 0):
         elif target not in mapping: mapping[target] = graph.add_node();
         if reify:
           if box not in mapping: mapping[box] = graph.add_node(type = 0);
-          node = graph.add_node(label = condition, type = 2);
+          node = graph.add_node(label = condition, type = 3);
           finis.append((box, source, node));
           graph.add_edge(mapping[source].id, node.id, None);
           graph.add_edge(node.id, mapping[target].id, None);
