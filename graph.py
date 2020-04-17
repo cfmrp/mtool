@@ -253,8 +253,9 @@ class Node(object):
                 
             print("</table>> ];", file = stream);
         else:
+            shape = "{}, label=\" \"".format(shapes[0]) if self.type == 0 else shapes[1];
             print("  {} [ shape={}, width=0.2 ];"
-                  "".format(self.id, "square, label=\" \"" if self.type == 0 else "circle"), file = stream);
+                  "".format(self.id, shape), file = stream);
 
     def __key(self):
         return self.id
