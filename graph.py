@@ -184,11 +184,9 @@ class Node(object):
             if "anchors" in errors and "surplus" in errors["anchors"]:
                 for id, anchor in errors["anchors"]["surplus"]:
                     if id == key: surplus[3] = anchor;
-            print("node #{}:\n  missing: {}\n  surplus: {}\n\n"
-                  "".format(self.id, missing, surplus));
 
         if self.label \
-           or ids \
+           or ids and not overlay \
            or self.properties and self.values \
            or self.anchors \
            or missing[0] is not None or len(missing[1]) > 0 \
@@ -374,6 +372,13 @@ class Edge(object):
         
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
+        def __missing__():
+            if errors is not None and "edges" in errors \
+               and "missing" in errors["edges"]:
+                for source, target, label in errors["edges"]["missing"]:
+                    if source == self.src and target == self.tgt and label == self.lab:
+                        return True;
+            return False;
         label = self.lab;
         if label and self.normal:
             if label[:-3] == self.normal:
@@ -386,7 +391,10 @@ class Edge(object):
             style = "";
         if overlay:
             color = ", color=blue, fontcolor=blue";
-        else: color = "";
+        elif __missing__():
+            color = ", color=red, fontcolor=red";
+        else:
+            color = "";
         print("  {} -> {} [ label=\"{}\"{}{} ];"
               "".format(self.src, self.tgt, label if label else "",
                         style, color),
@@ -813,7 +821,11 @@ class Graph(object):
                             n += 1;
             if "tops" in errors and "surplus" in errors["tops"]:
                 for id in errors["tops"]["surplus"]:
-                    if id not in mapping:
+                    if id in correspondences:
+                        print("  top -> {} [ color=blue ];"
+                              "".format(correspondences.index(id)), file = stream);
+                        
+                    elif id not in mapping:
                         mapping[id] = surplus.add_node(id = n, top = True);
                         n += 1;
                     else:
