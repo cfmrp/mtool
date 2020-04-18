@@ -162,6 +162,43 @@ anchors with the corresponding sub-string from the `input` field of the graph
 ./main.py --n 1 --strings --read mrp --write dot data/sample/ucca/wsj.mrp vinken.dot
 ```
 
+Error Analysis
+--------------
+
+When scoring with the MRP metric, `mtool` can optionally provide a per-item
+summary of differences between the gold and the system graphs, in terms of
+false negatives (‘missing’ tuples) and false positives (‘surplus’ ones).
+This functionality is activated via the `--errors` command-line option, and
+tuple mismatches between the two graphs are recorded in as a hierarchically
+nested JSON object, index (in order) by framework, item identifier, and tuple
+type.
+
+For example:
+```
+./main.py --read mrp --score mrp --framework eds --gold data/score/lpps.mrp --errors errors.json data/score/eds/lpps.peking.mrp
+```
+For the first EDS item (`#102990`) in this comparison, `errors.json` will
+contain a sub-structure like the following:
+```
+{"correspondences": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 14, 18, 19, 20],
+ "labels": {"missing": [[2, "_very+much_a_1"]],
+            "surplus": [[3, "_much_x_deg"], [2, "_very_x_deg"]]},
+ "anchors": {"missing": [[2, [6, 7, 8, 9, 11, 12, 13, 14]]],
+ "surplus": [[2, [6, 7, 8, 9]], [3, [11, 12, 13, 14]]]},
+ "edges": {"surplus": [[2, 3, "arg1"]]}}
+```
+When interpreting this structure, there are (of course) two separate spaces of
+node identifiers; the `correspondences` vectors records the (optimal)
+node-to-node relation found by the MRP scorer, using identifiers from the
+*gold* graph as the reference: in the above, for example, gold node `#2`
+(identified by its position in the vector) corresponds to system node `#3`.
+In other words, the example system graph has a spurious node `#2`, which
+does not correspond to any of the gold nodes.
+Node identifiers in `"missing"` entries refer to gold nodes, whereas
+identifiers in `"surplus"` entries refer to the system graph, and may
+or may not stand in a correspondence relation to a gold node.
+
+
 Common Options
 --------------
 
