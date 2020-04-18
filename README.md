@@ -162,15 +162,15 @@ anchors with the corresponding sub-string from the `input` field of the graph
 ./main.py --n 1 --strings --read mrp --write dot data/sample/ucca/wsj.mrp vinken.dot
 ```
 
-Error Analysis
+Diagnostics
 --------------
 
 When scoring with the MRP metric, `mtool` can optionally provide a per-item
-summary of differences between the gold and the system graphs, in terms of
+breakdown of differences between the gold and the system graphs, i.e. record
 false negatives (‘missing’ tuples) and false positives (‘surplus’ ones).
 This functionality is activated via the `--errors` command-line option, and
-tuple mismatches between the two graphs are recorded in as a hierarchically
-nested JSON object, index (in order) by framework, item identifier, and tuple
+tuple mismatches between the two graphs are recorded as a hierarchically
+nested JSON object, indexed (in order) by framework, item identifier, and tuple
 type.
 
 For example:
@@ -188,14 +188,15 @@ contain a sub-structure like the following:
  "edges": {"surplus": [[2, 3, "arg1"]]}}
 ```
 When interpreting this structure, there are (of course) two separate spaces of
-node identifiers; the `correspondences` vectors records the (optimal)
+node identifiers; the `correspondences` vector records the (optimal)
 node-to-node relation found by the MRP scorer, using identifiers from the
-*gold* graph as the reference: in the above, for example, gold node `#2`
-(identified by its position in the vector) corresponds to system node `#3`.
+*gold* graph as the reference.
+In the above, for example, gold node `#2` (identified by its position in the
+vector) corresponds to system node `#3`.
 In other words, the example system graph has a spurious node `#2`, which
 does not correspond to any of the gold nodes.
 Node identifiers in `"missing"` entries refer to gold nodes, whereas
-identifiers in `"surplus"` entries refer to the system graph, and may
+identifiers in `"surplus"` entries refer to the system graph, and they may
 or may not stand in a correspondence relation to a gold node.
 
 
