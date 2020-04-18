@@ -199,6 +199,11 @@ Node identifiers in `"missing"` entries refer to gold nodes, whereas
 identifiers in `"surplus"` entries refer to the system graph, and they may
 or may not stand in a correspondence relation to a gold node.
 
+The differences between these two graphs can be visualized as follows, color-coding
+false negatives in red, and false positives in blue
+(and using gold identifiers, where available).
+
+![sample visualization](https://github.com/cfmrp/mtool/blob/master/data/score/eds/lpps.102990.png)
 
 Common Options
 --------------
