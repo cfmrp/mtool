@@ -811,6 +811,13 @@ class Graph(object):
                         else:
                             mapping[id] = surplus.add_node(id = n, anchors = anchor);
                             n += 1;
+            if "tops" in errors and "surplus" in errors["tops"]:
+                for id in errors["tops"]["surplus"]:
+                    if id not in mapping:
+                        mapping[id] = surplus.add_node(id = n, top = True);
+                        n += 1;
+                    else:
+                        mapping[id].is_root = True;
             if "edges" in errors and "surplus" in errors["edges"]:
                 for source, target, label in errors["edges"]["surplus"]:
                     if source not in mapping:
