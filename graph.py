@@ -202,7 +202,7 @@ class Node(object):
             print("  {} [ {}{}label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
                   "".format(self.id, shape, color), end = "", file = stream);
 
-            if ids:
+            if ids and not overlay:
                 print("<tr><td colspan=\"2\">#{}</td></tr>"
                       "".format(self.id), end = "", file = stream);
 
