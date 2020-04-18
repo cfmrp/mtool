@@ -186,6 +186,11 @@ def read(fp, text = None, full = False, reify = False, trace = 0, strict = 0):
             else:
               node = mapping[referent];
               node.add_anchor(anchor);
+            if strict and node.label is not None:
+              raise Exception("pbm.read(): "
+                              "[line {}] duplicate label ‘{}’ on referent ‘{}’ "
+                              "(instead of ‘{}’); exit."
+                              "".format(i, lemma, referent, node.label));
             node.label = lemma;
             if sense[0] == sense[-1] == "\"": sense = sense[1:-1];
             node.set_property("sense", sense);
