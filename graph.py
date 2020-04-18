@@ -156,9 +156,10 @@ class Node(object):
         return Node(id, label, properties, values, anchors)
 
     def dot(self, stream, input = None, ids = False, strings = False,
-            errors = None):
+            errors = None, overlay = False):
 
         shapes = ["square", "circle", "diamond", "triangle"];
+
         missing = [None, [], [], None];
         surplus = [None, [], [], None];
         if errors is not None:
@@ -167,69 +168,84 @@ class Node(object):
                     if id == self.id: missing[0] = label;
             if "properties" in errors and "missing" in errors["properties"]:
                 for id, property, value in errors["properties"]["missing"]:
-                    if id == self.id: missing[1].append(property); missing[2].append(value);
+                    if id == self.id:
+                        missing[1].append(property); missing[2].append(value);
             if "anchors" in errors and "missing" in errors["anchors"]:
                 for id, anchor in errors["anchors"]["missing"]:
                     if id == self.id: missing[3] = anchor;
-            match = errors["correspondences"][self.id];
+            key = errors["correspondences"][self.id];
             if "labels" in errors and "surplus" in errors["labels"]:
                 for id, label in errors["labels"]["surplus"]:
-                    if id == match: surplus[0] = label;
+                    if id == key: surplus[0] = label;
             if "properties" in errors and "surplus" in errors["properties"]:
                 for id, property, value in errors["properties"]["surplus"]:
-                    if id == match: surplus[1].append(property); surplus[2].append(value);
+                    if id == key:
+                        surplus[1].append(property); surplus[2].append(value);
             if "anchors" in errors and "surplus" in errors["anchors"]:
                 for id, anchor in errors["anchors"]["surplus"]:
-                    if id == match: surplus[3] = anchor;
-            print("node #{}:\n  missing: {}\n  surplus: {}\n\n".format(self.id, missing, surplus));
+                    if id == key: surplus[3] = anchor;
+            print("node #{}:\n  missing: {}\n  surplus: {}\n\n"
+                  "".format(self.id, missing, surplus));
 
         if self.label \
            or ids \
            or self.properties and self.values \
            or self.anchors \
-           or missing[0] is not None or len(missing[1]) > 0 or missing[3] is not None \
-           or surplus[0] is not None or len(surplus[1]) > 0 or surplus[3] is not None:
+           or missing[0] is not None or len(missing[1]) > 0 \
+           or missing[3] is not None \
+           or surplus[0] is not None or len(surplus[1]) > 0 \
+           or surplus[3] is not None:
 
-            shape = "shape={}, ".format(shapes[self.type]) if self.type in {0, 1, 2, 3} else "";
-            print("  {} [ {}label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
-                  "".format(self.id, shape), end = "", file = stream);
+            if self.type in {0, 1, 2, 3}:
+                shape = "shape={}, ".format(shapes[self.type]);
+            else:
+                shape = "";
+            color = "color=blue, " if overlay else "";
+            print("  {} [ {}{}label=<<table align=\"center\" border=\"0\" cellspacing=\"0\">"
+                  "".format(self.id, shape, color), end = "", file = stream);
 
             if ids:
                 print("<tr><td colspan=\"2\">#{}</td></tr>"
                       "".format(self.id), end = "", file = stream);
 
             if self.label:
-                font = "<font color=\"red\">" if missing[0] else "<font>";
+                if missing[0]: font = "<font color=\"red\">";
+                elif overlay: font = "<font color=\"blue\">";
+                else: font = "<font>";
                 print("<tr><td colspan=\"2\">{}{}</font></td></tr>"
                       "".format(font, html.escape(self.label, False)),
                       end = "", file = stream);
             if surplus[0]:
-                font = "<font color=\"blue\">" if missing[0] else "<font>";
+                font = "<font color=\"blue\">";
                 print("<tr><td colspan=\"2\">{}{}</font></td></tr>"
                       "".format(font, html.escape(surplus[0], False)),
                       end = "", file = stream);
 
-            if self.anchors:
-                print("<tr><td colspan=\"2\">", end = "", file = stream);
-                for anchor in self.anchors:
-                    if strings and input:
-                        print("{}<font face=\"Courier\">{}</font>"
-                              "".format(",&nbsp;" if anchor != self.anchors[0] else "",
-                                        html.escape(input[anchor["from"]:anchor["to"]])),
-                              end = "", file = stream);
-                    else:
-                        print("{}〈{}:{}〉"
-                              "".format("&thinsp;" if anchor != self.anchors[0] else "",
-                                        anchor["from"], anchor["to"]),
-                              end = "", file = stream);
-                print("</td></tr>", end = "", file = stream);
             def __anchors__(anchors, color):
                 print("<tr><td colspan=\"2\"><font color=\"{}\">{{"
                       "".format(color), end = "", file = stream);
                 for index in anchors:
-                    print("{}{}".format("&thinsp;" if index != missing[3][0] else "", index),
+                    print("{}{}".format("&thinsp;" if index != anchors[0] else "", index),
                           end = "", file = stream);
                 print("}</font></td></tr>", end = "", file = stream);
+            if self.anchors is not None:
+                if overlay:
+                    __anchors__(self.anchors, "blue");
+                else:
+                    print("<tr><td colspan=\"2\">", end = "", file = stream);
+                    for anchor in self.anchors:
+                        if strings and input:
+                            print("{}<font face=\"Courier\">{}</font>"
+                                  "".format(",&nbsp;" if anchor != self.anchors[0] else "",
+                                            html.escape(input[anchor["from"]:anchor["to"]])),
+                                  end = "", file = stream);
+                        else:
+                            print("{}〈{}:{}〉"
+                                  "".format("&thinsp;" if anchor != self.anchors[0] else "",
+                                            anchor["from"], anchor["to"]),
+                                  end = "", file = stream);
+                    print("</td></tr>", end = "", file = stream);
+
             if missing[3]: __anchors__(missing[3], "red");
             if surplus[3]: __anchors__(surplus[3], "blue");
 
@@ -356,19 +372,24 @@ class Edge(object):
         values = json.get("values", None)
         return Edge(src, tgt, lab, normal, attributes, values)
         
-    def dot(self, stream, input = None, strings = False, errors = None):
+    def dot(self, stream, input = None, strings = False,
+            errors = None, overlay = False):
         label = self.lab;
         if label and self.normal:
             if label[:-3] == self.normal:
                 label = "(" + self.normal + ")-of";
             else:
                 label = label + " (" + self.normal + ")";
-        style = "";
         if self.attributes and "remote" in self.attributes:
             style = ", style=dashed";
-        print("  {} -> {} [ label=\"{}\"{} ];"
+        else:
+            style = "";
+        if overlay:
+            color = ", color=blue, fontcolor=blue";
+        else: color = "";
+        print("  {} -> {} [ label=\"{}\"{}{} ];"
               "".format(self.src, self.tgt, label if label else "",
-                        style),
+                        style, color),
               file = stream);
         
     def __key(self):
@@ -737,15 +758,73 @@ class Graph(object):
                                      "".format(graph.id, i))
         return graph
 
-    def dot(self, stream, ids = False, strings = False, errors = None):
-        print("digraph \"{}\" {{\n  top [ style=invis ];"
-              "".format(self.id),
-              file = stream);
+    def dot(self, stream, ids = False, strings = False,
+            errors = None, overlay = False):
+        if not overlay:
+            print("digraph \"{}\" {{\n  top [ style=invis ];"
+                  "".format(self.id),
+                  file = stream);
         for node in self.nodes:
             if node.is_top:
-                print("  top -> {};".format(node.id), file = stream);
+                if overlay:
+                    color = " [ color=blue ]";
+                elif "tops" in errors and "missing" in errors["tops"] \
+                     and node.id in errors["tops"]["missing"]:
+                    color = " [ color=red ]";
+                else:
+                    color = "";
+                print("  top -> {}{};".format(node.id, color), file = stream);
+        n = 0;
         for node in self.nodes:
-            node.dot(stream, self.input, ids, strings, errors);
-        for edge in self.edges:
-            edge.dot(stream, self.input, strings, errors);
-        print("}", file = stream);
+            n = max(n, node.id);
+            node.dot(stream, self.input, ids, strings, errors, overlay);
+            for edge in self.edges:
+                if node.id == edge.src:
+                    edge.dot(stream, self.input, strings, errors, overlay);
+
+        if errors is not None:
+            surplus = Graph(self.id, flavor = self.flavor, framework = self.framework);
+            surplus.add_input(self.input);
+            mapping = dict();
+            correspondences = errors["correspondences"];
+            n += 1;
+            if "labels" in errors and "surplus" in errors["labels"]:
+                for id, label in errors["labels"]["surplus"]:
+                    if id not in correspondences:
+                        mapping[id] = surplus.add_node(id = n, label = label);
+                        n += 1;
+            if "properties" in errors and "surplus" in errors["properties"]:
+                for id, property, value in errors["properties"]["surplus"]:
+                    if id not in correspondences:
+                        if id in mapping:
+                            mapping[id].set_property(property, value);
+                        else:
+                            mapping[id] = surplus.add_node(id = n,
+                                                           properties = [property],
+                                                           values = [value]);
+                            n += 1;
+            if "anchors" in errors and "surplus" in errors["anchors"]:
+                for id, anchor in errors["anchors"]["surplus"]:
+                    if id not in correspondences:
+                        if id in mapping:
+                            mapping[id].anchors = anchor;
+                        else:
+                            mapping[id] = surplus.add_node(id = n, anchors = anchor);
+                            n += 1;
+            if "edges" in errors and "surplus" in errors["edges"]:
+                for source, target, label in errors["edges"]["surplus"]:
+                    if source not in mapping:
+                        try:
+                            mapping[source] = surplus.add_node(correspondences.index(source));
+                        except ValueError:
+                            mapping[source] = surplus.add_node(n);
+                            n += 1;
+                    if target not in mapping:
+                        try:
+                            mapping[target] = surplus.add_node(correspondences.index(target));
+                        except ValueError:
+                            mapping[target] = surplus.add_node(n);
+                            n += 1;
+                    surplus.add_edge(mapping[source].id, mapping[target].id, label);
+            surplus.dot(stream, ids = ids, strings = strings, errors = None, overlay = True);
+        if not overlay: print("}", file = stream);
