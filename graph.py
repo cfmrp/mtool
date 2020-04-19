@@ -160,6 +160,10 @@ class Node(object):
 
         shapes = ["square", "circle", "diamond", "triangle"];
 
+        if errors is not None and "correspondences" in errors:
+            correspondences = {g: s for g, s in errors["correspondences"]};
+        else:
+            correspondences = None;
         missing = [None, [], [], None];
         surplus = [None, [], [], None];
         if errors is not None:
@@ -173,17 +177,18 @@ class Node(object):
             if "anchors" in errors and "missing" in errors["anchors"]:
                 for id, anchor in errors["anchors"]["missing"]:
                     if id == self.id: missing[3] = anchor;
-            key = errors["correspondences"][self.id];
-            if "labels" in errors and "surplus" in errors["labels"]:
-                for id, label in errors["labels"]["surplus"]:
-                    if id == key: surplus[0] = label;
-            if "properties" in errors and "surplus" in errors["properties"]:
-                for id, property, value in errors["properties"]["surplus"]:
-                    if id == key:
-                        surplus[1].append(property); surplus[2].append(value);
-            if "anchors" in errors and "surplus" in errors["anchors"]:
-                for id, anchor in errors["anchors"]["surplus"]:
-                    if id == key: surplus[3] = anchor;
+            if correspondences is not None and self.id in correspondences:
+                key = correspondences[self.id];
+                if "labels" in errors and "surplus" in errors["labels"]:
+                    for id, label in errors["labels"]["surplus"]:
+                        if id == key: surplus[0] = label;
+                if "properties" in errors and "surplus" in errors["properties"]:
+                    for id, property, value in errors["properties"]["surplus"]:
+                        if id == key:
+                            surplus[1].append(property); surplus[2].append(value);
+                if "anchors" in errors and "surplus" in errors["anchors"]:
+                    for id, anchor in errors["anchors"]["surplus"]:
+                        if id == key: surplus[3] = anchor;
 
         if self.label \
            or ids and not overlay \
@@ -550,7 +555,10 @@ class Graph(object):
     def score(self, graph, correspondences, errors = None):
 
         #
-        # accommodate the various conventions for node correspondence matrices
+        # accommodate the various conventions for node correspondence matrices;
+        # anyway, entries are indices into the .nodes. list, not identifiers.
+        # _fix_me_
+        # double-check for correspondences from SMATCH.         (oe; 19-apr-20)
         #
         if isinstance(correspondences, list) and len(correspondences) > 0:
             if isinstance(correspondences[0], tuple):
@@ -562,7 +570,7 @@ class Graph(object):
 
         #
         # all tuples use node identifiers from the gold graph, where there is
-        # a correspondence; otherwise (we appear to) synthesize new unique
+        # a correspondence; otherwise we (appear to) synthesize new unique
         # identifiers for remaining nodes from both graphs.
         #
         identities1 = dict();
@@ -580,6 +588,13 @@ class Graph(object):
             if node.id not in identities2:
                 identities2[node.id] = i;
                 i += 1;
+
+        #
+        # map 'corresponding' identifiers back to the original graphs
+        #
+        def native(id, identities):
+            for key, value in identities.items():
+                if id == value: return key;
 
         def tuples(graph, identities):
             #
@@ -618,13 +633,6 @@ class Graph(object):
 
         def count(gold, system, key):
 
-            #
-            # map 'corresponding' identifiers back to the original graphs
-            #
-            def native(id, identities):
-                for key, value in identities.items():
-                    if id == value: return key;
-                    
             if errors is not None:
                 missing = gold - system;
                 surplus = system - gold;
@@ -703,8 +711,8 @@ class Graph(object):
             = tuples(graph, identities2);
         if errors is not None:
             errors[self.framework][self.id] = errors \
-                = {"correspondences": [correspondences[i]
-                                       for i in range(len(correspondences))]};
+                = {"correspondences": [(self.nodes[g].id, graph.nodes[s].id)
+                                       for g, s in correspondences.items() if s >= 0]}
         return count(gtops, stops, "tops"), count(glabels, slabels, "labels"), \
             count(gproperties, sproperties, "properties"), \
             count(ganchors, sanchors, "anchors"), \
@@ -776,8 +784,8 @@ class Graph(object):
             if node.is_top:
                 if overlay:
                     color = " [ color=blue ]";
-                elif "tops" in errors and "missing" in errors["tops"] \
-                     and node.id in errors["tops"]["missing"]:
+                elif errors is not None and "tops" in errors \
+                     and "missing" in errors["tops"] and node.id in errors["tops"]["missing"]:
                     color = " [ color=red ]";
                 else:
                     color = "";
@@ -794,7 +802,7 @@ class Graph(object):
             surplus = Graph(self.id, flavor = self.flavor, framework = self.framework);
             surplus.add_input(self.input);
             mapping = dict();
-            correspondences = errors["correspondences"];
+            correspondences = {s: g for g, s in errors["correspondences"]};
             n += 1;
             if "labels" in errors and "surplus" in errors["labels"]:
                 for id, label in errors["labels"]["surplus"]:
@@ -823,7 +831,7 @@ class Graph(object):
                 for id in errors["tops"]["surplus"]:
                     if id in correspondences:
                         print("  top -> {} [ color=blue ];"
-                              "".format(correspondences.index(id)), file = stream);
+                              "".format(correspondences[id]), file = stream);
                         
                     elif id not in mapping:
                         mapping[id] = surplus.add_node(id = n, top = True);
@@ -834,14 +842,14 @@ class Graph(object):
                 for source, target, label in errors["edges"]["surplus"]:
                     if source not in mapping:
                         try:
-                            mapping[source] = surplus.add_node(correspondences.index(source));
-                        except ValueError:
+                            mapping[source] = surplus.add_node(correspondences[source]);
+                        except KeyError:
                             mapping[source] = surplus.add_node(n);
                             n += 1;
                     if target not in mapping:
                         try:
-                            mapping[target] = surplus.add_node(correspondences.index(target));
-                        except ValueError:
+                            mapping[target] = surplus.add_node(correspondences[target]);
+                        except KeyError:
                             mapping[target] = surplus.add_node(n);
                             n += 1;
                     surplus.add_edge(mapping[source].id, mapping[target].id, label);
