@@ -185,7 +185,7 @@ contain a sub-structure like the following:
  "labels": {"missing": [[2, "_very+much_a_1"]],
             "surplus": [[3, "_much_x_deg"], [2, "_very_x_deg"]]},
  "anchors": {"missing": [[2, [6, 7, 8, 9, 11, 12, 13, 14]]],
- "surplus": [[2, [6, 7, 8, 9]], [3, [11, 12, 13, 14]]]},
+             "surplus": [[2, [6, 7, 8, 9]], [3, [11, 12, 13, 14]]]},
  "edges": {"surplus": [[2, 3, "arg1"]]}}
 ```
 When interpreting this structure, there are (of course) two separate spaces of
