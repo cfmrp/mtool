@@ -180,7 +180,8 @@ For example:
 For the first EDS item (`#102990`) in this comparison, `errors.json` will
 contain a sub-structure like the following:
 ```
-{"correspondences": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 14, 18, 19, 20],
+{"correspondences": [[0, 0], [1, 1], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11],
+                     [11, 12], [12, 13], [13, 15], [14, 16], [15, 17], [16, 14], [17, 18], [18, 19], [19, 20]],
  "labels": {"missing": [[2, "_very+much_a_1"]],
             "surplus": [[3, "_much_x_deg"], [2, "_very_x_deg"]]},
  "anchors": {"missing": [[2, [6, 7, 8, 9, 11, 12, 13, 14]]],
@@ -189,11 +190,10 @@ contain a sub-structure like the following:
 ```
 When interpreting this structure, there are (of course) two separate spaces of
 node identifiers; the `correspondences` vector records the (optimal)
-node-to-node relation found by the MRP scorer, using identifiers from the
-*gold* graph as the reference.
-In the above, for example, gold node `#2` (identified by its position in the
-vector) corresponds to system node `#3`.
-In other words, the example system graph has a spurious node `#2`, which
+node-to-node relation found by the MRP scorer, pairing identifiers from the
+*gold* graph with corresponding identifiers in the *system* graph.
+In the above, for example, gold node `#2` corresponds to system node `#3`,
+and there is a spurious node `#2` in the example system graph, which
 does not correspond to any of the gold nodes.
 Node identifiers in `"missing"` entries refer to gold nodes, whereas
 identifiers in `"surplus"` entries refer to the system graph, and they may
