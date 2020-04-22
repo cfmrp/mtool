@@ -272,7 +272,7 @@ class Node(object):
                 
             print("</table>> ];", file = stream);
         else:
-            shape = "{}, label=\" \"".format(shapes[0]) if self.type == 0 else shapes[1];
+            shape = "{}, label=\" \"".format(shapes[0]) if self.type == 0 else "point";
             print("  {} [ shape={}, width=0.2 ];"
                   "".format(self.id, shape), file = stream);
 
@@ -368,10 +368,6 @@ class Edge(object):
         lab = json["label"]
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
-        #
-        # backwards compatibility with earlier MRP serialization (version 0.9)
-        #
-        if attributes is None: attributes = json.get("properties", None)
         values = json.get("values", None)
         return Edge(src, tgt, lab, normal, attributes, values)
         
@@ -384,15 +380,25 @@ class Edge(object):
                     if source == self.src and target == self.tgt and label == self.lab:
                         return True;
             return False;
-        label = self.lab;
-        if label and self.normal:
-            if label[:-3] == self.normal:
-                label = "(" + self.normal + ")-of";
-            else:
-                label = label + " (" + self.normal + ")";
-        if self.attributes and "remote" in self.attributes:
+        if self.attributes and self.values:
             style = ", style=dashed";
+            label = "<<table align=\"center\" border=\"0\" cellspacing=\"0\"><tr><td colspan=\"1\">{}</td></tr>".format(self.lab);
+            #
+            # _fix_me_
+            # currently assuming that all values are boolean where presence of
+            # the attribute means True.                         (oe; 21-apr-20)
+            #
+            for attribute, _ in zip(self.attributes, self.values):
+                label += "<tr><td>{}</td></tr>".format(attribute);
+            label += "</table>>";
         else:
+            label = self.lab;
+            if label and self.normal:
+                if label[:-3] == self.normal:
+                    label = "(" + self.normal + ")-of";
+                else:
+                    label = label + " (" + self.normal + ")";
+            label = "\"{}\"".format(label);
             style = "";
         if overlay:
             color = ", color=blue, fontcolor=blue";
@@ -400,7 +406,7 @@ class Edge(object):
             color = ", color=red, fontcolor=red";
         else:
             color = "";
-        print("  {} -> {} [ label=\"{}\"{}{} ];"
+        print("  {} -> {} [ label={}{}{} ];"
               "".format(self.src, self.tgt, label if label else "",
                         style, color),
               file = stream);
