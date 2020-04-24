@@ -27,8 +27,8 @@ def test(graph, actions, stream = sys.stderr):
            "missing or invalid ‘framework’ property",
            stream = stream);
   elif graph.flavor == 0 and \
-       graph.framework not in {"ccd", "dm", "pas", "psd", "ptg", "ud"} or \
-       graph.flavor == 1 and graph.framework not in {"eds", "ucca"} or \
+       graph.framework not in {"ccd", "dm", "pas", "psd", "ud"} or \
+       graph.flavor == 1 and graph.framework not in {"eds", "ptg", "ucca"} or \
        graph.flavor == 2 and graph.framework not in {"amr", "drg"}:
     n += 1;
     report(graph,
