@@ -69,7 +69,7 @@ def read_graphs(stream, format = None,
   elif format == "eds":
     generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
-    generator = codec.mrp.read(stream)
+    generator = codec.mrp.read(stream, text = text)
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
                                reify = reify, text = text,
