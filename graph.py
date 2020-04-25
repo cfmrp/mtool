@@ -365,7 +365,8 @@ class Edge(object):
     def decode(json):
         src = json["source"]
         tgt = json["target"]
-        lab = json["label"]
+        lab = json.get("label", None);
+        if lab == "": lab = None;
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
         values = json.get("values", None)
@@ -577,6 +578,26 @@ class Graph(object):
             for edge in self.edges:
                 self.find_node(edge.src).outgoing_edges.add(edge);
                 self.find_node(edge.tgt).incoming_edges.add(edge);
+
+    def prettify(self, trace = 0):
+        if self.framework == "drg":
+            boxes = {"IMP", "DIS", "DUP", "NOT", "POS", "NEC",
+                     "ALTERNATION", "ATTRIBUTION", "BACKGROUND",
+                     "COMMENTARY", "CONDITION", "CONTINUATION", "CONTRAST",
+                     "CONSEQUENCE", "ELABORATION", "EXPLANATION", "INSTANCE",
+                     "NARRATION", "NEGATION", "NECESSITY",
+                     "POSSIBILITY", "PARALLEL", "PRECONDITION",
+                     "RESULT", "TOPIC", "PRESUPPOSITION"};
+            for node in self.nodes:
+                if node.is_top or node.is_root():
+                    node.type = 0;
+                    for edge in node.outgoing_edges:
+                        if edge.lab in boxes:
+                            self.find_node(edge.tgt).type = 0;
+                elif len(node.incoming_edges) == len(node.outgoing_edges) == 1:
+                    if next(iter(node.incoming_edges)).lab is None \
+                       and next(iter(node.outgoing_edges)).lab is None:
+                        node.type = 2;
 
     def score(self, graph, correspondences, errors = None):
 

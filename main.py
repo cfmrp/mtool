@@ -39,7 +39,7 @@ def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 frameworks = None, prefix = None, text = None,
                 trace = 0, strict = 0, quiet = False,
-                alignment = None, anchors = None,
+                alignment = None, anchors = None, pretty = False,
                 id = None, n = None, i = None):
 
   name = getattr(stream, "name", "");
@@ -112,6 +112,8 @@ def read_graphs(stream, format = None,
     except StopIteration:
       break;
 
+  if pretty:
+    for graph in graphs: graph.prettify(trace);
   if normalize:
     for graph in graphs: graph.normalize(normalize, trace);
 
@@ -144,6 +146,7 @@ def main():
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
   parser.add_argument("--source");
+  parser.add_argument("--pretty", action = "store_true");
   parser.add_argument("--inject");
   parser.add_argument("--cores", type = int, default = 1);
   parser.add_argument("--i", type = int);
@@ -238,7 +241,7 @@ def main():
                   full = arguments.full, normalize = normalize,
                   reify = arguments.reify, frameworks = arguments.framework,
                   text = text, alignment = arguments.alignment,
-                  anchors = arguments.anchors,
+                  anchors = arguments.anchors, pretty = arguments.pretty,
                   trace = arguments.trace, strict = arguments.strict,
                   quiet = arguments.quiet,
                   id = arguments.id, n = arguments.n, i = arguments.i);
