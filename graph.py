@@ -353,7 +353,8 @@ class Edge(object):
             self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
     def encode(self):
-        json = {"source": self.src, "target": self.tgt, "label": self.lab};
+        json = {"source": self.src, "target": self.tgt}
+        if self.lab: json["label"] = self.lab;
         if self.normal:
             json["normal"] = self.normal;
         if self.attributes and self.values:
@@ -383,14 +384,16 @@ class Edge(object):
             return False;
         if self.attributes and self.values:
             style = ", style=dashed";
-            label = "<<table align=\"center\" border=\"0\" cellspacing=\"0\"><tr><td colspan=\"1\">{}</td></tr>".format(self.lab);
+            label = "<<table align=\"center\" border=\"0\" cellspacing=\"0\">";
+            if self.lab: label += "<tr><td colspan=\"1\">{}</td></tr>".format(self.lab);
             #
             # _fix_me_
             # currently assuming that all values are boolean where presence of
             # the attribute means True.                         (oe; 21-apr-20)
             #
-            for attribute, _ in zip(self.attributes, self.values):
-                label += "<tr><td>{}</td></tr>".format(attribute);
+            if self.attributes and self.values:
+                for attribute, _ in zip(self.attributes, self.values):
+                    label += "<tr><td>{}</td></tr>".format(attribute);
             label += "</table>>";
         else:
             label = self.lab;
@@ -399,7 +402,7 @@ class Edge(object):
                     label = "(" + self.normal + ")-of";
                 else:
                     label = label + " (" + self.normal + ")";
-            label = "\"{}\"".format(label);
+            if label: label = "\"{}\"".format(label);
             style = "";
         if overlay:
             color = ", color=blue, fontcolor=blue";
@@ -408,7 +411,7 @@ class Edge(object):
         else:
             color = "";
         print("  {} -> {} [ label={}{}{} ];"
-              "".format(self.src, self.tgt, label if label else "",
+              "".format(self.src, self.tgt, label if label else "\"\"",
                         style, color),
               file = stream);
         
