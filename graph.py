@@ -429,6 +429,7 @@ class Graph(object):
         self.id = id;
         self.time = datetime.utcnow();
         self._source = None;
+        self._provenance = None
         self._targets = None;
         self.input = None;
         self.nodes = [];
@@ -442,10 +443,29 @@ class Graph(object):
     def source(self, value = None):
         if value is not None: self._source = value;
         return self._source;
-    
+
+    def provenance(self, value = None):
+        if value is not None: self._provenance = value;
+        return self._provenance;
+
     def targets(self, value = None):
         if value is not None: self._targets = value;
         return self._targets;
+
+    def inject(self, information):
+        if isinstance(information, str): information = eval(information);
+        for key, value in information.items():
+            if key == "id": self.id = value;
+            elif key == "time": self.item = value;
+            elif key == "flavor": self.flavor = value;
+            elif key == "framework": self.framework = value;
+            elif key == "source": self._source = value;
+            elif key == "provenance": self._provenance = value;
+            elif key == "targets": self._targets = value;
+            elif key == "input": self.input = value;
+            else:
+                print("Graph.inject(): ignoring invalid key ‘{}’"
+                      "".format(key), file = sys.stderr);
 
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
@@ -732,8 +752,12 @@ class Graph(object):
         if self.framework:
             json["framework"] = self.framework;
         json["version"] = 1.0;
-        json["time"] = self.time.strftime("%Y-%m-%d");
+        if self.time is not None:
+            json["time"] = self.time.strftime("%Y-%m-%d");
+        else:
+            json["time"] = datetime.now().strftime("%Y-%m-%d");
         if self._source is not None: json["source"] = self._source;
+        if self._provenance is not None: json["provenance"] = self._provenance;
         if self._targets is not None: json["targets"] = self._targets;
         if self.input:
             json["input"] = self.input;
@@ -755,6 +779,7 @@ class Graph(object):
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input")
         graph.source(json.get("source"))
+        graph.provenance(json.get("provenance"))
         graph.targets(json.get("targets"))
         nodes = json.get("nodes")
         if nodes is not None:

@@ -144,6 +144,7 @@ def main():
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
   parser.add_argument("--source");
+  parser.add_argument("--inject");
   parser.add_argument("--cores", type = int, default = 1);
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
@@ -246,8 +247,13 @@ def main():
           "".format(arguments.input.name), file = sys.stderr);
     sys.exit(1);
 
+  #
+  # inject any additional information provided on the command line
+  #
   if arguments.source:
     for graph in graphs: graph.source(arguments.source);
+  if arguments.inject:
+    for graph in graphs: graph.inject(arguments.inject);
 
   if arguments.validate == ["all"]:
     actions = VALIDATIONS;
