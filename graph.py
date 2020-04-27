@@ -158,7 +158,7 @@ class Node(object):
     def dot(self, stream, input = None, ids = False, strings = False,
             errors = None, overlay = False):
 
-        shapes = ["square", "circle", "diamond", "triangle"];
+        shapes = ["square", "oval", "diamond", "triangle"];
 
         if errors is not None and "correspondences" in errors:
             correspondences = {g: s for g, s in errors["correspondences"]};
