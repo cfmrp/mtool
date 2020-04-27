@@ -15,15 +15,15 @@ def read(fp, text = None):
       i, m = j, len(form);
     else:
       base = form;
-      for old, new in {("‘", "'"), ("‘", "`"), ("’", "'"), ("`", "'"),
+      k = len(input);
+      for old, new in {("‘", "`"), ("‘", "'"), ("’", "'"), ("`", "'"),
                        ("“", "\""), ("”", "\""),
                        ("–", "--"), ("–", "---"), ("—", "---"),
                        ("…", "..."), ("…", ". . .")}:
         form = base.replace(old, new);
         j = input.find(form, i);
-        if j >= i:
-          i, m = j, len(form);
-          break;
+        if j >= i and j < k: k = j;
+      if k < len(input): i, m = j, len(form);
     if m:
       match = {"from": i, "to": i + m}; 
       i += m;
