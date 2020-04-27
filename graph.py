@@ -554,6 +554,12 @@ class Graph(object):
                             if self.input.startswith(form, i):
                                 m = len(form);
                                 break;
+                    #
+                    # _fix_me_
+                    # the block below looks weird: it would seem to accept any
+                    # of the punctuation marks given to scan(), irrespective
+                    # of the current .form. value?             (oe; 27-apr-20)
+                    #
                     if not m:
                         m = scan({"“", "\"", "``"}) or scan({"‘", "`"}) \
                             or scan({"”", "\"", "''"}) or scan({"’", "'"}) \
