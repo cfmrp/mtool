@@ -50,7 +50,7 @@ class Node(object):
         if anchor is not None:
             if self.anchors is None: self.anchors = [anchor];
             elif anchor not in self.anchors: self.anchors.append(anchor);
-    
+
     def is_root(self):
         return len(self.incoming_edges) == 0
 
@@ -79,7 +79,7 @@ class Node(object):
             if len(self.anchors) > 0 and input:
                 for anchor in self.anchors: trim(anchor, input);
             elif len(self.anchors) == 0:
-                self.anchors = None;    
+                self.anchors = None;
         if "case" in actions:
             if self.label is not None:
                 self.label = str(self.label).lower();
@@ -134,7 +134,7 @@ class Node(object):
         elif node.properties is not None:
             count2 += len(node.properties);
         return both - count1 - count2, count1, both, count2;
-                   
+
     def encode(self):
         json = {"id": self.id};
         if self.label:
@@ -266,10 +266,10 @@ class Node(object):
                           "".format(font, html.escape(name, False),
                                     font, html.escape(value), False),
                           end = "", file = stream);
-                
+
             if len(missing[1]) > 0: __properties__(missing[1], missing[2], "red");
             if len(surplus[1]) > 0: __properties__(surplus[1], surplus[2], "blue");
-                
+
             print("</table>> ];", file = stream);
         else:
             shape = "{}, label=\" \"".format(shapes[0]) if self.type == 0 else "point";
@@ -317,7 +317,8 @@ class Edge(object):
     def normalize(self, actions, trace = 0):
 
         if "edges" in actions:
-            if self.normal is None:
+            if self.normal is None \
+                and self.lab is not None:
                 label = self.lab;
                 if label == "mod":
                     self.normal = "domain";
@@ -372,7 +373,7 @@ class Edge(object):
         attributes = json.get("attributes", None)
         values = json.get("values", None)
         return Edge(src, tgt, lab, normal, attributes, values)
-        
+
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
         def __missing__():
@@ -414,7 +415,7 @@ class Edge(object):
               "".format(self.src, self.tgt, label if label else "\"\"",
                         style, color),
               file = stream);
-        
+
     def __key(self):
         return self.tgt, self.src, self.lab
 
@@ -887,7 +888,7 @@ class Graph(object):
                     if id in correspondences:
                         print("  top -> {} [ color=blue ];"
                               "".format(correspondences[id]), file = stream);
-                        
+
                     elif id not in mapping:
                         mapping[id] = surplus.add_node(id = n, top = True);
                         n += 1;
