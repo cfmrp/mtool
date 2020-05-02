@@ -271,7 +271,7 @@ class Node(object):
             if len(surplus[1]) > 0: __properties__(surplus[1], surplus[2], "blue");
 
             print("</table>> ];", file = stream);
-        else:
+        elif overlay is None or self.id < 0:
             shape = "{}, label=\" \"".format(shapes[0]) if self.type == 0 else "point";
             print("  {} [ shape={}, width=0.2 ];"
                   "".format(self.id, shape), file = stream);
@@ -852,9 +852,8 @@ class Graph(object):
                 else:
                     color = "";
                 print("  top -> {}{};".format(node.id, color), file = stream);
-        n = 0;
+        n = -1;
         for node in self.nodes:
-            n = max(n, node.id);
             node.dot(stream, self.input, ids, strings, errors, overlay);
             for edge in self.edges:
                 if node.id == edge.src:
@@ -865,12 +864,11 @@ class Graph(object):
             surplus.add_input(self.input);
             mapping = dict();
             correspondences = {s: g for g, s in errors["correspondences"]};
-            n += 1;
             if "labels" in errors and "surplus" in errors["labels"]:
                 for id, label in errors["labels"]["surplus"]:
                     if id not in correspondences:
                         mapping[id] = surplus.add_node(id = n, label = label);
-                        n += 1;
+                        n -= 1;
             if "properties" in errors and "surplus" in errors["properties"]:
                 for id, property, value in errors["properties"]["surplus"]:
                     if id not in correspondences:
@@ -880,7 +878,7 @@ class Graph(object):
                             mapping[id] = surplus.add_node(id = n,
                                                            properties = [property],
                                                            values = [value]);
-                            n += 1;
+                            n -= 1;
             if "anchors" in errors and "surplus" in errors["anchors"]:
                 for id, anchor in errors["anchors"]["surplus"]:
                     if id not in correspondences:
@@ -888,7 +886,7 @@ class Graph(object):
                             mapping[id].anchors = anchor;
                         else:
                             mapping[id] = surplus.add_node(id = n, anchors = anchor);
-                            n += 1;
+                            n -= 1;
             if "tops" in errors and "surplus" in errors["tops"]:
                 for id in errors["tops"]["surplus"]:
                     if id in correspondences:
@@ -897,7 +895,7 @@ class Graph(object):
 
                     elif id not in mapping:
                         mapping[id] = surplus.add_node(id = n, top = True);
-                        n += 1;
+                        n -= 1;
                     else:
                         mapping[id].is_root = True;
             if "edges" in errors and "surplus" in errors["edges"]:
@@ -907,13 +905,13 @@ class Graph(object):
                             mapping[source] = surplus.add_node(correspondences[source]);
                         except KeyError:
                             mapping[source] = surplus.add_node(n);
-                            n += 1;
+                            n -= 1;
                     if target not in mapping:
                         try:
                             mapping[target] = surplus.add_node(correspondences[target]);
                         except KeyError:
                             mapping[target] = surplus.add_node(n);
-                            n += 1;
+                            n -= 1;
                     surplus.add_edge(mapping[source].id, mapping[target].id, label);
             surplus.dot(stream, ids = ids, strings = strings, errors = None, overlay = True);
         if not overlay: print("}", file = stream);
