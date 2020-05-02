@@ -252,12 +252,6 @@ class Node(object):
             if missing[3]: __anchors__(missing[3], "red");
             if surplus[3]: __anchors__(surplus[3], "blue");
 
-            if self.properties and self.values:
-                for name, value in zip(self.properties, self.values):
-                    print("<tr><td sides=\"l\" border=\"1\" align=\"left\">{}</td><td sides=\"r\" border=\"1\" align=\"left\">{}</td></tr>"
-                          "".format(html.escape(name, False),
-                                    html.escape(value), False),
-                          end = "", file = stream);
             def __properties__(names, values, color):
                 font = "<font color=\"{}\">".format(color);
                 for name, value in zip(names, values):
@@ -266,7 +260,18 @@ class Node(object):
                           "".format(font, html.escape(name, False),
                                     font, html.escape(value), False),
                           end = "", file = stream);
-
+            if self.properties and self.values:
+                if not overlay:
+                    for name, value in zip(self.properties, self.values):
+                        i = None;
+                        try:
+                            i = missing[1].index(name);
+                        except:
+                            pass;
+                        if i is None or missing[2][i] != value:
+                            __properties__([name], [value], "black");
+                else:
+                    __properties__(self.properties, self.value, "blue");
             if len(missing[1]) > 0: __properties__(missing[1], missing[2], "red");
             if len(surplus[1]) > 0: __properties__(surplus[1], surplus[2], "blue");
 
