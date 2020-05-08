@@ -1,10 +1,10 @@
-import re
-import sys
+import re;
+import sys;
 
-from graph import Graph
+from graph import Graph;
 from smatch.amr import AMR;
 
-def amr_lines(fp, alignment):
+def amr_lines(fp, camr, alignment):
     id, snt, lines = None, None, [];
     alignment = read_alignment(alignment);
     for line in fp:
@@ -28,6 +28,9 @@ def amr_lines(fp, alignment):
                 if line.startswith("# ::snt"):
                    snt = line[8:].strip();
             else:
+                if camr:
+                    line = re.sub(r'((?:^|[ \t]):[^( ]+)\([^ \t]*\)([ \t]|$)',
+                                  "\\1\\2", line, count = 0);
                 lines.append(line)
     if len(lines) > 0:
         i = mapping = None;
@@ -144,13 +147,13 @@ def convert_amr_id(id):
     else:
         raise Exception('Could not convert id: %s' % id)
 
-def read(fp, full = False, reify = False,
+def read(fp, full = False, reify = False, camr = False,
          text = None, alignment = None, quiet = False):
     n = 0;
-    for id, snt, amr_line, mapping in amr_lines(fp, alignment):
+    for id, snt, amr_line, mapping in amr_lines(fp, camr, alignment):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
-            raise Exception("failed to parse #{} ({}); exit."
+            raise Exception("failed to parse #{} ‘{}’; exit."
                             "".format(id, amr_line));
         try:
             if id is not None:
