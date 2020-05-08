@@ -1,6 +1,6 @@
 import re;
 import sys;
-################################################################################
+
 from graph import Graph;
 from smatch.amr import AMR;
 
@@ -13,14 +13,14 @@ def amr_lines(fp, camr, alignment):
         prefix, constant, suffix = match.groups();
         fields = constant.split("/");
         if fields[0] in stash:
-            if stash[fields[0]][1] != fields[1]:
+            if stash[fields[0]][2] != fields[1]:
                 raise Exception("amr_lines(): "
                                 "ambiguously defined constant in graph #{}, "
                                 "‘{}’: ‘{}’ vs. ‘{}’; exit."
                                 "".format(id, fields[0],
-                                          stash[fields[0]][1], fields[1]));
+                                          stash[fields[0]][2], fields[1]));
         else:
-                stash[fields[0]] = (len(stash), fields[1]);
+                stash[fields[0]] = (len(stash), fields[0], fields[1]);
         return "{}__{}__{}".format(prefix, stash[fields[0]][0], suffix);
 
     alignment = read_alignment(alignment);
@@ -87,7 +87,8 @@ def read_alignment(stream):
                         if len(fields) > 1 and fields[1].startswith(":"):
                             fields[1] = fields[1][1:];
                             if fields[1] == "wiki": continue;
-                        if fields[0] not in alignment: alignment[fields[0]] = bucket = dict();
+                        if fields[0] not in alignment:
+                            alignment[fields[0]] = bucket = dict();
                         else: bucket = alignment[fields[0]];
                         path = tuple(fields[1:]);
                         if path not in bucket: bucket[path] = can = set();
@@ -95,9 +96,44 @@ def read_alignment(stream):
                         can |= span;
         yield id, alignment;
 
-def amr2graph(id, amr, stash, full = False, reify = False, alignment = None):
+def amr2graph(id, amr, text, stash, camr = False,
+              full = False, reify = False, quiet = False, alignment = None):
     graph = Graph(id, flavor = 2, framework = "amr");
-    node2id = {};
+    node2id = dict();
+    anchoring = list();
+
+    i = 0;
+    def _anchor_(form):
+        nonlocal i;
+        m = None;
+        j = graph.input.find(form, i);
+        if j >= i:
+            i, m = j, len(form);
+        else:
+            base = form;
+            k, l = len(graph.input), 0;
+            for old, new in {("‘", "`"), ("‘", "'"), ("’", "'"), ("`", "'"),
+                             ("“", "\""), ("”", "\""),
+                             ("–", "--"), ("–", "---"), ("—", "---"),
+                             ("…", "..."), ("…", ". . .")}:
+                form = base.replace(old, new);
+                j = graph.input.find(form, i);
+                if j >= i and j < k: k, l = j, len(form);
+            if k < len(graph.input): i, m = k, l;
+        if m:
+            match = {"from": i, "to": i + m}; 
+            i += m;
+            return match;
+        else:
+            raise Exception("failed to anchor |{}| in |{}|{}| ({})"
+                            "".format(form, graph.input[:i],
+                                      graph.input[i:], i));
+
+    if text:
+        graph.add_input(text, quiet = quiet);
+        if camr:
+            for token in graph.input.split(" "):
+                anchoring.append(_anchor_(token));
     i = 0;
     for n, v, a in zip(amr.nodes, amr.node_values, amr.attributes):
         j = i;
@@ -106,12 +142,13 @@ def amr2graph(id, amr, stash, full = False, reify = False, alignment = None):
         for key, val in a:
             if key == "TOP":
                 top = True;
-        node = graph.add_node(j, label = v, top = top);
+        anchors = find_anchors(n, anchoring) if camr else None;
+        node = graph.add_node(j, label = v, top = top, anchors = anchors);
         i += 1
         for key, val in a:
             if STASH.match(val) is not None:
                 index = int(val[2:-2]);
-                val = next(v for k, v in stash if k == index);
+                val = next(v for k, x, v in stash if k == index);
             if key != "TOP" and (key not in {"wiki"} or full):
                 if val.endswith("¦"):
                     val = val[:-1];
@@ -153,41 +190,53 @@ def amr2graph(id, amr, stash, full = False, reify = False, alignment = None):
                     if node is None: node = overlay.add_node(i);
                     node.set_property(path[0], tuple(span));
                 elif len(path) > 1:
-                    print("amr2graph(): ignoring alignment path {} on node #{} ({})"
+                    print("amr2graph(): "
+                          "ignoring alignment path {} on node #{} ({})"
                           "".format(path, source, node));
 
     return graph, overlay;
 
-def convert_amr_id(id):
-    m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id)
-    if m:
-        return "2%04d%03d" % (int(m.group(1)), int(m.group(2)))
-    m = re.search(r'lpp_1943\.([0-9]+)', id)
-    if m:
-        return "1%04d0" % (int(m.group(1)))
+def find_anchors(index, anchors):
+    fields = index.split("_");
+    if len(fields) == 4 and fields[0] == "x":
+        start = anchors[int(fields[1]) - 1]["from"];
+        return [{"from": start + int(fields[3]) - 1,
+                 "to": start + int(fields[4]) - 1}];
+    elif len(fields) > 0:
+        result = list();
+        for field in fields:
+            i = int(field[1:]) - 1 if field[0] == "x" else None;
+            if i is not None and i < len(anchors): result.append(anchors[i]);
+        return result if len(result) > 0 else None;
     else:
-        raise Exception('Could not convert id: %s' % id)
+        return None;
+
+def convert_amr_id(id):
+    m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id);
+    if m:
+        return "2%04d%03d" % (int(m.group(1)), int(m.group(2)));
+    m = re.search(r'lpp_1943\.([0-9]+)', id);
+    if m:
+        return "1%04d0" % (int(m.group(1)));
+    else:
+        raise Exception('Could not convert id: %s' % id);
 
 def read(fp, full = False, reify = False, camr = False,
          text = None, alignment = None, quiet = False):
     n = 0;
     for id, snt, amr_line, stash, mapping in amr_lines(fp, camr, alignment):
-        amr = AMR.parse_AMR_line(amr_line)
+        amr = AMR.parse_AMR_line(amr_line);
         if not amr:
             raise Exception("failed to parse #{} ‘{}’; exit."
                             "".format(id, amr_line));
         try:
             if id is not None:
-                id = convert_amr_id(id)
+                id = convert_amr_id(id);
             else:
                 id = n;
                 n += 1;
         except:
-            pass
-        graph, overlay = amr2graph(id, amr, stash, full, reify, mapping);
-        cid = None;
-        if text:
-            graph.add_input(text, quiet = quiet);
-        elif snt:
-            graph.add_input(snt, quiet = quiet);
+            pass;
+        graph, overlay = amr2graph(id, amr, text or snt, stash,
+                                   camr, full, reify, quiet, mapping);
         yield graph, overlay;
