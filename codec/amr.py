@@ -1,11 +1,28 @@
 import re;
 import sys;
-
+################################################################################
 from graph import Graph;
 from smatch.amr import AMR;
 
+STASH = re.compile(r'__[0-9]+__');
+
 def amr_lines(fp, camr, alignment):
     id, snt, lines = None, None, [];
+    stash = dict();
+    def _stash_(match):
+        prefix, constant, suffix = match.groups();
+        fields = constant.split("/");
+        if fields[0] in stash:
+            if stash[fields[0]][1] != fields[1]:
+                raise Exception("amr_lines(): "
+                                "ambiguously defined constant in graph #{}, "
+                                "‘{}’: ‘{}’ vs. ‘{}’; exit."
+                                "".format(id, fields[0],
+                                          stash[fields[0]][1], fields[1]));
+        else:
+                stash[fields[0]] = (len(stash), fields[1]);
+        return "{}__{}__{}".format(prefix, stash[fields[0]][0], suffix);
+
     alignment = read_alignment(alignment);
     for line in fp:
         line = line.strip();
@@ -18,19 +35,21 @@ def amr_lines(fp, camr, alignment):
                     print("amr_lines(): missing alignment for graph #{}."
                           "".format(id), file = sys.stderr);
                     pass;
-                yield id, snt, " ".join(lines), \
+                yield id, snt, " ".join(lines), stash.values(), \
                     mapping if mapping is not None and i == id else None;
-            id, lines = None, []
+            id, lines = None, []; stash.clear();
         else:
             if line.startswith("#"):
                 if line.startswith("# ::id"):
-                    id = line.split()[2]
+                    id = line.split()[2];
                 if line.startswith("# ::snt"):
                    snt = line[8:].strip();
             else:
                 if camr:
                     line = re.sub(r'((?:^|[ \t]):[^( ]+)\([^ \t]*\)([ \t]|$)',
                                   "\\1\\2", line, count = 0);
+                    line = re.sub(r'(^|[ \t])(x[0-9]+/[^ \t]+)([ \t]|$)',
+                                  _stash_, line, count = 0);
                 lines.append(line)
     if len(lines) > 0:
         i = mapping = None;
@@ -40,7 +59,7 @@ def amr_lines(fp, camr, alignment):
             print("amr_lines(): missing alignment for graph #{}."
                   "".format(id), file = sys.stderr);
             pass;
-        yield id, snt, " ".join(lines), \
+        yield id, snt, " ".join(lines), stash.values(), \
             mapping if mapping is not None and i == id else None;
 
 def read_alignment(stream):
@@ -76,27 +95,29 @@ def read_alignment(stream):
                         can |= span;
         yield id, alignment;
 
-def amr2graph(id, amr, full = False, reify = False, alignment = None):
-    graph = Graph(id, flavor = 2, framework = "amr")
-    node2id = {}
-    i = 0
+def amr2graph(id, amr, stash, full = False, reify = False, alignment = None):
+    graph = Graph(id, flavor = 2, framework = "amr");
+    node2id = {};
+    i = 0;
     for n, v, a in zip(amr.nodes, amr.node_values, amr.attributes):
-        j = i
-        node2id[n] = j
+        j = i;
+        node2id[n] = j;
         top = False;
         for key, val in a:
             if key == "TOP":
                 top = True;
-        node = graph.add_node(j, label = v, top=top)
+        node = graph.add_node(j, label = v, top = top);
         i += 1
         for key, val in a:
-            if key != "TOP" \
-               and (key not in {"wiki"} or full):
+            if STASH.match(val) is not None:
+                index = int(val[2:-2]);
+                val = next(v for k, v in stash if k == index);
+            if key != "TOP" and (key not in {"wiki"} or full):
                 if val.endswith("¦"):
                     val = val[:-1];
                 if reify:
-                    graph.add_node(i, label=val)
-                    graph.add_edge(j, i, key)
+                    graph.add_node(i, label = val);
+                    graph.add_edge(j, i, key);
                     i += 1
                 else:
                     #
@@ -150,7 +171,7 @@ def convert_amr_id(id):
 def read(fp, full = False, reify = False, camr = False,
          text = None, alignment = None, quiet = False):
     n = 0;
-    for id, snt, amr_line, mapping in amr_lines(fp, camr, alignment):
+    for id, snt, amr_line, stash, mapping in amr_lines(fp, camr, alignment):
         amr = AMR.parse_AMR_line(amr_line)
         if not amr:
             raise Exception("failed to parse #{} ‘{}’; exit."
@@ -163,7 +184,7 @@ def read(fp, full = False, reify = False, camr = False,
                 n += 1;
         except:
             pass
-        graph, overlay = amr2graph(id, amr, full, reify, mapping);
+        graph, overlay = amr2graph(id, amr, stash, full, reify, mapping);
         cid = None;
         if text:
             graph.add_input(text, quiet = quiet);
