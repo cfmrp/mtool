@@ -198,10 +198,10 @@ def amr2graph(id, amr, text, stash, camr = False,
 
 def find_anchors(index, anchors):
     fields = index.split("_");
-    if len(fields) == 4 and fields[0] == "x":
-        start = anchors[int(fields[1]) - 1]["from"];
-        return [{"from": start + int(fields[3]) - 1,
-                 "to": start + int(fields[4]) - 1}];
+    if len(fields) >= 2 and fields[0][0] == "x" and fields[1][0] != "x":
+        start = anchors[int(fields[0][1:]) - 1]["from"];
+        end = start + (int(fields[2]) if len(fields) > 2 else int(fields[1]));
+        return [{"from": start + int(fields[1]) - 1, "to": end}];
     elif len(fields) > 0:
         result = list();
         for field in fields:
