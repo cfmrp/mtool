@@ -5,6 +5,7 @@ from graph import Graph;
 from smatch.amr import AMR;
 
 STASH = re.compile(r'__[0-9]+__');
+INDEX = re.compile(r'x([0-9]+)((:?_[0-9]+)*)');
 
 def amr_lines(fp, camr, alignment):
     id, snt, lines = None, None, [];
@@ -197,19 +198,21 @@ def amr2graph(id, amr, text, stash, camr = False,
     return graph, overlay;
 
 def find_anchors(index, anchors):
-    fields = index.split("_");
-    if len(fields) >= 2 and fields[0][0] == "x" and fields[1][0] != "x":
-        start = anchors[int(fields[0][1:]) - 1]["from"];
-        end = start + (int(fields[2]) if len(fields) > 2 else int(fields[1]));
-        return [{"from": start + int(fields[1]) - 1, "to": end}];
-    elif len(fields) > 0:
-        result = list();
-        for field in fields:
-            i = int(field[1:]) - 1 if field[0] == "x" else None;
-            if i is not None and i < len(anchors): result.append(anchors[i]);
-        return result if len(result) > 0 else None;
-    else:
-        return None;
+    result = list();
+    for match in INDEX.finditer(index):
+        i, suffix = match.group(1), match.group(2);
+        i = int(i) - 1;
+        if i > len(anchors): continue;
+        anchor = anchors[i];
+        if suffix != "":
+            fields = suffix[1:].split("_");
+            start = anchor["from"];
+            for field in fields:
+                j = int(field);
+                result.append({"from": start + j - 1, "to": start + j});
+        else:
+            result.append(anchor);
+    return result if len(result) > 0 else None;
 
 def convert_amr_id(id):
     m = re.search(r'wsj_([0-9]+)\.([0-9]+)', id);
