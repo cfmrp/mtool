@@ -111,6 +111,9 @@ def read_graphs(stream, format = None,
       j += 1;
     except StopIteration:
       break;
+    except Exception as error:
+      print(error, file = sys.stderr);
+      continue;
 
   if pretty:
     for graph in graphs: graph.prettify(trace);
