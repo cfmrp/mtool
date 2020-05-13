@@ -271,7 +271,7 @@ class Node(object):
                         if i is None or missing[2][i] != value:
                             __properties__([name], [value], "black");
                 else:
-                    __properties__(self.properties, self.value, "blue");
+                    __properties__(self.properties, self.values, "blue");
             if len(missing[1]) > 0: __properties__(missing[1], missing[2], "red");
             if len(surplus[1]) > 0: __properties__(surplus[1], surplus[2], "blue");
 
