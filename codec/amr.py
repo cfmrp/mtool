@@ -202,7 +202,7 @@ def find_anchors(index, anchors):
     for match in INDEX.finditer(index):
         i, suffix = match.group(1), match.group(2);
         i = int(i) - 1;
-        if i > len(anchors): continue;
+        if i >= len(anchors): continue;
         anchor = anchors[i];
         if suffix != "":
             fields = suffix[1:].split("_");
