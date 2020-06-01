@@ -225,21 +225,23 @@ def convert_amr_id(id):
         raise Exception('Could not convert id: %s' % id);
 
 def read(fp, full = False, reify = False, camr = False,
-         text = None, alignment = None, quiet = False):
+         text = None, alignment = None, quiet = False, trace = 0):
     n = 0;
     for id, snt, amr_line, stash, mapping in amr_lines(fp, camr, alignment):
+        if trace:
+            print("{}: {}".format(id, amr_line), file = sys.stderr);
         amr = AMR.parse_AMR_line(amr_line);
         if not amr:
             raise Exception("failed to parse #{} ‘{}’; exit."
                             "".format(id, amr_line));
-        try:
-            if id is not None:
+        if id is not None:
+            try:
                 id = convert_amr_id(id);
-            else:
-                id = n;
-                n += 1;
-        except:
-            pass;
+            except:
+                pass;
+        else:
+            id = n;
+            n += 1;
         graph, overlay = amr2graph(id, amr, text or snt, stash,
                                    camr, full, reify, quiet, mapping);
         yield graph, overlay;
