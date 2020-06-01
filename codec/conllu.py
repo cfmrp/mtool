@@ -55,14 +55,18 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
   ids = {};
   for id, tuple in enumerate(tuples):
     ids[tuple[0]] = id;
-    form, lemma, upos, xpos, root, misc = \
-      tuple[1], tuple[2], tuple[3], tuple[4], int(tuple[6]), tuple[9];
+    form, lemma, upos, xpos, features, root, misc = \
+      tuple[1], tuple[2], tuple[3], tuple[4], tuple[5], int(tuple[6]), tuple[9];
     properties = {"lemma": lemma, "upos": upos, "xpos": xpos};
+    if features != "_":
+      for feature in features.split("|"):
+        name, value = feature.split("=");
+        properties[name] = value;
     if tokens is not None:
       start, end = tokens.pop(0);
       anchors = [{"from": start, "to": end}];
     else:
-      match = re.match(r"TokenRange=([0-9]+):([0-9]+)", misc);
+      match = re.match(r".*TokenRange=([0-9]+):([0-9]+)", misc);
       if match:
         anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
       else:
