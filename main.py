@@ -63,7 +63,8 @@ def read_graphs(stream, format = None,
     generator \
       = codec.amr.read(stream, full = full, reify = reify,
                        text = text, camr = format == "camr",
-                       alignment = alignment, quiet = quiet);
+                       alignment = alignment, quiet = quiet,
+                       trace = trace);
   elif format in {"ccd", "dm", "pas", "psd"}:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
@@ -113,7 +114,7 @@ def read_graphs(stream, format = None,
       break;
     except Exception as error:
       print(error, file = sys.stderr);
-      continue;
+      pass;
 
   if pretty:
     for graph in graphs: graph.prettify(trace);
