@@ -1,22 +1,29 @@
 import re;
+import sys;
 
 from graph import Graph;
 
 def read_tuples(stream):
-  id = None;
+  id, input = None, None;
   tuples = [];
   for line in stream:
     line = line.rstrip();
     if line.startswith("#"):
-      match = re.match(r"^#(.+)$", line);
+      match = re.match(r"^# text = (.+)$", line);
+      if match:
+        input = match.group(1);
+        continue;
+      match = re.match(r"^# sent_id = (.+)$", line);
       if match:
         id = match.group(1);
+        continue;
     else:
       if len(line) == 0:
-        return id, tuples;
+        return id, input, tuples;
       else:
-        tuples.append(line.split("\t"));
-  return id, None;
+        if re.match(r"^[0-9]+-[0-9]+\t", line) is None:
+          tuples.append(line.split("\t"));
+  return id, input, None;
 
 def read_anchors(stream):
   if stream is None:
@@ -40,8 +47,9 @@ def read_anchors(stream):
     if len(tokens) > 0:
       yield id, tokens;
 
-def construct_graph(id, tuples, framework = None, text = None, anchors = None):
+def construct_graph(id, input, tuples, framework = None, text = None, anchors = None):
   graph = Graph(id, flavor = 0, framework = framework);
+  if input is not None: graph.add_input(input);
   generator = read_anchors(anchors);
   _, tokens = next(generator);
   ids = {};
@@ -76,7 +84,7 @@ def construct_graph(id, tuples, framework = None, text = None, anchors = None):
   return graph;
 
 def read(stream, framework = None, text = None, anchors = None):
-  id, tuples = read_tuples(stream);
+  id, input, tuples = read_tuples(stream);
   while tuples:
-    yield construct_graph(id, tuples, framework, text, anchors), None;
-    id, tuples = read_tuples(stream);
+    yield construct_graph(id, input, tuples, framework, text, anchors), None;
+    id, input, tuples = read_tuples(stream);
