@@ -81,7 +81,7 @@ def read_graphs(stream, format = None,
     generator = codec.ucca.read(stream, text = text, prefix = prefix);
   elif format == "conllu" or format == "ud":
     generator = codec.conllu.read(stream, framework = format, text = text,
-                                  anchors = anchors);
+                                  anchors = anchors, trace = trace);
   else:
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
