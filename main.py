@@ -152,6 +152,7 @@ def main():
   parser.add_argument("--source");
   parser.add_argument("--pretty", action = "store_true");
   parser.add_argument("--inject");
+  parser.add_argument("--version", type = float, default = 1.1);
   parser.add_argument("--cores", type = int, default = 1);
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
@@ -394,7 +395,7 @@ def main():
         elif graph.source() in {"amr-consensus", "bolt", "dfa",
                                 "lorelei", "proxy", "xinhua"}:
           graph.targets(["amr"]);
-      json.dump(graph.encode(), arguments.output,
+      json.dump(graph.encode(arguments.version), arguments.output,
                 indent = None, ensure_ascii = False);
       print(file = arguments.output);
     elif arguments.write == "dot":
@@ -412,7 +413,7 @@ def main():
   if arguments.overlay:
     for graph in overlays:
       if graph:
-        json.dump(graph.encode(), arguments.overlay,
+        json.dump(graph.encode(arguments.version), arguments.overlay,
                   indent = None, ensure_ascii = False);
         print(file = arguments.overlay);
     

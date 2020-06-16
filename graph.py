@@ -781,13 +781,13 @@ class Graph(object):
             count(gedges, sedges, "edges"), \
             count(gattributes, sattributes, "attributes");
 
-    def encode(self):
+    def encode(self, version = 1.1):
         json = {"id": self.id};
         if self.flavor is not None:
             json["flavor"] = self.flavor;
         if self.framework:
             json["framework"] = self.framework;
-        json["version"] = 1.0;
+        json["version"] = version;
         if self.time is not None:
             json["time"] = self.time.strftime("%Y-%m-%d");
         else:
