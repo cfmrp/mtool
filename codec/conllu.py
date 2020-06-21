@@ -50,8 +50,37 @@ def read_anchors(stream):
       yield id, tokens;
 
 def construct_graph(id, input, tuples, framework = None, text = None, anchors = None):
+  i = 0;
+  def compute(form):
+    nonlocal i;
+    m = None;
+    j = input.find(form, i);
+    if j >= i:
+      i, m = j, len(form);
+    else:
+      base = form;
+      k, l = len(input), 0;
+      for old, new in {("‘", "`"), ("‘", "'"), ("’", "'"), ("`", "'"),
+                       ("“", "\""), ("”", "\""),
+                       ("–", "--"), ("–", "---"), ("—", "---"),
+                       ("…", "..."), ("…", ". . .")}:
+        form = base.replace(old, new);
+        j = input.find(form, i);
+        if j >= i and j < k: k, l = j, len(form);
+      if k < len(input): i, m = k, l;
+    if m:
+      match = {"from": i, "to": i + m}; 
+      i += m;
+      return match;
+    else:
+      raise Exception("failed to anchor |{}| in |{}|{}| ({})"
+                      "".format(form, input[:i], input[i:], i));
+
   graph = Graph(id, flavor = 0, framework = framework);
   if input is not None: graph.add_input(input);
+  elif text is not None: graph.add_input(text);
+  input = graph.input;
+
   generator = read_anchors(anchors);
   _, tokens = next(generator);
   id, ids = 0, dict();
@@ -59,8 +88,8 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
   for tuple in tuples:
     match = RANGE.match(tuple[0]);
     if match is not None and tuple[9] != "_":
-      for i in range(int(match.group(1)), int(match.group(2)) + 1):
-        ranges[i] = tuple[9];
+      for t in range(int(match.group(1)), int(match.group(2)) + 1):
+        ranges[t] = tuple[9];
     else:
       id += 1;
       ids[tuple[0]] = id;
@@ -80,7 +109,7 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
         if match:
           anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
         else:
-          anchors = None;
+          anchors = [compute(form)];
       graph.add_node(id, label = form,
                      properties = list(properties.keys()),
                      values = list(properties.values()),
@@ -91,9 +120,6 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
     id, head, type = tuple[0], tuple[6], tuple[7];
     if head in ids:
       graph.add_edge(ids[head], ids[id], type);
-
-  if text:
-    graph.add_input(text);
 
   return graph;
 

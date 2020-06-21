@@ -148,7 +148,10 @@ def graph2passage(graph, input):
     anchors = {(anchor["from"], anchor["to"], is_punct(node)) for node in graph.nodes for anchor in node.anchors or ()}
     terminals = {(i, j): l0.add_terminal(text=input[i:j], punct=punct) for i, j, punct in sorted(anchors)}
     l1 = layer1.Layer1(passage)
-    queue = [(node, None) for node in graph.nodes if node.is_root()]
+    queue = [(node, None if node.is_top else layer1.FoundationalNode(root=l1.root,
+                                                                     tag=layer1.NodeTags.Foundational,
+                                                                     ID=l1.next_id()))
+             for node in graph.nodes if node.is_root()]
     id_to_unit = {}
     remotes = []
     while queue:

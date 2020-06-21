@@ -130,6 +130,7 @@ def main():
   parser.add_argument("--normalize", action = "append", default = []);
   parser.add_argument("--full", action = "store_true");
   parser.add_argument("--reify", action = "store_true");
+  parser.add_argument("--unique", action = "store_true");
   parser.add_argument("--ids", action = "store_true");
   parser.add_argument("--strings", action = "store_true");
   parser.add_argument("--framework", action = "append", default = []);
@@ -254,6 +255,16 @@ def main():
     print("main.py(): unable to read input graphs: {}; exit."
           "".format(arguments.input.name), file = sys.stderr);
     sys.exit(1);
+
+  if arguments.unique:
+    unique = list();
+    ids = set();
+    for graph in graphs:
+      id = graph.id;
+      if id not in ids:
+        ids.add(id);
+        unique.append(graph);
+    graphs = unique;
 
   #
   # inject any additional information provided on the command line
