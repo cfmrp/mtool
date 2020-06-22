@@ -4,10 +4,11 @@
 # Marco Kuhlmann <marco.kuhlmann@liu.se>
 # Stephan Oepen <oe@ifi.uio.no>
 
-import html;
-import sys;
 from datetime import datetime;
+import html;
+import operator;
 from pathlib import Path;
+import sys;
 
 import score.core;
 
@@ -17,8 +18,9 @@ import score.core;
 # for default values, we need to deal in the normalized values here.
 #
 ATTRIBUTE_DEFAULTS = {"remote": "false"};
-FLAVORS = {"dm": 0, "psd": 0, "ptg": 0, "eds": 1, "ucca": 1, "amr": 2};
-
+FLAVORS = {"dm": 0, "psd": 0, "ptg": 0,
+           "eds": 1, "ptg": 1, "ucca": 1,
+           "amr": 2, "drg": 2};
 
 class Node(object):
 
@@ -29,6 +31,7 @@ class Node(object):
         self.label = label;
         self.properties = properties;
         self.values = values;
+        self.anchorings = None;
         self.incoming_edges = set()
         self.outgoing_edges = set()
         self.anchors = anchors;
@@ -45,6 +48,18 @@ class Node(object):
         else:
             self.properties = [name];
             self.values = [value];
+
+    def set_anchoring(self, name, value):
+        if self.properties and self.anchorings:
+            try:
+                i = self.properties.index(name);
+                self.anchorings[i] = value;
+            except ValueError:
+                self.properties.append(name);
+                self.anchorings.append(value);
+        else:
+            self.properties = [name];
+            self.anchorings = [value];
 
     def add_anchor(self, anchor):
         if anchor is not None:
@@ -139,9 +154,12 @@ class Node(object):
         json = {"id": self.id};
         if self.label:
             json["label"] = self.label;
-        if self.properties and self.values:
+        if self.properties and self.values or self.anchorings:
             json["properties"] = self.properties;
-            json["values"] = self.values;
+            if self.values:
+                json["values"] = self.values;
+            if self.anchorings:
+                json["anchorings"] = self.anchorings;
         if self.anchors:
             json["anchors"] = self.anchors;
         return json;
@@ -295,14 +313,16 @@ class Node(object):
 
 class Edge(object):
 
-    def __init__(self, src, tgt, lab, normal = None,
-                 attributes = None, values = None):
+    def __init__(self, id, src, tgt, lab, normal = None,
+                 attributes = None, values = None, anchors = None):
+        self.id = id;
         self.src = src;
         self.tgt = tgt;
         self.lab = lab;
         self.normal = normal;
         self.attributes = attributes;
         self.values = values;
+        self.anchors = anchors;
 
     def is_loop(self):
         return self.src == self.tgt
@@ -359,25 +379,28 @@ class Edge(object):
             self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
     def encode(self):
-        json = {"source": self.src, "target": self.tgt}
+        json = {"id": self.id}
+        if self.src is not None: json["source"] = self.src;
+        if self.tgt is not None: json["target"] = self.tgt;
         if self.lab: json["label"] = self.lab;
-        if self.normal:
-            json["normal"] = self.normal;
+        if self.normal: json["normal"] = self.normal;
         if self.attributes and self.values:
             json["attributes"] = self.attributes;
             json["values"] = self.values;
+        if self.anchors: json["anchors"] = self.anchors;
         return json;
 
     @staticmethod
     def decode(json):
-        src = json["source"]
-        tgt = json["target"]
+        id = json.get("id", None);
+        src = json.get("source", None);
+        tgt = json.get("target", None);
         lab = json.get("label", None);
         if lab == "": lab = None;
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
         values = json.get("values", None)
-        return Edge(src, tgt, lab, normal, attributes, values)
+        return Edge(id, src, tgt, lab, normal, attributes, values)
 
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
@@ -492,20 +515,22 @@ class Graph(object):
 
     def add_edge(self, src, tgt, lab, normal = None,
                  attributes = None, values = None):
-        edge = Edge(src, tgt, lab, normal, attributes, values)
-        source = self.find_node(src);
-        if source is None:
+        self.store_edge(Edge(len(self.edges), src, tgt, lab, normal, attributes, values));
+
+    def store_edge(self, edge, robust = False):
+        self.edges.add(edge)
+        source = self.find_node(edge.src);
+        if source is None and not robust:
             raise ValueError("Graph.add_edge(): graph #{}: "
                              "invalid source node {}."
-                             "".format(self.id, src))
-        target = self.find_node(tgt);
-        if target is None:
+                             "".format(self.id, self.src))
+        if source: source.outgoing_edges.add(edge)
+        target = self.find_node(edge.tgt);
+        if target is None and not robust:
             raise ValueError("Graph.add_edge(): graph #{}: "
                              "invalid target node {}."
-                             "".format(self.id, tgt))
-        self.edges.add(edge)
-        source.outgoing_edges.add(edge)
-        target.incoming_edges.add(edge)
+                             "".format(self.id, self.tgt))
+        if target: target.incoming_edges.add(edge)
         return edge
 
     def add_input(self, text, id = None, quiet = False):
@@ -803,11 +828,12 @@ class Graph(object):
                 json["tops"] = tops;
             json["nodes"] = [node.encode() for node in self.nodes];
             if self.edges:
-                json["edges"] = [edge.encode() for edge in self.edges];
+                json["edges"] = [edge.encode() for edge in
+                                 sorted(self.edges, key = operator.attrgetter("id"))];
         return json;
 
     @staticmethod
-    def decode(json):
+    def decode(json, robust = False):
         graph = Graph(json["id"], json.get("flavor"), json.get("framework"))
         try:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d")
@@ -827,8 +853,8 @@ class Graph(object):
         if edges is not None:
             for j in edges:
                 edge = Edge.decode(j)
-                graph.add_edge(edge.src, edge.tgt, edge.lab, edge.normal,
-                               edge.attributes, edge.values)
+                if edge.id is None: edge.id = len(graph.edges);
+                graph.store_edge(edge, robust = robust)
         tops = json.get("tops")
         if tops is not None:
             for i in tops:

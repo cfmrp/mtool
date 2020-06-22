@@ -38,7 +38,7 @@ VALIDATIONS = {"input", "anchors", "edges",
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
                 frameworks = None, prefix = None, text = None,
-                trace = 0, strict = 0, quiet = False,
+                trace = 0, strict = 0, quiet = False, robust = False,
                 alignment = None, anchors = None, pretty = False,
                 id = None, n = None, i = None):
 
@@ -63,14 +63,13 @@ def read_graphs(stream, format = None,
     generator \
       = codec.amr.read(stream, full = full, reify = reify,
                        text = text, camr = format == "camr",
-                       alignment = alignment, quiet = quiet,
-                       trace = trace);
+                       alignment = alignment, quiet = quiet, trace = trace);
   elif format in {"ccd", "dm", "pas", "psd"}:
     generator = codec.sdp.read(stream, framework = format, text = text);
   elif format == "eds":
     generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
-    generator = codec.mrp.read(stream, text = text)
+    generator = codec.mrp.read(stream, text = text, robust = robust);
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
                                reify = reify, text = text,
@@ -159,6 +158,7 @@ def main():
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
   parser.add_argument("--quiet", action = "store_true");
+  parser.add_argument("--robust", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
   parser.add_argument("--strict", action = "count", default = 0);
   parser.add_argument("--errors",
@@ -249,7 +249,7 @@ def main():
                   text = text, alignment = arguments.alignment,
                   anchors = arguments.anchors, pretty = arguments.pretty,
                   trace = arguments.trace, strict = arguments.strict,
-                  quiet = arguments.quiet,
+                  quiet = arguments.quiet, robust = arguments.robust,
                   id = arguments.id, n = arguments.n, i = arguments.i);
   if graphs is None:
     print("main.py(): unable to read input graphs: {}; exit."
@@ -301,8 +301,8 @@ def main():
     gold, _ = read_graphs(arguments.gold, format = arguments.format,
                           full = arguments.full, normalize = normalize,
                           reify = arguments.reify, frameworks = arguments.framework,
-                          text = text,
-                          trace = arguments.trace, quiet = arguments.quiet,
+                          text = text, trace = arguments.trace,
+                          quiet = arguments.quiet, robust = arguments.robust,
                           id = arguments.id, n = arguments.n, i = arguments.i);
     if gold is None:
       print("main.py(): unable to read gold graphs: {}; exit."

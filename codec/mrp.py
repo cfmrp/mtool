@@ -5,7 +5,7 @@ import sys;
 
 from graph import Graph
 
-def read(fp, text = None):
+def read(fp, text = None, robust = False):
   input, i = None, 0;
   def compute(form):
     nonlocal i;
@@ -49,7 +49,7 @@ def read(fp, text = None):
 
   for j, line in enumerate(fp):
     try:
-      graph = Graph.decode(json.loads(line.rstrip()));
+      graph = Graph.decode(json.loads(line.rstrip()), robust = robust);
       if text is not None:
         old = graph.input;
         graph.add_input(text);

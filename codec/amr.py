@@ -1,7 +1,8 @@
 import re;
 import sys;
 
-from graph import Graph;
+import codec.mrp;
+from graph import Edge, Graph;
 from smatch.amr import AMR;
 
 STASH = re.compile(r'__[0-9]+__');
@@ -32,7 +33,7 @@ def amr_lines(fp, camr, alignment):
                 i = mapping = None;
                 try:
                     i, mapping = next(alignment);
-                except:
+                except Exception as error:
                     print("amr_lines(): missing alignment for graph #{}."
                           "".format(id), file = sys.stderr);
                     pass;
@@ -162,7 +163,7 @@ def amr2graph(id, amr, text, stash, camr = False,
                     # _fix_me_ 
                     # this assumes that properties are unique.  (1-apr-20; oe)
                     #
-                    node.set_property(key, val);
+                    node.set_property(key.lower(), str(val).lower());
 
     for src, r in zip(amr.nodes, amr.relations):
         for label, tgt in r:
@@ -178,18 +179,26 @@ def amr2graph(id, amr, text, stash, camr = False,
 
     overlay = None;
     if alignment is not None:
-        overlay = Graph(id, flavor = 2, framework = "alignment");
+        overlay = Graph(id, flavor = -1, framework = "anchoring");
         for node in alignment:
             for path, span in alignment[node].items():
                 if len(path) == 0:
-                    node = overlay.add_node(node2id[node], label = tuple(span));
+                    anchors = [{"#": token} for token in span];
+                    node = overlay.add_node(node2id[node], anchors = anchors);
         for node in alignment:
-            i = node2id[node];
+            id = node2id[node];
             for path, span in alignment[node].items():
                 if len(path) == 1:
-                    node = overlay.find_node(i);
-                    if node is None: node = overlay.add_node(i);
-                    node.set_property(path[0], tuple(span));
+                    node = overlay.find_node(id);
+                    if node is None: node = overlay.add_node(id);
+                    reference = graph.find_node(id);
+                    anchors = [{"#": token} for token in span];
+                    if reference.properties is not None \
+                       and path[0] in reference.properties:
+                        node.set_anchoring(path[0], anchors);
+                    else:
+                        edge = next(edge for edge in graph.edges if edge.lab.lower() == path[0] and edge.src == id);
+                        overlay.edges.add(Edge(edge.id, None, None, None, anchors = anchors));
                 elif len(path) > 1:
                     print("amr2graph(): "
                           "ignoring alignment path {} on node #{} ({})"
@@ -225,7 +234,8 @@ def convert_amr_id(id):
         raise Exception('Could not convert id: %s' % id);
 
 def read(fp, full = False, reify = False, camr = False,
-         text = None, alignment = None, quiet = False, trace = 0):
+         text = None, alignment = None,
+         quiet = False, trace = 0):
     n = 0;
     for id, snt, amr_line, stash, mapping in amr_lines(fp, camr, alignment):
         if trace:
