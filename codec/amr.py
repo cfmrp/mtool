@@ -189,15 +189,16 @@ def amr2graph(id, amr, text, stash, camr = False,
             id = node2id[node];
             for path, span in alignment[node].items():
                 if len(path) == 1:
+                    key = path[0].lower();
                     node = overlay.find_node(id);
                     if node is None: node = overlay.add_node(id);
                     reference = graph.find_node(id);
                     anchors = [{"#": token} for token in span];
                     if reference.properties is not None \
-                       and path[0] in reference.properties:
-                        node.set_anchoring(path[0], anchors);
+                       and key in reference.properties:
+                        node.set_anchoring(key, anchors);
                     else:
-                        edge = next(edge for edge in graph.edges if edge.lab.lower() == path[0] and edge.src == id);
+                        edge = next(edge for edge in graph.edges if edge.lab.lower() == key and edge.src == id);
                         overlay.edges.add(Edge(edge.id, None, None, None, anchors = anchors));
                 elif len(path) > 1:
                     print("amr2graph(): "
