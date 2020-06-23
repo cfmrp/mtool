@@ -399,6 +399,11 @@ class Edge(object):
         if lab == "": lab = None;
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
+        properties = json.get("properties", None)
+        if properties is not None:
+            print("Edge 'properties' are deprecated. Use 'attributes' instead.", file=sys.stderr);
+            if attributes is None:
+                attributes = properties
         values = json.get("values", None)
         return Edge(id, src, tgt, lab, normal, attributes, values)
 
