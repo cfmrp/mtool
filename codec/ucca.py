@@ -144,19 +144,23 @@ def is_implicit(node):
             return True
     return False
 
+def is_primary_root(node):
+    return all(is_remote(edge) for edge in node.incoming_edges)
 
 def graph2passage(graph, input):
     passage = core.Passage(graph.id)
     l0 = layer0.Layer0(passage)
     anchors = {(anchor["from"], anchor["to"], is_punct(node)) for node in graph.nodes for anchor in node.anchors or ()}
     terminals = {(i, j): l0.add_terminal(text=input[i:j], punct=punct) for i, j, punct in sorted(anchors)}
+
     l1 = layer1.Layer1(passage)
-    # None refers to the UCCA root in add_fnode_multiple, but if there are multiple roots, create the additional ones
     queue = [(node, None if node.is_top else layer1.FoundationalNode(root=l1.root,
                                                                      tag=layer1.NodeTags.Foundational,
                                                                      ID=l1.next_id()))
-             for node in graph.nodes if node.is_root()]
-    id_to_unit = {}
+             for node in graph.nodes if is_primary_root(node)]
+
+
+    id_to_unit = {node.id: unit for (node, unit) in queue}
     remotes = []
     while queue:
         parent, parent_unit = queue.pop(0)
