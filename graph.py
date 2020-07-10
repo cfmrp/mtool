@@ -509,10 +509,10 @@ class Graph(object):
 
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
-                 anchors = None, top = False, type = 1):
+                 anchors = None, top = False, type = 1, anchorings = None):
         node = Node(id if id is not None else len(self.nodes),
                     label = label, properties = properties, values = values,
-                    anchors = anchors, top = top, type = type);
+                    anchors = anchors, top = top, type = type, anchorings = anchorings);
         self.nodes.append(node)
         return node
 
@@ -521,8 +521,9 @@ class Graph(object):
             if node.id == id: return node;
 
     def add_edge(self, src, tgt, lab, normal = None,
-                 attributes = None, values = None):
-        self.store_edge(Edge(len(self.edges), src, tgt, lab, normal, attributes, values));
+                 attributes = None, values = None, anchors = None):
+        self.store_edge(Edge(id=len(self.edges), src=src, tgt=tgt, lab=lab, normal=normal,
+                             attributes=attributes, values=values, anchors=anchors));
 
     def store_edge(self, edge, robust = False):
         self.edges.add(edge)
