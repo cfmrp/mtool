@@ -856,7 +856,7 @@ class Graph(object):
             for j in nodes:
                 node = Node.decode(j)
                 graph.add_node(node.id, node.label, node.properties,
-                               node.values, node.anchors, top = False)
+                               node.values, node.anchors, top = False, anchorings=node.anchorings)
         edges = json.get("edges")
         if edges is not None:
             for j in edges:
