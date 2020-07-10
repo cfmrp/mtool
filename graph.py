@@ -25,13 +25,13 @@ FLAVORS = {"dm": 0, "psd": 0, "ptg": 0,
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
-                 anchors = None, top = False, type = 1):
+                 anchors = None, top = False, type = 1, anchorings = None):
         self.id = id
         self.type = type;
         self.label = label;
         self.properties = properties;
         self.values = values;
-        self.anchorings = None;
+        self.anchorings = anchorings;
         self.incoming_edges = set()
         self.outgoing_edges = set()
         self.anchors = anchors;
@@ -170,8 +170,9 @@ class Node(object):
         label = json.get("label", None)
         properties = json.get("properties", None)
         values = json.get("values", None)
+        anchorings = json.get("anchorings", None)
         anchors = json.get("anchors", None)
-        return Node(id, label, properties, values, anchors)
+        return Node(id=id, label=label, properties=properties, values=values, anchors=anchors, anchorings=anchorings)
 
     def dot(self, stream, input = None, ids = False, strings = False,
             errors = None, overlay = False):
