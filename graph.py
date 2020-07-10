@@ -406,7 +406,8 @@ class Edge(object):
             if attributes is None:
                 attributes = properties
         values = json.get("values", None)
-        return Edge(id, src, tgt, lab, normal, attributes, values)
+        anchors = json.get("anchors", None)
+        return Edge(id=id, src=src, tgt=tgt, lab=lab, normal=normal, attributes=attributes, values=values, anchors=anchors)
 
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
