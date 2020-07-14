@@ -954,3 +954,30 @@ class Graph(object):
                     surplus.add_edge(mapping[source].id, mapping[target].id, label);
             surplus.dot(stream, ids = ids, strings = strings, errors = None, overlay = True);
         if not overlay: print("}", file = stream);
+
+    def tikz(self, stream):
+        if self.flavor != 0:  # bi-lexical: use tikz-dependency
+            raise ValueError("TikZ visualization is currently only for flavor-0 graphs.")
+        print(r"\documentclass{article}", file=stream)
+        print(r"\usepackage[T1]{fontenc}", file=stream)
+        print(r"\usepackage[utf8]{inputenc}", file=stream)
+        print(r"\usepackage{tikz-dependency}", file=stream)
+        print(r"\begin{document}", file=stream)
+        print(r"\begin{dependency}", file=stream)
+        print(r"\begin{deptext}", file=stream)
+        print(r"% id = " + str(self.id), file=stream)
+        if self.input is not None:
+            print(r"% input = " + str(self.input))
+        sorted_nodes = sorted((node.id, node) for node in self.nodes)
+        id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
+        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors) or node.label
+                           for _, node in sorted_nodes) + r" \\")
+        print(r"\end{deptext}", file=stream)
+        for id, node in sorted_nodes:
+            if node.is_top:
+                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}")
+            for edge in self.edges:
+                if node.id == edge.tgt:
+                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}")
+        print(r"\end{dependency}", file=stream)
+        print(r"\end{document}", file=stream)

@@ -194,7 +194,7 @@ def main():
     sys.exit(1);
 
   if arguments.write is not None and \
-     arguments.write not in {"dot", "evaluation", "id", "json", "mrp", "txt", "ucca"}:
+     arguments.write not in {"dot", "tikz", "evaluation", "id", "json", "mrp", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -413,6 +413,8 @@ def main():
       graph.dot(arguments.output,
                 ids = arguments.ids, strings = arguments.strings);
       print(file = arguments.output);
+    elif arguments.write == "tikz":
+      graph.tikz(arguments.output);
     elif arguments.write == "txt":
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "id":
