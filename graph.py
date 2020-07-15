@@ -970,8 +970,8 @@ class Graph(object):
             print(r"% input = " + str(self.input))
         sorted_nodes = sorted((node.id, node) for node in self.nodes)
         id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
-        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors) or node.label
-                           for _, node in sorted_nodes) + r" \\")
+        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
+                           or node.label for _, node in sorted_nodes) + r" \\")
         print(r"\end{deptext}", file=stream)
         for id, node in sorted_nodes:
             if node.is_top:
