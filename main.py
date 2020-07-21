@@ -146,6 +146,7 @@ def main():
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
+  parser.add_argument("--inverse", action = "store_true");
   parser.add_argument("--anchors",
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
@@ -181,7 +182,8 @@ def main():
         for line in stream:
           id, string = line.split("\t", maxsplit = 1);
           if string.endswith("\n"): string = string[:len(string) - 1];
-          text[id] = string;
+          if arguments.inverse: text[string] = id;
+          else: text[id] = string;
     elif path.is_dir():
       text = path;
 

@@ -51,9 +51,12 @@ def read(fp, text = None, robust = False):
     try:
       graph = Graph.decode(json.loads(line.rstrip()), robust = robust);
       if text is not None:
-        old = graph.input;
-        graph.add_input(text);
-        anchor(graph, old, graph.input);
+        if graph.input in text:
+          graph.id = text[graph.input];
+        else:
+          old = graph.input;
+          graph.add_input(text);
+          anchor(graph, old, graph.input);
       yield graph, None;
     except Exception as error:
       print("codec.mrp.read(): ignoring line {}: {}"
