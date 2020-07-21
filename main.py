@@ -151,7 +151,7 @@ def main():
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
   parser.add_argument("--source");
-  parser.add_argument("--targets", nargs="+");
+  parser.add_argument("--targets");
   parser.add_argument("--pretty", action = "store_true");
   parser.add_argument("--inject");
   parser.add_argument("--version", type = float, default = 1.1);
@@ -400,8 +400,8 @@ def main():
     if arguments.write in {"mrp", "evaluation"}:
       if arguments.write == "evaluation":
         graph.flavor = graph.framework = graph.nodes = graph.edges = None;
-        if arguments.targets:
-          graph.targets(arguments.targets)
+        if arguments.targets is not None:
+          graph.targets(arguments.targets.split(","));
         elif graph.source() in {"lpps"}:
           graph.targets(["dm", "psd", "eds", "ucca", "amr"]);
         elif graph.source() in {"brown", "wsj"}:
