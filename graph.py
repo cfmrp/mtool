@@ -380,7 +380,7 @@ class Edge(object):
             self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
     def encode(self):
-        json = {"id": self.id}
+        json = {"id": self.id};
         if self.src is not None: json["source"] = self.src;
         if self.tgt is not None: json["target"] = self.tgt;
         if self.lab: json["label"] = self.lab;
@@ -400,14 +400,15 @@ class Edge(object):
         if lab == "": lab = None;
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
-        properties = json.get("properties", None)
-        if properties is not None:
-            print("Edge 'properties' are deprecated. Use 'attributes' instead.", file=sys.stderr);
-            if attributes is None:
-                attributes = properties
+        if attributes is None:
+            attributes = json.get("properties", None)
+            if attributes is not None:
+                print("Edge.decode(): "
+                      "interpreting deprecated ‘properties’ on edge object.",
+                      file = sys.stderr);
         values = json.get("values", None)
         anchors = json.get("anchors", None)
-        return Edge(id=id, src=src, tgt=tgt, lab=lab, normal=normal, attributes=attributes, values=values, anchors=anchors)
+        return Edge(id, src, tgt, lab, normal, attributes, values, anchors)
 
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
@@ -860,9 +861,9 @@ class Graph(object):
         edges = json.get("edges")
         if edges is not None:
             for j in edges:
-                edge = Edge.decode(j)
+                edge = Edge.decode(j);
                 if edge.id is None: edge.id = len(graph.edges);
-                graph.store_edge(edge, robust = robust)
+                graph.store_edge(edge, robust = robust);
         tops = json.get("tops")
         if tops is not None:
             for i in tops:

@@ -73,8 +73,8 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
       i += m;
       return match;
     else:
-      raise Exception("failed to anchor |{}| in |{}|{}| ({})"
-                      "".format(form, input[:i], input[i:], i));
+      raise Exception("[{}] failed to anchor |{}| in |{}|{}| ({})"
+                      "".format(graph.id, form, input[:i], input[i:], i));
 
   graph = Graph(id, flavor = 0, framework = framework);
   if input is not None: graph.add_input(input);
