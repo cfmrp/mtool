@@ -174,7 +174,7 @@ def main():
   arguments = parser.parse_args();
 
   text = None;
-  if arguments.text:
+  if arguments.text is not None:
     path = Path(arguments.text);
     if path.is_file():
       text = {};
@@ -186,6 +186,11 @@ def main():
           else: text[id] = string;
     elif path.is_dir():
       text = path;
+  elif arguments.inverse:
+    print("main.py(): option ‘--inverse’ requires ‘--text’; exit.",
+          file = sys.stderr);
+    sys.exit(1);
+      
 
   if arguments.read not in {"mrp",
                             "ccd", "dm", "pas", "psd", "treex",
@@ -197,7 +202,8 @@ def main():
     sys.exit(1);
 
   if arguments.write is not None and \
-     arguments.write not in {"dot", "tikz", "evaluation", "id", "json", "mrp", "txt", "ucca"}:
+     arguments.write not in \
+     {"dot", "tikz", "evaluation", "id", "json", "mrp", "source", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -403,13 +409,16 @@ def main():
         if arguments.targets is not None:
           graph.targets(arguments.targets.split(","));
         elif graph.source() in {"lpps"}:
-          graph.targets(["dm", "psd", "eds", "ucca", "amr"]);
-        elif graph.source() in {"brown", "wsj"}:
-          graph.targets(["dm", "psd", "eds"]);
-        elif graph.source() in {"ewt", "wiki"}:
+          graph.targets(["eds", "ptg", "ucca", "amr"]);
+        elif graph.source() in {"wsj"}:
+          graph.targets(["eds", "ptg"]);
+        elif graph.source() in {"pmb"}:
+          graph.targets(["drg"]);
+        elif graph.source() in {"cb", "logon", "semcore", "verbmobil"}:
+          graph.targets(["eds"]);
+        elif graph.source() in {"wiki"}:
           graph.targets(["ucca"]);
-        elif graph.source() in {"amr-consensus", "bolt", "dfa",
-                                "lorelei", "proxy", "xinhua"}:
+        elif graph.source() in {"semeval-2015", "semeval-2016"}:
           graph.targets(["amr"]);
       json.dump(graph.encode(arguments.version), arguments.output,
                 indent = None, ensure_ascii = False);
@@ -420,10 +429,12 @@ def main():
       print(file = arguments.output);
     elif arguments.write == "tikz":
       graph.tikz(arguments.output);
-    elif arguments.write == "txt":
-      print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
+    elif arguments.write == "source":
+      print("{}\t{}".format(graph.id, graph.source()), file = arguments.output);
+    elif arguments.write == "txt":
+      print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "ucca":
       # Prints everything to one long file. To split to separate XML files, use, e.g.,
       # csplit -zk output.xml '/^<root/' -f '' -b '%02d.xml' {99}
