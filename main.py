@@ -203,7 +203,8 @@ def main():
 
   if arguments.write is not None and \
      arguments.write not in \
-     {"dot", "tikz", "evaluation", "id", "json", "mrp", "source", "txt", "ucca"}:
+     {"dot", "tikz", "evaluation", "id", "json", "mrp",
+      "source", "targets", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -242,6 +243,11 @@ def main():
   if arguments.score is not None and len(normalize) == 0:
     normalize = NORMALIZATIONS;
 
+  if arguments.targets == "gather" and not arguments.unique:
+    print("main.py(): option ‘--targets gather’ requires ‘--unique’; exit.",
+          file = sys.stderr);
+    sys.exit(1);
+
   if arguments.alignment is not None and arguments.overlay is None:
     print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",
           file = sys.stderr);
@@ -266,10 +272,17 @@ def main():
     sys.exit(1);
 
   if arguments.unique:
+    targets = dict();
+    if arguments.targets == "gather":
+      for graph in graphs:
+        if graph.id in targets: targets[graph.id].add(graph.framework);
+        else: targets[graph.id] = {graph.framework};
+      arguments.targets = None;
     unique = list();
     ids = set();
     for graph in graphs:
       id = graph.id;
+      if id in targets: graph.targets(list(targets[id]));
       if id not in ids:
         ids.add(id);
         unique.append(graph);
@@ -408,18 +421,6 @@ def main():
         graph.flavor = graph.framework = graph.nodes = graph.edges = None;
         if arguments.targets is not None:
           graph.targets(arguments.targets.split(","));
-        elif graph.source() in {"lpps"}:
-          graph.targets(["eds", "ptg", "ucca", "amr"]);
-        elif graph.source() in {"wsj"}:
-          graph.targets(["eds", "ptg"]);
-        elif graph.source() in {"pmb"}:
-          graph.targets(["drg"]);
-        elif graph.source() in {"cb", "logon", "semcore", "verbmobil"}:
-          graph.targets(["eds"]);
-        elif graph.source() in {"wiki"}:
-          graph.targets(["ucca"]);
-        elif graph.source() in {"semeval-2015", "semeval-2016"}:
-          graph.targets(["amr"]);
       json.dump(graph.encode(arguments.version), arguments.output,
                 indent = None, ensure_ascii = False);
       print(file = arguments.output);
@@ -433,6 +434,9 @@ def main():
       print("{}".format(graph.id), file = arguments.output);
     elif arguments.write == "source":
       print("{}\t{}".format(graph.id, graph.source()), file = arguments.output);
+    elif arguments.write == "targets":
+      for target in graph.targets() or (""):
+        print("{}\t{}".format(graph.id, target), file = arguments.output);
     elif arguments.write == "txt":
       print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "ucca":
