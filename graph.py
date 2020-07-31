@@ -50,6 +50,11 @@ class Node(object):
             self.values = [value];
 
     def set_anchoring(self, name, value):
+        #
+        # _fix_me_
+        # this (currently only used in the AMR overlay) will not work in the
+        # general case, where all three arrays should correspond in order.
+        #                                                    (22-jun-20; oe)
         if self.properties and self.anchorings:
             try:
                 i = self.properties.index(name);
