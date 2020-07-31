@@ -25,13 +25,13 @@ FLAVORS = {"dm": 0, "psd": 0, "ptg": 0,
 class Node(object):
 
     def __init__(self, id, label = None, properties = None, values = None,
-                 anchors = None, top = False, type = 1):
+                 anchors = None, top = False, type = 1, anchorings = None):
         self.id = id
         self.type = type;
         self.label = label;
         self.properties = properties;
         self.values = values;
-        self.anchorings = None;
+        self.anchorings = anchorings;
         self.incoming_edges = set()
         self.outgoing_edges = set()
         self.anchors = anchors;
@@ -175,8 +175,9 @@ class Node(object):
         label = json.get("label", None)
         properties = json.get("properties", None)
         values = json.get("values", None)
+        anchorings = json.get("anchorings", None)
         anchors = json.get("anchors", None)
-        return Node(id, label, properties, values, anchors)
+        return Node(id=id, label=label, properties=properties, values=values, anchors=anchors, anchorings=anchorings)
 
     def dot(self, stream, input = None, ids = False, strings = False,
             errors = None, overlay = False):
@@ -384,7 +385,7 @@ class Edge(object):
             self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
     def encode(self):
-        json = {"id": self.id}
+        json = {"id": self.id};
         if self.src is not None: json["source"] = self.src;
         if self.tgt is not None: json["target"] = self.tgt;
         if self.lab: json["label"] = self.lab;
@@ -404,8 +405,15 @@ class Edge(object):
         if lab == "": lab = None;
         normal = json.get("normal", None)
         attributes = json.get("attributes", None)
+        if attributes is None:
+            attributes = json.get("properties", None)
+            if attributes is not None:
+                print("Edge.decode(): "
+                      "interpreting deprecated ‘properties’ on edge object.",
+                      file = sys.stderr);
         values = json.get("values", None)
-        return Edge(id, src, tgt, lab, normal, attributes, values)
+        anchors = json.get("anchors", None)
+        return Edge(id, src, tgt, lab, normal, attributes, values, anchors)
 
     def dot(self, stream, input = None, strings = False,
             errors = None, overlay = False):
@@ -466,8 +474,9 @@ class Graph(object):
     def __init__(self, id, flavor = None, framework = None):
         self.id = id;
         self.time = datetime.utcnow();
+        self._language = None;
+        self._provenance = None;
         self._source = None;
-        self._provenance = None
         self._targets = None;
         self.input = None;
         self.nodes = [];
@@ -475,42 +484,47 @@ class Graph(object):
         self.flavor = FLAVORS.get(framework) if flavor is None else flavor;
         self.framework = framework;
 
-    def size(self):
-        return len(self.nodes);
-
-    def source(self, value = None):
-        if value is not None: self._source = value;
-        return self._source;
+    def language(self, value = None):
+        if value is not None: self._language = value;
+        return self._language;
 
     def provenance(self, value = None):
         if value is not None: self._provenance = value;
         return self._provenance;
 
+    def source(self, value = None):
+        if value is not None: self._source = value;
+        return self._source;
+
     def targets(self, value = None):
         if value is not None: self._targets = value;
         return self._targets;
+
+    def size(self):
+        return len(self.nodes);
 
     def inject(self, information):
         if isinstance(information, str): information = eval(information);
         for key, value in information.items():
             if key == "id": self.id = value;
             elif key == "time": self.item = value;
-            elif key == "flavor": self.flavor = value;
-            elif key == "framework": self.framework = value;
-            elif key == "source": self._source = value;
+            elif key == "language": self._language = value;
             elif key == "provenance": self._provenance = value;
+            elif key == "source": self._source = value;
             elif key == "targets": self._targets = value;
             elif key == "input": self.input = value;
+            elif key == "flavor": self.flavor = value;
+            elif key == "framework": self.framework = value;
             else:
                 print("Graph.inject(): ignoring invalid key ‘{}’"
                       "".format(key), file = sys.stderr);
 
     def add_node(self, id = None, label = None,
                  properties = None, values = None,
-                 anchors = None, top = False, type = 1):
+                 anchors = None, top = False, type = 1, anchorings = None):
         node = Node(id if id is not None else len(self.nodes),
                     label = label, properties = properties, values = values,
-                    anchors = anchors, top = top, type = type);
+                    anchors = anchors, top = top, type = type, anchorings = anchorings);
         self.nodes.append(node)
         return node
 
@@ -519,8 +533,9 @@ class Graph(object):
             if node.id == id: return node;
 
     def add_edge(self, src, tgt, lab, normal = None,
-                 attributes = None, values = None):
-        self.store_edge(Edge(len(self.edges), src, tgt, lab, normal, attributes, values));
+                 attributes = None, values = None, anchors = None):
+        self.store_edge(Edge(id=len(self.edges), src=src, tgt=tgt, lab=lab, normal=normal,
+                             attributes=attributes, values=values, anchors=anchors));
 
     def store_edge(self, edge, robust = False):
         self.edges.add(edge)
@@ -822,6 +837,7 @@ class Graph(object):
             json["time"] = self.time.strftime("%Y-%m-%d");
         else:
             json["time"] = datetime.now().strftime("%Y-%m-%d");
+        if self._language is not None: json["language"] = self._language;
         if self._source is not None: json["source"] = self._source;
         if self._provenance is not None: json["provenance"] = self._provenance;
         if self._targets is not None: json["targets"] = self._targets;
@@ -845,6 +861,7 @@ class Graph(object):
         except:
             graph.time = datetime.strptime(json["time"], "%Y-%m-%d (%H:%M)")
         graph.input = json.get("input")
+        graph.language(json.get("language"))
         graph.source(json.get("source"))
         graph.provenance(json.get("provenance"))
         graph.targets(json.get("targets"))
@@ -853,13 +870,13 @@ class Graph(object):
             for j in nodes:
                 node = Node.decode(j)
                 graph.add_node(node.id, node.label, node.properties,
-                               node.values, node.anchors, top = False)
+                               node.values, node.anchors, top = False, anchorings=node.anchorings)
         edges = json.get("edges")
         if edges is not None:
             for j in edges:
-                edge = Edge.decode(j)
+                edge = Edge.decode(j);
                 if edge.id is None: edge.id = len(graph.edges);
-                graph.store_edge(edge, robust = robust)
+                graph.store_edge(edge, robust = robust);
         tops = json.get("tops")
         if tops is not None:
             for i in tops:
@@ -951,3 +968,30 @@ class Graph(object):
                     surplus.add_edge(mapping[source].id, mapping[target].id, label);
             surplus.dot(stream, ids = ids, strings = strings, errors = None, overlay = True);
         if not overlay: print("}", file = stream);
+
+    def tikz(self, stream):
+        if self.flavor != 0:  # bi-lexical: use tikz-dependency
+            raise ValueError("TikZ visualization is currently only for flavor-0 graphs.")
+        print(r"\documentclass{article}", file=stream)
+        print(r"\usepackage[T1]{fontenc}", file=stream)
+        print(r"\usepackage[utf8]{inputenc}", file=stream)
+        print(r"\usepackage{tikz-dependency}", file=stream)
+        print(r"\begin{document}", file=stream)
+        print(r"\begin{dependency}", file=stream)
+        print(r"\begin{deptext}", file=stream)
+        print(r"% id = " + str(self.id), file=stream)
+        if self.input is not None:
+            print(r"% input = " + str(self.input))
+        sorted_nodes = sorted((node.id, node) for node in self.nodes)
+        id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
+        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
+                           or node.label for _, node in sorted_nodes) + r" \\")
+        print(r"\end{deptext}", file=stream)
+        for id, node in sorted_nodes:
+            if node.is_top:
+                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}")
+            for edge in self.edges:
+                if node.id == edge.tgt:
+                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}")
+        print(r"\end{dependency}", file=stream)
+        print(r"\end{document}", file=stream)

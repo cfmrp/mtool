@@ -203,7 +203,7 @@ def amr2graph(id, amr, text, stash, camr = False,
                 elif len(path) > 1:
                     print("amr2graph(): "
                           "ignoring alignment path {} on node #{} ({})"
-                          "".format(path, source, node));
+                          "".format(path, id, node));
 
     return graph, overlay;
 

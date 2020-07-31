@@ -146,10 +146,12 @@ def main():
   parser.add_argument("--read", required = True);
   parser.add_argument("--write");
   parser.add_argument("--text");
+  parser.add_argument("--inverse", action = "store_true");
   parser.add_argument("--anchors",
                       type = argparse.FileType("r", encoding = ENCODING));
   parser.add_argument("--prefix");
   parser.add_argument("--source");
+  parser.add_argument("--targets");
   parser.add_argument("--pretty", action = "store_true");
   parser.add_argument("--inject");
   parser.add_argument("--version", type = float, default = 1.1);
@@ -172,7 +174,7 @@ def main():
   arguments = parser.parse_args();
 
   text = None;
-  if arguments.text:
+  if arguments.text is not None:
     path = Path(arguments.text);
     if path.is_file():
       text = {};
@@ -180,9 +182,15 @@ def main():
         for line in stream:
           id, string = line.split("\t", maxsplit = 1);
           if string.endswith("\n"): string = string[:len(string) - 1];
-          text[id] = string;
+          if arguments.inverse: text[string] = id;
+          else: text[id] = string;
     elif path.is_dir():
       text = path;
+  elif arguments.inverse:
+    print("main.py(): option ‘--inverse’ requires ‘--text’; exit.",
+          file = sys.stderr);
+    sys.exit(1);
+      
 
   if arguments.read not in {"mrp",
                             "ccd", "dm", "pas", "psd", "treex",
@@ -194,7 +202,9 @@ def main():
     sys.exit(1);
 
   if arguments.write is not None and \
-     arguments.write not in {"dot", "evaluation", "id", "json", "mrp", "txt", "ucca"}:
+     arguments.write not in \
+     {"dot", "tikz", "evaluation", "id", "json", "mrp",
+      "source", "targets", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
     sys.exit(1);
@@ -233,6 +243,11 @@ def main():
   if arguments.score is not None and len(normalize) == 0:
     normalize = NORMALIZATIONS;
 
+  if arguments.targets == "gather" and not arguments.unique:
+    print("main.py(): option ‘--targets gather’ requires ‘--unique’; exit.",
+          file = sys.stderr);
+    sys.exit(1);
+
   if arguments.alignment is not None and arguments.overlay is None:
     print("main.py(): option ‘--alignment’ requires ‘--overlay’; exit.",
           file = sys.stderr);
@@ -257,10 +272,17 @@ def main():
     sys.exit(1);
 
   if arguments.unique:
+    targets = dict();
+    if arguments.targets == "gather":
+      for graph in graphs:
+        if graph.id in targets: targets[graph.id].add(graph.framework);
+        else: targets[graph.id] = {graph.framework};
+      arguments.targets = None;
     unique = list();
     ids = set();
     for graph in graphs:
       id = graph.id;
+      if id in targets: graph.targets(list(targets[id]));
       if id not in ids:
         ids.add(id);
         unique.append(graph);
@@ -397,15 +419,8 @@ def main():
     if arguments.write in {"mrp", "evaluation"}:
       if arguments.write == "evaluation":
         graph.flavor = graph.framework = graph.nodes = graph.edges = None;
-        if graph.source() in {"lpps"}:
-          graph.targets(["dm", "psd", "eds", "ucca", "amr"]);
-        elif graph.source() in {"brown", "wsj"}:
-          graph.targets(["dm", "psd", "eds"]);
-        elif graph.source() in {"ewt", "wiki"}:
-          graph.targets(["ucca"]);
-        elif graph.source() in {"amr-consensus", "bolt", "dfa",
-                                "lorelei", "proxy", "xinhua"}:
-          graph.targets(["amr"]);
+        if arguments.targets is not None:
+          graph.targets(arguments.targets.split(","));
       json.dump(graph.encode(arguments.version), arguments.output,
                 indent = None, ensure_ascii = False);
       print(file = arguments.output);
@@ -413,10 +428,17 @@ def main():
       graph.dot(arguments.output,
                 ids = arguments.ids, strings = arguments.strings);
       print(file = arguments.output);
-    elif arguments.write == "txt":
-      print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
+    elif arguments.write == "tikz":
+      graph.tikz(arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
+    elif arguments.write == "source":
+      print("{}\t{}".format(graph.id, graph.source()), file = arguments.output);
+    elif arguments.write == "targets":
+      for target in graph.targets() or (""):
+        print("{}\t{}".format(graph.id, target), file = arguments.output);
+    elif arguments.write == "txt":
+      print("{}\t{}".format(graph.id, graph.input), file = arguments.output);
     elif arguments.write == "ucca":
       # Prints everything to one long file. To split to separate XML files, use, e.g.,
       # csplit -zk output.xml '/^<root/' -f '' -b '%02d.xml' {99}
