@@ -37,7 +37,7 @@ VALIDATIONS = {"input", "anchors", "edges",
 
 def read_graphs(stream, format = None,
                 full = False, normalize = False, reify = False,
-                frameworks = None, prefix = None, text = None,
+                frameworks = None, prefix = None, text = None, filter = None,
                 trace = 0, strict = 0, quiet = False, robust = False,
                 alignment = None, anchors = None, pretty = False,
                 id = None, n = None, i = None):
@@ -99,6 +99,7 @@ def read_graphs(stream, format = None,
     try:
       graph, overlay = next(generator);
       if frameworks is not None and graph.framework not in frameworks: continue;
+      if filter is not None and graph.id not in filter: continue;
       if id is not None:
         if graph.id == id:
           graphs.append(graph); overlays.append(overlay);
@@ -159,6 +160,7 @@ def main():
   parser.add_argument("--i", type = int);
   parser.add_argument("--n", type = int);
   parser.add_argument("--id");
+  parser.add_argument("--filter");
   parser.add_argument("--quiet", action = "store_true");
   parser.add_argument("--robust", action = "store_true");
   parser.add_argument("--trace", "-t", action = "count", default = 0);
@@ -190,7 +192,6 @@ def main():
     print("main.py(): option ‘--inverse’ requires ‘--text’; exit.",
           file = sys.stderr);
     sys.exit(1);
-      
 
   if arguments.read not in {"mrp",
                             "ccd", "dm", "pas", "psd", "treex",
@@ -200,6 +201,20 @@ def main():
     print("main.py(): invalid input format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
+
+  filter = None;
+  if arguments.filter is not None:
+    try:
+      path = Path(arguments.filter);
+      filter = set();
+      with path.open() as stream:
+        for line in stream:
+          filter.add(line.split("\t", maxsplit = 1)[0]);
+    except:
+      print("main.py(): invalid ‘--filter’: {}; exit."
+            "".format(arguments.write), file = sys.stderr);
+      sys.exit(1);
+    if filter is not None and len(filter) == 0: filter = None;
 
   if arguments.write is not None and \
      arguments.write not in \
@@ -261,7 +276,7 @@ def main():
     = read_graphs(arguments.input, format = arguments.read,
                   full = arguments.full, normalize = normalize,
                   reify = arguments.reify, frameworks = arguments.framework,
-                  text = text, alignment = arguments.alignment,
+                  text = text, filter = filter, alignment = arguments.alignment,
                   anchors = arguments.anchors, pretty = arguments.pretty,
                   trace = arguments.trace, strict = arguments.strict,
                   quiet = arguments.quiet, robust = arguments.robust,
@@ -322,9 +337,11 @@ def main():
     if arguments.format is None: arguments.format = arguments.read;
     gold, _ = read_graphs(arguments.gold, format = arguments.format,
                           full = arguments.full, normalize = normalize,
-                          reify = arguments.reify, frameworks = arguments.framework,
-                          text = text, trace = arguments.trace,
-                          quiet = arguments.quiet, robust = arguments.robust,
+                          reify = arguments.reify,
+                          frameworks = arguments.framework,
+                          text = text, filter = filter,
+                          trace = arguments.trace, quiet = arguments.quiet,
+                          robust = arguments.robust,
                           id = arguments.id, n = arguments.n, i = arguments.i);
     if gold is None:
       print("main.py(): unable to read gold graphs: {}; exit."
@@ -353,7 +370,8 @@ def main():
             else:
               limits["mces"] = int(arguments.limit);
         except:
-          print("main.py(): invalid ‘--limit’ {}; exit.".format(arguments.limit),
+          print("main.py(): invalid ‘--limit’ {}; exit."
+                "".format(arguments.limit),
                 file = sys.stderr);
           sys.exit(1);
       errors = dict() if arguments.errors else None;

@@ -9,34 +9,39 @@ PUNCTUATION = frozenset(".?!;,:“\"”‘'’()[]{} \t\n\f")
 SPACE = frozenset(" \t\n\f")
 
 def intersect(golds, systems, quiet = False):
-  golds = {(graph.framework, graph.id): graph for graph in golds}
+  golds = {(graph.language(), graph.framework, graph.id): graph
+           for graph in golds}
   seen = set()
   for graph in systems:
-    key = (graph.framework, graph.id)
+    key = (graph.language(), graph.framework, graph.id)
     if key in seen:
       if not quiet:
-        print("score.intersect(): ignoring duplicate {} graph #{}"
-              .format(graph.framework, graph.id), file=sys.stderr);
+        print("score.intersect(): ignoring duplicate {} {} graph #{}"
+              .format(graph.language(), graph.framework, graph.id),
+              file=sys.stderr);
     else:
       seen.add(key)
       gold = golds.get(key)
       if gold is None:
         if not quiet:
-          print("score.intersect(): ignoring {} graph #{} with no gold graph"
-                .format(graph.framework, graph.id), file=sys.stderr)
+          print("score.intersect(): ignoring {} {} graph #{} with no gold graph"
+                .format(graph.language, graph.framework, graph.id),
+                file=sys.stderr)
       else:
         yield gold, graph
 
   for key in golds.keys() - seen:
     gold = golds[key]
     if not quiet:
-      print("score.intersect(): missing system {} graph #{}"
-            .format(gold.framework, gold.id), file=sys.stderr);
+      print("score.intersect(): missing system {} {} graph #{}"
+            .format(gold.language(), gold.framework, gold.id),
+            file=sys.stderr);
     #
     # manufacture an empty graph as the system graph
     #
     from graph import Graph;
-    yield gold, Graph(gold.id, flavor = gold.flavor, framework = gold.framework);
+    yield gold, Graph(gold.id, flavor = gold.flavor,
+                      framework = gold.framework);
 
 def anchor(node):
   result = list();
