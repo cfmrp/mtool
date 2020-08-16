@@ -363,7 +363,8 @@ def schedule(g, s, rrhc_limit, mces_limit, trace, errors):
                                            bilexical);
         if errors is not None and g.framework not in errors: errors[g.framework] = dict();
         if trace > 1:
-            print("\n\ngraph #{} ({}; {})".format(g.id, g.flavor, g.framework),
+            print("\n\ngraph #{} ({}; {}; {})"
+                  "".format(g.id, g.language(), g.flavor, g.framework),
                   file = sys.stderr);
             print("number of gold nodes: {}".format(len(g.nodes)),
                   file = sys.stderr);

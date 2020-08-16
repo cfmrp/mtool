@@ -25,7 +25,7 @@ def intersect(golds, systems, quiet = False):
       if gold is None:
         if not quiet:
           print("score.intersect(): ignoring {} {} graph #{} with no gold graph"
-                .format(graph.language, graph.framework, graph.id),
+                .format(graph.language(), graph.framework, graph.id),
                 file=sys.stderr)
       else:
         yield gold, graph
