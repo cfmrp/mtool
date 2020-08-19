@@ -17,7 +17,8 @@ import score.core;
 # because all constants are normalized to lowercase strings prior to testing
 # for default values, we need to deal in the normalized values here.
 #
-ATTRIBUTE_DEFAULTS = {"remote": "false"};
+ATTRIBUTE_DEFAULTS = {"remote": "false",
+                      "effective": "false", "member": "false"};
 FLAVORS = {"dm": 0, "psd": 0, "ptg": 0,
            "eds": 1, "ptg": 1, "ucca": 1,
            "amr": 2, "drg": 2};
@@ -81,6 +82,34 @@ class Node(object):
         return self.is_root() and self.is_leaf() and not self.is_top
 
     def normalize(self, actions, input = None, trace = 0):
+        def union(anchors):
+            characters = set();
+            for anchor in anchors:
+                if "from" in anchor and "to" in anchor:
+                    for i in range(anchor["from"], anchor["to"]):
+                        characters.add(i);
+            result = [];
+            last = start = None;
+            for i in sorted(characters):
+                if start is None: start = i;
+                if last is None:
+                    last = i;
+                    continue;
+                elif i == last + 1 \
+                     or all(c in score.core.SPACE for c in input[last:i]):
+                    last = i;
+                    continue;
+                else:
+                    result.append({"from": start, "to": last + 1});
+                    last = start = i;
+            result.append({"from": start, "to": i + 1});
+            if anchors != result:
+                old = [anchor for anchor in anchors if anchor not in result];
+                new = [anchor for anchor in result if anchor not in anchors];
+                print("{} ==> {} [{}]".format(old, new, input),
+                      file = sys.stderr);
+            return result;
+        
         def trim(anchor, input):
             if "from" in anchor and "to" in anchor:
                 i = max(anchor["from"], 0);
@@ -88,18 +117,21 @@ class Node(object):
                 while i < j and input[i] in score.core.PUNCTUATION: i += 1;
                 while j > i and input[j - 1] in score.core.PUNCTUATION: j -= 1;
                 if trace and (i != anchor["from"] or j != anchor["to"]):
-                    print("{} ({})--> <{}:{}> ({})"
+                    print("{} ({}) --> <{}:{}> ({})"
                           "".format(anchor,
                                     input[anchor["from"]:anchor["to"]],
-                                    i, j, input[i:j]));
+                                    i, j, input[i:j]),
+                          file = sys.stderr);
                 anchor["from"] = i;
                 anchor["to"] = j;
 
         if self.anchors is not None and "anchors" in actions:
+            self.anchors = union(self.anchors);
             if len(self.anchors) > 0 and input:
                 for anchor in self.anchors: trim(anchor, input);
             elif len(self.anchors) == 0:
                 self.anchors = None;
+
         if "case" in actions:
             if self.label is not None:
                 self.label = str(self.label).lower();
@@ -346,7 +378,6 @@ class Edge(object):
         return self.max() - self.min()
 
     def normalize(self, actions, trace = 0):
-
         if "edges" in actions:
             if self.normal is None \
                 and self.lab is not None:
@@ -376,13 +407,16 @@ class Edge(object):
                     self.values[i] = str(self.values[i]).lower();
 
         if "attributes" in actions and self.attributes and self.values:
-            # Drop (attribute, value) pairs whose value is the default value
+            #
+            # drop (attribute, value) pairs whose value is the default value
+            #
             attribute_value_pairs = [
                 (attribute, value) for attribute, value
                 in zip(self.attributes, self.values)
                 if attribute not in ATTRIBUTE_DEFAULTS
                    or ATTRIBUTE_DEFAULTS[attribute] != value]
-            self.attributes, self.values = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
+            self.attributes, self.values \
+                = tuple(map(list, zip(*attribute_value_pairs))) or ([], [])
 
     def encode(self):
         json = {"id": self.id};
@@ -524,7 +558,8 @@ class Graph(object):
                  anchors = None, top = False, type = 1, anchorings = None):
         node = Node(id if id is not None else len(self.nodes),
                     label = label, properties = properties, values = values,
-                    anchors = anchors, top = top, type = type, anchorings = anchorings);
+                    anchors = anchors, top = top, type = type,
+                    anchorings = anchorings);
         self.nodes.append(node)
         return node
 
@@ -651,6 +686,10 @@ class Graph(object):
             for node in self.nodes:
                 if node.is_top or node.is_root():
                     node.type = 0;
+                    #
+                    # _fix_me_
+                    # but what about more deeply nested boxes?  (24-aug-20; oe)
+                    #
                     for edge in node.outgoing_edges:
                         if edge.lab in boxes:
                             self.find_node(edge.tgt).type = 0;
@@ -819,8 +858,10 @@ class Graph(object):
         if errors is not None:
             errors[self.framework][self.id] = errors \
                 = {"correspondences": [(self.nodes[g].id, graph.nodes[s].id)
-                                       for g, s in correspondences.items() if s >= 0]}
-        return count(gtops, stops, "tops"), count(glabels, slabels, "labels"), \
+                                       for g, s in correspondences.items()
+                                       if s >= 0]}
+        return count(gtops, stops, "tops"), \
+            count(glabels, slabels, "labels"), \
             count(gproperties, sproperties, "properties"), \
             count(ganchors, sanchors, "anchors"), \
             count(gedges, sedges, "edges"), \
