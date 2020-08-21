@@ -102,7 +102,8 @@ class Node(object):
                 else:
                     result.append({"from": start, "to": last + 1});
                     last = start = i;
-            result.append({"from": start, "to": i + 1});
+            if len(characters) > 0:
+                result.append({"from": start, "to": i + 1});
             if anchors != result:
                 old = [anchor for anchor in anchors if anchor not in result];
                 new = [anchor for anchor in result if anchor not in anchors];
@@ -127,9 +128,9 @@ class Node(object):
 
         if self.anchors is not None and "anchors" in actions:
             self.anchors = union(self.anchors);
-            if len(self.anchors) > 0 and input:
+            if self.anchors is not None and len(self.anchors) > 0 and input:
                 for anchor in self.anchors: trim(anchor, input);
-            elif len(self.anchors) == 0:
+            elif isinstance(self.anchors, list) and len(self.anchors) == 0:
                 self.anchors = None;
 
         if "case" in actions:
