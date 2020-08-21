@@ -10,28 +10,30 @@ SPACE = frozenset(" \t\n\f")
 
 def intersect(golds, systems, quiet = False):
   golds = {(graph.language(), graph.framework, graph.id): graph
-           for graph in golds}
-  seen = set()
+           for graph in golds};
+  seen = set();
   for graph in systems:
-    key = (graph.language(), graph.framework, graph.id)
+    language = graph.language();
+    if language is None: language = "eng";
+    key = (language, graph.framework, graph.id);
     if key in seen:
       if not quiet:
         print("score.intersect(): ignoring duplicate {} {} graph #{}"
-              .format(graph.language(), graph.framework, graph.id),
+              .format(language, graph.framework, graph.id),
               file=sys.stderr);
     else:
-      seen.add(key)
-      gold = golds.get(key)
+      seen.add(key);
+      gold = golds.get(key);
       if gold is None:
         if not quiet:
           print("score.intersect(): ignoring {} {} graph #{} with no gold graph"
                 .format(graph.language(), graph.framework, graph.id),
-                file=sys.stderr)
+                file=sys.stderr);
       else:
-        yield gold, graph
+        yield gold, graph;
 
   for key in golds.keys() - seen:
-    gold = golds[key]
+    gold = golds[key];
     if not quiet:
       print("score.intersect(): missing system {} {} graph #{}"
             .format(gold.language(), gold.framework, gold.id),
