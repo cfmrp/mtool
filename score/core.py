@@ -14,8 +14,10 @@ def intersect(golds, systems, quiet = False):
   seen = set();
   for graph in systems:
     language = graph.language();
-    if language is None: language = "eng";
     key = (language, graph.framework, graph.id);
+    if language is None and key not in golds:
+      language = "eng";
+      key = (language, graph.framework, graph.id);
     if key in seen:
       if not quiet:
         print("score.intersect(): ignoring duplicate {} {} graph #{}"

@@ -768,6 +768,8 @@ class Graph(object):
                     anchor = score.core.anchor(node);
                     if graph.input:
                         anchor = score.core.explode(graph.input, anchor);
+                    else:
+                        anchor = tuple(anchor);
                     anchors.add((identity, anchor));
             for edge in graph.edges:
                 identity \
