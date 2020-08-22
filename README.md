@@ -227,13 +227,13 @@ to graphs with matching `"framework"` values.
 Finally, the `--unique` option will discard graphs with multiple occurences
 of the same identifier, keeping only the first occurence from the input stream.
 
-Top-level graph properties (`"id"`, `"time"`, `"source"`, `"provenance"`,
+Most top-level graph properties (`"id"`, `"time"`, `"source"`, `"provenance"`,
 `"language"`, `"flavor"`, `"framework"`, `"targets"`, `"input"`) can be set
 (or destructively overwritten, upon completion of input processing) using the
 `--inject` option, which takes as its argument a JSON object, e.g.
 ```
-main.py --text wsj.txt --read eds \
-  --inject "{\"source\": \"wsj\", \"provenance\": \"Redwoods Ninth Growth (ERG 1214)\"}" \
+./main.py --text wsj.txt --read eds \
+  --inject '{"source": "wsj", "provenance": "Redwoods Ninth Growth (ERG 1214)"}' \
   --write mrp wsj.eds wsj.mrp
 ```
 
