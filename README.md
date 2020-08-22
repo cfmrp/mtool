@@ -78,7 +78,7 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 ```
 
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
-(indexed by graph identifiers).
+(indexed by frameworks and graph identifiers).
 For MRP and SMATCH, the `--limit` option controls the maximum node pairing steps or
 hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
 and `20`, respectively).
@@ -220,6 +220,22 @@ position into the sequence of graphs read from the file, or using the first _n_
 graphs.
 These options cannot be combined with each other and take precendence over each
 other in the above order.
+
+Another way of selecting only a subset of graphs (from both the gold and
+system inputs) is the `--framework` option, which will limit the selection
+to graphs with matching `"framework"` values.
+Finally, the `--unique` option will discard graphs with multiple occurences
+of the same identifier, keeping only the first occurence from the input stream.
+
+Top-level graph properties (`"id"`, `"time"`, `"source"`, `"provenance"`,
+`"language"`, `"flavor"`, `"framework"`, `"targets"`, `"input"`) can be set
+(or destructively overwritten, upon completion of input processing) using the
+`--inject` option, which takes as its argument a JSON object, e.g.
+```
+main.py --text wsj.txt --read eds \
+  --inject "{\"source\": \"wsj\", \"provenance\": \"Redwoods Ninth Growth (ERG 1214)\"}" \
+  --write mrp wsj.eds wsj.mrp
+```
 
 Installation
 ------------
