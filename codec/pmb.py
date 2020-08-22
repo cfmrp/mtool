@@ -2,7 +2,6 @@ from operator import itemgetter;
 import os.path;
 import re;
 import sys;
-import xml.etree.ElementTree as ET;
 
 from graph import Graph;
 

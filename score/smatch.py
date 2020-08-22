@@ -18,7 +18,7 @@ def tuples(graph, prefix, values, faith = True):
     id += 1;
     if "anchors" in values and node.anchors is not None:
       anchor = score.core.anchor(node);
-      if graph.input: anchor = score.core.explode(graph.input, anchor)
+      if graph.input: anchor = score.core.explode(graph.input, anchor);
       attributes.append(("anchor", name, str(anchor)));
     if "labels" in values and node.label is not None:
       instance = node.label;
