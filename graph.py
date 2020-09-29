@@ -1025,17 +1025,17 @@ class Graph(object):
         print(r"\begin{deptext}", file=stream)
         print(r"% id = " + str(self.id), file=stream)
         if self.input is not None:
-            print(r"% input = " + str(self.input))
+            print(r"% input = " + str(self.input), file=stream)
         sorted_nodes = sorted((node.id, node) for node in self.nodes)
         id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
         print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
-                           or node.label for _, node in sorted_nodes) + r" \\")
+                           or node.label for _, node in sorted_nodes) + r" \\", file=stream)
         print(r"\end{deptext}", file=stream)
         for id, node in sorted_nodes:
             if node.is_top:
-                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}")
+                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}", file=stream)
             for edge in self.edges:
                 if node.id == edge.tgt:
-                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}")
+                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}", file=stream)
         print(r"\end{dependency}", file=stream)
         print(r"\end{document}", file=stream)
