@@ -1054,7 +1054,7 @@ class Graph(object):
         one can omit the stream argument if jupyter=True - this will render the visualization directly
         to the jupyter notebook.
         """
-        assert stream or kwargs["jupyter"], "Either `stream` is given or `jupyter=True` must hold."
+        assert stream or kwargs.get("jupyter"), "Either `stream` is given or `jupyter=True` must hold."
         assert format in ("svg", "html"), 'format can be either "svg" or "html"'
         try:
             from spacy import displacy
@@ -1064,14 +1064,14 @@ class Graph(object):
         if self.flavor != 0:  # bi-lexical: use tikz-dependency
             raise ValueError("displacy visualization is currently only for flavor-0 graphs.")
 
-        self._full_sentence_recovery()
+        graph = self._full_sentence_recovery()
         # prepare displacy_dep_input, composed of `words` list and `arcs` list
         """
         Notice: inline with the other visualization methods, this will exclude words in the input
         that do not have a corresponding node. A fix for this behaviour, which should take `self.input`
         and anchors into account to present the full sentence, would be applicable here as well.  
         """
-        words = [{"text": n.label, "tag": ""} for n in self.nodes]
+        words = [{"text": n.label, "tag": ""} for n in graph.nodes]
 
         def get_arc(edge: Edge):
             src, tgt = edge.src, edge.tgt
@@ -1080,7 +1080,7 @@ class Graph(object):
                     'start': min(src, tgt),
                     'end': max(src, tgt),
                     'label': edge.lab}
-        arcs = [get_arc(edge) for edge in self.edges]
+        arcs = [get_arc(edge) for edge in graph.edges]
         displacy_dep_input = {'words': words, 'arcs': arcs}
 
         # render to stream as svg or html
