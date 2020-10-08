@@ -933,6 +933,9 @@ class Graph(object):
                                      "".format(graph.id, i))
         return graph
 
+    def copy(self):
+        return Graph.decode(self.encode())
+
     def dot(self, stream, ids = False, strings = False,
             errors = None, overlay = False):
         if not overlay:
@@ -1016,7 +1019,7 @@ class Graph(object):
     def tikz(self, stream):
         if self.flavor != 0:  # bi-lexical: use tikz-dependency
             raise ValueError("TikZ visualization is currently only for flavor-0 graphs.")
-        self._full_sentence_recovery()
+        graph = self._full_sentence_recovery()  # a copy of self with nodes covering all tokens
         print(r"\documentclass{article}", file=stream)
         print(r"\usepackage[T1]{fontenc}", file=stream)
         print(r"\usepackage[utf8]{inputenc}", file=stream)
@@ -1024,18 +1027,18 @@ class Graph(object):
         print(r"\begin{document}", file=stream)
         print(r"\begin{dependency}", file=stream)
         print(r"\begin{deptext}", file=stream)
-        print(r"% id = " + str(self.id), file=stream)
-        if self.input is not None:
-            print(r"% input = " + str(self.input), file=stream)
-        sorted_nodes = sorted((node.id, node) for node in self.nodes)
+        print(r"% id = " + str(graph.id), file=stream)
+        if graph.input is not None:
+            print(r"% input = " + str(graph.input), file=stream)
+        sorted_nodes = sorted((node.id, node) for node in graph.nodes)
         id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
-        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
+        print(r" \& ".join(" ".join(graph.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
                            or node.label for _, node in sorted_nodes) + r" \\", file=stream)
         print(r"\end{deptext}", file=stream)
         for id, node in sorted_nodes:
             if node.is_top:
                 print(r"\deproot{" + str(id2i[id]) + r"}{TOP}", file=stream)
-            for edge in self.edges:
+            for edge in graph.edges:
                 if node.id == edge.tgt:
                     print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}", file=stream)
         print(r"\end{dependency}", file=stream)
@@ -1050,8 +1053,11 @@ class Graph(object):
         Here, when necessary, we assume the original tokenization is encoded with spaces in self.input.
         But we mainly look for missing character segments (i.e. spans that are not included in anchors)
         and produce singleton nodes for them.
+        The function returns a new Graph, in which recovered nodes are included and thus nodes correspond to
+         input tokens.
         """
-        length = len(self.input)
+        graph = self.copy() # don't change
+        length = len(graph.input)
         def rm_all(lst, items_to_remove):
             for item in items_to_remove:
                 if item in lst:
@@ -1074,8 +1080,8 @@ class Graph(object):
             return groups
 
         # iterate missing ids
-        node_ids = [n.id for n in self.nodes]
-        id2node = {n.id : n for n in self.nodes}
+        node_ids = [n.id for n in graph.nodes]
+        id2node = {n.id : n for n in graph.nodes}
         max_id = max(node_ids)
         missing_ids = rm_all(list(range(max_id)), node_ids)
         missing_id_groups = group_consecutive(missing_ids)
@@ -1093,7 +1099,7 @@ class Graph(object):
                 end_char = next_node.anchors[0]['from']
             else:
                 end_char = length
-            omitted_span = self.input[begin_char:end_char]
+            omitted_span = graph.input[begin_char:end_char]
             # we need to create len(id_group) new nodes for the omitted span.
             # Try to align singleton node (i.e. one id) to a token; if num of tokens in omitted_span
             # don't match num of missing ids, generate all these nodes with the same anchors to the whole span
@@ -1103,22 +1109,23 @@ class Graph(object):
                     tok_begin_char = begin_char + omitted_span.find(token)
                     tok_end_char = tok_begin_char + len(token)
                     # add new node corresponding to omitted token
-                    self.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
+                    graph.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
             else:
                 # add new nodes, all corresponding to omitted span
                 for new_id in id_group:
-                    self.add_node(new_id, label=omitted_span, anchors=[{"from": begin_char, "to": end_char}])
+                    graph.add_node(new_id, label=omitted_span, anchors=[{"from": begin_char, "to": end_char}])
         # special treatment is required for missing tokens after the last existing node
         # (if there are tokens left in self.input not covered by node anchors)
-        last_end_char_of_nodes = max([n.anchors[0]['to'] for n in self.nodes])
+        last_end_char_of_nodes = max([n.anchors[0]['to'] for n in graph.nodes])
         if last_end_char_of_nodes < length:
             # the meaning is that there is some span of the sentence not covered;
             # we will add nodes according to num of tokens in this last span
-            omitted_span = self.input[last_end_char_of_nodes:]
+            omitted_span = graph.input[last_end_char_of_nodes:]
             for i,token in enumerate(omitted_span.strip().split()):
                 new_id = max_id+1+i
                 tok_begin_char = last_end_char_of_nodes + omitted_span.find(token)
                 tok_end_char = tok_begin_char + len(token)
-                self.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
+                graph.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
         # as a finish, sort nodes in graph so that they will again be ordered by id (& realization location)
-        self.nodes = list(sorted(self.nodes))
+        graph.nodes = list(sorted(graph.nodes))
+        return graph
