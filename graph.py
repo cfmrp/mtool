@@ -1049,9 +1049,9 @@ class Graph(object):
         """
         Use displacy to present dependency graph over sentence.
         :param format: can be either "svg" or "html".
-        kwargs is passed to displacy.render method, see https://spacy.io/usage/visualizers
+        kwargs are passed to displacy.render method, see https://spacy.io/usage/visualizers
         for possible options.
-        one can omit the stream argument if jupyter=True - this will render the visualization directly
+        One can omit the stream argument if specifying `jupyter=True` - this will render the visualization directly
         to the jupyter notebook.
         """
         assert stream or kwargs.get("jupyter"), "Either `stream` is given or `jupyter=True` must hold."
@@ -1061,16 +1061,11 @@ class Graph(object):
         except ModuleNotFoundError as e:
             print("You must install SpaCy in order to use the displacy visualization. \nTry running `pip install spacy`.")
             raise e
-        if self.flavor != 0:  # bi-lexical: use tikz-dependency
+        if self.flavor != 0:  # currently supporting only bi-lexical graphs
             raise ValueError("displacy visualization is currently only for flavor-0 graphs.")
 
-        graph = self._full_sentence_recovery()
+        graph = self._full_sentence_recovery() # a copy of self with nodes covering all tokens
         # prepare displacy_dep_input, composed of `words` list and `arcs` list
-        """
-        Notice: inline with the other visualization methods, this will exclude words in the input
-        that do not have a corresponding node. A fix for this behaviour, which should take `self.input`
-        and anchors into account to present the full sentence, would be applicable here as well.  
-        """
         words = [{"text": n.label, "tag": ""} for n in graph.nodes]
 
         def get_arc(edge: Edge):
