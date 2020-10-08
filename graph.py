@@ -1042,6 +1042,52 @@ class Graph(object):
         print(r"\end{document}", file=stream)
 
 
+    def displacy(self, stream=None, format="svg", **kwargs):
+        """
+        Use displacy to present dependency graph over sentence.
+        :param format: can be either "svg" or "html".
+        kwargs is passed to displacy.render method, see https://spacy.io/usage/visualizers
+        for possible options.
+        one can omit the stream argument if jupyter=True - this will render the visualization directly
+        to the jupyter notebook.
+        """
+        assert stream or kwargs["jupyter"], "Either `stream` is given or `jupyter=True` must hold."
+        assert format in ("svg", "html"), 'format can be either "svg" or "html"'
+        try:
+            from spacy import displacy
+        except ModuleNotFoundError as e:
+            print("You must install SpaCy in order to use the displacy visualization. \nTry running `pip install spacy`.")
+            raise e
+        if self.flavor != 0:  # bi-lexical: use tikz-dependency
+            raise ValueError("displacy visualization is currently only for flavor-0 graphs.")
+
+        self._full_sentence_recovery()
+        # prepare displacy_dep_input, composed of `words` list and `arcs` list
+        """
+        Notice: inline with the other visualization methods, this will exclude words in the input
+        that do not have a corresponding node. A fix for this behaviour, which should take `self.input`
+        and anchors into account to present the full sentence, would be applicable here as well.  
+        """
+        words = [{"text": n.label, "tag": ""} for n in self.nodes]
+
+        def get_arc(edge: Edge):
+            src, tgt = edge.src, edge.tgt
+            direction = u'right' if src < tgt else u'left'
+            return {'dir': direction,
+                    'start': min(src, tgt),
+                    'end': max(src, tgt),
+                    'label': edge.lab}
+        arcs = [get_arc(edge) for edge in self.edges]
+        displacy_dep_input = {'words': words, 'arcs': arcs}
+
+        # render to stream as svg or html
+        kwargs["page"] = format=="html"
+        markdown = displacy.render(displacy_dep_input, style='dep', manual=True, **kwargs)
+        # write svg text to a file
+        if stream:
+            stream.write(markdown)
+
+
     def _full_sentence_recovery(self):
         """
         graph nodes may sometimes only include non-singleton nodes, for example when taking the graph from

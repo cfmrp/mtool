@@ -218,7 +218,7 @@ def main():
 
   if arguments.write is not None and \
      arguments.write not in \
-     {"dot", "tikz", "evaluation", "id", "json", "mrp",
+     {"dot", "tikz", "displacy", "evaluation", "id", "json", "mrp",
       "source", "targets", "txt", "ucca"}:
     print("main.py(): invalid output format: {}; exit."
           "".format(arguments.write), file = sys.stderr);
@@ -448,6 +448,8 @@ def main():
       print(file = arguments.output);
     elif arguments.write == "tikz":
       graph.tikz(arguments.output);
+    elif arguments.write == "displacy":
+      graph.displacy(arguments.output);
     elif arguments.write == "id":
       print("{}".format(graph.id), file = arguments.output);
     elif arguments.write == "source":
