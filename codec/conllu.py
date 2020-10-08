@@ -26,7 +26,7 @@ def read_tuples(stream):
       # if there is no `text` comment in the conll, one should reconstruct
       # the input sentence from the FORM column, since it is required in :construct_graph
       if input is None:
-        input = ' '.join(t[1] for t in tuples)
+        input = reconstruct_input_from_tuples(tuples)
       if tuples:
         yield id, input, tuples;
         id, input = None, None;
@@ -34,6 +34,19 @@ def read_tuples(stream):
     else:
       tuples.append(line.split("\t"));
 
+def reconstruct_input_from_tuples(tuples):
+  """ Reconstruct input sentence from the CoNLL-U representation.
+  each tuple in tuples correspond to a line in a block. """
+  if not tuples: return ''
+  sent_str = ''
+  for t in tuples:
+    tok = t[1] # FORM column
+    sent_str += tok
+    if "SpaceAfter=No" not in t[-1]: # Misc. column (last column)
+      sent_str += ' '
+
+  return sent_str
+
 def read_anchors(stream):
   if stream is None:
     while True: yield None, None;
