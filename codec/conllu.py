@@ -23,12 +23,13 @@ def read_tuples(stream):
         id = match.group(1);
         continue;
     elif len(line) == 0:
-      # @kleinay: if there is no `text` comment in the conll, one should reconstruct
+      # if there is no `text` comment in the conll, one should reconstruct
       # the input sentence from the FORM column, since it is required in :construct_graph
-      if input is None: ####
-        input = ' '.join(t[1] for t in tuples) ####
-      yield id, input, tuples; ####
-      id, input = None, None; ####
+      if input is None:
+        input = ' '.join(t[1] for t in tuples)
+      yield id, input, tuples;
+      id, input = None, None;
+      tuples = []
     else:
       tuples.append(line.split("\t"));
 
