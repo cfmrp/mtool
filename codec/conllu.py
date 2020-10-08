@@ -27,9 +27,10 @@ def read_tuples(stream):
       # the input sentence from the FORM column, since it is required in :construct_graph
       if input is None:
         input = ' '.join(t[1] for t in tuples)
-      yield id, input, tuples;
-      id, input = None, None;
-      tuples = []
+      if tuples:
+        yield id, input, tuples;
+        id, input = None, None;
+        tuples = []
     else:
       tuples.append(line.split("\t"));
 
@@ -134,5 +135,4 @@ def read(stream, framework = None, text = None, anchors = None, trace = 0):
     if trace:
       print("conllu.read(): processing graph #{} ...".format(id),
             file = sys.stderr);
-    if tuples:
-      yield construct_graph(id, input, tuples, framework, text, anchors), None;
+    yield construct_graph(id, input, tuples, framework, text, anchors), None;
