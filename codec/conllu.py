@@ -23,15 +23,35 @@ def read_tuples(stream):
         id = match.group(1);
         continue;
     elif len(line) == 0:
-      return id, input, tuples;
+      # if there is no `text` comment in the conll, one should reconstruct
+      # the input sentence from the FORM column, since it is required in :construct_graph
+      if input is None:
+        input = reconstruct_input_from_tuples(tuples)
+      if tuples:
+        yield id, input, tuples;
+        id, input = None, None;
+        tuples = []
     else:
       tuples.append(line.split("\t"));
-  return id, input, None;
 
+def reconstruct_input_from_tuples(tuples):
+  """ Reconstruct input sentence from the CoNLL-U representation.
+  each tuple in tuples correspond to a line in a block. """
+  if not tuples: return ''
+  sent_str = ''
+  for t in tuples:
+    tok = t[1] # FORM column
+    sent_str += tok
+    if "SpaceAfter=No" not in t[-1] and t is not tuples[-1]: # Misc. column (last column)
+      # in last token, don't add space in any case
+      sent_str += ' '
+
+  return sent_str
+
 def read_anchors(stream):
   if stream is None:
     while True: yield None, None;
-  else: 
+  else:
     id = None;
     tokens = list();
     for line in stream:
@@ -69,7 +89,7 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
         if j >= i and j < k: k, l = j, len(form);
       if k < len(input): i, m = k, l;
     if m:
-      match = {"from": i, "to": i + m}; 
+      match = {"from": i, "to": i + m};
       i += m;
       return match;
     else:
@@ -124,10 +144,9 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
   return graph;
 
 def read(stream, framework = None, text = None, anchors = None, trace = 0):
-  id, input, tuples = read_tuples(stream);
-  while tuples:
+  tuples_generator = read_tuples(stream)
+  for id, input, tuples in tuples_generator:
     if trace:
       print("conllu.read(): processing graph #{} ...".format(id),
             file = sys.stderr);
     yield construct_graph(id, input, tuples, framework, text, anchors), None;
-    id, input, tuples = read_tuples(stream);
