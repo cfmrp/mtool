@@ -186,16 +186,39 @@ def construct_graph_edges(tuples, graph, ids):
     if head in ids:
       graph.add_edge(ids[head], ids[id], type)
 
-def construct_graph(id, input, tuples, framework = None, text = None, anchors = None):
+def construct_enhanced_graph_edges(tuples, graph, ids):
+  """ Given a graph with nodes (and id-mapping) pre-constructed,
+  read edges from tuples and add them to graph.
+  This function is for reading Enhance UD graphs, which is distinguished from reading
+  basic UD only in source of edges information -- DEPS column instead of HEAD, DEPREL columns.
+  See https://universaldependencies.org/format.html#syntactic-annotation for EUD format specifications
+  which we follow here.
+  Modifies `graph` argument. """
+  for tuple in tuples:
+    id, deps = tuple[0], tuple[8]
+    if deps == "_": # empty list of relations
+      continue
+    for rel in deps.split("|"): # relations are delimited with bar
+      head, dep_type = rel.split(":")
+      if head in ids:
+        graph.add_edge(ids[head], ids[id], dep_type)
+
+
+def construct_graph(id, input, tuples, framework = None, text = None, anchors = None, enhanced_graph=False):
   graph, ids = construct_graph_nodes(id, input, tuples, framework, text, anchors)
-  construct_graph_edges(tuples, graph, ids)
+  if not enhanced_graph:
+    # basic UD graph (default)
+    construct_graph_edges(tuples, graph, ids)
+  else:
+    # Enhanced UD graphs
+    construct_enhanced_graph_edges(tuples, graph, ids)
   return graph
 
-def read(stream, framework = None, text = None, anchors = None, trace = 0):
+def read(stream, framework = None, text = None, anchors = None, trace = 0, enhanced_graph=False):
   tuples_generator = read_tuples(stream)
   for id, input, tuples in tuples_generator:
     if trace:
       print("conllu.read(): processing graph #{} ...".format(id),
             file = sys.stderr);
-    graph = construct_graph(id, input, tuples, framework, text, anchors)
+    graph = construct_graph(id, input, tuples, framework, text, anchors, enhanced_graph)
     yield graph, None;

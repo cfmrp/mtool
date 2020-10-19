@@ -212,7 +212,7 @@ Common Options
 
 The `--read` and `--write` command-line options determine the input and output
 codecs to use.
-Valid input arguments include `mrp`, `amr`, `ccd`, `dm`, `eds`, `pas`, `psd`, `ud`,
+Valid input arguments include `mrp`, `amr`, `ccd`, `dm`, `eds`, `pas`, `psd`, `ud`, `eud`,
 and `ucca`; note that some of these formats are only [partially supported](https://github.com/cfmrp/mtool/issues).
 The range of supported output codecs includes `mrp`, `dot`, or `txt`.
 
