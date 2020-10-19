@@ -38,8 +38,13 @@ def reconstruct_input_from_tuples(tuples):
   """ Reconstruct input sentence from the CoNLL-U representation.
   each tuple in tuples correspond to a line in a block. """
   if not tuples: return ''
+  # iterate only surface tokens - discard empty nodes and tokens included in ranges
+  surface_indicator = get_is_surface_token_indicator(tuples)
+  surface_tuples = [tuple
+                    for is_surface, tuple in zip(surface_indicator, tuples)
+                    if is_surface]
   sent_str = ''
-  for t in tuples:
+  for t in surface_tuples:
     tok = t[1] # FORM column
     sent_str += tok
     if "SpaceAfter=No" not in t[-1] and t is not tuples[-1]: # Misc. column (last column)
@@ -47,6 +52,39 @@ def reconstruct_input_from_tuples(tuples):
       sent_str += ' '
 
   return sent_str
+
+def get_ids2range_tuple(tuples):
+  """
+  Return Dict[int: tuple].
+   for each node-id k that is part of a multi-word token (denoted by range-id "i-j"), let t be the tuple
+   of the token i-j (the multiword token). the dict will be {k:t} over all these ks.
+  """
+  ranges2multiword = dict()
+  for tuple in tuples:
+    match = RANGE.match(tuple[0])
+    if match is not None:
+      for t in range(int(match.group(1)), int(match.group(2)) + 1):
+        ranges2multiword[t] = tuple
+  return ranges2multiword
+
+def get_is_surface_token_indicator(tuples):
+  """
+  Return a list of boolean in same length as `tuples`,
+  where output[i] indicate whether tuple[i] correspond to a surface token.
+  surface tokens are those tokens that are required for detokenization of input sentence.
+  see https://universaldependencies.org/format.html#words-tokens-and-empty-nodes
+
+  the conditions to be a surface token -
+    1. be not an empty node (in the form "i.j")
+    2. be not a (syntactic) word that is contained in a multi-word token. that is, the word's id
+    isn't included in any range-id (in the form "i-j").
+  """
+  ids2range_tuple = get_ids2range_tuple(tuples)
+  ids = [t[0] for t in tuples]
+  surface_indicator = ["." not in tid # condition 1.
+                       and ("-" in tid or int(tid) not in ids2range_tuple) # condition 2.
+                       for tid in ids]
+  return surface_indicator
 
 def read_anchors(stream):
   if stream is None:
@@ -101,40 +139,42 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
   elif text is not None: graph.add_input(text);
   input = graph.input;
 
-  generator = read_anchors(anchors);
-  _, tokens = next(generator);
+  anchors_generator = read_anchors(anchors);
+  _, anchors_tokens = next(anchors_generator);
   id, ids = 0, dict();
-  ranges = dict();
-  for tuple in tuples:
-    match = RANGE.match(tuple[0]);
-    if match is not None and tuple[9] != "_":
-      for t in range(int(match.group(1)), int(match.group(2)) + 1):
-        ranges[t] = tuple[9];
+  ids2range_tuple = get_ids2range_tuple(tuples)
+  for tuple, is_surface_token in zip(tuples, get_is_surface_token_indicator(tuples)):
+    id += 1;
+    ids[tuple[0]] = id;
+    form, lemma, upos, xpos, features, head, misc = \
+      tuple[1], tuple[2], tuple[3], tuple[4], tuple[5], tuple[6], tuple[9];
+    properties = {"lemma": lemma, "upos": upos, "xpos": xpos};
+    if features != "_":
+      for feature in features.split("|"):
+        name, value = feature.split("=");
+        properties[name] = value;
+    # retrieve anchoring - only for surface tokens
+    if not is_surface_token:
+      anchors = []
+    elif anchors_tokens is not None:
+      start, end = anchors_tokens.pop(0);
+      anchors = [{"from": start, "to": end}];
     else:
-      id += 1;
-      ids[tuple[0]] = id;
-      form, lemma, upos, xpos, features, root, misc = \
-        tuple[1], tuple[2], tuple[3], tuple[4], tuple[5], int(tuple[6]), tuple[9];
-      properties = {"lemma": lemma, "upos": upos, "xpos": xpos};
-      if features != "_":
-        for feature in features.split("|"):
-          name, value = feature.split("=");
-          properties[name] = value;
-      if tokens is not None:
-        start, end = tokens.pop(0);
-        anchors = [{"from": start, "to": end}];
+      tid = tuple[0]
+      if tid.isnumeric() and int(tid) in ids2range_tuple:
+        range_tuple_misc = ids2range_tuple[int(tid)][9];
+        if range_tuple_misc != "_":
+          misc = range_tuple_misc
+      match = ANCHOR.match(misc);
+      if match:
+        anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
       else:
-        if int(tuple[0]) in ranges: misc = ranges[int(tuple[0])];
-        match = ANCHOR.match(misc);
-        if match:
-          anchors = [{"from": int(match.group(1)), "to": int(match.group(2))}];
-        else:
-          anchors = [compute(form)];
-      graph.add_node(id, label = form,
-                     properties = list(properties.keys()),
-                     values = list(properties.values()),
-                     top = True if root == 0 else False,
-                     anchors = anchors);
+        anchors = [compute(form)];
+    graph.add_node(id, label = form,
+                   properties = list(properties.keys()),
+                   values = list(properties.values()),
+                   top = True if head == "0" else False,
+                   anchors = anchors);
 
   for tuple in tuples:
     id, head, type = tuple[0], tuple[6], tuple[7];
