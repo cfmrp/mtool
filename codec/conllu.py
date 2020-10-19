@@ -107,7 +107,7 @@ def read_anchors(stream):
     if len(tokens) > 0:
       yield id, tokens;
 
-def construct_graph(id, input, tuples, framework = None, text = None, anchors = None):
+def construct_graph_nodes(id, input, tuples, framework, text, anchors):
   i = 0;
   def compute(form):
     nonlocal i;
@@ -175,13 +175,21 @@ def construct_graph(id, input, tuples, framework = None, text = None, anchors = 
                    values = list(properties.values()),
                    top = True if head == "0" else False,
                    anchors = anchors);
+  return graph, ids;
 
+def construct_graph_edges(tuples, graph, ids):
+  """ Given a graph with nodes (and id-mapping) pre-constructed,
+  read edges from tuples and add them to graph.
+  Modifies `graph` argument. """
   for tuple in tuples:
-    id, head, type = tuple[0], tuple[6], tuple[7];
+    id, head, type = tuple[0], tuple[6], tuple[7]
     if head in ids:
-      graph.add_edge(ids[head], ids[id], type);
+      graph.add_edge(ids[head], ids[id], type)
 
-  return graph;
+def construct_graph(id, input, tuples, framework = None, text = None, anchors = None):
+  graph, ids = construct_graph_nodes(id, input, tuples, framework, text, anchors)
+  construct_graph_edges(tuples, graph, ids)
+  return graph
 
 def read(stream, framework = None, text = None, anchors = None, trace = 0):
   tuples_generator = read_tuples(stream)
@@ -189,4 +197,5 @@ def read(stream, framework = None, text = None, anchors = None, trace = 0):
     if trace:
       print("conllu.read(): processing graph #{} ...".format(id),
             file = sys.stderr);
-    yield construct_graph(id, input, tuples, framework, text, anchors), None;
+    graph = construct_graph(id, input, tuples, framework, text, anchors)
+    yield graph, None;
