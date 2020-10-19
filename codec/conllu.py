@@ -42,7 +42,8 @@ def reconstruct_input_from_tuples(tuples):
   for t in tuples:
     tok = t[1] # FORM column
     sent_str += tok
-    if "SpaceAfter=No" not in t[-1]: # Misc. column (last column)
+    if "SpaceAfter=No" not in t[-1] and t is not tuples[-1]: # Misc. column (last column)
+      # in last token, don't add space in any case
       sent_str += ' '
 
   return sent_str
