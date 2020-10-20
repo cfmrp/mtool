@@ -151,7 +151,7 @@ def construct_graph_nodes(id, input, tuples, framework, text, anchors):
     properties = {"lemma": lemma, "upos": upos, "xpos": xpos};
     if features != "_":
       for feature in features.split("|"):
-        name, value = feature.split("=");
+        name, value = feature.split("=", 1);
         properties[name] = value;
     # retrieve anchoring - only for surface tokens
     if not is_surface_token:
@@ -199,7 +199,7 @@ def construct_enhanced_graph_edges(tuples, graph, ids):
     if deps == "_": # empty list of relations
       continue
     for rel in deps.split("|"): # relations are delimited with bar
-      head, dep_type = rel.split(":")
+      head, dep_type = rel.split(":", 1)
       if head in ids:
         graph.add_edge(ids[head], ids[id], dep_type)
 
