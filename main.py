@@ -81,6 +81,9 @@ def read_graphs(stream, format = None,
   elif format == "conllu" or format == "ud":
     generator = codec.conllu.read(stream, framework = format, text = text,
                                   anchors = anchors, trace = trace);
+  elif format == "eud":
+    generator = codec.conllu.read(stream, framework=format, text=text,
+                                  anchors=anchors, trace=trace, enhanced_graph=True);
   else:
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
@@ -197,7 +200,7 @@ def main():
                             "ccd", "dm", "pas", "psd", "treex",
                             "eds", "ucca",
                             "amr", "camr", "pmb",
-                            "conllu", "ud"}:
+                            "conllu", "ud", "eud"}:
     print("main.py(): invalid input format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
@@ -239,7 +242,7 @@ def main():
                               "ccd", "dm", "pas", "psd",
                               "eds", "ucca",
                               "amr", "camr", "pmb",
-                              "conllu", "ud"}:
+                              "conllu", "ud", "eud"}:
     print("main.py(): invalid gold format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
