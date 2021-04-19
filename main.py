@@ -203,7 +203,8 @@ def main():
                             "ccd", "dm", "pas", "psd", "treex",
                             "eds", "ucca",
                             "amr", "camr", "pmb",
-                            "conllu", "ud", "eud"}:
+                            "conllu", "ud", "eud",
+                            "norec"}:
     print("main.py(): invalid input format: {}; exit."
           "".format(arguments.read), file = sys.stderr);
     sys.exit(1);
