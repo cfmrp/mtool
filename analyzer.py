@@ -227,7 +227,7 @@ def analyze(graphs, ids=None):
         n_loops += inspected_graph.n_loops()
 
         for edge in graph.edges:
-            labels.add(edge.lab)
+            if edge.lab is not None: labels.add(edge.lab)
         for node in graph.nodes:
             n_top_nodes += node.is_top
             if node.is_top:
