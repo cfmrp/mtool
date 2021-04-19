@@ -15,6 +15,7 @@ import codec.amr;
 import codec.conllu;
 import codec.eds;
 import codec.mrp;
+import codec.norec;
 import codec.pmb;
 import codec.sdp;
 import codec.treex;
@@ -70,6 +71,8 @@ def read_graphs(stream, format = None,
     generator = codec.eds.read(stream, reify = reify, text = text);
   elif format == "mrp":
     generator = codec.mrp.read(stream, text = text, robust = robust);
+  elif format == "norec":
+    generator = codec.norec.read(stream, text = text, robust = robust);
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
                                reify = reify, text = text,
