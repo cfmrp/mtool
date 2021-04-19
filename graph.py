@@ -933,6 +933,9 @@ class Graph(object):
                                      "".format(graph.id, i))
         return graph
 
+    def copy(self):
+        return Graph.decode(self.encode())
+
     def dot(self, stream, ids = False, strings = False,
             errors = None, overlay = False):
         if not overlay:
@@ -1016,6 +1019,7 @@ class Graph(object):
     def tikz(self, stream):
         if self.flavor != 0:  # bi-lexical: use tikz-dependency
             raise ValueError("TikZ visualization is currently only for flavor-0 graphs.")
+        graph = self._full_sentence_recovery()  # a copy of self with nodes covering all tokens
         print(r"\documentclass{article}", file=stream)
         print(r"\usepackage[T1]{fontenc}", file=stream)
         print(r"\usepackage[utf8]{inputenc}", file=stream)
@@ -1023,19 +1027,146 @@ class Graph(object):
         print(r"\begin{document}", file=stream)
         print(r"\begin{dependency}", file=stream)
         print(r"\begin{deptext}", file=stream)
-        print(r"% id = " + str(self.id), file=stream)
-        if self.input is not None:
-            print(r"% input = " + str(self.input))
-        sorted_nodes = sorted((node.id, node) for node in self.nodes)
+        print(r"% id = " + str(graph.id), file=stream)
+        if graph.input is not None:
+            print(r"% input = " + str(graph.input), file=stream)
+        sorted_nodes = sorted((node.id, node) for node in graph.nodes)
         id2i = {id: i for i, (id, _) in enumerate(sorted_nodes, start=1)}
-        print(r" \& ".join(" ".join(self.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
-                           or node.label for _, node in sorted_nodes) + r" \\")
+        print(r" \& ".join(" ".join(graph.input[anchor["from"]:anchor["to"]] for anchor in node.anchors or ())
+                           or node.label for _, node in sorted_nodes) + r" \\", file=stream)
         print(r"\end{deptext}", file=stream)
         for id, node in sorted_nodes:
             if node.is_top:
-                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}")
-            for edge in self.edges:
+                print(r"\deproot{" + str(id2i[id]) + r"}{TOP}", file=stream)
+            for edge in graph.edges:
                 if node.id == edge.tgt:
-                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}")
+                    print(r"\depedge{" + str(id2i[edge.src]) + r"}{" + str(id2i[id]) + r"}{" + str(edge.lab) + r"}", file=stream)
         print(r"\end{dependency}", file=stream)
         print(r"\end{document}", file=stream)
+
+
+    def displacy(self, stream=None, format="svg", **kwargs):
+        """
+        Use displacy to present dependency graph over sentence.
+        :param format: can be either "svg" or "html".
+        kwargs are passed to displacy.render method, see https://spacy.io/usage/visualizers
+        for possible options.
+        One can omit the stream argument if specifying `jupyter=True` - this will render the visualization directly
+        to the jupyter notebook.
+        """
+        assert stream or kwargs.get("jupyter"), "Either `stream` is given or `jupyter=True` must hold."
+        assert format in ("svg", "html"), 'format can be either "svg" or "html"'
+        try:
+            from spacy import displacy
+        except ModuleNotFoundError as e:
+            print("You must install SpaCy in order to use the displacy visualization. \nTry running `pip install spacy`.")
+            raise e
+        if self.flavor != 0:  # currently supporting only bi-lexical graphs
+            raise ValueError("displacy visualization is currently only for flavor-0 graphs.")
+
+        graph = self._full_sentence_recovery() # a copy of self with nodes covering all tokens
+        # prepare displacy_dep_input, composed of `words` list and `arcs` list
+        words = [{"text": n.label, "tag": ""} for n in graph.nodes]
+
+        def get_arc(edge: Edge):
+            src, tgt = edge.src, edge.tgt
+            direction = u'right' if src < tgt else u'left'
+            return {'dir': direction,
+                    'start': min(src, tgt),
+                    'end': max(src, tgt),
+                    'label': edge.lab}
+        arcs = [get_arc(edge) for edge in graph.edges]
+        displacy_dep_input = {'words': words, 'arcs': arcs}
+
+        # render to stream as svg or html
+        kwargs["page"] = format=="html"
+        markdown = displacy.render(displacy_dep_input, style='dep', manual=True, **kwargs)
+        # write svg text to a file
+        if stream:
+            stream.write(markdown)
+
+
+    def _full_sentence_recovery(self):
+        """
+        graph nodes may sometimes only include non-singleton nodes, for example when taking the graph from
+        a model prediction. For this reason, we need to use anchors and the input sentence in order to recover
+        the original tokenization (thus node-ids and their corresponding text spans).
+        Here, when necessary, we assume the original tokenization is encoded with spaces in self.input.
+        But we mainly look for missing character segments (i.e. spans that are not included in anchors)
+        and produce singleton nodes for them.
+        The function returns a new Graph, in which recovered nodes are included and thus nodes correspond to
+         input tokens.
+        """
+        graph = self.copy() # don't change
+        length = len(graph.input)
+        def rm_all(lst, items_to_remove):
+            for item in items_to_remove:
+                if item in lst:
+                    lst.remove(item)
+            return lst
+
+        def group_consecutive(lst):
+            # get list of integers, return list of lists, each the maximal consecutive (increasing) set from lst
+            if not lst:
+                return []
+            groups = []
+            cur_group=[lst[0]]
+            for i,item in enumerate(lst[1:]):
+                if item-1 == cur_group[-1]:
+                    cur_group.append(item)
+                else:
+                    groups.append(cur_group)
+                    cur_group = [item]
+            groups.append(cur_group)
+            return groups
+
+        # iterate missing ids
+        node_ids = [n.id for n in graph.nodes]
+        id2node = {n.id : n for n in graph.nodes}
+        max_id = max(node_ids)
+        missing_ids = rm_all(list(range(max_id)), node_ids)
+        missing_id_groups = group_consecutive(missing_ids)
+        for id_group in missing_id_groups:
+            # id_group is a list of consecutive missing ids
+            if id_group[0]==0:
+                begin_char = 0
+            else:
+                prev_id = id_group[0]-1 # the id of the existing node preceding the missing-id group
+                prev_node = id2node[prev_id]
+                begin_char = prev_node.anchors[0]['to']
+            next_id = id_group[-1]+1
+            if next_id in id2node:
+                next_node = id2node[next_id]
+                end_char = next_node.anchors[0]['from']
+            else:
+                end_char = length
+            omitted_span = graph.input[begin_char:end_char]
+            # we need to create len(id_group) new nodes for the omitted span.
+            # Try to align singleton node (i.e. one id) to a token; if num of tokens in omitted_span
+            # don't match num of missing ids, generate all these nodes with the same anchors to the whole span
+            tokens = omitted_span.strip().split()
+            if len(tokens) == len(id_group):
+                for token, new_id in zip(tokens, id_group):
+                    tok_begin_char = begin_char + omitted_span.find(token)
+                    tok_end_char = tok_begin_char + len(token)
+                    # add new node corresponding to omitted token
+                    graph.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
+            else:
+                # add new nodes, all corresponding to omitted span
+                for new_id in id_group:
+                    graph.add_node(new_id, label=omitted_span, anchors=[{"from": begin_char, "to": end_char}])
+        # special treatment is required for missing tokens after the last existing node
+        # (if there are tokens left in self.input not covered by node anchors)
+        last_end_char_of_nodes = max([n.anchors[0]['to'] for n in graph.nodes])
+        if last_end_char_of_nodes < length:
+            # the meaning is that there is some span of the sentence not covered;
+            # we will add nodes according to num of tokens in this last span
+            omitted_span = graph.input[last_end_char_of_nodes:]
+            for i,token in enumerate(omitted_span.strip().split()):
+                new_id = max_id+1+i
+                tok_begin_char = last_end_char_of_nodes + omitted_span.find(token)
+                tok_end_char = tok_begin_char + len(token)
+                graph.add_node(new_id, label=token, anchors=[{"from":tok_begin_char, "to":tok_end_char}])
+        # as a finish, sort nodes in graph so that they will again be ordered by id (& realization location)
+        graph.nodes = list(sorted(graph.nodes))
+        return graph
