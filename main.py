@@ -72,7 +72,7 @@ def read_graphs(stream, format = None,
   elif format == "mrp":
     generator = codec.mrp.read(stream, text = text, robust = robust);
   elif format == "norec":
-    generator = codec.norec.read(stream, text = text, reify = reify);
+    generator = codec.norec.read(stream, text = text, reify = reify, strict = strict);
   elif format == "pmb":
     generator = codec.pmb.read(stream, full = full,
                                reify = reify, text = text,
@@ -85,8 +85,9 @@ def read_graphs(stream, format = None,
     generator = codec.conllu.read(stream, framework = format, text = text,
                                   anchors = anchors, trace = trace);
   elif format == "eud":
-    generator = codec.conllu.read(stream, framework=format, text=text,
-                                  anchors=anchors, trace=trace, enhanced_graph=True);
+    generator = codec.conllu.read(stream, framework = format, text = text,
+                                  anchors = anchors, trace = trace,
+                                  enhanced_graph = True);
   else:
     print("read_graphs(): invalid input codec {}; exit."
           "".format(format), file = sys.stderr);
