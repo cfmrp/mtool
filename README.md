@@ -4,9 +4,11 @@ mtool
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/240px-Flag_of_Switzerland.svg.png" width=20>&nbsp;**The Swiss Army Knife of Meaning Representation**
 
 This repository provides software to support participants in the
-shared task on [Meaning Representation Parsing (MRP)](http://mrp.nlpl.eu)
+shared tasks on [Meaning Representation Parsing (MRP)](http://mrp.nlpl.eu)
 at the
-[2019 Conference on Computational Natural Language Learning](http://www.conll.org/2019) (CoNLL).
+[2019](http://www.conll.org/2019) and
+[2020 Conference on Computational Natural Language Learning](http://www.conll.org/2020) (CoNLL).
+
 Please see the above task web site for additional background.
 
 Scoring
@@ -78,7 +80,7 @@ each framework using its ‘own’ metric, for example (for AMR and UCCA, respec
 ```
 
 For all scorers, the `--trace` command-line option will enable per-item scores in the result
-(indexed by graph identifiers).
+(indexed by frameworks and graph identifiers).
 For MRP and SMATCH, the `--limit` option controls the maximum node pairing steps or
 hill-climbing iterations, respectively, to attempt during the search (with defaults `500000`
 and `20`, respectively).
@@ -162,12 +164,55 @@ anchors with the corresponding sub-string from the `input` field of the graph
 ./main.py --n 1 --strings --read mrp --write dot data/sample/ucca/wsj.mrp vinken.dot
 ```
 
+Diagnostics
+--------------
+
+When scoring with the MRP metric, `mtool` can optionally provide a per-item
+breakdown of differences between the gold and the system graphs, i.e. record
+false negatives (‘missing’ tuples) and false positives (‘surplus’ ones).
+This functionality is activated via the `--errors` command-line option, and
+tuple mismatches between the two graphs are recorded as a hierarchically
+nested JSON object, indexed (in order) by framework, item identifier, and tuple
+type.
+
+For example:
+```
+./main.py --read mrp --score mrp --framework eds --gold data/score/lpps.mrp --errors errors.json data/score/eds/lpps.peking.mrp
+```
+For the first EDS item (`#102990`) in this comparison, `errors.json` will
+contain a sub-structure like the following:
+```
+{"correspondences": [[0, 0], [1, 1], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11],
+                     [11, 12], [12, 13], [13, 15], [14, 16], [15, 17], [16, 14], [17, 18], [18, 19], [19, 20]],
+ "labels": {"missing": [[2, "_very+much_a_1"]],
+            "surplus": [[3, "_much_x_deg"], [2, "_very_x_deg"]]},
+ "anchors": {"missing": [[2, [6, 7, 8, 9, 11, 12, 13, 14]]],
+             "surplus": [[2, [6, 7, 8, 9]], [3, [11, 12, 13, 14]]]},
+ "edges": {"surplus": [[2, 3, "arg1"]]}}
+```
+When interpreting this structure, there are (of course) two separate spaces of
+node identifiers; the `correspondences` vector records the (optimal)
+node-to-node relation found by the MRP scorer, pairing identifiers from the
+*gold* graph with corresponding identifiers in the *system* graph.
+In the above, for example, gold node `#2` corresponds to system node `#3`,
+and there is a spurious node `#2` in the example system graph, which
+does not correspond to any of the gold nodes.
+Node identifiers in `"missing"` entries refer to gold nodes, whereas
+identifiers in `"surplus"` entries refer to the system graph, and they may
+or may not stand in a correspondence relation to a gold node.
+
+The differences between these two graphs can be visualized as follows, color-coding
+false negatives in red, and false positives in blue
+(and using gold identifiers, where available).
+
+![sample visualization](https://github.com/cfmrp/mtool/blob/master/data/score/eds/lpps.102990.png)
+
 Common Options
 --------------
 
 The `--read` and `--write` command-line options determine the input and output
 codecs to use.
-Valid input arguments include `mrp`, `amr`, `ccd`, `dm`, `eds`, `pas`, `psd`, `ud`,
+Valid input arguments include `mrp`, `amr`, `ccd`, `dm`, `eds`, `pas`, `psd`, `ud`, `eud`,
 and `ucca`; note that some of these formats are only [partially supported](https://github.com/cfmrp/mtool/issues).
 The range of supported output codecs includes `mrp`, `dot`, or `txt`.
 
@@ -177,6 +222,22 @@ position into the sequence of graphs read from the file, or using the first _n_
 graphs.
 These options cannot be combined with each other and take precendence over each
 other in the above order.
+
+Another way of selecting only a subset of graphs (from both the gold and
+system inputs) is the `--framework` option, which will limit the selection
+to graphs with matching `"framework"` values.
+Finally, the `--unique` option will discard graphs with multiple occurences
+of the same identifier, keeping only the first occurence from the input stream.
+
+Most top-level graph properties (`"id"`, `"time"`, `"source"`, `"provenance"`,
+`"language"`, `"flavor"`, `"framework"`, `"targets"`, `"input"`) can be set
+(or destructively overwritten, upon completion of input processing) using the
+`--inject` option, which takes as its argument a JSON object, e.g.
+```
+./main.py --text wsj.txt --read eds \
+  --inject '{"source": "wsj", "provenance": "Redwoods Ninth Growth (ERG 1214)"}' \
+  --write mrp wsj.eds wsj.mrp
+```
 
 Installation
 ------------

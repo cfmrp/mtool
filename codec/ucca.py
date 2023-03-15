@@ -1,4 +1,5 @@
 import re;
+import sys
 import xml.etree.ElementTree as ET
 from itertools import groupby
 from operator import attrgetter;
@@ -19,8 +20,9 @@ def convert_id(id, prefix):
     else:
         return id;
 
-def passage2graph(passage, text = None, prefix = None):
-    graph = Graph(convert_id(passage.ID, prefix), flavor = 1, framework = "ucca");
+
+def passage2graph(passage, text=None, prefix=None):
+    graph = Graph(convert_id(passage.ID, prefix), flavor=1, framework="ucca");
     l0 = passage.layer(layer0.LAYER_ID);
     l1 = passage.layer(layer1.LAYER_ID);
     unit_id_to_node_id = {};
@@ -35,7 +37,7 @@ def passage2graph(passage, text = None, prefix = None):
         nonlocal i;
         while i < n and graph.input[i] in {" ", "\t"}:
             i += 1;
-            
+
     def scan(candidates):
         for candidate in candidates:
             if graph.input.startswith(candidate, i):
@@ -78,7 +80,7 @@ def passage2graph(passage, text = None, prefix = None):
                             if graph.input:
                                 node.anchors.append(anchor(token.text));
                         else:
-                            node = graph.add_node(anchors = [anchor(token.text)] if graph.input else None);
+                            node = graph.add_node(anchors=[anchor(token.text)] if graph.input else None);
                             unit_id_to_node_id[unit.ID] = node.id;
     for unit in sorted(non_terminals, key=attrgetter("start_position", "end_position")):
         if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
@@ -96,8 +98,8 @@ def passage2graph(passage, text = None, prefix = None):
                         graph.add_edge(unit_id_to_node_id[unit.ID],
                                        unit_id_to_node_id[edge.child.ID],
                                        tag,
-                                       attributes = attributes,
-                                       values = values);
+                                       attributes=attributes,
+                                       values=values);
                     else:
                         #
                         # quietly ignore edges to implicit nodes
@@ -109,7 +111,8 @@ def passage2graph(passage, text = None, prefix = None):
             graph.nodes[node_id].is_top = True;
     return graph
 
-def read(fp, text = None, prefix = None):
+
+def read(fp, text=None, prefix=None):
     parent = Path(fp.name).parent;
     paths = [parent / file.strip() for file in fp];
     for passage in get_passages(map(str, paths)):
@@ -141,15 +144,23 @@ def is_implicit(node):
             return True
     return False
 
+def is_primary_root(node):
+    return all(is_remote(edge) for edge in node.incoming_edges)
 
 def graph2passage(graph, input):
     passage = core.Passage(graph.id)
     l0 = layer0.Layer0(passage)
     anchors = {(anchor["from"], anchor["to"], is_punct(node)) for node in graph.nodes for anchor in node.anchors or ()}
     terminals = {(i, j): l0.add_terminal(text=input[i:j], punct=punct) for i, j, punct in sorted(anchors)}
+
     l1 = layer1.Layer1(passage)
-    queue = [(node, None) for node in graph.nodes if node.is_root()]
-    id_to_unit = {}
+    queue = [(node, None if node.is_top else layer1.FoundationalNode(root=l1.root,
+                                                                     tag=layer1.NodeTags.Foundational,
+                                                                     ID=l1.next_id()))
+             for node in graph.nodes if is_primary_root(node)]
+
+
+    id_to_unit = {node.id: unit for (node, unit) in queue}
     remotes = []
     while queue:
         parent, parent_unit = queue.pop(0)
@@ -163,6 +174,10 @@ def graph2passage(graph, input):
                 child_unit = id_to_unit[tgt] = l1.add_fnode_multiple(parent_unit, labels, implicit=is_implicit(child))
                 queue.append((child, child_unit))
         for anchor in parent.anchors or ():
+            if parent_unit is None:  # Terminal children of the root are not valid in UCCA, so warn but be faithful
+                print("graph2passage(): anchors of the root node converted to Terminal children in ‘{}’."
+                      "".format(graph.id), file=sys.stderr)
+                parent_unit = l1.heads[0]
             parent_unit.add(layer1.EdgeTags.Terminal, terminals[anchor["from"], anchor["to"]])
     for parent, labels, tgt in remotes:
         l1.add_remote_multiple(parent, labels, id_to_unit[tgt])

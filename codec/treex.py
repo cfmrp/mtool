@@ -12,7 +12,6 @@ def walk(id, node, parent, nodes, edges, ns):
     raise Exception("treex.walk(): "
                     "missing ‘id’ or ‘ord’ values while decoding tree #{}; exit."
                     "".format(id));
-#  print(i, o, node.findtext(ns + "t_lemma"));
   nodes.append((i, int(o) if o is not None else 0, node));
 
   if edges is not None:
