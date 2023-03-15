@@ -60,6 +60,9 @@ class Node(object):
     def is_singleton(self):
         return self.is_root() and self.is_leaf() and not self.is_top
 
+    def is_reentrant(self):
+        return len(self.incoming_edges) > 1;
+    
     def normalize(self, actions, input = None, trace = 0):
         def trim(anchor, input):
             if "from" in anchor and "to" in anchor:
@@ -670,6 +673,15 @@ class Graph(object):
             = tuples(self, identities1);
         stops, slabels, sproperties, sanchors, sedges, sattributes \
             = tuples(graph, identities2);
+        print(identities1, identities2)
+        reentrancies = set();
+        for node in self.nodes:
+          if node.is_reentrant(): reentrancies.add(identities1[node.id]);
+        print(reentrancies)
+        gedges = {tuple for tuple in gedges if tuple[1] in reentrancies};
+        sedges = {tuple for tuple in sedges if tuple[1] in reentrancies};
+        print(gedges)
+        print(sedges)
         if errors is not None:
             errors[self.framework][self.id] = errors \
                 = {"correspondences": [correspondences[i]
