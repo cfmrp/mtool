@@ -73,9 +73,9 @@ def initial_node_correspondences(graph1, graph2,
     # graphs correspond by position into the .nodes. list
     #
     shape = (len(graph1.nodes), len(graph2.nodes) + 1)
-    rewards = np.zeros(shape, dtype=np.int);
-    edges = np.zeros(shape, dtype=np.int);
-    anchors = np.zeros(shape, dtype=np.int);
+    rewards = np.zeros(shape, dtype=int);
+    edges = np.zeros(shape, dtype=int);
+    anchors = np.zeros(shape, dtype=int);
 
     #
     # initialization needs to be sensitive to whether or not we are looking at
