@@ -1,7 +1,7 @@
 mtool
 =====
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/240px-Flag_of_Switzerland.svg.png" width=20>&nbsp;**The Swiss Army Knife of Meaning Representation**
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/250px-Flag_of_Switzerland_%28Pantone%29.svg.png" width=20>&nbsp;**The Swiss Army Knife of Meaning Representation**
 
 This repository provides software to support participants in the
 shared tasks on [Meaning Representation Parsing (MRP)](http://mrp.nlpl.eu)
